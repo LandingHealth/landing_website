@@ -1,56 +1,57 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import Header from "@/components/Header";
+import Reveal from "@/components/Reveal";
+import { container, navigation, type } from "@/lib/site";
 import "./globals.css";
+
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" });
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
+
+const description = "Landing connects physical therapy practice tools with SafeSock movement insights.";
 
 export const metadata: Metadata = {
   title: "Landing",
-  description: "Landing connects physical therapy practice tools with SafeSock movement insights.",
+  description,
 };
-
-const navigation = [
-  { label: "Product", href: "/product" },
-  { label: "Solution", href: "/solution" },
-  { label: "Devices", href: "/devices" },
-  { label: "Schedule", href: "/schedule" },
-  { label: "About", href: "/about" },
-];
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className="bg-[#dbebf4] text-[#0b0e32]">
-        <header className="absolute inset-x-0 top-0 z-10 grid grid-cols-1 items-center gap-y-1 px-4 pt-5 sm:px-8 sm:pt-7 md:grid-cols-[1fr_auto_1fr]">
-          <Link
-            href="/"
-            aria-label="Landing home"
-            className="shrink-0 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#eb662c]"
-          >
-            <Image
-              src="/home-icon.png"
-              alt=""
-              width={1408}
-              height={1408}
-              loading="eager"
-              unoptimized
-              className="h-10 w-10 sm:h-12 sm:w-12"
-            />
-          </Link>
-          <nav aria-label="Primary navigation" className="flex w-full flex-wrap items-center justify-center justify-self-center gap-x-1 gap-y-1 md:col-start-2 md:row-start-1 md:w-auto md:gap-x-8">
-            {navigation.map(({ label, href }) => (
-              <Link
-                key={href}
-                className="rounded-sm px-0.5 py-2 text-[13px] font-medium transition-colors hover:text-[#eb662c] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#eb662c] sm:px-1 sm:text-base sm:tracking-wide"
-                href={href}
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </header>
+    <html lang="en" data-scroll-behavior="smooth" className={`${geist.variable} ${geistMono.variable}`}>
+      <body className="bg-mist font-sans text-ink antialiased">
+        <Reveal />
+        <Header />
         {children}
+        <footer className="border-t border-ink/10 bg-mist py-12">
+          <div className={`${container} grid gap-10 md:grid-cols-12`}>
+            <div className="md:col-span-6">
+              <Link href="/" className="inline-flex items-center gap-2.5 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+                <Image src="/home-icon.png" alt="" width={1408} height={1408} unoptimized className="h-8 w-8" />
+                <span className="text-lg font-semibold tracking-[-0.035em]">Landing</span>
+              </Link>
+              <p className="mt-4 max-w-sm text-sm leading-6 text-slate">{description}</p>
+            </div>
+            <nav aria-label="Footer navigation" className="md:col-span-6 md:justify-self-end">
+              <ul className="flex flex-wrap gap-x-6 gap-y-2">
+                {navigation.map(({ label, href }) => (
+                  <li key={href}>
+                    <Link href={href} className="rounded-sm text-sm text-slate transition-colors duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <div className={`${type.mono} flex flex-wrap justify-between gap-x-6 gap-y-2 border-t border-ink/10 pt-6 text-slate md:col-span-12`}>
+              <span>Built by students at Johns Hopkins.</span>
+              <span>© {new Date().getFullYear()} Landing</span>
+            </div>
+          </div>
+        </footer>
       </body>
     </html>
   );

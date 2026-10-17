@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SectionPage from "@/components/SectionPage";
 import LoadSignal from "@/components/LoadSignal";
+import { container, sectionPad } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Product | Landing",
@@ -29,8 +30,8 @@ export default function ProductPage() {
         },
       ]}
     >
-      <section className="bg-[#f7fbfd] px-6 pb-24 sm:px-10 sm:pb-28 lg:px-16 lg:pb-36">
-        <div className="mx-auto max-w-6xl">
+      <section className={`border-t border-ink/10 bg-mist ${sectionPad}`}>
+        <div className={container}>
           <LoadSignal />
         </div>
       </section>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import ProductFrame from "@/components/ProductFrame";
 import SectionPage from "@/components/SectionPage";
+import { container, sectionPad, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Devices | Landing",
@@ -29,21 +31,25 @@ export default function DevicesPage() {
         },
       ]}
     >
-      <section className="bg-[#0b0e32] px-6 py-24 text-[#f7fbfd] sm:px-10 sm:py-28 lg:px-16 lg:py-36">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,.75fr)_minmax(0,1.25fr)] lg:gap-16">
-          <div>
-            <div className="h-1.5 w-12 rounded-full bg-[#eb662c]" aria-hidden="true" />
-            <h2 className="mt-7 text-[clamp(2.4rem,4.5vw,4.25rem)] font-semibold leading-[1.08] tracking-[-0.045em]">See the SafeSock concept</h2>
-            <p className="mt-6 text-base leading-8 text-[#dce9ef] sm:text-lg sm:leading-9">A short visualization of the SafeSock concept and its intended sensing workflow. The measurements shown are illustrative.</p>
+      <section id="demo" className={`scroll-mt-24 bg-ink text-paper ${sectionPad}`}>
+        <div className={`${container} grid items-center gap-10 lg:grid-cols-12 lg:gap-16`}>
+          <div data-reveal className="lg:col-span-5">
+            <p className={`${type.mono} text-accent-soft`}>Demo</p>
+            <h2 className={`${type.h2} mt-4`}>See the SafeSock concept</h2>
+            <p className={`${type.bodyOnInk} mt-5`}>A short visualization of the SafeSock concept and its intended sensing workflow. The measurements shown are illustrative.</p>
             <div className="mt-8 inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-3 py-2">
               <Image src="/safesock-mark.png" alt="SafeSock product mark" width={56} height={56} className="h-12 w-12 rounded-lg object-cover" />
-              <span className="text-sm font-semibold tracking-wide">SafeSock <span className="font-normal text-[#dce9ef]">by Landing</span></span>
+              <span className="text-sm font-semibold tracking-wide">SafeSock <span className="font-normal text-on-ink">by Landing</span></span>
             </div>
           </div>
-          <video className="aspect-video w-full rounded-2xl bg-black object-cover shadow-[0_24px_80px_rgba(0,0,0,.25)]" controls playsInline preload="metadata" aria-label="SafeSock product concept video">
-            <source src="/safesock-demo.mp4" type="video/mp4" />
-            Your browser does not support video playback.
-          </video>
+          <div className="lg:col-span-7">
+            <ProductFrame label="SafeSock · Concept video" caption="Illustrative data">
+              <video className="aspect-video w-full bg-black object-cover" controls playsInline preload="metadata" poster="/safesock-demo-poster.jpg" aria-label="SafeSock product concept video">
+                <source src="/safesock-demo.mp4" type="video/mp4" />
+                Your browser does not support video playback.
+              </video>
+            </ProductFrame>
+          </div>
         </div>
       </section>
     </SectionPage>
