@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
-import Reveal from "@/components/Reveal";
 import { container, navigation, type } from "@/lib/site";
 import "./globals.css";
 
@@ -23,9 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${geist.variable} ${geistMono.variable}`}>
       <body className="bg-mist font-sans text-ink antialiased">
-        <Reveal />
         <Header />
-        {children}
+        <main className="overflow-x-clip">{children}</main>
         <footer className="border-t border-ink/10 bg-mist py-12">
           <div className={`${container} grid gap-10 md:grid-cols-12`}>
             <div className="md:col-span-6">

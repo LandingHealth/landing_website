@@ -3,8 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import ButtonLink from "@/components/ButtonLink";
-import { container, navigation } from "@/lib/site";
+import { button, container, navigation } from "@/lib/site";
 
 const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
@@ -43,7 +42,12 @@ export default function Header() {
           })}
         </nav>
         <div className="order-2 md:order-3">
-          <ButtonLink href="/devices#demo" variant="primary">Watch the demo</ButtonLink>
+          <Link href="/devices#demo" className={button.primary}>
+            Watch the demo
+            <span aria-hidden="true" className="transition-transform duration-200 motion-safe:group-hover:translate-x-0.5">
+              →
+            </span>
+          </Link>
         </div>
       </div>
     </header>

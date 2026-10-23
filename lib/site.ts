@@ -28,8 +28,3 @@ export const type = {
   bodyOnInk: "max-w-prose text-base leading-7 text-on-ink sm:text-lg sm:leading-8",
   mono: "font-mono text-xs uppercase tracking-[0.08em]",
 } as const;
-
-export const card =
-  "rounded-xl border border-ink/10 bg-white transition-colors duration-200 hover:border-ink/20";
-
-export const stagger = (i: number) => ({ "--reveal-i": i }) as React.CSSProperties;
