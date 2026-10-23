@@ -9,14 +9,18 @@
     "build": "next build --webpack",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "check:svelte": "svelte-check --tsconfig ./tsconfig.json"
+    "check:svelte": "svelte-check --tsconfig ./tsconfig.json",
+    "vendor:sync": "sh scripts/vendor.sh",
+    "verify:static": "node scripts/verify-static.mjs out"
   },
   "dependencies": {
+    "clsx": "2.1.1",
     "motion-sv": "0.1.13",
     "next": "16.3.8",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "svelte": "5.57.1"
+    "svelte": "5.57.1",
+    "tailwind-merge": "3.7.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.3.3",
@@ -25,10 +29,12 @@
     "@types/react-dom": "19.3.0",
     "eslint": "^9.39.5",
     "eslint-config-next": "16.3.8",
+    "eslint-plugin-svelte": "3.23.0",
     "svelte-check": "4.7.6",
     "svelte-loader": "3.2.4",
     "svelte-preprocess": "6.0.5",
     "tailwindcss": "4.3.3",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "8.71.0"
   }
 }

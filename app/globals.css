@@ -14,10 +14,19 @@
   --color-accent-soft: #f28a59;
 }
 
+:root {
+  --background: #fff;
+  --border: rgb(11 14 50 / 0.1);
+}
+
 @theme inline {
+  --color-background: var(--background);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @media (prefers-reduced-motion: no-preference) {
   html {

@@ -8,7 +8,7 @@ const nextConfig = {
   ...(process.env.GITHUB_PAGES === "true"
     ? { output: "export", images: { unoptimized: true } }
     : {}),
-  webpack(config) {
+  webpack(config, { isServer }) {
     config.module.rules.push({
       test: /\.svelte(?:\.js)?$/,
       use: {
@@ -16,6 +16,11 @@ const nextConfig = {
         options: {
           preprocess: svelteConfig.preprocess,
           hotReload: false,
+          compilerOptions: {
+            generate: isServer ? "server" : "client",
+            css: "injected",
+            warningFilter: (warning) => !warning.filename?.includes("node_modules"),
+          },
         },
       },
     });
@@ -24,6 +29,11 @@ const nextConfig = {
       test: /node_modules\/svelte\/.*\.mjs$/,
       resolve: { fullySpecified: false },
     });
+
+    config.ignoreWarnings = [
+      ...(config.ignoreWarnings ?? []),
+      { module: /svelte\/src\/internal\/server\/crypto\.js/ },
+    ];
 
     config.resolve.extensions.push(".svelte");
     config.resolve.conditionNames.unshift("svelte");

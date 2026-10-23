@@ -1,3 +1,4 @@
 allowBuilds:
   svelte-preprocess: false
   unrs-resolver: true
+minimumReleaseAge: 20160
