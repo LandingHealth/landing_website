@@ -27,9 +27,12 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm check:svelte
       - run: pnpm build
         env:
           GITHUB_PAGES: "true"
+      - run: pnpm verify:static
       - run: cp CNAME out/CNAME
       - uses: actions/upload-pages-artifact@v3
         with:
