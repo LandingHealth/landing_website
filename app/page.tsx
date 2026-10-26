@@ -55,20 +55,14 @@ export default function Home() {
     <main className="overflow-x-clip">
       <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
         <div className={`${container} flex flex-col items-center text-center`}>
-          <p className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-3.5 py-1 text-[13px] font-medium">
-            <span className="size-1.5 rounded-full bg-ink" />
-            Built for physical therapists
-          </p>
-          <h1 className={`${type.h1} mt-6 max-w-4xl`}>
-            Better preparation<br className="hidden sm:block" /> for every appointment.
+          <h1 className={`${type.h1} max-w-4xl`}>
+            The Operating System<br className="hidden sm:block" /> for Physical Therapy.
           </h1>
           <p className={`${type.lead} mt-6 max-w-[30rem] text-pretty`}>
-            Bring patient history, exercise activity, and session notes into one focused workspace. Arrive prepared
-            with a clear summary and exercise recommendations for your review.
+            Connected recovery devices and clinic software that bring patient progress, daily operations, and care at home into one platform.
           </p>
           <div className="mt-9 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
             <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
-            <ButtonLink href="/product" variant="secondary">Explore the platform</ButtonLink>
           </div>
           <div className="mt-14 w-full max-w-5xl sm:mt-16">
             <DashboardPreview />
