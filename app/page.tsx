@@ -59,10 +59,10 @@ export default function Home() {
             <span className="size-1.5 rounded-full bg-ink" />
             Built for physical therapists
           </p>
-          <h1 className="mt-6 max-w-4xl font-display text-[42px] font-normal leading-[1.02] tracking-[-0.022em] text-balance sm:text-6xl lg:text-[80px]">
+          <h1 className={`${type.h1} mt-6 max-w-4xl`}>
             Better preparation<br className="hidden sm:block" /> for every appointment.
           </h1>
-          <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
+          <p className={`${type.lead} mt-6 max-w-[30rem] text-pretty`}>
             Bring patient history, exercise activity, and session notes into one focused workspace. Arrive prepared
             with a clear summary and exercise recommendations for your review.
           </p>
@@ -84,7 +84,7 @@ export default function Home() {
             {workspace.map(({ title, text }) => (
               <article key={title} className="rounded-xl border border-ink/10 bg-white p-6 sm:p-7">
                 <h3 className={type.h3}>{title}</h3>
-                <p className="mt-3 text-base leading-7">{text}</p>
+                <p className="mt-3 text-[15px] leading-[1.6]">{text}</p>
               </article>
             ))}
           </div>
@@ -123,7 +123,7 @@ export default function Home() {
             {alsoInLanding.map(({ title, text, href, link }) => (
               <div key={title} className="border-t border-ink/15 pt-6">
                 <h3 className={type.h3}>{title}</h3>
-                <p className="mt-3 text-base leading-7">{text}</p>
+                <p className="mt-3 text-[15px] leading-[1.6]">{text}</p>
                 <Link
                   href={href}
                   className="mt-4 inline-block text-sm font-medium underline decoration-ink/30 underline-offset-4 hover:decoration-ink"

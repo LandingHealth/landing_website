@@ -46,7 +46,7 @@ export default function SectionPage({
                   <span aria-hidden="true" className={`${type.label} pt-1.5 text-accent-deep`}>{index(i)}</span>
                   <div>
                     <h3 className={type.h3}>{heading}</h3>
-                    <p className="mt-2 max-w-prose text-base leading-7 text-slate">{text}</p>
+                    <p className="mt-2 max-w-prose text-[15px] leading-[1.6] text-slate">{text}</p>
                   </div>
                 </article>
               </div>
