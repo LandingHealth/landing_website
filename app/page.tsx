@@ -1,11 +1,10 @@
-import Image from "next/image";
 import ButtonLink from "@/components/ButtonLink";
+import DashboardPreview from "@/components/DashboardPreview";
 import CtaBand from "@/components/CtaBand";
 import LoadSignal from "@/components/LoadSignal";
-import ProductFrame from "@/components/ProductFrame";
 import RecoverySignalIsland from "@/components/RecoverySignalIsland";
 import SectionHeader from "@/components/SectionHeader";
-import { card, container, sectionPad, stagger, type } from "@/lib/site";
+import { card, container, demoHref, sectionPad, stagger, type } from "@/lib/site";
 
 const audiences = [
   {
@@ -43,36 +42,25 @@ const platform = [
 export default function Home() {
   return (
     <main className="overflow-x-clip">
-      <section className="bg-mist pb-16 pt-14 sm:pb-20 sm:pt-20 lg:pt-24">
-        <div className={container}>
-          <p data-reveal className={`${type.label} text-accent-deep`}>SafeSock by Landing</p>
-          <div className="mt-5 grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-12">
-            <h1 data-reveal style={stagger(1)} className={`${type.h1} lg:col-span-7`}>
-              A connected operating system for physical therapy
-            </h1>
-            <div data-reveal style={stagger(2)} className="lg:col-span-5">
-              <p className={type.body}>
-                Landing connects scheduling, exercise planning, and patient communication with SafeSock, a sensor
-                sleeve designed to capture how patients bear weight between appointments.
-              </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <ButtonLink href="/devices#demo" variant="primary">Watch the demo</ButtonLink>
-                <ButtonLink href="/product" variant="secondary">Explore the platform</ButtonLink>
-              </div>
-            </div>
+      <section className="bg-mist pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
+        <div className={`${container} flex flex-col items-center text-center`}>
+          <p className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-3.5 py-1 text-[13px] font-medium">
+            <span className="size-1.5 rounded-full bg-ink" />
+            Built for physical therapists
+          </p>
+          <h1 className="mt-6 max-w-4xl font-display text-[42px] font-normal leading-[1.02] tracking-[-0.022em] text-balance sm:text-6xl lg:text-[80px]">
+            Better preparation<br className="hidden sm:block" /> for every appointment.
+          </h1>
+          <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
+            Bring patient history, exercise activity, and session notes into one focused workspace. Arrive prepared
+            with a clear summary and exercise recommendations for your review.
+          </p>
+          <div className="mt-9 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
+            <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
+            <ButtonLink href="/product" variant="secondary">Explore the platform</ButtonLink>
           </div>
-          <div className="mt-12 sm:mt-14">
-            <ProductFrame label="SafeSock · Concept render" caption="Concept render · Not live data">
-              <Image
-                src="/safesock-sensor-layout.jpg"
-                alt="Concept render of SafeSock's pressure sensor layout across the sole"
-                width={1600}
-                height={871}
-                priority
-                sizes="(min-width: 1152px) 1152px, 100vw"
-                className="h-auto w-full"
-              />
-            </ProductFrame>
+          <div className="mt-14 w-full max-w-5xl sm:mt-16">
+            <DashboardPreview />
           </div>
         </div>
       </section>
