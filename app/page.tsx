@@ -1,48 +1,59 @@
+import Link from "next/link";
 import ButtonLink from "@/components/ButtonLink";
 import DashboardPreview from "@/components/DashboardPreview";
-import CtaBand from "@/components/CtaBand";
-import LoadSignal from "@/components/LoadSignal";
-import RecoverySignalIsland from "@/components/RecoverySignalIsland";
-import SectionHeader from "@/components/SectionHeader";
-import { card, container, demoHref, sectionPad, stagger, type } from "@/lib/site";
+import { container, demoHref, sectionPad, type } from "@/lib/site";
 
-const audiences = [
+const workspace = [
   {
-    label: "For therapists",
-    heading: "Plan the practice",
-    text: "Plan availability, prepare exercise guides, coordinate follow ups.",
+    title: "Appointment preparation",
+    text: "Before each visit, Landing assembles a brief from the patient’s history, recent sessions, and your notes. It lists what changed and what is still missing, so you start with context.",
   },
   {
-    label: "For patients",
-    heading: "Care at home",
-    text: "Book online sessions and get home exercise guides with clear instructions and schedules.",
+    title: "Exercise review",
+    text: "Patients record their home exercises and submit the videos. Submissions with possible form issues are flagged and sorted oldest first, so you know where to look.",
   },
   {
-    label: "Between visits",
-    heading: "Context beyond the clinic",
-    text: "SafeSock adds a view of weight bearing outside the clinic.",
+    title: "Patient progress",
+    text: "Each patient page brings completed and skipped sessions, exercise history, and your notes into one view.",
   },
 ];
 
-const platform = [
+const proposalFields = [
+  { term: "Rationale", detail: "Why the change is suggested." },
+  { term: "Dose", detail: "Sets, reps, and holds." },
+  { term: "Precautions", detail: "What to watch for." },
+  { term: "PT checks", detail: "What to confirm during the session." },
+  { term: "Patient evidence", detail: "The sessions, videos, and notes it draws on." },
+  { term: "Reference evidence", detail: "Reviewed reference passages, when available." },
+];
+
+const alsoInLanding = [
   {
-    heading: "Scheduling",
-    text: "Landing helps therapists anticipate demand and plan appointment availability around the needs of their practice. Patients can book online sessions, while AI agents help coordinate scheduling, reminders, and follow ups.",
+    title: "Scheduling",
+    text: "Plan availability around demand, let patients book online sessions, and keep reminders and follow-ups coordinated.",
+    href: "/schedule",
+    link: "Read about scheduling",
   },
   {
-    heading: "Exercise planning",
-    text: "For exercise planning, Landing helps therapists find exercises suited to treatment goals, available equipment, and the restrictions they define. Therapists can prepare personalized home exercise guides with clear instructions and schedules, giving patients a practical reference between sessions.",
+    title: "Home exercise guides",
+    text: "Build plans around treatment goals, equipment, and the restrictions you set, with clear instructions patients can follow at home.",
+    href: "/product",
+    link: "Read about the platform",
   },
   {
-    heading: "SafeSock",
-    text: "SafeSock adds a view of how a patient bears weight outside the clinic. Its sensor sleeve is designed to sit inside a boot, cast, or brace and capture pressure patterns that can help therapists discuss recovery with more context.",
+    title: "SafeSock",
+    text: "A sensor sleeve designed to sit inside a boot, cast, or brace and show how a patient bears weight between visits.",
+    href: "/devices",
+    link: "Meet SafeSock",
   },
 ];
+
+const section = `border-t border-ink/10 ${sectionPad}`;
 
 export default function Home() {
   return (
     <main className="overflow-x-clip">
-      <section className="bg-mist pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
+      <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
         <div className={`${container} flex flex-col items-center text-center`}>
           <p className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-3.5 py-1 text-[13px] font-medium">
             <span className="size-1.5 rounded-full bg-ink" />
@@ -65,66 +76,79 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={`border-t border-ink/10 bg-paper ${sectionPad}`}>
-        <div className={`${container} grid gap-6 md:grid-cols-3`}>
-          {audiences.map(({ label, heading, text }, index) => (
-            <div key={label} data-reveal style={stagger(index)}>
-              <div className="h-full border-t border-ink/10 pt-6">
-                <p className={`${type.label} text-accent-deep`}>{label}</p>
-                <h2 className={`${type.h3} mt-3`}>{heading}</h2>
-                <p className="mt-3 max-w-prose text-base leading-7 text-slate">{text}</p>
-              </div>
-            </div>
-          ))}
+      <section className={section}>
+        <div className={container}>
+          <p className={type.label}>The workspace</p>
+          <h2 className={`${type.h2} mt-4 max-w-3xl`}>Everything you need before the next visit.</h2>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {workspace.map(({ title, text }) => (
+              <article key={title} className="rounded-xl border border-ink/10 bg-white p-6 sm:p-7">
+                <h3 className={type.h3}>{title}</h3>
+                <p className="mt-3 text-base leading-7">{text}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className={`bg-mist ${sectionPad}`}>
-        <div className={`${container} space-y-12`}>
-          <SectionHeader eyebrow="Workflow" title="From step to insight" />
-          <LoadSignal />
+      <section className={section}>
+        <div className={`${container} grid gap-10 lg:grid-cols-12 lg:gap-16`}>
+          <div className="lg:col-span-5">
+            <p className={type.label}>Your judgment</p>
+            <h2 className={`${type.h2} mt-4`}>You decide what changes.</h2>
+            <p className={`${type.lead} mt-5 max-w-prose`}>
+              Landing suggests exercises to continue, progress, or adjust, with the patient evidence behind each one.
+              Nothing is assigned, sent to the patient, or charted on its own.
+            </p>
+          </div>
+          <div className="rounded-xl border border-ink/10 bg-white p-6 sm:p-7 lg:col-span-7">
+            <h3 className="text-base font-semibold">Each proposal shows</h3>
+            <dl className="mt-5 grid gap-x-8 gap-y-5 sm:grid-cols-2">
+              {proposalFields.map(({ term, detail }) => (
+                <div key={term}>
+                  <dt className="font-medium">{term}</dt>
+                  <dd className="mt-1 text-[15px] leading-6">{detail}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
       </section>
 
-      <section className={`border-t border-ink/10 bg-paper ${sectionPad}`}>
-        <div className={`${container} space-y-12`}>
-          <SectionHeader eyebrow="Platform" title="Support for your practice and your patients" />
-          <div className="grid gap-4 md:grid-cols-3">
-            {platform.map(({ heading, text }, index) => (
-              <div key={heading} data-reveal style={stagger(index)}>
-                <article className={`${card} h-full p-6`}>
-                  <p className={`${type.label} text-accent-deep`}>{String(index + 1).padStart(2, "0")}</p>
-                  <h3 className={`${type.h3} mt-4`}>{heading}</h3>
-                  <p className="mt-3 text-base leading-7 text-slate">{text}</p>
-                </article>
+      <section className={section}>
+        <div className={container}>
+          <p className={type.label}>Also in Landing</p>
+          <h2 className={`${type.h2} mt-4 max-w-3xl`}>Support around the visit, too.</h2>
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {alsoInLanding.map(({ title, text, href, link }) => (
+              <div key={title} className="border-t border-ink/15 pt-6">
+                <h3 className={type.h3}>{title}</h3>
+                <p className="mt-3 text-base leading-7">{text}</p>
+                <Link
+                  href={href}
+                  className="mt-4 inline-block text-sm font-medium underline decoration-ink/30 underline-offset-4 hover:decoration-ink"
+                >
+                  {link}
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className={`bg-ink text-paper ${sectionPad}`}>
-        <div className={`${container} grid items-center gap-12 lg:grid-cols-12 lg:gap-16`}>
-          <div data-reveal className="lg:col-span-5">
-            <p className={`${type.label} text-accent-soft`}>Care</p>
-            <h2 className={`${type.h2} mt-4`}>More time for patient care</h2>
-            <p className={`${type.bodyOnInk} mt-5`}>
-              Our goal is to help physical therapists support more patients while preserving the attention each
-              person deserves. Landing’s devices provide meaningful context, and its AI agents help with the
-              coordination and administrative work surrounding care. Therapists remain responsible for exercise
-              plans and clinical decisions, with one connected system supporting their work.
-            </p>
-            <div className="mt-8">
-              <ButtonLink href="/devices" variant="onInk">Explore SafeSock</ButtonLink>
-            </div>
-          </div>
-          <div data-reveal className="lg:col-span-7">
-            <RecoverySignalIsland />
+      <section className={section}>
+        <div className={`${container} flex flex-col items-center text-center`}>
+          <h2 className={`${type.h2} max-w-3xl`}>See how Landing fits your clinic.</h2>
+          <p className={`${type.lead} mt-5 max-w-[36rem] text-pretty`}>
+            Book an intro meeting with the team. We’ll walk through the workspace with sample patients and answer
+            questions about your setup.
+          </p>
+          <div className="mt-9 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
+            <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
+            <ButtonLink href="/about" variant="secondary">Meet the team</ButtonLink>
           </div>
         </div>
       </section>
-
-      <CtaBand />
     </main>
   );
 }

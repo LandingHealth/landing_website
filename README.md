@@ -6,7 +6,7 @@ The Product page includes a load-signal illustration adapted from the previous S
 
 ## Svelte animations
 
-The site mounts Svelte 5 components alongside React through `components/SvelteIsland.tsx`. The homepage loads `RecoverySignals.svelte` for its animated sensing illustration. Svelte, Motion SV, and the Svelte webpack loader are installed.
+The site mounts Svelte 5 components alongside React through `components/SvelteIsland.tsx`. Svelte, Motion SV, and the Svelte webpack loader are installed.
 
 For example, in a React client component:
 
