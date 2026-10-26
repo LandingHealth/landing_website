@@ -1,3 +1,5 @@
+import { type } from "@/lib/site";
+
 export default function ProductFrame({
   label,
   caption,
@@ -16,12 +18,12 @@ export default function ProductFrame({
             <span className="h-2.5 w-2.5 rounded-full bg-ink/15" />
             <span className="h-2.5 w-2.5 rounded-full bg-ink/15" />
           </div>
-          <span className="font-mono text-xs uppercase tracking-[0.08em] text-slate">{label}</span>
+          <span className={`${type.label} text-slate`}>{label}</span>
         </div>
         {children}
       </div>
       {caption && (
-        <figcaption className="mt-3 font-mono text-xs uppercase tracking-[0.08em] text-current opacity-70">{caption}</figcaption>
+        <figcaption className={`mt-3 ${type.label} text-current opacity-70`}>{caption}</figcaption>
       )}
     </figure>
   );

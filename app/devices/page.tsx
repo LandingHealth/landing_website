@@ -34,7 +34,7 @@ export default function DevicesPage() {
       <section id="demo" className={`scroll-mt-24 bg-ink text-paper ${sectionPad}`}>
         <div className={`${container} grid items-center gap-10 lg:grid-cols-12 lg:gap-16`}>
           <div data-reveal className="lg:col-span-5">
-            <p className={`${type.mono} text-accent-soft`}>Demo</p>
+            <p className={`${type.label} text-accent-soft`}>Demo</p>
             <h2 className={`${type.h2} mt-4`}>See the SafeSock concept</h2>
             <p className={`${type.bodyOnInk} mt-5`}>A short visualization of the SafeSock concept and its intended sensing workflow. The measurements shown are illustrative.</p>
             <div className="mt-8 inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-3 py-2">
