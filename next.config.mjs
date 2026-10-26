@@ -5,9 +5,6 @@ import svelteConfig from "./svelte.config.mjs";
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig = {
-  ...(process.env.GITHUB_PAGES === "true"
-    ? { output: "export", images: { unoptimized: true } }
-    : {}),
   webpack(config) {
     config.module.rules.push({
       test: /\.svelte(?:\.js)?$/,
