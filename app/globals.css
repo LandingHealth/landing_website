@@ -12,7 +12,20 @@
   --color-accent-text: #d55823;
   --color-accent-deep: #c9521e;
   --color-accent-soft: #f28a59;
+  --animate-rippling: rippling 600ms ease-out;
   --shadow-preview: 0 1px 2px rgb(12 14 50 / 0.04), 0 24px 64px -24px rgb(12 14 50 / 0.22);
+}
+
+@keyframes rippling {
+  from {
+    opacity: 1;
+    transform: scale(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(2);
+  }
 }
 
 @theme inline {
