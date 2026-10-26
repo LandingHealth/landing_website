@@ -1,21 +1,20 @@
 import Link from "next/link";
-import { button, type ButtonVariant } from "@/lib/site";
+import { button, buttonSize, type ButtonSize, type ButtonVariant } from "@/lib/site";
 
 export default function ButtonLink({
   href,
   variant,
+  size = "md",
   children,
 }: {
   href: string;
   variant: ButtonVariant;
+  size?: ButtonSize;
   children: React.ReactNode;
 }) {
   return (
-    <Link href={href} className={button[variant]}>
+    <Link href={href} className={`${button[variant]} ${buttonSize[size]}`}>
       {children}
-      <span aria-hidden="true" className="transition-transform duration-200 motion-safe:group-hover:translate-x-0.5">
-        →
-      </span>
     </Link>
   );
 }

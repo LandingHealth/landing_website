@@ -1,19 +1,29 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import Image from "next/image";
+import { Inter_Tight, Source_Serif_4 } from "next/font/google";
 import Link from "next/link";
+import BrandLockup from "@/components/Brand";
 import Header from "@/components/Header";
 import Reveal from "@/components/Reveal";
 import { container, navigation, type } from "@/lib/site";
 import "./globals.css";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" });
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
+const interTight = Inter_Tight({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-inter-tight",
+  display: "swap",
+});
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin"],
+  axes: ["opsz"],
+  variable: "--font-source-serif",
+  display: "swap",
+});
 
-const description = "Landing connects physical therapy practice tools with SafeSock movement insights.";
+const description = "Landing Health brings patient history, exercise activity, and session notes into one workspace for physical therapists.";
 
 export const metadata: Metadata = {
-  title: "Landing",
+  title: "Landing Health",
   description,
 };
 
@@ -21,34 +31,33 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${geist.variable} ${geistMono.variable}`}>
-      <body className="bg-mist font-sans text-ink antialiased">
+    <html lang="en" data-scroll-behavior="smooth" className={`${interTight.variable} ${sourceSerif.variable}`}>
+      <body className="bg-mist font-sans text-black antialiased">
         <Reveal />
         <Header />
         {children}
         <footer className="border-t border-ink/10 bg-mist py-12">
           <div className={`${container} grid gap-10 md:grid-cols-12`}>
             <div className="md:col-span-6">
-              <Link href="/" className="inline-flex items-center gap-2.5 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
-                <Image src="/home-icon.png" alt="" width={1408} height={1408} unoptimized className="h-8 w-8" />
-                <span className="text-lg font-semibold tracking-[-0.035em]">Landing</span>
+              <Link href="/" aria-label="Landing Health home" className="inline-flex rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
+                <BrandLockup />
               </Link>
-              <p className="mt-4 max-w-sm text-sm leading-6 text-slate">{description}</p>
+              <p className="mt-4 max-w-sm text-sm leading-6">{description}</p>
             </div>
             <nav aria-label="Footer navigation" className="md:col-span-6 md:justify-self-end">
               <ul className="flex flex-wrap gap-x-6 gap-y-2">
                 {navigation.map(({ label, href }) => (
                   <li key={href}>
-                    <Link href={href} className="rounded-sm text-sm text-slate transition-colors duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+                    <Link href={href} className="rounded-sm text-sm hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
                       {label}
                     </Link>
                   </li>
                 ))}
               </ul>
             </nav>
-            <div className={`${type.mono} flex flex-wrap justify-between gap-x-6 gap-y-2 border-t border-ink/10 pt-6 text-slate md:col-span-12`}>
+            <div className={`${type.label} flex flex-wrap justify-between gap-x-6 gap-y-2 border-t border-ink/10 pt-6 md:col-span-12`}>
               <span>Built by students at Johns Hopkins.</span>
-              <span>© {new Date().getFullYear()} Landing</span>
+              <span>© {new Date().getFullYear()} Landing Health</span>
             </div>
           </div>
         </footer>

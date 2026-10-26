@@ -45,7 +45,7 @@ export default function Home() {
     <main className="overflow-x-clip">
       <section className="bg-mist pb-16 pt-14 sm:pb-20 sm:pt-20 lg:pt-24">
         <div className={container}>
-          <p data-reveal className={`${type.mono} text-accent-deep`}>SafeSock by Landing</p>
+          <p data-reveal className={`${type.label} text-accent-deep`}>SafeSock by Landing</p>
           <div className="mt-5 grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-12">
             <h1 data-reveal style={stagger(1)} className={`${type.h1} lg:col-span-7`}>
               A connected operating system for physical therapy
@@ -82,7 +82,7 @@ export default function Home() {
           {audiences.map(({ label, heading, text }, index) => (
             <div key={label} data-reveal style={stagger(index)}>
               <div className="h-full border-t border-ink/10 pt-6">
-                <p className={`${type.mono} text-accent-deep`}>{label}</p>
+                <p className={`${type.label} text-accent-deep`}>{label}</p>
                 <h2 className={`${type.h3} mt-3`}>{heading}</h2>
                 <p className="mt-3 max-w-prose text-base leading-7 text-slate">{text}</p>
               </div>
@@ -105,7 +105,7 @@ export default function Home() {
             {platform.map(({ heading, text }, index) => (
               <div key={heading} data-reveal style={stagger(index)}>
                 <article className={`${card} h-full p-6`}>
-                  <p className={`${type.mono} text-accent-deep`}>{String(index + 1).padStart(2, "0")}</p>
+                  <p className={`${type.label} text-accent-deep`}>{String(index + 1).padStart(2, "0")}</p>
                   <h3 className={`${type.h3} mt-4`}>{heading}</h3>
                   <p className="mt-3 text-base leading-7 text-slate">{text}</p>
                 </article>
@@ -118,7 +118,7 @@ export default function Home() {
       <section className={`bg-ink text-paper ${sectionPad}`}>
         <div className={`${container} grid items-center gap-12 lg:grid-cols-12 lg:gap-16`}>
           <div data-reveal className="lg:col-span-5">
-            <p className={`${type.mono} text-accent-soft`}>Care</p>
+            <p className={`${type.label} text-accent-soft`}>Care</p>
             <h2 className={`${type.h2} mt-4`}>More time for patient care</h2>
             <p className={`${type.bodyOnInk} mt-5`}>
               Our goal is to help physical therapists support more patients while preserving the attention each

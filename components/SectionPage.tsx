@@ -26,7 +26,7 @@ export default function SectionPage({
     <main className="overflow-x-clip">
       <section className="bg-mist pb-16 pt-14 sm:pb-20 sm:pt-20 lg:pt-24">
         <div className={container}>
-          <p data-reveal className={`${type.mono} text-accent-deep`}>Landing / {label}</p>
+          <p data-reveal className={`${type.label} text-accent-deep`}>Landing / {label}</p>
           <div className="mt-5 grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-12">
             <h1 data-reveal style={stagger(1)} className={`${type.h1} lg:col-span-7`}>{title}</h1>
             <p data-reveal style={stagger(2)} className={`${type.body} lg:col-span-5`}>{intro}</p>
@@ -43,7 +43,7 @@ export default function SectionPage({
             {details.map(({ heading, text }, i) => (
               <div key={heading} data-reveal style={stagger(i)}>
                 <article className={`${card} grid gap-3 p-6 sm:grid-cols-[3rem_1fr] sm:gap-6`}>
-                  <span aria-hidden="true" className={`${type.mono} pt-1.5 text-accent-deep`}>{index(i)}</span>
+                  <span aria-hidden="true" className={`${type.label} pt-1.5 text-accent-deep`}>{index(i)}</span>
                   <div>
                     <h3 className={type.h3}>{heading}</h3>
                     <p className="mt-2 max-w-prose text-base leading-7 text-slate">{text}</p>
@@ -68,7 +68,7 @@ export default function SectionPage({
                   <li key={entry} data-reveal style={stagger(i)}>
                     <div className="h-full rounded-xl border border-white/15 p-6 transition-colors duration-200 hover:border-white/30">
                       <p className="text-xl font-semibold tracking-[-0.02em]">{name}</p>
-                      <p className={`${type.mono} mt-2 text-on-ink/70`}>{role}</p>
+                      <p className={`${type.label} mt-2 text-on-ink/70`}>{role}</p>
                     </div>
                   </li>
                 );

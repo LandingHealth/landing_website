@@ -6,27 +6,36 @@ export const navigation: ReadonlyArray<{ label: string; href: string }> = [
   { label: "About", href: "/about" },
 ];
 
+export const demoHref = "https://calendly.com/rajnpatel05/landing-health-intro-meeting";
+
 const buttonBase =
-  "group inline-flex h-10 items-center justify-center gap-2 rounded-full border px-5 text-sm font-semibold whitespace-nowrap transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent";
+  "inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
 
 export const button = {
-  primary: `${buttonBase} border-ink bg-ink text-white hover:border-slate hover:bg-slate`,
-  secondary: `${buttonBase} border-ink/20 text-ink hover:border-ink/40 hover:bg-ink/5`,
+  primary: `${buttonBase} border-transparent bg-accent text-black hover:bg-accent/90`,
+  secondary: `${buttonBase} border-ink/20 text-black hover:bg-ink/5`,
   onInk: `${buttonBase} border-white/25 text-white hover:border-white/50 hover:bg-white/10`,
 } as const;
 
+export const buttonSize = {
+  md: "h-11 px-5 text-[15px]",
+  sm: "h-9 px-4 text-sm",
+} as const;
+
+export type ButtonSize = keyof typeof buttonSize;
 export type ButtonVariant = keyof typeof button;
 
 export const container = "mx-auto w-full max-w-6xl px-6 sm:px-10 lg:px-8";
 export const sectionPad = "py-20 sm:py-24 lg:py-28";
 
 export const type = {
-  h1: "text-[clamp(2.5rem,6vw,4.75rem)] font-semibold leading-[1.05] tracking-[-0.04em]",
-  h2: "text-[clamp(1.875rem,3.6vw,3rem)] font-semibold leading-[1.05] tracking-[-0.035em]",
-  h3: "text-xl font-semibold leading-snug tracking-[-0.02em]",
+  h1: "font-display text-[clamp(2.5rem,6vw,4.75rem)] font-normal leading-[1.05] tracking-[-0.02em] text-balance",
+  h2: "font-display text-[clamp(1.875rem,3.6vw,3rem)] font-normal leading-[1.05] tracking-[-0.02em] text-balance",
+  h3: "font-display text-2xl font-normal leading-tight tracking-[-0.01em]",
   body: "max-w-prose text-base leading-7 text-slate sm:text-lg sm:leading-8",
   bodyOnInk: "max-w-prose text-base leading-7 text-on-ink sm:text-lg sm:leading-8",
-  mono: "font-mono text-xs uppercase tracking-[0.08em]",
+  lead: "text-base leading-7 sm:text-[17px] sm:leading-[1.65]",
+  label: "text-xs font-medium uppercase tracking-[0.08em]",
 } as const;
 
 export const card =

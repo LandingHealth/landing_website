@@ -2,21 +2,22 @@
 @source "../src/lib";
 
 @theme {
-  --color-mist: #dbebf4;
+  --color-mist: #dcebf4;
   --color-paper: #f7fbfd;
   --color-panel: #eaf3f8;
-  --color-ink: #0b0e32;
+  --color-ink: #0c0e32;
   --color-slate: #303856;
   --color-on-ink: #dce9ef;
-  --color-accent: #eb662c;
+  --color-accent: #ea652b;
   --color-accent-text: #d55823;
   --color-accent-deep: #c9521e;
   --color-accent-soft: #f28a59;
+  --shadow-preview: 0 1px 2px rgb(12 14 50 / 0.04), 0 24px 64px -24px rgb(12 14 50 / 0.22);
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-source-serif), ui-serif, Georgia, serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {
