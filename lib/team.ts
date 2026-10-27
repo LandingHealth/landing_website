@@ -1,6 +1,6 @@
 import type { Photo } from "@/components/ExpandableMedia";
 
-export type Member = { name: string; role: string; bio: string; photo: Photo; demo?: { host: string; calendly?: string } };
+export type Member = { name: string; role: string; bio: string; photo: Photo; demoHost?: string };
 
 export const team: readonly Member[] = [
   {
@@ -8,21 +8,21 @@ export const team: readonly Member[] = [
     role: "Founder + CEO",
     bio: "14 publications, consulting partner at Cobalt Consulting Group, and America250 startup winner. Raised $100K in non-dilutive funding for Landing.",
     photo: { src: "/about/team/raj-patel.jpg", alt: "Raj Patel speaking at Baylor University", width: 800, height: 800 },
-    demo: { host: "Raj", calendly: "https://calendly.com/rajnpatel05/landing-health-intro-meeting" },
+    demoHost: "Raj",
   },
   {
     name: "Pragat Patel",
     role: "Founder + COO",
     bio: "BA in Neuroscience with minors in Healthcare Management and Chemistry, and MS in Bioengineering, both at UPenn. ELITE Fellow at UPenn, one of four selected in the current cohort. The fellowship is jointly supported by Wharton, Penn Medicine, and Penn Engineering.",
     photo: { src: "/about/team/pragat-patel.jpg", alt: "Pragat Patel in a suit", width: 800, height: 800 },
-    demo: { host: "Pragat" },
+    demoHost: "Pragat",
   },
   {
     name: "Matthew Amunategui",
     role: "CMO",
     bio: "BA in Molecular and Cellular Biology and BS in Business Administration at Berkeley. Former research intern at UPenn and Harvard; consultant at Merck, Perplexity AI, and KIND Snacks; and project manager at AMD.",
     photo: { src: "/about/team/matthew-amunategui.jpg", alt: "Matthew Amunategui in a gray suit", width: 800, height: 800 },
-    demo: { host: "Matt" },
+    demoHost: "Matt",
   },
   {
     name: "Evan Batten",
@@ -43,5 +43,3 @@ export const team: readonly Member[] = [
     photo: { src: "/about/team/neil-patel.jpg", alt: "Neil Patel", width: 354, height: 354 },
   },
 ];
-
-export const demoAnchor = (host: string) => host.toLowerCase();
