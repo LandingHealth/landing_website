@@ -11,7 +11,11 @@ export const metadata: Metadata = {
 
 const intro = (
   <p className={text}>
-    Much of a patient’s exercise program happens at home, where the physical therapist sees little of how the patient moves. Patients may struggle with technique or be unsure whether they’re doing the exercises correctly. At Landing, we think computer vision can help PTs see what happens between visits and give patients better support through recovery.
+    Much of a patient’s exercise program happens at home, where the physical therapist sees little of how the patient moves. Patients may struggle with technique or be unsure whether they’re doing the exercises correctly.
+    <Note>
+      In focus groups, patients with chronic neck or back pain said poor instruction left them unsure whether they were doing their home exercises correctly, and less likely to keep doing them. Escolar-Reina P, et al. <a href="https://doi.org/10.1186/1472-6963-10-60">How do care-provider and home exercise program characteristics affect patient adherence in chronic neck and back pain: a qualitative study</a>. BMC Health Serv Res. 2010.
+    </Note>{" "}
+    At Landing, we think computer vision can help PTs see what happens between visits and give patients better support through recovery.
   </p>
 );
 
@@ -36,8 +40,8 @@ const sections = [
         <p className={body}>
           Clearer feedback may also help patients follow their exercise plan. In a small randomized trial, 45 adults with chronic conditions did home exercise programs for 24 weeks.
           <Note>
-            Van de Winckel A, et al.{" "}
-            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8075043/">PLACEHOLDER-TITLE</a>. JMIR Formative Research, 2021.
+            Participants reported their own exercise sessions. Van de Winckel A, Nawshin T, Byron C.{" "}
+            <a href="https://doi.org/10.2196/22659">Combining a Hudl App With Telehealth to Increase Home Exercise Program Adherence in People With Chronic Diseases Experiencing Financial Distress: Randomized Controlled Trial</a>. JMIR Form Res. 2021.
           </Note>{" "}
           One group received weekly exercise videos, filmed themselves doing the exercises, and got feedback from a physical therapist on the recordings. That group kept exercising 4 to 5 times a week. The other group received paper handouts and no feedback, and dropped from 4 to 3 times a week.
         </p>

@@ -23,11 +23,8 @@ const sections = [
         <p className={body}>
           The AMA’s 2026 Physician Survey on Augmented Intelligence asked 1,692 physicians how they use AI. Nearly 4 in 10 use it to summarize medical research and standards of care, the most common use in the survey.
           <Note>
-            American Medical Association,{" "}
-            <a href="https://www.ama-assn.org/sites/ama-assn.org/files/2026-03/physician-ai-sentiment-report_0.pdf">
-              2026 Physician Survey on Augmented Intelligence
-            </a>
-            .
+            The use percentages are among the 1,342 physicians who answered that question. American Medical Association.{" "}
+            <a href="https://www.ama-assn.org/sites/ama-assn.org/files/2026-03/physician-ai-sentiment-report_0.pdf">2026 Physician Survey on Augmented Intelligence</a>. March 2026.
           </Note>{" "}
           Documentation and chart summaries are the uses physicians most expect to adopt next.
         </p>
