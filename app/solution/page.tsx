@@ -1,32 +1,55 @@
 import type { Metadata } from "next";
-import SectionPage from "@/components/SectionPage";
+import TileRow, { type Tiles } from "@/components/TileRow";
+import { container, type } from "@/lib/site";
+
+const summary =
+  "Movement changes with every step. Healing unfolds over weeks. SafeSock measures the mechanics to help connect the two.";
 
 export const metadata: Metadata = {
   title: "Solution | Landing",
-  description: "Support for physical therapy before, during, and between appointments.",
+  description: summary,
 };
+
+const timescales: Tiles = [
+  {
+    title: "Physics",
+    text: "The fast one is mechanics. Each step of gait brings ground reaction forces and moments, joint angles, and vertical load. Physics already models it well.",
+    image: {
+      src: "/solution/mechanics-plate.jpg",
+      alt: "An 1816 engraving of the mechanical powers, with screws, presses, pulleys, and force diagrams",
+      width: 1600,
+      height: 2123,
+      focus: "50% 46%",
+    },
+  },
+  {
+    title: "Biology",
+    text: "The slow one is biology: healing, remodeling, and strength gain. Nobody models it well, because nobody has measured it.",
+    image: {
+      src: "/solution/vitruvian-man.jpg",
+      alt: "Leonardo da Vinci’s Vitruvian Man, a figure with outstretched arms and legs inside a circle and a square",
+      width: 1600,
+      height: 2234,
+      focus: "50% 30%",
+    },
+  },
+  {
+    title: "SafeSock",
+    text: "A sensor sleeve we’re designing to measure load with every step, across the weeks of healing.",
+    video: { src: "/safesock-demo.mp4", poster: "/safesock-demo-poster.jpg" },
+  },
+];
 
 export default function SolutionPage() {
   return (
-    <SectionPage
-      label="Solution"
-      title="Support for the whole course of care."
-      intro="Physical therapy doesn’t stop when the visit ends. Landing keeps each patient’s exercise plan and progress in one place, so you can follow their recovery between visits."
-      sectionTitle="Before, during, and between"
-      details={[
-        {
-          heading: "Before a visit",
-          text: "Patient check-ins, and later SafeSock weight-bearing trends, help you prepare for the next conversation.",
-        },
-        {
-          heading: "During care planning",
-          text: "Landing helps you find exercises that fit the treatment goals, the patient’s equipment, and the restrictions you set.",
-        },
-        {
-          heading: "Between visits",
-          text: "Each patient gets a personalized home exercise guide with clear instructions and a schedule to follow at home.",
-        },
-      ]}
-    />
+    <main>
+      <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
+        <div className={`${container} flex flex-col items-center text-center`}>
+          <h1 className={`${type.h1} max-w-4xl`}>Two timescales. One recovery.</h1>
+          <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>{summary}</p>
+        </div>
+        <TileRow tiles={timescales} className="mt-14 sm:mt-16" />
+      </section>
+    </main>
   );
 }
