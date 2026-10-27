@@ -12,7 +12,6 @@ export default function CtaBand() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <ButtonLink href="/devices#demo" variant="primary">Watch the demo</ButtonLink>
-            <ButtonLink href="/about" variant="secondary">Meet the team</ButtonLink>
           </div>
         </div>
       </div>

@@ -8,7 +8,6 @@ type SectionPageProps = {
   intro: string;
   sectionTitle: string;
   details: ReadonlyArray<{ heading: string; text: string }>;
-  team?: ReadonlyArray<string>;
   children?: React.ReactNode;
 };
 
@@ -19,7 +18,6 @@ export default function SectionPage({
   intro,
   sectionTitle,
   details,
-  team,
   children,
 }: SectionPageProps) {
   return (
@@ -56,27 +54,6 @@ export default function SectionPage({
       </section>
 
       {children}
-
-      {team && (
-        <section className={`bg-ink text-paper ${sectionPad}`}>
-          <div className={`${container} space-y-12`}>
-            <SectionHeader eyebrow="Team" title="Meet the team" onInk />
-            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {team.map((entry, i) => {
-                const [name, role] = entry.split(" · ");
-                return (
-                  <li key={entry} data-reveal style={stagger(i)}>
-                    <div className="h-full rounded-xl border border-white/15 p-6 transition-colors duration-200 hover:border-white/30">
-                      <p className="text-xl font-semibold tracking-[-0.02em]">{name}</p>
-                      <p className={`${type.label} mt-2 text-on-ink/70`}>{role}</p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </section>
-      )}
 
       <CtaBand />
     </main>

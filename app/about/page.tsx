@@ -23,7 +23,6 @@ export default function AboutPage() {
           text: "Neil Patel brings gait analysis and sensing experience to the software and signal work. Vivaan Gupta leads hardware development. Together, the team is building tools that support therapists’ judgment and give patients a clearer path through recovery.",
         },
       ]}
-      team={["Raj Patel · Co-founder", "Akash Patel · Co-founder", "Neil Patel · CTO", "Vivaan Gupta · Lead Engineer"]}
     />
   );
 }
