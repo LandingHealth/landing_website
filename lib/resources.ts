@@ -32,6 +32,19 @@ export const bettingOnAiAgents: Resource = {
   },
 };
 
-export const resources: readonly Resource[] = [bettingOnAiAgents, recoveryWorldModel];
+export const bettingOnComputerVision: Resource = {
+  kind: "Vision",
+  title: "Betting on Computer Vision in Rehabilitation",
+  summary: "Why Landing analyzes home exercise videos and leaves every finding for the PT to interpret.",
+  href: "/resources/betting-on-computer-vision-in-rehabilitation",
+  cover: {
+    src: "/resources/betting-on-computer-vision.jpg",
+    alt: "A hand-colored engraving of the Copernican system from Andreas Cellarius’s 1660 star atlas. The Sun is at the center of pink orbit rings inside a green band of zodiac signs. A scholar sits in each lower corner.",
+    width: 621,
+    height: 414,
+  },
+};
+
+export const resources: readonly Resource[] = [bettingOnComputerVision, bettingOnAiAgents, recoveryWorldModel];
 
 export const coverImage = "aspect-3/2 h-auto w-full rounded-xl bg-mist object-cover ring-1 ring-black";
