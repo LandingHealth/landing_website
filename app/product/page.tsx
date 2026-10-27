@@ -30,7 +30,7 @@ export default function ProductPage() {
         },
       ]}
     >
-      <section className={`border-t border-ink/10 bg-mist ${sectionPad}`}>
+      <section className={`border-t border-ink/10 ${sectionPad}`}>
         <div className={container}>
           <LoadSignal />
         </div>

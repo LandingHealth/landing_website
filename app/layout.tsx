@@ -32,11 +32,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${interTight.variable} ${sourceSerif.variable}`}>
-      <body className="bg-mist font-sans text-black antialiased">
+      <body className="bg-white font-sans text-black antialiased">
         <Reveal />
         <Header />
         {children}
-        <footer className="border-t border-ink/10 bg-mist py-12">
+        <footer className="border-t border-ink/10 py-12">
           <div className={`${container} grid gap-10 md:grid-cols-12`}>
             <div className="md:col-span-6">
               <Link href="/" aria-label="Landing Health home" className="inline-flex rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">

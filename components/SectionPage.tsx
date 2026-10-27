@@ -22,7 +22,7 @@ export default function SectionPage({
 }: SectionPageProps) {
   return (
     <main className="overflow-x-clip">
-      <section className="bg-mist pb-16 pt-14 sm:pb-20 sm:pt-20 lg:pt-24">
+      <section className="pb-16 pt-14 sm:pb-20 sm:pt-20 lg:pt-24">
         <div className={container}>
           <p data-reveal className={`${type.label} text-accent-deep`}>Landing / {label}</p>
           <div className="mt-5 grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-12">
@@ -32,7 +32,7 @@ export default function SectionPage({
         </div>
       </section>
 
-      <section className={`border-t border-ink/10 bg-paper ${sectionPad}`}>
+      <section className={`border-t border-ink/10 ${sectionPad}`}>
         <div className={`${container} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-4">
             <SectionHeader eyebrow={label} title={sectionTitle} />

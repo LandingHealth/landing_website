@@ -13,7 +13,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-ink/10 bg-mist">
+    <header className="sticky top-0 z-40 border-b border-ink/10 bg-white">
       <div className={`${container} flex flex-wrap items-center justify-between gap-x-4 py-2.5 md:flex-nowrap`}>
         <Link
           href="/"
@@ -33,7 +33,7 @@ export default function Header() {
                 key={href}
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`shrink-0 rounded-md px-1.5 py-1.5 sm:px-3 text-sm text-black transition-colors duration-150 ${focusRing} ${active ? "bg-white font-medium" : "hover:bg-ink/5"}`}
+                className={`shrink-0 rounded-md px-1.5 py-1.5 sm:px-3 text-sm text-black transition-colors duration-150 ${focusRing} ${active ? "bg-mist font-medium" : "hover:bg-ink/5"}`}
               >
                 {label}
               </Link>

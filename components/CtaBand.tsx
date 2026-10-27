@@ -3,7 +3,7 @@ import { container, sectionPad, type } from "@/lib/site";
 
 export default function CtaBand() {
   return (
-    <section className={`border-t border-ink/10 bg-paper ${sectionPad}`}>
+    <section className={`border-t border-ink/10 ${sectionPad}`}>
       <div className={container}>
         <div data-reveal className="max-w-2xl">
           <h2 className={type.h2}>See how SafeSock works.</h2>
