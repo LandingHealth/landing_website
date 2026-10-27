@@ -19,8 +19,16 @@ function Wordmark({ className }: { className?: string }) {
   );
 }
 
+export function BrandLogo({ className = "size-8 rounded-lg" }: { className?: string }) {
+  return (
+    <span className={`flex shrink-0 items-center justify-center overflow-hidden shadow-sm ring-2 ring-white ${className}`}>
+      <BrandTile className="size-full" />
+    </span>
+  );
+}
+
 export default function BrandLockup({
-  tileClassName = "size-8 rounded-lg",
+  tileClassName,
   wordmarkClassName = "h-[15px]",
 }: {
   tileClassName?: string;
@@ -28,9 +36,7 @@ export default function BrandLockup({
 }) {
   return (
     <span className="flex items-center gap-2.5">
-      <span className={`flex shrink-0 items-center justify-center overflow-hidden shadow-sm ring-2 ring-white ${tileClassName}`}>
-        <BrandTile className="size-full" />
-      </span>
+      <BrandLogo className={tileClassName} />
       <Wordmark className={`w-auto ${wordmarkClassName}`} />
     </span>
   );
