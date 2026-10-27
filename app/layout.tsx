@@ -4,6 +4,7 @@ import Link from "next/link";
 import BrandLockup from "@/components/Brand";
 import Header from "@/components/Header";
 import Reveal from "@/components/Reveal";
+import TextRotate from "@/components/TextRotate";
 import { container, navigation, type } from "@/lib/site";
 import "./globals.css";
 
@@ -19,6 +20,8 @@ const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",
   display: "swap",
 });
+
+const schools = ["Johns Hopkins", "University of Pennsylvania", "University of California, Berkeley"];
 
 const description = "Connected recovery devices and clinic software that bring patient progress, daily operations, and care at home into one platform.";
 
@@ -56,7 +59,9 @@ export default function RootLayout({
               </ul>
             </nav>
             <div className={`${type.label} flex flex-wrap justify-between gap-x-6 gap-y-2 border-t border-ink/10 pt-6 md:col-span-12`}>
-              <span>Built by students at Johns Hopkins.</span>
+              <span>
+                Made by students at <TextRotate texts={schools} />
+              </span>
               <span>© {new Date().getFullYear()} Landing Health</span>
             </div>
           </div>
