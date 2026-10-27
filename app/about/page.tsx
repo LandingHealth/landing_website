@@ -45,15 +45,23 @@ const cofounders: Tiles = [
 const story = [
   {
     title: "The injuries",
-    text: "Akash broke his femur and Neil broke his tibia and fibula. Both of us went through physical therapy to walk again.",
+    paragraphs: [
+      "Akash broke his femur and Neil broke his tibia and fibula. Both of us went through physical therapy to walk again. As patients, we saw how much of recovery depends on what happens between visits.",
+    ],
   },
   {
-    title: "The recovery",
-    text: "Most of the work happens at home, between visits. It’s hard to know if you’re doing an exercise right, and your therapist can’t see it either.",
+    title: "The bottleneck",
+    paragraphs: [
+      "We believe the biggest bottleneck to success in physical therapy isn’t the physical therapist, the patient, or the clinic owner. It’s the model of care around them and the workflow that connects them.",
+      "Today’s model of care centers on the visit, but most of recovery happens between visits. The therapist sees the patient only in the clinic. The patient does home exercise alone, with no way to know if they’re doing it right. The clinic owner manages the schedule and billing in separate tools. Each of them does their part, and none of them sees the whole recovery.",
+    ],
   },
   {
     title: "Landing",
-    text: "Landing gives physical therapy clinics software and connected recovery devices that keep patient progress, home exercise, and daily operations in one place.",
+    paragraphs: [
+      "Landing builds clinic software for a model of care that covers the whole recovery, not only the visit. The software keeps patient progress, home exercise, and daily operations in one place. When a patient records a home exercise, their therapist can review the video before the next visit.",
+      "We’re also designing SafeSock, a sensor sleeve that shows how a patient bears weight between visits.",
+    ],
   },
 ] as const;
 
@@ -121,13 +129,17 @@ export default function AboutPage() {
             <p className="text-[15px]">Our story</p>
             <h2 className={`${type.h2} mt-4 max-w-xl`}>We built Landing after our own recoveries.</h2>
             <div className="mt-12 max-w-xl border-t border-black lg:mt-20">
-              {story.map(({ title, text }, i) => (
+              {story.map(({ title, paragraphs }, i) => (
                 <details key={title} name="story" open={i === 0} className="group border-black/15 not-last:border-b">
                   <summary className="flex cursor-pointer list-none items-center justify-between py-6 text-xl font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink [&::-webkit-details-marker]:hidden">
                     {title}
                     <Icon name="plus" className="size-5 group-open:rotate-45" />
                   </summary>
-                  <p className="max-w-lg pb-8 text-[15px] leading-[1.6]">{text}</p>
+                  <div className="max-w-lg space-y-4 pb-8 text-[15px] leading-[1.6]">
+                    {paragraphs.map((text) => (
+                      <p key={text}>{text}</p>
+                    ))}
+                  </div>
                 </details>
               ))}
             </div>
