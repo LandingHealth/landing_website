@@ -9,6 +9,7 @@ export const navigation: ReadonlyArray<{ label: string; href: string }> = [
 ];
 
 export const demoHref = "https://calendly.com/rajnpatel05/landing-health-intro-meeting";
+export const linkedinHref = "https://www.linkedin.com/company/landinghealth/posts/?feedView=all";
 
 const buttonBase =
   "inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
