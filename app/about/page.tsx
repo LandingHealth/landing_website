@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import ButtonLink from "@/components/ButtonLink";
-import type { Photo } from "@/components/ExpandableMedia";
 import Icon from "@/components/Icon";
 import LoopVideo from "@/components/LoopVideo";
 import TileRow, { type Tiles } from "@/components/TileRow";
-import { button, buttonSize, container, edgePad, type } from "@/lib/site";
+import { container, edgePad, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About | Landing",
@@ -65,56 +62,6 @@ const story = [
   },
 ] as const;
 
-type Member = {
-  name: string;
-  role: string;
-  bio: string;
-  photo: Photo;
-  demo?: { host: string; href?: string };
-};
-
-const team: readonly Member[] = [
-  {
-    name: "Raj Patel",
-    role: "Founder + CEO",
-    bio: "14 publications, consulting partner at Cobalt Consulting Group, America250 startup winner, and raised $100K in non-dilutive funding for Landing.",
-    photo: { src: "/about/team/raj-patel.jpg", alt: "Raj Patel speaking at Baylor University", width: 800, height: 800 },
-    demo: { host: "Raj", href: "https://calendly.com/rajnpatel05/landing-health-intro-meeting" },
-  },
-  {
-    name: "Pragat Patel",
-    role: "Founder + COO",
-    bio: "BA in Neuroscience with minors in healthcare management and chemistry at UPenn, and an MS in Bioengineering at UPenn. ELITE Fellow at UPenn, a fellowship jointly supported by Wharton, Penn Medicine, and Penn Engineering, and one of four fellows selected in the current cohort.",
-    photo: { src: "/about/team/pragat-patel.jpg", alt: "Pragat Patel in a suit", width: 800, height: 800 },
-    demo: { host: "Pragat" },
-  },
-  {
-    name: "Matthew Amunategui",
-    role: "CMO",
-    bio: "BA in Molecular and Cellular Biology and BS in Business Administration at Berkeley. Former research intern at UPenn and Harvard, consultant at Merck, Perplexity AI, and KIND Snacks, and project manager at AMD.",
-    photo: { src: "/about/team/matthew-amunategui.jpg", alt: "Matthew Amunategui in a gray suit", width: 800, height: 800 },
-    demo: { host: "Matt" },
-  },
-  {
-    name: "Evan Batten",
-    role: "Founder + Co-CTO",
-    bio: "Computer Science and Applied Math at Johns Hopkins. Ex-Microsoft AI, JHU Applied Physics Lab, and Entrepreneur in Residence F26.",
-    photo: { src: "/about/team/evan-batten.jpg", alt: "Evan Batten outdoors on a campus lawn", width: 800, height: 800 },
-  },
-  {
-    name: "Akash Patel",
-    role: "Founder",
-    bio: "BS in Chemical and Biomolecular Engineering at Johns Hopkins, now in the #1 bioengineering master’s program in the world. Partner at Cobalt Consulting Group and clinical research assistant at Johns Hopkins Medicine and the Johns Hopkins School of Medicine. Raised $100K in non-dilutive funding for Landing.",
-    photo: { src: "/about/team/akash-patel.jpg", alt: "Akash Patel speaking at Baylor University", width: 800, height: 800 },
-  },
-  {
-    name: "Neil Patel",
-    role: "Co-CEO, Co-CTO + Founder",
-    bio: "Computer Science, Computer Engineering, and Applied Math at Johns Hopkins. Research at the NeuroEngineering Biomedical Instrumentation Lab at Johns Hopkins, work on the dVRK with Intuitive, former software engineering intern at the Atlantic League of Professional Baseball, and Marble (YC\u00a0S26).",
-    photo: { src: "/about/team/neil-patel.jpg", alt: "Neil Patel", width: 354, height: 354 },
-  },
-];
-
 export default function AboutPage() {
   return (
     <main>
@@ -149,36 +96,6 @@ export default function AboutPage() {
             poster="/about/clinic-visit.jpg"
             className="aspect-9/16 w-full rounded-xl bg-mist ring-1 ring-black"
           />
-        </div>
-        <div className={`mt-20 grid gap-x-3 gap-y-12 ${edgePad} sm:mt-24 md:grid-cols-3`}>
-          {team.map(({ name, role, bio, photo, demo }) => (
-            <article key={name} className="flex flex-col text-center">
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                width={photo.width}
-                height={photo.height}
-                sizes="(min-width: 768px) 33vw, 100vw"
-                className="aspect-square h-auto w-full rounded-xl bg-mist object-cover ring-1 ring-black"
-              />
-              <h3 className="mt-4 text-[15px] font-medium leading-snug">{name}</h3>
-              <p className="mt-1 text-[15px] leading-[1.5]">{role}</p>
-              <p className="mt-1 text-[15px] leading-[1.5]">{bio}</p>
-              {demo && (
-                <div className="mt-auto pt-6">
-                  {demo.href ? (
-                    <ButtonLink href={demo.href} variant="primary">
-                      Book a demo with {demo.host}
-                    </ButtonLink>
-                  ) : (
-                    <button type="button" disabled className={`${button.primary} ${buttonSize.md}`}>
-                      Book a demo with {demo.host}
-                    </button>
-                  )}
-                </div>
-              )}
-            </article>
-          ))}
         </div>
       </section>
     </main>

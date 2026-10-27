@@ -33,7 +33,7 @@ export default function Header() {
                 key={href}
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`shrink-0 rounded-md px-1 py-1.5 sm:px-3 md:px-2 lg:px-3 text-sm text-black ${focusRing} ${active ? "font-semibold" : ""}`}
+                className={`shrink-0 rounded-md px-1 py-1.5 sm:px-2 md:px-1.5 lg:px-3 text-sm text-black ${focusRing} ${active ? "font-semibold" : ""}`}
               >
                 {label}
               </Link>
