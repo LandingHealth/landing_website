@@ -8,16 +8,14 @@ import { container, demoHref, sectionPad, type } from "@/lib/site";
 
 const workspace = [
   {
-    title: "Appointment preparation",
-    text: "Before each visit, Landing assembles a brief from the patient’s history, recent sessions, and your notes. It lists what changed and what is still missing, so you start with context.",
+    title: "Exercise recording",
+    text: "Patients film each set at home with a phone or laptop. Landing guides them into frame, counts down once their whole body is in view, and sends nothing until they choose Send.",
+    video: { src: "/workspace/exercise-recording.mp4", poster: "/workspace/exercise-recording.jpg" },
   },
   {
     title: "Exercise review",
     text: "Patients record their home exercises and submit the videos. Submissions with possible form issues are flagged and sorted oldest first, so you know where to look.",
-    videos: [
-      { src: "/workspace/exercise-review.mp4", poster: "/workspace/exercise-review.jpg" },
-      { src: "/workspace/exercise-recording.mp4", poster: "/workspace/exercise-recording.jpg" },
-    ],
+    video: { src: "/workspace/exercise-review.mp4", poster: "/workspace/exercise-review.jpg" },
   },
   {
     title: "Patient progress",
@@ -120,10 +118,10 @@ export default function Home() {
           <h2 className={`${type.h2} mx-auto mt-4 max-w-3xl text-center`}>Everything you need before the next visit.</h2>
         </div>
         <div className="mt-12 grid gap-x-3 gap-y-12 px-6 lg:grid-cols-3 lg:px-4">
-          {workspace.map(({ title, text, videos }) => (
+          {workspace.map(({ title, text, video }) => (
             <article key={title}>
-              {videos ? (
-                <ExpandableVideo clips={videos} title={title} className={tile} />
+              {video ? (
+                <ExpandableVideo src={video.src} poster={video.poster} title={title} className={tile} />
               ) : (
                 <div className={tile} />
               )}

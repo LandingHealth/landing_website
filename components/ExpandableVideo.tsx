@@ -2,22 +2,19 @@
 
 import { startTransition, useEffect, useRef, useState, ViewTransition } from "react";
 
-type Clip = { src: string; poster: string };
-
 export default function ExpandableVideo({
-  clips,
+  src,
+  poster,
   title,
   className,
 }: {
-  clips: Clip[];
+  src: string;
+  poster: string;
   title: string;
   className: string;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [expanded, setExpanded] = useState(false);
-  const [index, setIndex] = useState(0);
-  const { src, poster } = clips[index];
-  const playlist = clips.length > 1;
 
   const toggle = () => startTransition(() => setExpanded((open) => !open));
 
@@ -25,7 +22,7 @@ export default function ExpandableVideo({
     const video = ref.current;
     if (!video || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     video.play().catch(() => {});
-  }, [index]);
+  }, []);
 
   useEffect(() => {
     if (!expanded) return;
@@ -65,8 +62,7 @@ export default function ExpandableVideo({
             }
             poster={poster}
             src={src}
-            loop={!playlist}
-            onEnded={() => setIndex((current) => (current + 1) % clips.length)}
+            loop
             muted
             playsInline
             preload="metadata"
