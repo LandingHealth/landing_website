@@ -11,7 +11,7 @@ export default function CtaBand() {
             SafeSock is the sensor sleeve we’re designing to show how patients bear weight between visits. The demo uses illustrative data.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink href="/devices#demo" variant="primary">Watch the demo</ButtonLink>
+            <ButtonLink href="/solution" variant="primary">Watch the demo</ButtonLink>
           </div>
         </div>
       </div>

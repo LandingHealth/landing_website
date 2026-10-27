@@ -1,10 +1,37 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { NextResponse, type NextRequest } from "next/server";
 
-const cookieName = "site_access";
 const maxAge = 60 * 60 * 24 * 30;
 
 type Outcome = "allow" | "grant" | "reject" | "prompt";
+
+type Gate = {
+  scope: string;
+  secretEnv: "SITE_PASSWORD" | "REVENUE_PASSWORD";
+  cookie: string;
+  salt: string;
+  heading: string;
+};
+
+const gates: ReadonlyArray<Gate> = [
+  {
+    scope: "/",
+    secretEnv: "SITE_PASSWORD",
+    cookie: "site_access",
+    salt: "landing-site-access-v1",
+    heading: "Enter the password",
+  },
+  {
+    scope: "/revenue",
+    secretEnv: "REVENUE_PASSWORD",
+    cookie: "revenue_access",
+    salt: "landing-revenue-access-v1",
+    heading: "Enter the revenue password",
+  },
+];
+
+const covers = (scope: string, pathname: string) =>
+  scope === "/" || pathname === scope || pathname.startsWith(`${scope}/`);
 
 const digest = (secret: string, value: string) => createHmac("sha256", secret).update(value).digest();
 
@@ -16,7 +43,7 @@ function decide(method: string, cookieOk: boolean, passwordOk: boolean): Outcome
   return passwordOk ? "grant" : "reject";
 }
 
-function page(error: boolean) {
+function page(heading: string, error: boolean) {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -41,7 +68,7 @@ button:hover{background:#d55823}
 <body>
 <main>
 <p class="brand">Landing Health</p>
-<h1>Enter the password</h1>
+<h1>${heading}</h1>
 <form method="post">
 ${error ? '<p class="error" role="alert">That password didn’t work. Try again.</p>\n' : ""}<label for="password">Password</label>
 <input id="password" type="password" name="password" autocomplete="current-password" required autofocus>
@@ -52,8 +79,8 @@ ${error ? '<p class="error" role="alert">That password didn’t work. Try again.
 </html>`;
 }
 
-const promptResponse = (error: boolean) =>
-  new NextResponse(page(error), {
+const promptResponse = (heading: string, error: boolean) =>
+  new NextResponse(page(heading, error), {
     status: 401,
     headers: {
       "Content-Type": "text/html; charset=utf-8",
@@ -62,20 +89,20 @@ const promptResponse = (error: boolean) =>
     },
   });
 
-let warned = false;
+const warned = new Set<string>();
 
-export async function proxy(request: NextRequest) {
-  const secret = process.env.SITE_PASSWORD;
+async function check(gate: Gate, request: NextRequest): Promise<NextResponse | null> {
+  const secret = process.env[gate.secretEnv];
   if (!secret) {
-    if (!warned) {
-      warned = true;
-      console.error("SITE_PASSWORD is not set, so every request is refused.");
+    if (!warned.has(gate.secretEnv)) {
+      warned.add(gate.secretEnv);
+      console.error(`${gate.secretEnv} is not set, so every request it guards is refused.`);
     }
-    return promptResponse(request.method === "POST");
+    return promptResponse(gate.heading, request.method === "POST");
   }
 
-  const token = digest(secret, "landing-site-access-v1").toString("hex");
-  const cookieOk = same(secret, request.cookies.get(cookieName)?.value ?? "", token);
+  const token = digest(secret, gate.salt).toString("hex");
+  const cookieOk = same(secret, request.cookies.get(gate.cookie)?.value ?? "", token);
 
   let passwordOk = false;
   if (!cookieOk && request.method === "POST") {
@@ -86,19 +113,28 @@ export async function proxy(request: NextRequest) {
   }
 
   const outcome = decide(request.method, cookieOk, passwordOk);
-  if (outcome === "allow") return NextResponse.next();
-  if (outcome === "prompt") return promptResponse(false);
-  if (outcome === "reject") return promptResponse(true);
+  if (outcome === "allow") return null;
+  if (outcome === "prompt") return promptResponse(gate.heading, false);
+  if (outcome === "reject") return promptResponse(gate.heading, true);
 
   const url = request.nextUrl.clone();
   const response = NextResponse.redirect(url, 303);
   response.headers.set("Cache-Control", "no-store");
-  response.cookies.set(cookieName, token, {
+  response.cookies.set(gate.cookie, token, {
     httpOnly: true,
     sameSite: "lax",
-    path: "/",
+    path: gate.scope,
     maxAge,
     secure: url.protocol === "https:",
   });
   return response;
+}
+
+export async function proxy(request: NextRequest) {
+  for (const gate of gates) {
+    if (!covers(gate.scope, request.nextUrl.pathname)) continue;
+    const response = await check(gate, request);
+    if (response) return response;
+  }
+  return NextResponse.next();
 }
