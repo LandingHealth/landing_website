@@ -21,7 +21,7 @@ export default function TileRow({ tiles, className = "" }: { tiles: Tiles; class
   return (
     <div className={`grid gap-x-3 gap-y-12 px-6 ${columns[tiles.length]} lg:px-4 ${className}`}>
       {tiles.map(({ title, text, video, image }) => (
-        <article key={title}>
+        <article key={title} className="text-center">
           {video ? (
             <ExpandableVideo src={video.src} poster={video.poster} title={title} className={framed} />
           ) : image ? (
