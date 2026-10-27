@@ -7,9 +7,9 @@ type Video = { src: string; poster: string };
 type Photo = { src: string; alt: string; width: number; height: number };
 
 export type Tile = { title: string; text?: string } & (
-  | { video: Video; image?: never; animation?: never }
-  | { image: Photo; video?: never; animation?: never }
-  | { animation?: ReactNode; video?: never; image?: never }
+  | { video: Video; image?: never; art?: never }
+  | { image: Photo; video?: never; art?: never }
+  | { video?: never; image?: never; art?: ReactNode }
 );
 
 export type Tiles = readonly [Tile, Tile, Tile] | readonly [Tile, Tile, Tile, Tile];
@@ -22,7 +22,7 @@ const framed = `[--ratio:1920/1094] aspect-(--ratio) ${tile}`;
 export default function TileRow({ tiles, className = "" }: { tiles: Tiles; className?: string }) {
   return (
     <div className={`grid gap-x-3 gap-y-12 ${edgePad} ${columns[tiles.length]} ${className}`}>
-      {tiles.map(({ title, text, video, image, animation }) => (
+      {tiles.map(({ title, text, video, image, art }) => (
         <article key={title} className="text-center">
           {video ? (
             <ExpandableVideo src={video.src} poster={video.poster} title={title} className={framed} />
@@ -35,7 +35,7 @@ export default function TileRow({ tiles, className = "" }: { tiles: Tiles; class
               className={`aspect-3/2 h-auto object-cover ${tile}`}
             />
           ) : (
-            <div className={framed}>{animation}</div>
+            <div className={`flex items-center justify-center ${framed}`}>{art}</div>
           )}
           <h3 className="mt-4 text-[15px] font-medium leading-snug">{title}</h3>
           {text && <p className="mt-1 text-[15px] leading-[1.5]">{text}</p>}

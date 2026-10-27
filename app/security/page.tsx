@@ -20,7 +20,7 @@ const safeguards: Tiles = [
   {
     title: "Secure sign-in",
     text: "Clinic staff join by invitation only. Passwords need at least 12 characters, and two-step verification is available. Every sign-in goes through Amazon Cognito.",
-    animation: <LoadingDots />,
+    art: <LoadingDots />,
   },
   {
     title: "Ingestion",
