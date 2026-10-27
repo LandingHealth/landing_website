@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const timescales: Tiles = [
   {
     title: "Physics",
-    text: "The fast one is mechanics. Each step of gait brings ground reaction forces and moments, joint angles, and vertical load. Physics already models it well.",
+    text: "The fast one is mechanics. Each step of gait brings ground reaction forces and moments, joint angles, and vertical load. Physics already models it well. All three of our founding engineers studied in the world’s top-ranked biomedical engineering program. Two of them helped train a dual-path, attention-guided deep learning model to predict gait cycle data.",
     image: {
       src: "/solution/mechanics-plate.jpg",
       alt: "An 1816 engraving of the mechanical powers, with screws, presses, pulleys, and force diagrams",
@@ -24,7 +24,7 @@ const timescales: Tiles = [
   },
   {
     title: "Biology",
-    text: "The slow one is biology: healing, remodeling, and strength gain. Nobody models it well, because nobody has measured it.",
+    text: "The slow one is biology: healing, remodeling, and strength gain. Nobody models it well, because nobody has measured it. Our team includes a Penn ELITE Fellow, one of about three people the University of Pennsylvania’s health-tech fellowship picks each year.",
     image: {
       src: "/solution/vitruvian-man.jpg",
       alt: "Leonardo da Vinci’s Vitruvian Man, a figure with outstretched arms and legs inside a circle and a square",
@@ -35,7 +35,7 @@ const timescales: Tiles = [
   },
   {
     title: "SafeSock",
-    text: "A sensor sleeve we’re designing to measure load with every step, across the weeks of healing.",
+    text: "A sensor sleeve we’re designing to measure load with every step, across the weeks of healing. Our engineers bring the gait modeling, and our fellow brings the training to move a health device from the lab to patients.",
     video: { src: "/safesock-demo.mp4", poster: "/safesock-demo-poster.jpg" },
   },
 ];
