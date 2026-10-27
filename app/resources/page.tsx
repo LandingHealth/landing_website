@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { coverImage, resources } from "@/lib/resources";
-import { container, type } from "@/lib/site";
+import { container, edgePad, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Resources | Landing",
@@ -19,7 +19,7 @@ export default function ResourcesPage() {
             Writing from Landing on physical therapy, recovery, and the data between visits.
           </p>
         </div>
-        <ul className="mx-auto mt-14 max-w-3xl space-y-16 px-6 sm:mt-16">
+        <ul className={`${edgePad} mt-14 grid gap-x-3 gap-y-12 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3`}>
           {resources.map(({ kind, title, summary, href, cover }) => (
             <li key={href}>
               <Link
@@ -33,10 +33,10 @@ export default function ResourcesPage() {
                   height={cover.height}
                   className={coverImage}
                   priority
-                  sizes="(min-width: 768px) 720px, 100vw"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                 />
                 <p className="mt-5 text-[15px]">{kind}</p>
-                <h2 className={`${type.h3} mt-2 sm:text-3xl`}>{title}</h2>
+                <h2 className={`${type.h3} mt-2`}>{title}</h2>
                 <p className="mt-2 text-[15px] leading-[1.6]">{summary}</p>
               </Link>
             </li>
