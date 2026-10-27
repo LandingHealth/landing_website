@@ -14,9 +14,7 @@ export type Tiles = readonly [Tile, Tile, Tile] | readonly [Tile, Tile, Tile, Ti
 
 const columns = { 3: "md:grid-cols-3", 4: "sm:grid-cols-2 lg:grid-cols-4" } as const;
 
-const tourStepMs = 5000;
-
-const nextMedia = (tiles: Tiles, from: number) => tiles.findIndex((tile, i) => i > from && (tile.video || tile.image));
+const autoOpenMs = 5000;
 
 const frame = "aspect-(--ratio) w-full rounded-xl bg-mist ring-1 ring-black";
 
@@ -24,18 +22,18 @@ export default function TileRow({
   tiles,
   ratio = "1920/1094",
   className = "",
-  tour = false,
+  autoOpen = false,
 }: {
   tiles: Tiles;
   ratio?: string;
   className?: string;
-  tour?: boolean;
+  autoOpen?: boolean;
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState<number | null>(null);
-  const [phase, setPhase] = useState<"waiting" | "running" | "over">(tour ? "waiting" : "over");
+  const [phase, setPhase] = useState<"waiting" | "showing" | "over">(autoOpen ? "waiting" : "over");
 
-  const show = (index: number | null, next: "running" | "over") =>
+  const show = (index: number | null, next: "showing" | "over") =>
     startTransition(() => {
       setOpen(index);
       setPhase(next);
@@ -48,7 +46,7 @@ export default function TileRow({
       ([entry]) => {
         if (!entry.isIntersecting) return;
         observer.disconnect();
-        show(nextMedia(tiles, -1), "running");
+        show(tiles.findIndex((tile) => tile.video || tile.image), "showing");
       },
       { rootMargin: "0px 0px -40% 0px" },
     );
@@ -57,13 +55,10 @@ export default function TileRow({
   }, [phase, tiles]);
 
   useEffect(() => {
-    if (phase !== "running" || open === null) return;
-    const timer = setTimeout(() => {
-      const next = nextMedia(tiles, open);
-      show(next < 0 ? null : next, next < 0 ? "over" : "running");
-    }, tourStepMs);
+    if (phase !== "showing") return;
+    const timer = setTimeout(() => show(null, "over"), autoOpenMs);
     return () => clearTimeout(timer);
-  }, [phase, open, tiles]);
+  }, [phase]);
 
   return (
     <div
