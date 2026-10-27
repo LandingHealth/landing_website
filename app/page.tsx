@@ -118,10 +118,10 @@ export default function Home() {
 
       <section className={section}>
         <div className={container}>
-          <p className={`${type.label} text-center`}>The workspace</p>
-          <h2 className={`${type.h2} mx-auto mt-4 max-w-3xl text-center`}>Everything you need between visits.</h2>
+          <h2 className={`${type.h2} mx-auto max-w-3xl text-center`}>The Workflow</h2>
+          <p className={`${type.lead} mx-auto mt-4 max-w-3xl text-center`}>Everything you need between visits.</p>
         </div>
-        <TileRow tiles={workspace} className="mt-12" />
+        <TileRow tiles={workspace} className="mt-12" tour />
       </section>
 
       <section className={section}>
