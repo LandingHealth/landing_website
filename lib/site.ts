@@ -43,4 +43,3 @@ export const type = {
   label: "text-xs font-medium uppercase tracking-[0.08em]",
 } as const;
 
-export const stagger = (i: number) => ({ "--reveal-i": i }) as React.CSSProperties;
