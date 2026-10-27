@@ -76,7 +76,7 @@ function logoSize(aspectRatio: number) {
   return { height, width: Math.round(height * aspectRatio) };
 }
 
-const tile = "aspect-[9/16] w-full rounded-xl bg-mist";
+const tile = "aspect-[1280/730] w-full rounded-xl bg-mist";
 
 const section = `border-t border-ink/10 ${sectionPad}`;
 
