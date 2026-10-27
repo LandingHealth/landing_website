@@ -18,8 +18,12 @@ const workspace = [
     video: { src: "/workspace/exercise-review.mp4", poster: "/workspace/exercise-review.jpg" },
   },
   {
-    title: "Patient progress",
-    text: "Each patient page brings completed and skipped sessions, exercise history, and your notes into one view.",
+    title: "Appointment preparation",
+    text: "Before each visit, Landing assembles a brief from the patient’s history, recent sessions, and your notes. It lists what changed and what is still missing, so you start with context.",
+  },
+  {
+    title: "Post-appointment agent",
+    text: "After each visit, an agent drafts the treatment note, updates the home exercise plan to match what you prescribed, and suggests CPT codes and units from your dictation and treatment times. Regular documentation checks catch missing details before billing, and what it learns carries into the next visit.",
   },
 ];
 
@@ -117,7 +121,7 @@ export default function Home() {
           <p className={`${type.label} text-center`}>The workspace</p>
           <h2 className={`${type.h2} mx-auto mt-4 max-w-3xl text-center`}>Everything you need before the next visit.</h2>
         </div>
-        <div className="mt-12 grid gap-x-3 gap-y-12 px-6 lg:grid-cols-3 lg:px-4">
+        <div className="mt-12 grid gap-x-3 gap-y-12 px-6 sm:grid-cols-2 lg:grid-cols-4 lg:px-4">
           {workspace.map(({ title, text, video }) => (
             <article key={title}>
               {video ? (
