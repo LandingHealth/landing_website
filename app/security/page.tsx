@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LoadingDots from "@/components/LoadingDots";
 import TileRow, { type Tiles } from "@/components/TileRow";
 import { container, type } from "@/lib/site";
 
@@ -19,6 +20,7 @@ const safeguards: Tiles = [
   {
     title: "Secure sign-in",
     text: "Clinic staff join by invitation only. Passwords need at least 12 characters, and two-step verification is available. Every sign-in goes through Amazon Cognito.",
+    animation: <LoadingDots />,
   },
   {
     title: "Ingestion",

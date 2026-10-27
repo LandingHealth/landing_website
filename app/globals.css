@@ -15,6 +15,7 @@
   --animate-rippling: rippling 600ms ease-out;
   --animate-rotate-in: rotate-in 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-rotate-out: rotate-out 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-loading-dot: loading-dot 1s ease-in-out infinite;
   --shadow-preview: 0 1px 2px rgb(12 14 50 / 0.04), 0 24px 64px -24px rgb(12 14 50 / 0.22);
 }
 
@@ -37,6 +38,18 @@
   to {
     opacity: 0;
     transform: scale(2);
+  }
+}
+
+@keyframes loading-dot {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.2);
+  }
+  40% {
+    transform: scale(1);
   }
 }
 
