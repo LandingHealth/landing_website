@@ -10,19 +10,19 @@ export const metadata: Metadata = {
 const safeguards: Tiles = [
   {
     title: "Encryption",
-    text: "Patient records, videos, and documents are encrypted where they are stored. Every connection to Landing runs over HTTPS, and the database turns away any connection that isn’t encrypted.",
+    text: "Landing encrypts patient records, videos, and documents in storage. Every connection to Landing uses HTTPS, and the database refuses any connection that isn’t encrypted.",
   },
   {
     title: "Private network",
-    text: "The database sits in a private network with no route to or from the internet. Only Landing’s own services can reach it. Backups keep seven days of history, and the database is protected against deletion.",
+    text: "The database sits in a private network with no route to or from the internet. Only Landing’s own services can reach it. Backups keep seven days of history, and deletion protection keeps the database from being removed by mistake.",
   },
   {
     title: "Secure sign-in",
-    text: "Clinic staff join by invitation only. Passwords need at least 12 characters, two-step verification is available, and every sign-in runs through Amazon Cognito.",
+    text: "Clinic staff join by invitation only. Passwords need at least 12 characters, and two-step verification is available. Every sign-in goes through Amazon Cognito.",
   },
   {
     title: "Ingestion",
-    text: "All patient documents, videos, and records are stored in Amazon Web Services infrastructure for maximum protection. Storage is encrypted, versioned, and closed to public access, and Landing has a Business Associate Agreement with AWS.",
+    text: "Landing stores all patient documents, videos, and records on Amazon Web Services. Storage is encrypted, keeps earlier versions of each file for 30 days, and is closed to public access. Landing also has a Business Associate Agreement with AWS.",
     video: { src: "/security/ingestion.mp4", poster: "/security/ingestion.jpg" },
   },
 ];
@@ -36,8 +36,7 @@ export default function SecurityPage() {
             Peace of mind for<br className="hidden sm:block" /> physical therapists.
           </h1>
           <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
-            At Landing, security is foundational. Every workflow, architecture choice, and feature is designed to protect
-            your patients’ information and meet the expectations of physical therapy clinics.
+            Your patients trust you with their health information. Here’s how Landing protects it.
           </p>
         </div>
         <TileRow tiles={safeguards} className="mt-14 sm:mt-16" />

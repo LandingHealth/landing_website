@@ -43,7 +43,7 @@ button:hover{background:#d55823}
 <p class="brand">Landing Health</p>
 <h1>Enter the password</h1>
 <form method="post">
-${error ? '<p class="error" role="alert">That password is not right.</p>\n' : ""}<label for="password">Password</label>
+${error ? '<p class="error" role="alert">That password didn’t work. Try again.</p>\n' : ""}<label for="password">Password</label>
 <input id="password" type="password" name="password" autocomplete="current-password" required autofocus>
 <button type="submit">Continue</button>
 </form>
