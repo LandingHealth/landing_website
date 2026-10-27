@@ -43,7 +43,4 @@ export const type = {
   label: "text-xs font-medium uppercase tracking-[0.08em]",
 } as const;
 
-export const card =
-  "rounded-xl border border-ink/10 bg-white transition-colors duration-200 hover:border-ink/20";
-
 export const stagger = (i: number) => ({ "--reveal-i": i }) as React.CSSProperties;
