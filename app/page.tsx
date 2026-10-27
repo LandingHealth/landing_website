@@ -76,7 +76,7 @@ function logoSize(aspectRatio: number) {
   return { height, width: Math.round(height * aspectRatio) };
 }
 
-const tile = "aspect-[3/4] w-full rounded-xl bg-mist";
+const tile = "aspect-[1280/730] w-full rounded-xl bg-mist";
 
 const section = `border-t border-ink/10 ${sectionPad}`;
 
@@ -119,7 +119,7 @@ export default function Home() {
             {workspace.map(({ title, text, video }) => (
               <article key={title}>
                 {video ? (
-                  <LoopVideo src={video.src} poster={video.poster} className={`${tile} object-cover`} />
+                  <LoopVideo src={video.src} poster={video.poster} className={`${tile} object-contain`} />
                 ) : (
                   <div className={tile} />
                 )}
