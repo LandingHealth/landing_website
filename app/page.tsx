@@ -20,6 +20,7 @@ const workspace: ReadonlyArray<Tile> = [
   {
     title: "Appointment preparation",
     text: "Before each visit, Landing assembles a brief from the patient’s history, recent sessions, and your notes. It lists what changed and what is still missing, so you start with context.",
+    video: { src: "/workspace/appointment-preparation.mp4", poster: "/workspace/appointment-preparation.jpg" },
   },
   {
     title: "Post-appointment agent",
