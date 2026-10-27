@@ -6,7 +6,7 @@ export type Tiles = readonly [Tile, Tile, Tile] | readonly [Tile, Tile, Tile, Ti
 
 const columns = { 3: "md:grid-cols-3", 4: "sm:grid-cols-2 lg:grid-cols-4" } as const;
 
-const tile = "[--ratio:1920/1094] aspect-(--ratio) w-full rounded-xl bg-mist";
+const tile = "[--ratio:1920/1094] aspect-(--ratio) w-full rounded-xl bg-mist ring-1 ring-black";
 
 export default function TileRow({ tiles, className = "" }: { tiles: Tiles; className?: string }) {
   return (
