@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Icon from "@/components/Icon";
+import LoopVideo from "@/components/LoopVideo";
 import TileRow, { type Tiles } from "@/components/TileRow";
-import { container, type } from "@/lib/site";
+import { container, edgePad, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About | Landing",
@@ -37,6 +39,21 @@ const cofounders: Tiles = [
   },
 ];
 
+const story = [
+  {
+    title: "The injuries",
+    text: "Akash broke his femur and Neil broke his tibia and fibula. Both of us went through physical therapy to walk again.",
+  },
+  {
+    title: "The recovery",
+    text: "Most of the work happens at home, between visits. It’s hard to know if you’re doing an exercise right, and your therapist can’t see it either.",
+  },
+  {
+    title: "Landing",
+    text: "Landing gives physical therapy clinics software and connected recovery devices that keep patient progress, home exercise, and daily operations in one place.",
+  },
+] as const;
+
 export default function AboutPage() {
   return (
     <main>
@@ -46,6 +63,28 @@ export default function AboutPage() {
           <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>Akash and Neil</p>
         </div>
         <TileRow tiles={cofounders} ratio="3/2" className="mt-14 sm:mt-16" />
+        <div className={`mt-20 grid gap-x-3 gap-y-12 ${edgePad} sm:mt-24 lg:grid-cols-2`}>
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <p className="text-[15px]">Our story</p>
+            <h2 className={`${type.h2} mt-4 max-w-xl`}>We built Landing after our own recoveries.</h2>
+            <div className="mt-12 max-w-xl border-t border-black lg:mt-20">
+              {story.map(({ title, text }, i) => (
+                <details key={title} name="story" open={i === 0} className="group border-black/15 not-last:border-b">
+                  <summary className="flex cursor-pointer list-none items-center justify-between py-6 text-xl font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink [&::-webkit-details-marker]:hidden">
+                    {title}
+                    <Icon name="plus" className="size-5 group-open:rotate-45" />
+                  </summary>
+                  <p className="max-w-lg pb-8 text-[15px] leading-[1.6]">{text}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+          <LoopVideo
+            src="/about/clinic-visit.mp4"
+            poster="/about/clinic-visit.jpg"
+            className="aspect-9/16 w-full rounded-xl bg-mist ring-1 ring-black"
+          />
+        </div>
       </section>
     </main>
   );
