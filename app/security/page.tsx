@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import EncryptionLock from "@/components/EncryptionLock";
-import IngestionFlip from "@/components/IngestionFlip";
+import IngestionToAws from "@/components/IngestionToAws";
 import LoadingDots from "@/components/LoadingDots";
 import TileRow, { type Tiles } from "@/components/TileRow";
 import { container, type } from "@/lib/site";
@@ -29,7 +29,7 @@ const safeguards: Tiles = [
   {
     title: "Ingestion",
     text: "Landing stores all patient documents, videos, and records on Amazon Web Services. Storage is encrypted, keeps earlier versions of each file for 30 days, and is closed to public access. Landing also has a Business Associate Agreement with AWS.",
-    art: <IngestionFlip video={{ src: "/security/ingestion.mp4", poster: "/security/ingestion.jpg" }} />,
+    art: <IngestionToAws video={{ src: "/security/ingestion.mp4", poster: "/security/ingestion.jpg" }} />,
   },
 ];
 
