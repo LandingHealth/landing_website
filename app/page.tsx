@@ -4,7 +4,7 @@ import ButtonLink from "@/components/ButtonLink";
 import DashboardPreview from "@/components/DashboardPreview";
 import Marquee from "@/components/Marquee";
 import TileRow, { type Tiles } from "@/components/TileRow";
-import { container, demoHref, sectionPad, type } from "@/lib/site";
+import { container, demoHref, edgePad, sectionPad, type } from "@/lib/site";
 
 const workspace: Tiles = [
   {
@@ -99,9 +99,9 @@ export default function Home() {
           <div className="mt-9 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
             <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
           </div>
-          <div className="mt-14 w-full max-w-5xl sm:mt-16">
-            <DashboardPreview />
-          </div>
+        </div>
+        <div className={`${edgePad} mt-14 sm:mt-16`}>
+          <DashboardPreview />
         </div>
         <h2 className={`${type.label} mt-14 text-center sm:mt-16`}>Awarded by</h2>
         <Marquee className="mt-6 [--gap:2rem] sm:[--gap:3rem]">

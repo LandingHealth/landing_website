@@ -27,6 +27,7 @@ export type ButtonSize = keyof typeof buttonSize;
 export type ButtonVariant = keyof typeof button;
 
 export const container = "mx-auto w-full max-w-6xl px-6 sm:px-10 lg:px-8";
+export const edgePad = "px-6 lg:px-4";
 export const sectionPad = "py-20 sm:py-24 lg:py-28";
 
 export const type = {
