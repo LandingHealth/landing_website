@@ -5,34 +5,51 @@ import { useEffect, useRef, useState } from "react";
 import type { Video } from "@/components/ExpandableMedia";
 
 const passes = 2;
+const switchMs = 3500;
 
 export default function IngestionToAws({ video }: { video: Video }) {
   const root = useRef<HTMLDivElement>(null);
   const player = useRef<HTMLVideoElement>(null);
-  const [plays, setPlays] = useState(0);
-  const stage = plays < passes ? "video" : "logo";
+  const plays = useRef(0);
+  const [flips, setFlips] = useState(0);
+  const stage = flips % 2 === 0 ? "video" : "logo";
 
-  const play = () => player.current?.play().catch(() => setPlays(passes));
+  const play = () => player.current?.play().catch(() => {});
 
   useEffect(() => {
     const element = root.current;
     if (!element) return;
+    let timer: ReturnType<typeof setInterval> | undefined;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) setPlays(passes);
-        else play();
         observer.disconnect();
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          setFlips(1);
+          return;
+        }
+        play();
+        timer = setInterval(() => setFlips((count) => count + 1), switchMs);
       },
       { threshold: 1, rootMargin: "0px 0px -15% 0px" },
     );
     observer.observe(element);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearInterval(timer);
+    };
   }, []);
 
+  useEffect(() => {
+    if (flips === 0 || stage !== "video" || !player.current) return;
+    plays.current = 0;
+    player.current.currentTime = 0;
+    play();
+  }, [flips, stage]);
+
   const onEnded = () => {
-    setPlays(plays + 1);
-    if (plays + 1 < passes) play();
+    plays.current += 1;
+    if (plays.current < passes) play();
   };
 
   return (
