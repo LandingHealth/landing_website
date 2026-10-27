@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import EncryptionLock from "@/components/EncryptionLock";
 import IngestionToAws from "@/components/IngestionToAws";
 import LoadingDots from "@/components/LoadingDots";
+import NetworkFeed from "@/components/NetworkFeed";
 import TileRow, { type Tiles } from "@/components/TileRow";
 import { container, type } from "@/lib/site";
 
@@ -19,6 +20,7 @@ const safeguards: Tiles = [
   {
     title: "Private network",
     text: "The database sits in a private network with no route to or from the internet. Only Landing’s own services can reach it. Backups keep seven days of history, and deletion protection keeps the database from being removed by mistake.",
+    art: <NetworkFeed />,
   },
   {
     title: "Secure sign-in",
