@@ -20,7 +20,7 @@ const sourceSerif = Source_Serif_4({
   display: "swap",
 });
 
-const description = "Landing Health brings patient history, exercise activity, and session notes into one workspace for physical therapists.";
+const description = "Connected recovery devices and clinic software that bring patient progress, daily operations, and care at home into one platform.";
 
 export const metadata: Metadata = {
   title: "Landing Health",

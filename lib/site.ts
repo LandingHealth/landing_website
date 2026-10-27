@@ -29,12 +29,12 @@ export const container = "mx-auto w-full max-w-6xl px-6 sm:px-10 lg:px-8";
 export const sectionPad = "py-20 sm:py-24 lg:py-28";
 
 export const type = {
-  h1: "font-display text-[clamp(2.5rem,6vw,4.75rem)] font-normal leading-[1.05] tracking-[-0.02em] text-balance",
-  h2: "font-display text-[clamp(1.875rem,3.6vw,3rem)] font-normal leading-[1.05] tracking-[-0.02em] text-balance",
-  h3: "font-display text-2xl font-normal leading-tight tracking-[-0.01em]",
-  body: "max-w-prose text-base leading-7 text-slate sm:text-lg sm:leading-8",
-  bodyOnInk: "max-w-prose text-base leading-7 text-on-ink sm:text-lg sm:leading-8",
-  lead: "text-base leading-7 sm:text-[17px] sm:leading-[1.65]",
+  h1: "font-display text-[clamp(2.75rem,6.3vw,5.0625rem)] font-medium leading-none tracking-[-0.025em] text-balance",
+  h2: "font-display text-[clamp(1.875rem,3.6vw,3rem)] font-medium leading-none tracking-[-0.025em] text-balance",
+  h3: "font-display text-2xl font-medium leading-tight tracking-[-0.015em]",
+  body: "max-w-prose text-[15px] leading-[1.6] text-slate",
+  bodyOnInk: "max-w-prose text-[15px] leading-[1.6] text-on-ink",
+  lead: "text-[15px] leading-[1.45]",
   label: "text-xs font-medium uppercase tracking-[0.08em]",
 } as const;
 

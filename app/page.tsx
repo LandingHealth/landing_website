@@ -55,20 +55,14 @@ export default function Home() {
     <main className="overflow-x-clip">
       <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
         <div className={`${container} flex flex-col items-center text-center`}>
-          <p className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-3.5 py-1 text-[13px] font-medium">
-            <span className="size-1.5 rounded-full bg-ink" />
-            Built for physical therapists
-          </p>
-          <h1 className="mt-6 max-w-4xl font-display text-[42px] font-normal leading-[1.02] tracking-[-0.022em] text-balance sm:text-6xl lg:text-[80px]">
-            Better preparation<br className="hidden sm:block" /> for every appointment.
+          <h1 className={`${type.h1} max-w-4xl`}>
+            The Operating System<br className="hidden sm:block" /> for Physical Therapy.
           </h1>
-          <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
-            Bring patient history, exercise activity, and session notes into one focused workspace. Arrive prepared
-            with a clear summary and exercise recommendations for your review.
+          <p className={`${type.lead} mt-6 max-w-[30rem] text-pretty`}>
+            Connected recovery devices and clinic software that bring patient progress, daily operations, and care at home into one platform.
           </p>
           <div className="mt-9 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
             <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
-            <ButtonLink href="/product" variant="secondary">Explore the platform</ButtonLink>
           </div>
           <div className="mt-14 w-full max-w-5xl sm:mt-16">
             <DashboardPreview />
@@ -84,7 +78,7 @@ export default function Home() {
             {workspace.map(({ title, text }) => (
               <article key={title} className="rounded-xl border border-ink/10 bg-white p-6 sm:p-7">
                 <h3 className={type.h3}>{title}</h3>
-                <p className="mt-3 text-base leading-7">{text}</p>
+                <p className="mt-3 text-[15px] leading-[1.6]">{text}</p>
               </article>
             ))}
           </div>
@@ -123,7 +117,7 @@ export default function Home() {
             {alsoInLanding.map(({ title, text, href, link }) => (
               <div key={title} className="border-t border-ink/15 pt-6">
                 <h3 className={type.h3}>{title}</h3>
-                <p className="mt-3 text-base leading-7">{text}</p>
+                <p className="mt-3 text-[15px] leading-[1.6]">{text}</p>
                 <Link
                   href={href}
                   className="mt-4 inline-block text-sm font-medium underline decoration-ink/30 underline-offset-4 hover:decoration-ink"
