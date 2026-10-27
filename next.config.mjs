@@ -5,6 +5,8 @@ import svelteConfig from "./svelte.config.mjs";
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig = {
+  // The optimizer fetches source images without the visitor's cookie, so proxy.ts would refuse them.
+  images: { unoptimized: true },
   webpack(config) {
     config.module.rules.push({
       test: /\.svelte(?:\.js)?$/,
