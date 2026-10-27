@@ -3,6 +3,7 @@ export const navigation: ReadonlyArray<{ label: string; href: string }> = [
   { label: "Solution", href: "/solution" },
   { label: "Devices", href: "/devices" },
   { label: "Schedule", href: "/schedule" },
+  { label: "Security", href: "/security" },
   { label: "About", href: "/about" },
 ];
 
