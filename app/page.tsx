@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ButtonLink from "@/components/ButtonLink";
 import DashboardPreview from "@/components/DashboardPreview";
+import LoopVideo from "@/components/LoopVideo";
 import Marquee from "@/components/Marquee";
 import { container, demoHref, sectionPad, type } from "@/lib/site";
 
@@ -13,6 +14,7 @@ const workspace = [
   {
     title: "Exercise review",
     text: "Patients record their home exercises and submit the videos. Submissions with possible form issues are flagged and sorted oldest first, so you know where to look.",
+    video: { src: "/workspace/exercise-review.mp4", poster: "/workspace/exercise-review.jpg" },
   },
   {
     title: "Patient progress",
@@ -74,6 +76,8 @@ function logoSize(aspectRatio: number) {
   return { height, width: Math.round(height * aspectRatio) };
 }
 
+const tile = "aspect-[3/4] w-full rounded-xl bg-mist";
+
 const section = `border-t border-ink/10 ${sectionPad}`;
 
 export default function Home() {
@@ -109,13 +113,18 @@ export default function Home() {
 
       <section className={section}>
         <div className={container}>
-          <p className={type.label}>The workspace</p>
-          <h2 className={`${type.h2} mt-4 max-w-3xl`}>Everything you need before the next visit.</h2>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {workspace.map(({ title, text }) => (
-              <article key={title} className="rounded-xl border border-ink/10 bg-white p-6 sm:p-7">
-                <h3 className={type.h3}>{title}</h3>
-                <p className="mt-3 text-[15px] leading-[1.6]">{text}</p>
+          <p className={`${type.label} text-center`}>The workspace</p>
+          <h2 className={`${type.h2} mx-auto mt-4 max-w-3xl text-center`}>Everything you need before the next visit.</h2>
+          <div className="mt-12 grid gap-x-4 gap-y-12 md:grid-cols-3">
+            {workspace.map(({ title, text, video }) => (
+              <article key={title}>
+                {video ? (
+                  <LoopVideo src={video.src} poster={video.poster} className={`${tile} object-cover`} />
+                ) : (
+                  <div className={tile} />
+                )}
+                <h3 className="mt-4 text-[15px] font-medium leading-snug">{title}</h3>
+                <p className="mt-1 text-[15px] leading-[1.5]">{text}</p>
               </article>
             ))}
           </div>
