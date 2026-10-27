@@ -121,7 +121,7 @@ export default function Home() {
           <h2 className={`${type.h2} mx-auto max-w-3xl text-center`}>The Workflow</h2>
           <p className={`${type.lead} mx-auto mt-4 max-w-3xl text-center`}>Everything you need between visits.</p>
         </div>
-        <TileRow tiles={workspace} className="mt-12" tour />
+        <TileRow tiles={workspace} className="mt-12" autoOpen />
       </section>
 
       <section className={section}>
