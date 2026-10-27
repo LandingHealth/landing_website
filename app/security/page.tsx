@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import EncryptionLock from "@/components/EncryptionLock";
+import IngestionToAws from "@/components/IngestionToAws";
 import LoadingDots from "@/components/LoadingDots";
 import TileRow, { type Tiles } from "@/components/TileRow";
 import { container, type } from "@/lib/site";
@@ -27,7 +29,7 @@ const safeguards: Tiles = [
   {
     title: "Ingestion",
     text: "Landing stores all patient documents, videos, and records on Amazon Web Services. Storage is encrypted, keeps earlier versions of each file for 30 days, and is closed to public access. Landing also has a Business Associate Agreement with AWS.",
-    video: { src: "/security/ingestion.mp4", poster: "/security/ingestion.jpg" },
+    art: <IngestionToAws video={{ src: "/security/ingestion.mp4", poster: "/security/ingestion.jpg" }} />,
   },
 ];
 
@@ -36,9 +38,23 @@ export default function SecurityPage() {
     <main>
       <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
         <div className={`${container} flex flex-col items-center text-center`}>
-          <h1 className={`${type.h1} max-w-4xl`}>
-            Peace of mind for<br className="hidden sm:block" /> physical therapists.
-          </h1>
+          <div className="flex flex-col items-center gap-6 sm:flex-row sm:gap-10">
+            <h1 className={`${type.h1} max-w-4xl`}>
+              Peace of mind for<br className="hidden sm:block" /> physical therapists.
+            </h1>
+            <a
+              href="https://aws.amazon.com/what-is-cloud-computing"
+              className="shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+            >
+              <Image
+                src="/security/powered-by-aws.png"
+                alt="Powered by AWS Cloud Computing"
+                width={200}
+                height={72}
+                className="h-auto w-30 sm:w-37.5"
+              />
+            </a>
+          </div>
           <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
             Your patients trust you with their health information. Here’s how Landing protects it.
           </p>
