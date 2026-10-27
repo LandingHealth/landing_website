@@ -52,6 +52,7 @@ const icons = {
     </>
   ),
   chevronLeft: <path d="m15 18-6-6 6-6" />,
+  plus: <path d="M12 5v14M5 12h14" />,
 } satisfies Record<string, ReactNode>;
 
 export type IconName = keyof typeof icons;
