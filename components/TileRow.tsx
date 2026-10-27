@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ExpandableVideo from "@/components/ExpandableVideo";
+import { edgePad } from "@/lib/site";
 
 type Video = { src: string; poster: string };
 type Photo = { src: string; alt: string; width: number; height: number };
@@ -19,7 +20,7 @@ const framed = `[--ratio:1920/1094] aspect-(--ratio) ${tile}`;
 
 export default function TileRow({ tiles, className = "" }: { tiles: Tiles; className?: string }) {
   return (
-    <div className={`grid gap-x-3 gap-y-12 px-6 ${columns[tiles.length]} lg:px-4 ${className}`}>
+    <div className={`grid gap-x-3 gap-y-12 ${edgePad} ${columns[tiles.length]} ${className}`}>
       {tiles.map(({ title, text, video, image }) => (
         <article key={title} className="text-center">
           {video ? (
