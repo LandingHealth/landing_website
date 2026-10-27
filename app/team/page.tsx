@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import ButtonLink from "@/components/ButtonLink";
 import { container, edgePad, type } from "@/lib/site";
-import { demoAnchor, team } from "@/lib/team";
+import { team } from "@/lib/team";
 
 export const metadata: Metadata = {
   title: "Team | Landing",
@@ -17,7 +17,7 @@ export default function TeamPage() {
           <h1 className={`${type.h1} max-w-4xl`}>Meet the team</h1>
         </div>
         <div className={`mt-14 grid gap-x-3 gap-y-12 ${edgePad} sm:mt-16 md:grid-cols-3`}>
-          {team.map(({ name, role, bio, photo, demo }) => (
+          {team.map(({ name, role, bio, photo, demoHost }) => (
             <article key={name} className="flex flex-col text-center">
               <Image
                 src={photo.src}
@@ -30,10 +30,10 @@ export default function TeamPage() {
               <h2 className="mt-4 text-[15px] font-medium leading-snug">{name}</h2>
               <p className="mt-1 text-[15px] leading-[1.5]">{role}</p>
               <p className="mt-1 text-[15px] leading-[1.5]">{bio}</p>
-              {demo && (
+              {demoHost && (
                 <div className="mt-auto pt-6">
-                  <ButtonLink href={`/schedule#${demoAnchor(demo.host)}`} variant="primary">
-                    Book a demo with {demo.host}
+                  <ButtonLink href="/schedule" variant="primary">
+                    Book a demo with {demoHost}
                   </ButtonLink>
                 </div>
               )}
