@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import EncryptionLock from "@/components/EncryptionLock";
 import LoadingDots from "@/components/LoadingDots";
 import TileRow, { type Tiles } from "@/components/TileRow";
 import { container, type } from "@/lib/site";
@@ -12,6 +13,7 @@ const safeguards: Tiles = [
   {
     title: "Encryption",
     text: "Landing encrypts patient records, videos, and documents in storage. Every connection to Landing uses HTTPS, and the database refuses any connection that isn’t encrypted.",
+    art: <EncryptionLock />,
   },
   {
     title: "Private network",
