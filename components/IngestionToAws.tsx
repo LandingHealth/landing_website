@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { Video } from "@/components/ExpandableMedia";
 
-const passes = 3;
+const passes = 2;
 
 export default function IngestionToAws({ video }: { video: Video }) {
   const root = useRef<HTMLDivElement>(null);
