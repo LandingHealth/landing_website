@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { type CSSProperties, startTransition, useEffect, useRef, useState, ViewTransition } from "react";
+import { type CSSProperties, useEffect, useEffectEvent, useRef, ViewTransition } from "react";
 
 export type Video = { src: string; poster: string };
 export type Photo = { src: string; alt: string; width: number; height: number; focus?: string };
@@ -18,15 +18,17 @@ export default function ExpandableMedia({
   media,
   title,
   className,
+  expanded,
+  onExpandedChange,
 }: {
   media: Media;
   title: string;
   className: string;
+  expanded: boolean;
+  onExpandedChange: (expanded: boolean) => void;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
-  const [expanded, setExpanded] = useState(false);
-
-  const toggle = () => startTransition(() => setExpanded((open) => !open));
+  const close = useEffectEvent(() => onExpandedChange(false));
 
   useEffect(() => {
     const video = ref.current;
@@ -36,17 +38,21 @@ export default function ExpandableMedia({
 
   useEffect(() => {
     if (!expanded) return;
-    ref.current?.play().catch(() => {});
-    const close = (event: KeyboardEvent) => {
-      if (event.key === "Escape") startTransition(() => setExpanded(false));
+    const video = ref.current;
+    if (video) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    }
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") close();
     };
     const root = document.documentElement;
     const overflow = root.style.overflow;
     root.style.overflow = "hidden";
-    window.addEventListener("keydown", close);
+    window.addEventListener("keydown", onKeyDown);
     return () => {
       root.style.overflow = overflow;
-      window.removeEventListener("keydown", close);
+      window.removeEventListener("keydown", onKeyDown);
     };
   }, [expanded]);
 
@@ -56,7 +62,7 @@ export default function ExpandableMedia({
     <div className={className}>
       <button
         type="button"
-        onClick={toggle}
+        onClick={() => onExpandedChange(!expanded)}
         aria-label={label}
         className={expanded ? button.open : button.closed}
       >
