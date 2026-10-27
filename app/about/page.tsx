@@ -46,7 +46,7 @@ const story = [
   {
     title: "The injuries",
     paragraphs: [
-      "Akash broke his femur and Neil broke his tibia and fibula. Both of us went through physical therapy to walk again. As patients, we saw how much of recovery depends on what happens between visits.",
+      "Akash broke his femur and Neil broke his tibia and fibula (Neil is in the video trying to climb up a stair with his physical therapist 3 weeks after his tib/fib fracture). Both of us went through physical therapy to walk again. As patients, we saw how much of recovery depends on what happens between visits.",
     ],
   },
   {
