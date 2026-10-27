@@ -24,7 +24,7 @@ export default function Header() {
         </Link>
         <nav
           aria-label="Primary navigation"
-          className="order-3 mt-1 flex basis-full justify-between overflow-x-auto sm:-mx-3 sm:justify-start sm:gap-1 md:order-2 md:mx-0 md:mt-0 md:basis-auto"
+          className="order-3 mt-1 flex basis-full flex-wrap gap-x-4 overflow-x-auto sm:-mx-3 sm:flex-nowrap sm:gap-1 md:order-2 md:mx-0 md:mt-0 md:basis-auto"
         >
           {navigation.map(({ label, href }) => {
             const active = pathname === href || pathname.startsWith(`${href}/`);
@@ -33,7 +33,7 @@ export default function Header() {
                 key={href}
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`shrink-0 rounded-md px-1 py-1.5 sm:px-3 text-sm text-black ${focusRing} ${active ? "font-semibold" : ""}`}
+                className={`shrink-0 rounded-md px-1 py-1.5 sm:px-3 md:px-2 lg:px-3 text-sm text-black ${focusRing} ${active ? "font-semibold" : ""}`}
               >
                 {label}
               </Link>
