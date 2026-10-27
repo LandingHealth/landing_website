@@ -21,7 +21,7 @@ export default function SchedulePage() {
           </p>
         </div>
         <div className={`${edgePad} mt-6`}>
-          <div className="isolate overflow-hidden rounded-2xl border border-white/10 bg-ink text-white lg:grid lg:grid-cols-[176px_1fr]">
+          <div className="isolate mx-auto max-w-6xl overflow-hidden rounded-2xl border border-white/10 bg-ink text-white lg:grid lg:grid-cols-[176px_1fr]">
             <div className="grid grid-cols-3 gap-3 border-b border-white/10 p-5 lg:flex lg:flex-col lg:justify-center lg:border-b-0 lg:border-r">
               {hosts.map(({ name, photo }) => (
                 <figure key={name}>
@@ -43,7 +43,7 @@ export default function SchedulePage() {
                 src={`${demoHref}?embed_type=Inline&embed_domain=getlandinghealth.com&hide_event_type_details=1&hide_gdpr_banner=1`}
                 title="Book a demo with Landing"
                 loading="lazy"
-                className="block h-[700px] w-full border-0 mix-blend-multiply lg:h-[clamp(560px,calc(100svh-15rem),700px)]"
+                className="block h-[700px] w-full border-0 mix-blend-multiply lg:h-[clamp(576px,calc(100svh-14.5rem),700px)]"
               />
             </div>
           </div>
