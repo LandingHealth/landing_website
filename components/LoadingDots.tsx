@@ -4,11 +4,11 @@ const stagger = 250;
 
 export default function LoadingDots() {
   return (
-    <div aria-hidden="true" className="flex h-full items-center justify-center gap-2">
+    <div aria-hidden="true" className="flex h-full items-center justify-center gap-4">
       {colors.map((color, i) => (
         <span
           key={color}
-          className="size-3.5 rounded-full motion-safe:animate-loading-dot"
+          className="size-7 rounded-full motion-safe:animate-loading-dot"
           style={{ backgroundColor: color, animationDelay: `${i * stagger}ms` }}
         />
       ))}
