@@ -19,6 +19,19 @@ export const recoveryWorldModel: Resource = {
   },
 };
 
-export const resources: readonly Resource[] = [recoveryWorldModel];
+export const bettingOnAiAgents: Resource = {
+  kind: "Vision",
+  title: "Betting on AI Agents in Healthcare",
+  summary: "Why Landing builds AI agents that prepare the work and leave every treatment decision with the PT.",
+  href: "/resources/betting-on-ai-agents-in-healthcare",
+  cover: {
+    src: "/resources/betting-on-ai-agents.jpg",
+    alt: "A steel engraving of Gutenberg’s print shop. Gutenberg, in a fur-trimmed robe, reads the first proof with two printers while a pressman waits at the press.",
+    width: 1488,
+    height: 992,
+  },
+};
+
+export const resources: readonly Resource[] = [bettingOnAiAgents, recoveryWorldModel];
 
 export const coverImage = "aspect-3/2 h-auto w-full rounded-xl bg-mist object-cover ring-1 ring-black";
