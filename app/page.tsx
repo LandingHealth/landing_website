@@ -3,10 +3,10 @@ import Link from "next/link";
 import ButtonLink from "@/components/ButtonLink";
 import DashboardPreview from "@/components/DashboardPreview";
 import Marquee from "@/components/Marquee";
-import TileRow, { type Tile } from "@/components/TileRow";
+import TileRow, { type Tiles } from "@/components/TileRow";
 import { container, demoHref, sectionPad, type } from "@/lib/site";
 
-const workspace: ReadonlyArray<Tile> = [
+const workspace: Tiles = [
   {
     title: "Exercise recording",
     text: "Patients film each set at home with a phone or laptop. Landing guides them into frame, counts down once their whole body is in view, and sends nothing until they choose Send.",

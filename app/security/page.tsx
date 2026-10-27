@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import TileRow, { type Tile } from "@/components/TileRow";
+import TileRow, { type Tiles } from "@/components/TileRow";
 import { container, type } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "How Landing protects patient information for physical therapy clinics.",
 };
 
-const safeguards: ReadonlyArray<Tile> = [
+const safeguards: Tiles = [
   {
     title: "Encryption",
     text: "Patient records, videos, and documents are encrypted where they are stored. Every connection to Landing runs over HTTPS, and the database turns away any connection that isn’t encrypted.",
