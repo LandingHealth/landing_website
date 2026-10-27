@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import ButtonLink from "@/components/ButtonLink";
 import DashboardPreview from "@/components/DashboardPreview";
-import ExpandableVideo from "@/components/ExpandableVideo";
 import Marquee from "@/components/Marquee";
+import TileRow, { type Tile } from "@/components/TileRow";
 import { container, demoHref, sectionPad, type } from "@/lib/site";
 
-const workspace = [
+const workspace: ReadonlyArray<Tile> = [
   {
     title: "Exercise recording",
     text: "Patients film each set at home with a phone or laptop. Landing guides them into frame, counts down once their whole body is in view, and sends nothing until they choose Send.",
@@ -82,8 +82,6 @@ function logoSize(aspectRatio: number) {
   return { height, width: Math.round(height * aspectRatio) };
 }
 
-const tile = "[--ratio:1920/1094] aspect-(--ratio) w-full rounded-xl bg-mist";
-
 const section = `border-t border-ink/10 ${sectionPad}`;
 
 export default function Home() {
@@ -122,19 +120,7 @@ export default function Home() {
           <p className={`${type.label} text-center`}>The workspace</p>
           <h2 className={`${type.h2} mx-auto mt-4 max-w-3xl text-center`}>Everything you need before the next visit.</h2>
         </div>
-        <div className="mt-12 grid gap-x-3 gap-y-12 px-6 sm:grid-cols-2 lg:grid-cols-4 lg:px-4">
-          {workspace.map(({ title, text, video }) => (
-            <article key={title}>
-              {video ? (
-                <ExpandableVideo src={video.src} poster={video.poster} title={title} className={tile} />
-              ) : (
-                <div className={tile} />
-              )}
-              <h3 className="mt-4 text-[15px] font-medium leading-snug">{title}</h3>
-              <p className="mt-1 text-[15px] leading-[1.5]">{text}</p>
-            </article>
-          ))}
-        </div>
+        <TileRow tiles={workspace} className="mt-12" />
       </section>
 
       <section className={section}>
