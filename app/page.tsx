@@ -139,7 +139,6 @@ export default function Home() {
           </p>
           <div className="mt-9 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
             <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
-            <ButtonLink href="/about" variant="secondary">Meet the team</ButtonLink>
           </div>
         </div>
       </section>

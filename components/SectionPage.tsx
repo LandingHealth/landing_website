@@ -8,7 +8,6 @@ type SectionPageProps = {
   intro: string;
   sectionTitle: string;
   details: ReadonlyArray<{ heading: string; text: string }>;
-  team?: ReadonlyArray<string>;
   children?: React.ReactNode;
 };
 
@@ -19,12 +18,11 @@ export default function SectionPage({
   intro,
   sectionTitle,
   details,
-  team,
   children,
 }: SectionPageProps) {
   return (
     <main className="overflow-x-clip">
-      <section className="bg-mist pb-16 pt-14 sm:pb-20 sm:pt-20 lg:pt-24">
+      <section className="pb-16 pt-14 sm:pb-20 sm:pt-20 lg:pt-24">
         <div className={container}>
           <p data-reveal className={`${type.label} text-accent-deep`}>Landing / {label}</p>
           <div className="mt-5 grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-12">
@@ -34,7 +32,7 @@ export default function SectionPage({
         </div>
       </section>
 
-      <section className={`border-t border-ink/10 bg-paper ${sectionPad}`}>
+      <section className={`border-t border-ink/10 ${sectionPad}`}>
         <div className={`${container} grid gap-12 lg:grid-cols-12 lg:gap-16`}>
           <div className="lg:col-span-4">
             <SectionHeader eyebrow={label} title={sectionTitle} />
@@ -56,27 +54,6 @@ export default function SectionPage({
       </section>
 
       {children}
-
-      {team && (
-        <section className={`bg-ink text-paper ${sectionPad}`}>
-          <div className={`${container} space-y-12`}>
-            <SectionHeader eyebrow="Team" title="Meet the team" onInk />
-            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {team.map((entry, i) => {
-                const [name, role] = entry.split(" · ");
-                return (
-                  <li key={entry} data-reveal style={stagger(i)}>
-                    <div className="h-full rounded-xl border border-white/15 p-6 transition-colors duration-200 hover:border-white/30">
-                      <p className="text-xl font-semibold tracking-[-0.02em]">{name}</p>
-                      <p className={`${type.label} mt-2 text-on-ink/70`}>{role}</p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </section>
-      )}
 
       <CtaBand />
     </main>
