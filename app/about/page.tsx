@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import LoopVideo from "@/components/LoopVideo";
 import TileRow, { type Tiles } from "@/components/TileRow";
 import { container, type } from "@/lib/site";
 
@@ -44,6 +46,14 @@ export default function AboutPage() {
         <div className={`${container} flex flex-col items-center text-center`}>
           <h1 className={`${type.h1} max-w-4xl`}>Meet our cofounders</h1>
           <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>Akash and Neil</p>
+        </div>
+        <div className="relative mt-14 aspect-9/16 max-h-svh w-full overflow-hidden sm:mt-16">
+          <Image src="/about/clinic-visit.jpg" alt="" fill sizes="100vw" className="scale-110 object-cover blur-2xl" />
+          <LoopVideo
+            src="/about/clinic-visit.mp4"
+            poster="/about/clinic-visit.jpg"
+            className="relative mx-auto block aspect-9/16 h-full"
+          />
         </div>
         <TileRow tiles={cofounders} className="mt-14 sm:mt-16" />
       </section>
