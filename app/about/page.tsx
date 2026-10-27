@@ -45,7 +45,7 @@ export default function AboutPage() {
           <h1 className={`${type.h1} max-w-4xl`}>Meet our cofounders</h1>
           <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>Akash and Neil</p>
         </div>
-        <TileRow tiles={cofounders} className="mt-14 sm:mt-16" />
+        <TileRow tiles={cofounders} ratio="3/2" className="mt-14 sm:mt-16" />
       </section>
     </main>
   );

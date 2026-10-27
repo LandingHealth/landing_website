@@ -1,9 +1,6 @@
-import Image from "next/image";
-import ExpandableVideo from "@/components/ExpandableVideo";
+import type { CSSProperties } from "react";
+import ExpandableMedia, { type Photo, type Video } from "@/components/ExpandableMedia";
 import { edgePad } from "@/lib/site";
-
-type Video = { src: string; poster: string };
-type Photo = { src: string; alt: string; width: number; height: number };
 
 export type Tile = { title: string; text?: string } & (
   | { video: Video; image?: never }
@@ -15,31 +12,32 @@ export type Tiles = readonly [Tile, Tile, Tile] | readonly [Tile, Tile, Tile, Ti
 
 const columns = { 3: "md:grid-cols-3", 4: "sm:grid-cols-2 lg:grid-cols-4" } as const;
 
-const tile = "w-full rounded-xl bg-mist ring-1 ring-black";
-const framed = `[--ratio:1920/1094] aspect-(--ratio) ${tile}`;
+const frame = "aspect-(--ratio) w-full rounded-xl bg-mist ring-1 ring-black";
 
-export default function TileRow({ tiles, className = "" }: { tiles: Tiles; className?: string }) {
+export default function TileRow({
+  tiles,
+  ratio = "1920/1094",
+  className = "",
+}: {
+  tiles: Tiles;
+  ratio?: string;
+  className?: string;
+}) {
   return (
-    <div className={`grid gap-x-3 gap-y-12 ${edgePad} ${columns[tiles.length]} ${className}`}>
-      {tiles.map(({ title, text, video, image }) => (
-        <article key={title} className="text-center">
-          {video ? (
-            <ExpandableVideo src={video.src} poster={video.poster} title={title} className={framed} />
-          ) : image ? (
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={image.width}
-              height={image.height}
-              className={`aspect-3/2 h-auto object-cover ${tile}`}
-            />
-          ) : (
-            <div className={framed} />
-          )}
-          <h3 className="mt-4 text-[15px] font-medium leading-snug">{title}</h3>
-          {text && <p className="mt-1 text-[15px] leading-[1.5]">{text}</p>}
-        </article>
-      ))}
+    <div
+      className={`grid gap-x-3 gap-y-12 ${edgePad} ${columns[tiles.length]} ${className}`}
+      style={{ "--ratio": ratio } as CSSProperties}
+    >
+      {tiles.map(({ title, text, video, image }) => {
+        const media = video ? { video } : image ? { image } : null;
+        return (
+          <article key={title} className="text-center">
+            {media ? <ExpandableMedia media={media} title={title} className={frame} /> : <div className={frame} />}
+            <h3 className="mt-4 text-[15px] font-medium leading-snug">{title}</h3>
+            {text && <p className="mt-1 text-[15px] leading-[1.5]">{text}</p>}
+          </article>
+        );
+      })}
     </div>
   );
 }
