@@ -23,7 +23,7 @@ const sourceSerif = Source_Serif_4({
 
 const schools = ["Johns Hopkins", "University of Pennsylvania", "University of California, Berkeley"];
 
-const description = "Connected recovery devices and clinic software that bring patient progress, daily operations, and care at home into one platform.";
+const description = "Clinic software and connected recovery devices that keep patient progress, home exercise, and your daily operations in one place.";
 
 export const metadata: Metadata = {
   title: "Landing Health",
