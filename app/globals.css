@@ -16,6 +16,8 @@
   --animate-rotate-in: rotate-in 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-rotate-out: rotate-out 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-loading-dot: loading-dot 1s ease-in-out infinite;
+  --animate-feed-row: feed-row 300ms ease-out both;
+  --animate-feed-card: feed-card 400ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
   --shadow-preview: 0 1px 2px rgb(12 14 50 / 0.04), 0 24px 64px -24px rgb(12 14 50 / 0.22);
 }
 
@@ -50,6 +52,28 @@
   }
   40% {
     transform: scale(1);
+  }
+}
+
+@keyframes feed-row {
+  from {
+    grid-template-rows: 0fr;
+  }
+
+  to {
+    grid-template-rows: 1fr;
+  }
+}
+
+@keyframes feed-card {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
