@@ -1,20 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { coverImage, resources } from "@/lib/resources";
 import { container, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Resources | Landing",
   description: "Writing from Landing on physical therapy, recovery, and the data between visits.",
 };
-
-const resources: ReadonlyArray<{ kind: "Essay"; title: string; summary: string; href: string }> = [
-  {
-    kind: "Essay",
-    title: "The recovery world model",
-    summary: "Physical therapy runs open-loop. Here’s why a model of healing needs PT judgment, and how it can raise clinic revenue and help patients recover more.",
-    href: "/resources/recovery-world-model",
-  },
-];
 
 export default function ResourcesPage() {
   return (
@@ -26,17 +19,25 @@ export default function ResourcesPage() {
             Writing from Landing on physical therapy, recovery, and the data between visits.
           </p>
         </div>
-        <ul className="mx-auto mt-14 max-w-3xl px-6 sm:mt-16">
-          {resources.map(({ kind, title, summary, href }) => (
+        <ul className="mx-auto mt-14 max-w-3xl space-y-16 px-6 sm:mt-16">
+          {resources.map(({ kind, title, summary, href, cover }) => (
             <li key={href}>
               <Link
                 href={href}
-                className="block rounded-xl p-6 ring-1 ring-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                className="block rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
               >
-                <p className={type.label}>{kind}</p>
-                <h2 className={`${type.h3} mt-3`}>{title}</h2>
-                <p className="mt-3 text-[15px] leading-[1.6]">{summary}</p>
-                <p className="mt-4 text-[15px] font-medium">Read the essay</p>
+                <Image
+                  src={cover.src}
+                  alt={cover.alt}
+                  width={cover.width}
+                  height={cover.height}
+                  className={coverImage}
+                  priority
+                  sizes="(min-width: 768px) 720px, 100vw"
+                />
+                <p className="mt-5 text-[15px]">{kind}</p>
+                <h2 className={`${type.h3} mt-2 sm:text-3xl`}>{title}</h2>
+                <p className="mt-2 text-[15px] leading-[1.6]">{summary}</p>
               </Link>
             </li>
           ))}

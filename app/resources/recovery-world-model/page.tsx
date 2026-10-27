@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { coverImage, recoveryWorldModel } from "@/lib/resources";
 import { container, type } from "@/lib/site";
 
+const { kind, title, summary, cover } = recoveryWorldModel;
+
 export const metadata: Metadata = {
-  title: "The recovery world model | Landing",
-  description: "Why physical therapy needs a model of healing, and why PTs are the ones who can build it.",
+  title: `${title} | Landing`,
+  description: summary,
 };
 
 const sections: ReadonlyArray<{ heading: string; paragraphs: readonly string[] }> = [
@@ -43,20 +47,31 @@ const sections: ReadonlyArray<{ heading: string; paragraphs: readonly string[] }
   },
 ];
 
-const body = "mt-5 text-[15px] leading-[1.6]";
+const text = "text-[15px] leading-[1.6]";
+const body = `mt-5 ${text}`;
 
 export default function RecoveryWorldModelPage() {
   return (
     <main>
       <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
         <div className={`${container} flex flex-col items-center text-center`}>
-          <h1 className={`${type.h1} max-w-4xl`}>The recovery world model</h1>
-          <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
-            Why physical therapy needs a model of healing, and why PTs are the ones who can build it.
-          </p>
+          <p className="text-[15px]">{kind}</p>
+          <h1 className={`${type.h1} mt-4 max-w-4xl`}>{title}</h1>
+          <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>{summary}</p>
+        </div>
+        <div className="mx-auto mt-14 max-w-4xl px-6 sm:mt-16">
+          <Image
+            src={cover.src}
+            alt={cover.alt}
+            width={cover.width}
+            height={cover.height}
+            className={coverImage}
+            priority
+            sizes="(min-width: 896px) 848px, 100vw"
+          />
         </div>
         <article className="mx-auto mt-14 max-w-[38rem] px-6 sm:mt-16">
-          <p className="text-[15px] leading-[1.6]">
+          <p className={text}>
             Physical therapy today is open-loop. A surgeon writes “partial weight-bearing for six weeks.” A PT picks a protocol from a table. Nobody measures whether the tissue is actually in its healing window.
           </p>
           <p className={body}>
@@ -68,17 +83,17 @@ export default function RecoveryWorldModelPage() {
           {sections.map(({ heading, paragraphs }) => (
             <section key={heading}>
               <h2 className={`${type.h3} mt-12`}>{heading}</h2>
-              {paragraphs.map((text) => (
-                <p key={text} className={body}>
-                  {text}
+              {paragraphs.map((paragraph) => (
+                <p key={paragraph} className={body}>
+                  {paragraph}
                 </p>
               ))}
             </section>
           ))}
-          <p className="mt-12 text-[15px] leading-[1.6]">
+          <p className={`mt-12 ${text}`}>
             Every patient a PT treats on Landing adds labels to the model. The longer a clinic uses Landing, the better its flags and advice should get.
           </p>
-          <p className="mt-12 text-[15px] leading-[1.6]">
+          <p className={`mt-12 ${text}`}>
             <Link href="/resources" className="rounded-sm hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
               Back to resources
             </Link>
