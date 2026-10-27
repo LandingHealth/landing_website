@@ -14,7 +14,10 @@ const workspace = [
   {
     title: "Exercise review",
     text: "Patients record their home exercises and submit the videos. Submissions with possible form issues are flagged and sorted oldest first, so you know where to look.",
-    video: { src: "/workspace/exercise-review.mp4", poster: "/workspace/exercise-review.jpg" },
+    videos: [
+      { src: "/workspace/exercise-review.mp4", poster: "/workspace/exercise-review.jpg" },
+      { src: "/workspace/exercise-recording.mp4", poster: "/workspace/exercise-recording.jpg" },
+    ],
   },
   {
     title: "Patient progress",
@@ -117,10 +120,10 @@ export default function Home() {
           <h2 className={`${type.h2} mx-auto mt-4 max-w-3xl text-center`}>Everything you need before the next visit.</h2>
         </div>
         <div className="mt-12 grid gap-x-3 gap-y-12 px-6 lg:grid-cols-3 lg:px-4">
-          {workspace.map(({ title, text, video }) => (
+          {workspace.map(({ title, text, videos }) => (
             <article key={title}>
-              {video ? (
-                <ExpandableVideo src={video.src} poster={video.poster} title={title} className={tile} />
+              {videos ? (
+                <ExpandableVideo clips={videos} title={title} className={tile} />
               ) : (
                 <div className={tile} />
               )}
