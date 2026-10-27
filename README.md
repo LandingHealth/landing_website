@@ -26,7 +26,7 @@ Run `pnpm check:svelte` to check Svelte components.
 
 ## Run locally
 
-`proxy.ts` asks for the password in `SITE_PASSWORD` before it serves any page. Set `SITE_PASSWORD` in `.env.local` before you run `pnpm dev`. Without it, every page shows the password prompt and no password works. The `/revenue` page also needs `REVENUE_PASSWORD`. Without it, the Revenue page refuses every password.
+`proxy.ts` asks for the password in `SITE_PASSWORD` before it serves any page. Set `SITE_PASSWORD` in `.env.local` before you run `pnpm dev`. Without it, every page shows the password prompt and no password works.
 
 ```bash
 pnpm install
