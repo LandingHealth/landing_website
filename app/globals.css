@@ -98,3 +98,17 @@
 @keyframes signal-arrow {
   50% { opacity: .45; transform: translateX(4px); }
 }
+
+::view-transition-group(.video-expand),
+::view-transition-group(root) {
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0s !important;
+  }
+}

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ButtonLink from "@/components/ButtonLink";
 import DashboardPreview from "@/components/DashboardPreview";
-import LoopVideo from "@/components/LoopVideo";
+import ExpandableVideo from "@/components/ExpandableVideo";
 import Marquee from "@/components/Marquee";
 import { container, demoHref, sectionPad, type } from "@/lib/site";
 
@@ -76,7 +76,7 @@ function logoSize(aspectRatio: number) {
   return { height, width: Math.round(height * aspectRatio) };
 }
 
-const tile = "aspect-[1920/1094] w-full rounded-xl bg-mist";
+const tile = "[--ratio:1920/1094] aspect-(--ratio) w-full rounded-xl bg-mist";
 
 const section = `border-t border-ink/10 ${sectionPad}`;
 
@@ -120,7 +120,7 @@ export default function Home() {
           {workspace.map(({ title, text, video }) => (
             <article key={title}>
               {video ? (
-                <LoopVideo src={video.src} poster={video.poster} className={`${tile} object-contain`} />
+                <ExpandableVideo src={video.src} poster={video.poster} title={title} className={tile} />
               ) : (
                 <div className={tile} />
               )}
