@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import EncryptionLock from "@/components/EncryptionLock";
+import Icon, { type IconName } from "@/components/Icon";
 import IngestionToAws from "@/components/IngestionToAws";
 import LoadingDots from "@/components/LoadingDots";
 import NetworkFeed from "@/components/NetworkFeed";
 import TileRow, { type Tiles } from "@/components/TileRow";
-import { container, type } from "@/lib/site";
+import { container, edgePad, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Security | Landing",
@@ -29,8 +30,37 @@ const safeguards: Tiles = [
   },
   {
     title: "Ingestion",
-    text: "Landing stores all patient documents, videos, and records on Amazon Web Services. Storage is encrypted, keeps earlier versions of each file for 30 days, and is closed to public access. Landing also has a Business Associate Agreement with AWS.",
+    text: "Landing stores all patient documents, videos, and records on Amazon Web Services. Storage is encrypted, keeps earlier versions of each file for 30 days, and is closed to public access.",
     art: <IngestionToAws video={{ src: "/security/ingestion.mp4", poster: "/security/ingestion.jpg" }} />,
+  },
+];
+
+const overview = [
+  "Landing is built for the information physical therapy clinics handle every day. That includes patient records, documents, and the home exercise videos patients record between visits.",
+  "Therapists need a patient’s full history at every visit. Patients need to know that the videos they record at home stay private. Landing keeps that information encrypted, backed up, and stored in the United States.",
+  "We keep adding protections as more clinics trust Landing with their patients’ information.",
+] as const;
+
+const standards: ReadonlyArray<{ title: string; text: string; icon: IconName }> = [
+  {
+    title: "Business Associate Agreement",
+    icon: "fileCheck",
+    text: "Landing has a Business Associate Agreement with AWS. It covers every Landing account and requires that patient health information stay encrypted in storage and in transit.",
+  },
+  {
+    title: "Audit logs",
+    icon: "scrollText",
+    text: "AWS CloudTrail records every upload, download, and deletion of a patient document. Landing keeps these logs for one year, and CloudTrail can show whether anyone changed a log after it was written.",
+  },
+  {
+    title: "Threat detection",
+    icon: "shieldCheck",
+    text: "Amazon GuardDuty watches Landing’s AWS account for suspicious activity and scans every uploaded patient document for malware. Download links stay blocked until the scan comes back clean.",
+  },
+  {
+    title: "U.S. data storage",
+    icon: "mapPin",
+    text: "Landing stores patient records, documents, and videos in one AWS region, US East in Northern Virginia. Backups stay in the same region.",
   },
 ];
 
@@ -47,6 +77,25 @@ export default function SecurityPage() {
           </p>
         </div>
         <TileRow tiles={safeguards} className="mt-14 sm:mt-16" />
+        <div className={`mt-20 grid gap-x-3 gap-y-8 ${edgePad} sm:mt-24 lg:grid-cols-2`}>
+          <h2 className={`${type.h2} max-w-xl`}>For sensitive patient data, in and out of the clinic</h2>
+          <div className="max-w-xl space-y-5 text-[15px] leading-[1.6]">
+            {overview.map((text) => (
+              <p key={text}>{text}</p>
+            ))}
+          </div>
+        </div>
+        <ul className={`mt-16 grid gap-3 ${edgePad} sm:mt-20 sm:grid-cols-2 lg:grid-cols-4`}>
+          {standards.map(({ title, text, icon }) => (
+            <li key={title} className="rounded-xl bg-mist p-5 sm:p-6">
+              <div className="flex size-14 items-center justify-center rounded-lg bg-ink text-white">
+                <Icon name={icon} className="size-7" />
+              </div>
+              <h3 className="mt-10 text-[15px] font-medium leading-snug">{title}</h3>
+              <p className="mt-1 text-[15px] leading-[1.5]">{text}</p>
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
   );
