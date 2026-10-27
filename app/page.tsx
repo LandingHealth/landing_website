@@ -24,6 +24,7 @@ const workspace = [
   {
     title: "Post-appointment agent",
     text: "After each visit, an agent drafts the treatment note, updates the home exercise plan to match what you prescribed, and suggests CPT codes and units from your dictation and treatment times. Regular documentation checks catch missing details before billing, and what it learns carries into the next visit.",
+    video: { src: "/workspace/post-appointment.mp4", poster: "/workspace/post-appointment.jpg" },
   },
 ];
 
