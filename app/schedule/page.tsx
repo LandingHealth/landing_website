@@ -3,7 +3,7 @@ import SectionPage from "@/components/SectionPage";
 
 export const metadata: Metadata = {
   title: "Schedule | Landing",
-  description: "Landing's approach to appointment availability, online sessions, and follow ups.",
+  description: "Scheduling tools we’re building for appointment availability, online sessions, and follow-ups.",
 };
 
 export default function SchedulePage() {
@@ -11,20 +11,20 @@ export default function SchedulePage() {
     <SectionPage
       label="Schedule"
       title="Make more room for care."
-      intro="We’re building scheduling tools to help therapists plan availability around practice demand and give patients a straightforward way to book online sessions."
+      intro="We’re building scheduling tools to help you set availability around demand and give patients a simple way to book online sessions."
       sectionTitle="What we’re working toward"
       details={[
         {
           heading: "Plan around demand",
-          text: "Landing aims to help therapists anticipate demand and set appointment availability around the needs of their practice.",
+          text: "Landing aims to help you see when patients need appointments and set your availability to match.",
         },
         {
           heading: "Book online",
-          text: "Patients should be able to find and arrange online sessions with clear information about what comes next.",
+          text: "Patients should be able to find and book online sessions on their own and know what happens next.",
         },
         {
           heading: "Stay coordinated",
-          text: "AI agents are intended to help with reminders and follow ups, making the coordination around care easier to manage.",
+          text: "AI agents are meant to help with reminders and follow-ups, so your team spends less time coordinating by hand.",
         },
       ]}
     />

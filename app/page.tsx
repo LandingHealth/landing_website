@@ -14,46 +14,46 @@ const workspace: Tiles = [
   },
   {
     title: "Exercise review",
-    text: "Patients record their home exercises and submit the videos. Submissions with possible form issues are flagged and sorted oldest first, so you know where to look.",
+    text: "Patient videos arrive in your review queue. Landing flags the ones with possible form issues and lists them oldest first, so you know where to start.",
     video: { src: "/workspace/exercise-review.mp4", poster: "/workspace/exercise-review.jpg" },
   },
   {
     title: "Appointment preparation",
-    text: "Before each visit, Landing assembles a brief from the patient’s history, recent sessions, and your notes. It lists what changed and what is still missing, so you start with context.",
+    text: "Before each visit, Landing writes a brief from the patient’s history, recent sessions, and your notes. It lists what changed and what’s still missing, so you’re ready when the visit starts.",
     video: { src: "/workspace/appointment-preparation.mp4", poster: "/workspace/appointment-preparation.jpg" },
   },
   {
     title: "Post-appointment agent",
-    text: "After each visit, an agent drafts the treatment note, updates the home exercise plan to match what you prescribed, and suggests CPT codes and units from your dictation and treatment times. Regular documentation checks catch missing details before billing, and what it learns carries into the next visit.",
+    text: "After each visit, the agent drafts the treatment note and updates the home exercise plan to match what you prescribed. It suggests CPT codes and units from your dictation and treatment times. It also checks your documentation for missing details before billing. The next appointment brief includes this visit.",
     video: { src: "/workspace/post-appointment.mp4", poster: "/workspace/post-appointment.jpg" },
   },
 ];
 
 const proposalFields = [
-  { term: "Rationale", detail: "Why the change is suggested." },
+  { term: "Rationale", detail: "Why Landing suggests the change." },
   { term: "Dose", detail: "Sets, reps, and holds." },
   { term: "Precautions", detail: "What to watch for." },
   { term: "PT checks", detail: "What to confirm during the session." },
   { term: "Patient evidence", detail: "The sessions, videos, and notes it draws on." },
-  { term: "Reference evidence", detail: "Reviewed reference passages, when available." },
+  { term: "Reference evidence", detail: "Passages from reviewed clinical references, when available." },
 ];
 
 const alsoInLanding = [
   {
     title: "Scheduling",
-    text: "Plan availability around demand, let patients book online sessions, and keep reminders and follow-ups coordinated.",
+    text: "Set your availability around demand, let patients book online sessions, and keep reminders and follow-ups on track.",
     href: "/schedule",
     link: "Read about scheduling",
   },
   {
     title: "Home exercise guides",
-    text: "Build plans around treatment goals, equipment, and the restrictions you set, with clear instructions patients can follow at home.",
+    text: "Build plans around treatment goals, the patient’s equipment, and the restrictions you set. Patients get clear instructions they can follow at home.",
     href: "/integration",
     link: "See how clinics get set up",
   },
   {
     title: "SafeSock",
-    text: "A sensor sleeve designed to sit inside a boot, cast, or brace and show how a patient bears weight between visits.",
+    text: "A sensor sleeve we’re designing to sit inside a boot, cast, or brace and show how a patient bears weight between visits.",
     href: "/devices",
     link: "Meet SafeSock",
   },
@@ -94,7 +94,7 @@ export default function Home() {
             The Operating System<br className="hidden sm:block" /> for Physical Therapy.
           </h1>
           <p className={`${type.lead} mt-6 max-w-[30rem] text-pretty`}>
-            Connected recovery devices and clinic software that bring patient progress, daily operations, and care at home into one platform.
+            Clinic software and connected recovery devices that keep patient progress, home exercise, and your daily operations in one place.
           </p>
           <div className="mt-9 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
             <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
@@ -119,7 +119,7 @@ export default function Home() {
       <section className={section}>
         <div className={container}>
           <p className={`${type.label} text-center`}>The workspace</p>
-          <h2 className={`${type.h2} mx-auto mt-4 max-w-3xl text-center`}>Everything you need before the next visit.</h2>
+          <h2 className={`${type.h2} mx-auto mt-4 max-w-3xl text-center`}>Everything you need between visits.</h2>
         </div>
         <TileRow tiles={workspace} className="mt-12" />
       </section>
@@ -131,7 +131,7 @@ export default function Home() {
             <h2 className={`${type.h2} mt-4`}>You decide what changes.</h2>
             <p className={`${type.lead} mt-5 max-w-prose`}>
               Landing suggests exercises to continue, progress, or adjust, with the patient evidence behind each one.
-              Nothing is assigned, sent to the patient, or charted on its own.
+              It doesn’t assign a suggestion, send it to the patient, or chart it on its own.
             </p>
           </div>
           <div className="rounded-xl border border-ink/10 bg-white p-6 sm:p-7 lg:col-span-7">
@@ -173,7 +173,7 @@ export default function Home() {
         <div className={`${container} flex flex-col items-center text-center`}>
           <h2 className={`${type.h2} max-w-3xl`}>See how Landing fits your clinic.</h2>
           <p className={`${type.lead} mt-5 max-w-[36rem] text-pretty`}>
-            Book an intro meeting with the team. We’ll walk through the workspace with sample patients and answer
+            Book a demo with our team. We’ll walk through the workspace with sample patients and answer
             questions about your setup.
           </p>
           <div className="mt-9 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">

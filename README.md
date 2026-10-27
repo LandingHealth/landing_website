@@ -1,12 +1,12 @@
 # Landing website
 
-A responsive site for Landing, built with Next.js App Router, TypeScript, Tailwind CSS, and pnpm. Landing is the company; SafeSock is its sensor-based recovery product. The navigation links to Integration, Solution, Devices, Schedule, and About pages.
+This is the marketing site for Landing Health. It uses the Next.js App Router, TypeScript, Tailwind CSS, and pnpm. Landing is the company. SafeSock is the sensor sleeve it is designing for recovery. The navigation links to the Integration, Solution, Devices, Schedule, Security, and About pages.
 
-The Devices page uses its product mark and demo video. The homepage uses a Svelte animation to show the intended sensing workflow. The visualizations are illustrative and do not show live patient data.
+The dashboard preview and the SafeSock demo video use sample data. Neither shows live patient data.
 
 ## Svelte animations
 
-The site mounts Svelte 5 components alongside React through `components/SvelteIsland.tsx`. Svelte, Motion SV, and the Svelte webpack loader are installed.
+`components/SvelteIsland.tsx` can mount Svelte 5 components inside React. No page uses it today. Svelte, Motion SV, and the Svelte webpack loader are installed.
 
 For example, in a React client component:
 
@@ -25,6 +25,8 @@ export default function AnimationExample() {
 Run `pnpm check:svelte` to check Svelte components.
 
 ## Run locally
+
+`proxy.ts` asks for the password in `SITE_PASSWORD` before it serves any page. Set `SITE_PASSWORD` in `.env.local` before you run `pnpm dev`. Without it, every page shows the password prompt and no password works.
 
 ```bash
 pnpm install

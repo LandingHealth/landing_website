@@ -4,18 +4,18 @@ import { container, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Integration | Landing",
-  description: "How a clinic gets set up on Landing, from its site and PTs to its first patients, in less than half an hour.",
+  description: "How a clinic gets set up on Landing in less than half an hour.",
 };
 
 const steps: Tiles = [
   {
     title: "Landing sets up the clinic",
-    text: "We create your site and invite your PTs.",
+    text: "We add your clinic to Landing and invite your PTs.",
     video: { src: "/integration/clinic-setup.mp4", poster: "/integration/clinic-setup.jpg" },
   },
   {
     title: "Add patients",
-    text: "Enter injuries and assign exercise sessions.",
+    text: "Enter each patient’s injury and assign their exercise sessions.",
     video: { src: "/integration/add-patients.mp4", poster: "/integration/add-patients.jpg" },
   },
   {
