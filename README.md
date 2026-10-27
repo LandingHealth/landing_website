@@ -1,8 +1,8 @@
 # Landing website
 
-A responsive site for Landing, built with Next.js App Router, TypeScript, Tailwind CSS, and pnpm. Landing is the company; SafeSock is its sensor-based recovery product. The navigation links to Product, Solution, Devices, Schedule, and About pages.
+A responsive site for Landing, built with Next.js App Router, TypeScript, Tailwind CSS, and pnpm. Landing is the company; SafeSock is its sensor-based recovery product. The navigation links to Integration, Solution, Devices, Schedule, and About pages.
 
-The Product page includes a load-signal illustration adapted from the previous SafeSock site. The Devices page uses its product mark and demo video. The homepage uses a Svelte animation to show the intended sensing workflow. The visualizations are illustrative and do not show live patient data.
+The Devices page uses its product mark and demo video. The homepage uses a Svelte animation to show the intended sensing workflow. The visualizations are illustrative and do not show live patient data.
 
 ## Svelte animations
 

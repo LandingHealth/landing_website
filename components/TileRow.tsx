@@ -2,11 +2,15 @@ import ExpandableVideo from "@/components/ExpandableVideo";
 
 export type Tile = { title: string; text: string; video?: { src: string; poster: string } };
 
-const tile = "[--ratio:1920/1094] aspect-(--ratio) w-full rounded-xl bg-mist";
+export type Tiles = readonly [Tile, Tile, Tile] | readonly [Tile, Tile, Tile, Tile];
 
-export default function TileRow({ tiles, className = "" }: { tiles: ReadonlyArray<Tile>; className?: string }) {
+const columns = { 3: "md:grid-cols-3", 4: "sm:grid-cols-2 lg:grid-cols-4" } as const;
+
+const tile = "[--ratio:1920/1094] aspect-(--ratio) w-full rounded-xl bg-mist ring-1 ring-black";
+
+export default function TileRow({ tiles, className = "" }: { tiles: Tiles; className?: string }) {
   return (
-    <div className={`grid gap-x-3 gap-y-12 px-6 sm:grid-cols-2 lg:grid-cols-4 lg:px-4 ${className}`}>
+    <div className={`grid gap-x-3 gap-y-12 px-6 ${columns[tiles.length]} lg:px-4 ${className}`}>
       {tiles.map(({ title, text, video }) => (
         <article key={title}>
           {video ? (
