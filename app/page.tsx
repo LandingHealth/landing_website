@@ -76,7 +76,7 @@ function logoSize(aspectRatio: number) {
   return { height, width: Math.round(height * aspectRatio) };
 }
 
-const tile = "aspect-[1280/730] w-full rounded-xl bg-mist";
+const tile = "aspect-[1920/1094] w-full rounded-xl bg-mist";
 
 const section = `border-t border-ink/10 ${sectionPad}`;
 
@@ -115,19 +115,19 @@ export default function Home() {
         <div className={container}>
           <p className={`${type.label} text-center`}>The workspace</p>
           <h2 className={`${type.h2} mx-auto mt-4 max-w-3xl text-center`}>Everything you need before the next visit.</h2>
-          <div className="mt-12 grid gap-x-4 gap-y-12 md:grid-cols-3">
-            {workspace.map(({ title, text, video }) => (
-              <article key={title}>
-                {video ? (
-                  <LoopVideo src={video.src} poster={video.poster} className={`${tile} object-contain`} />
-                ) : (
-                  <div className={tile} />
-                )}
-                <h3 className="mt-4 text-[15px] font-medium leading-snug">{title}</h3>
-                <p className="mt-1 text-[15px] leading-[1.5]">{text}</p>
-              </article>
-            ))}
-          </div>
+        </div>
+        <div className="mt-12 grid gap-x-3 gap-y-12 px-6 lg:grid-cols-3 lg:px-4">
+          {workspace.map(({ title, text, video }) => (
+            <article key={title}>
+              {video ? (
+                <LoopVideo src={video.src} poster={video.poster} className={`${tile} object-contain`} />
+              ) : (
+                <div className={tile} />
+              )}
+              <h3 className="mt-4 text-[15px] font-medium leading-snug">{title}</h3>
+              <p className="mt-1 text-[15px] leading-[1.5]">{text}</p>
+            </article>
+          ))}
         </div>
       </section>
 
