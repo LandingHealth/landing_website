@@ -8,8 +8,9 @@ import { container, demoHref, sectionPad, type } from "@/lib/site";
 
 const workspace = [
   {
-    title: "Appointment preparation",
-    text: "Before each visit, Landing assembles a brief from the patient’s history, recent sessions, and your notes. It lists what changed and what is still missing, so you start with context.",
+    title: "Exercise recording",
+    text: "Patients film each set at home with a phone or laptop. Landing guides them into frame, counts down once their whole body is in view, and sends nothing until they choose Send.",
+    video: { src: "/workspace/exercise-recording.mp4", poster: "/workspace/exercise-recording.jpg" },
   },
   {
     title: "Exercise review",
