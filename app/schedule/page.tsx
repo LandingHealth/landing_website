@@ -47,13 +47,15 @@ export default function SchedulePage() {
                 <h2 className="mt-4 font-display text-2xl font-medium">Landing Health intro meeting</h2>
               </div>
               {demo.calendly ? (
-                // Calendly's color params need a paid plan, so the iframe is inverted and screened onto the navy card.
-                <iframe
-                  src={`${demo.calendly}?embed_type=Inline&embed_domain=getlandinghealth.com&hide_event_type_details=1&hide_gdpr_banner=1`}
-                  title={`Book a meeting with ${name}`}
-                  loading="lazy"
-                  className="h-[700px] w-full border-0 mix-blend-screen [filter:invert(1)_hue-rotate(180deg)]"
-                />
+                // Calendly's color params need a paid plan, so the white iframe is multiplied onto a mist backing.
+                <div className="bg-mist">
+                  <iframe
+                    src={`${demo.calendly}?embed_type=Inline&embed_domain=getlandinghealth.com&hide_event_type_details=1&hide_gdpr_banner=1`}
+                    title={`Book a meeting with ${name}`}
+                    loading="lazy"
+                    className="block h-[700px] w-full border-0 mix-blend-multiply"
+                  />
+                </div>
               ) : (
                 <div className="flex min-h-48 items-center justify-center p-6 text-center">
                   <p className="text-[15px]">{demo.host}’s calendar is coming soon.</p>
