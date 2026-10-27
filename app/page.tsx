@@ -48,8 +48,8 @@ const alsoInLanding = [
   {
     title: "Home exercise guides",
     text: "Build plans around treatment goals, equipment, and the restrictions you set, with clear instructions patients can follow at home.",
-    href: "/product",
-    link: "Read about the platform",
+    href: "/integration",
+    link: "See how clinics get set up",
   },
   {
     title: "SafeSock",
