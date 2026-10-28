@@ -7,7 +7,7 @@ type Outcome = "allow" | "grant" | "reject" | "prompt";
 
 type Gate = {
   scope: string;
-  secretEnv: "SITE_PASSWORD" | "REVENUE_PASSWORD";
+  secretEnv: "SITE_PASSWORD";
   cookie: string;
   salt: string;
   heading: string;
@@ -20,13 +20,6 @@ const gates: ReadonlyArray<Gate> = [
     cookie: "site_access",
     salt: "landing-site-access-v1",
     heading: "Enter the password",
-  },
-  {
-    scope: "/revenue",
-    secretEnv: "REVENUE_PASSWORD",
-    cookie: "revenue_access",
-    salt: "landing-revenue-access-v1",
-    heading: "Enter the revenue password",
   },
 ];
 
