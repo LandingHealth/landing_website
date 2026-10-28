@@ -39,6 +39,20 @@ export const bettingOnAiAgents: Resource = {
   },
 };
 
+export const outsideTheClinic: Resource = {
+  kind: "Approach",
+  title: "How We Track the 166 Hours of Recovery Outside the Clinic",
+  summary: "How Landing estimates gait forces from SafeSock data, so PTs can see how a patient walks between visits.",
+  authors: [neilPatel],
+  href: "/resources/how-we-track-the-166-hours-of-recovery-outside-the-clinic",
+  cover: {
+    src: "/resources/outside-the-clinic.jpg",
+    alt: "Pietro Perugino’s fresco of Christ handing the keys to Saint Peter, from the Sistine Chapel. Peter kneels among the apostles in a wide piazza, with a domed temple and two triumphal arches behind them.",
+    width: 600,
+    height: 400,
+  },
+};
+
 export const bettingOnComputerVision: Resource = {
   kind: "Vision",
   title: "Betting on Computer Vision in Rehabilitation",
@@ -53,6 +67,6 @@ export const bettingOnComputerVision: Resource = {
   },
 };
 
-export const resources: readonly Resource[] = [bettingOnComputerVision, bettingOnAiAgents, recoveryWorldModel];
+export const resources: readonly Resource[] = [outsideTheClinic, bettingOnComputerVision, bettingOnAiAgents, recoveryWorldModel];
 
 export const coverImage = "aspect-3/2 h-auto w-full rounded-xl bg-mist object-cover ring-1 ring-black";
