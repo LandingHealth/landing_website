@@ -69,4 +69,4 @@ export const bettingOnComputerVision: Resource = {
 
 export const resources: readonly Resource[] = [outsideTheClinic, bettingOnComputerVision, bettingOnAiAgents, recoveryWorldModel];
 
-export const coverImage = "aspect-3/2 h-auto w-full rounded-xl bg-mist object-cover ring-1 ring-black";
+export const coverImage = "h-auto w-full rounded-xl bg-mist object-cover ring-1 ring-black";
