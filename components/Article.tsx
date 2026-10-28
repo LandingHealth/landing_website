@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import ShareLink from "@/components/ShareLink";
 import { coverImage, type Resource } from "@/lib/resources";
-import { container, type } from "@/lib/site";
+import { container, edgePad, type } from "@/lib/site";
 
 export const text = "text-[15px] leading-[1.6]";
 export const body = `mt-5 ${text}`;
@@ -63,18 +63,18 @@ export default function Article({
             </ul>
           </div>
         </div>
-        <div className="mx-auto mt-14 max-w-4xl px-6 sm:mt-16">
+        <div className={`${edgePad} mt-14 sm:mt-16`}>
           <Image
             src={cover.src}
             alt={cover.alt}
             width={cover.width}
             height={cover.height}
-            className={coverImage}
+            className={`${coverImage} aspect-3/2 sm:aspect-5/2`}
             priority
-            sizes="(min-width: 896px) 848px, 100vw"
+            sizes="100vw"
           />
         </div>
-        <div className="mt-14 sm:mt-16 xl:grid xl:grid-cols-[14rem_35rem_14rem] xl:justify-center xl:gap-x-12">
+        <div className={`${edgePad} mt-14 sm:mt-16 xl:grid xl:grid-cols-[minmax(14rem,1fr)_minmax(0,45rem)_minmax(14rem,1fr)] xl:gap-x-12`}>
           <nav aria-label="Jump to" className="hidden xl:block">
             <div className="sticky top-24">
               <p className="text-[13px]">Jump to</p>
@@ -92,7 +92,7 @@ export default function Article({
               </div>
             </div>
           </nav>
-          <article className="mx-auto max-w-[38rem] px-6 [counter-reset:note] xl:max-w-none xl:px-0">
+          <article className="mx-auto max-w-[45rem] [counter-reset:note] xl:max-w-none">
             {intro}
             {sections.map(({ heading, content }) => (
               <section key={heading} id={slug(heading)} className="scroll-mt-24">
