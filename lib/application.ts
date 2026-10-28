@@ -1,9 +1,5 @@
 export type Application = { name: string; email: string; interest: string; availability: string };
 
-export type ApplyState =
-  | { status: "editing"; values: Application; error?: string }
-  | { status: "sent" };
-
 export const applicationFields: ReadonlyArray<{
   name: keyof Application;
   label: string;

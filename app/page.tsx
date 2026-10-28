@@ -181,19 +181,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <section className="border-t border-ink/10 py-14 sm:py-16">
-        <div className={`${container} flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between`}>
-          <div>
-            <p className={type.label}>Research internship</p>
-            <h2 className={`${type.h3} mt-3`}>Join our research team.</h2>
-            <p className="mt-2 text-[15px] leading-[1.6]">No experience or technical skills required.</p>
-          </div>
-          <div className="flex flex-col">
-            <ButtonLink href="/apply" variant="primary">Apply</ButtonLink>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
