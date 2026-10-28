@@ -22,18 +22,18 @@ export default function SchedulePage() {
         </div>
         <div className={`${edgePad} mt-6`}>
           <div className="isolate mx-auto max-w-6xl overflow-hidden rounded-2xl border border-white/10 bg-ink text-white lg:grid lg:grid-cols-[176px_1fr]">
-            <div className="grid grid-cols-3 gap-3 border-b border-white/10 p-5 lg:flex lg:flex-col lg:justify-center lg:border-b-0 lg:border-r">
+            <div className="grid grid-cols-4 gap-3 border-b border-white/10 p-5 lg:flex lg:flex-col lg:items-center lg:justify-center lg:border-b-0 lg:border-r">
               {hosts.map(({ name, photo }) => (
-                <figure key={name}>
+                <figure key={name} className="lg:w-[90px]">
                   <Image
                     src={photo.src}
                     alt={photo.alt}
                     width={photo.width}
                     height={photo.height}
-                    sizes="(min-width: 1024px) 136px, 30vw"
+                    sizes="(min-width: 1024px) 90px, 22vw"
                     className="aspect-square h-auto w-full rounded-xl object-cover"
                   />
-                  <figcaption className="mt-2 text-[15px] font-medium leading-snug">{name}</figcaption>
+                  <figcaption className="mt-2 text-[15px] font-medium leading-snug lg:text-center">{name}</figcaption>
                 </figure>
               ))}
             </div>

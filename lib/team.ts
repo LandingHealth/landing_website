@@ -18,11 +18,11 @@ export const team: readonly Member[] = [
     demoHost: "Pragat",
   },
   {
-    name: "Matthew Amunategui",
-    role: "CMO",
-    bio: "BA in Molecular and Cellular Biology and BS in Business Administration at Berkeley. Former research intern at UPenn and Harvard; consultant at Merck, Perplexity AI, and KIND Snacks; and project manager at AMD.",
-    photo: { src: "/about/team/matthew-amunategui.jpg", alt: "Matthew Amunategui in a gray suit", width: 800, height: 800 },
-    demoHost: "Matt",
+    name: "Neil Patel",
+    role: "Co-CEO, Co-CTO + Founder",
+    bio: "Computer Science, Computer Engineering, and Applied Math at Johns Hopkins. Researcher at the NeuroEngineering Biomedical Instrumentation Lab at Johns Hopkins. Worked on the dVRK with Intuitive. Former software engineering intern at the Atlantic League of Professional Baseball and Marble (YC\u00a0S26).",
+    photo: { src: "/about/team/neil-patel.jpg", alt: "Neil Patel", width: 354, height: 354 },
+    demoHost: "Neil",
   },
   {
     name: "Evan Batten",
@@ -37,9 +37,10 @@ export const team: readonly Member[] = [
     photo: { src: "/about/team/akash-patel.jpg", alt: "Akash Patel speaking at Baylor University", width: 800, height: 800 },
   },
   {
-    name: "Neil Patel",
-    role: "Co-CEO, Co-CTO + Founder",
-    bio: "Computer Science, Computer Engineering, and Applied Math at Johns Hopkins. Researcher at the NeuroEngineering Biomedical Instrumentation Lab at Johns Hopkins. Worked on the dVRK with Intuitive. Former software engineering intern at the Atlantic League of Professional Baseball and Marble (YC\u00a0S26).",
-    photo: { src: "/about/team/neil-patel.jpg", alt: "Neil Patel", width: 354, height: 354 },
+    name: "Matthew Amunategui",
+    role: "CMO",
+    bio: "BA in Molecular and Cellular Biology and BS in Business Administration at Berkeley. Former research intern at UPenn and Harvard; consultant at Merck, Perplexity AI, and KIND Snacks; and project manager at AMD.",
+    photo: { src: "/about/team/matthew-amunategui.jpg", alt: "Matthew Amunategui in a gray suit", width: 800, height: 800 },
+    demoHost: "Matt",
   },
 ];
