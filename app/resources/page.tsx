@@ -6,7 +6,7 @@ import { container, edgePad, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Resources | Landing",
-  description: "Writing from Landing on physical therapy, recovery, and the data between visits.",
+  description: "Our long-term vision for physical therapy, and the bets we’re making to get there.",
 };
 
 export default function ResourcesPage() {
@@ -16,7 +16,7 @@ export default function ResourcesPage() {
         <div className={`${container} flex flex-col items-center text-center`}>
           <h1 className={`${type.h1} max-w-4xl`}>Resources</h1>
           <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
-            Writing from Landing on physical therapy, recovery, and the data between visits.
+            Our long-term vision for physical therapy, and the bets we’re making to get there.
           </p>
         </div>
         <ul className={`${edgePad} mt-14 grid gap-x-3 gap-y-12 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3`}>
