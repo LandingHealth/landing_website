@@ -1,5 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { NextResponse, type NextRequest } from "next/server";
+import { applicationPage, passwordPage } from "@/lib/gate-html";
+import { emptyApplication, parseApplication, sendApplication, type Application } from "@/lib/application";
 
 const maxAge = 60 * 60 * 24 * 30;
 
@@ -36,51 +38,12 @@ function decide(method: string, cookieOk: boolean, passwordOk: boolean): Outcome
   return passwordOk ? "grant" : "reject";
 }
 
-function page(heading: string, error: boolean) {
-  return `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<title>Landing Health</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:#fff;color:#000;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-main{width:100%;max-width:340px}
-p.brand{margin:0 0 28px;font-size:13px;font-weight:600;letter-spacing:.02em}
-h1{margin:0 0 20px;font-size:24px;font-weight:500;line-height:1.2}
-label{display:block;margin-bottom:6px;font-size:14px}
-input{display:block;width:100%;height:44px;padding:0 12px;border:1px solid #000;border-radius:6px;background:#fff;color:#000;font:inherit;font-size:16px}
-input:focus-visible,button:focus-visible{outline:2px solid #000;outline-offset:2px}
-button{margin-top:14px;width:100%;height:44px;border:0;border-radius:6px;background:#ea652b;color:#000;font:inherit;font-size:15px;font-weight:500;cursor:pointer}
-button:hover{background:#d55823}
-.error{margin:0 0 14px;font-size:14px;font-weight:500}
-</style>
-</head>
-<body>
-<main>
-<p class="brand">Landing Health</p>
-<h1>${heading}</h1>
-<form method="post">
-${error ? '<p class="error" role="alert">That password didn’t work. Try again.</p>\n' : ""}<label for="password">Password</label>
-<input id="password" type="password" name="password" autocomplete="current-password" required autofocus>
-<button type="submit">Continue</button>
-</form>
-</main>
-</body>
-</html>`;
-}
+const noStore = { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" };
 
-const promptResponse = (heading: string, error: boolean) =>
-  new NextResponse(page(heading, error), {
-    status: 401,
-    headers: {
-      "Content-Type": "text/html; charset=utf-8",
-      "Cache-Control": "no-store",
-      "X-Robots-Tag": "noindex",
-    },
-  });
+const htmlResponse = (body: string, status: number) =>
+  new NextResponse(body, { status, headers: { "Content-Type": "text/html; charset=utf-8", ...noStore } });
+
+const promptResponse = (heading: string, error: boolean) => htmlResponse(passwordPage(heading, error), 401);
 
 const warned = new Set<string>();
 
@@ -123,7 +86,48 @@ async function check(gate: Gate, request: NextRequest): Promise<NextResponse | n
   return response;
 }
 
+type Submission =
+  | { outcome: "thanks" }
+  | { outcome: "invalid" | "unsent"; values: Application; error: string };
+
+const unsentMessage = "We couldn’t send your application. Please try again.";
+const statuses = { invalid: 400, unsent: 502 };
+
+const thanks = (request: NextRequest) => {
+  const url = request.nextUrl.clone();
+  url.search = "?sent=1";
+  const response = NextResponse.redirect(url, 303);
+  for (const [name, value] of Object.entries(noStore)) response.headers.set(name, value);
+  return response;
+};
+
+const editing = (values: Application, error: string | undefined, status: number) =>
+  htmlResponse(applicationPage({ status: "editing", values, error }), status);
+
+async function submit(request: NextRequest): Promise<Submission> {
+  const form = await request.formData().catch(() => new FormData());
+  const trap = form.get("website");
+  if (typeof trap === "string" && trap.trim()) return { outcome: "thanks" };
+  const { values, error } = parseApplication(form);
+  if (error) return { outcome: "invalid", values, error };
+  if (!(await sendApplication(values))) return { outcome: "unsent", values, error: unsentMessage };
+  return { outcome: "thanks" };
+}
+
+async function apply(request: NextRequest) {
+  if (request.method === "GET") {
+    return request.nextUrl.searchParams.get("sent") === "1"
+      ? htmlResponse(applicationPage({ status: "sent" }), 200)
+      : editing(emptyApplication, undefined, 200);
+  }
+  if (request.method !== "POST") return htmlResponse("Method not allowed", 405);
+  const result = await submit(request);
+  if (result.outcome === "thanks") return thanks(request);
+  return editing(result.values, result.error, statuses[result.outcome]);
+}
+
 export async function proxy(request: NextRequest) {
+  if (request.nextUrl.pathname === "/apply") return apply(request);
   for (const gate of gates) {
     if (!covers(gate.scope, request.nextUrl.pathname)) continue;
     const response = await check(gate, request);
