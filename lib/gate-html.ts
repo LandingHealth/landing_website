@@ -21,7 +21,6 @@ button:hover{background:#d55823}
 .error{margin:0 0 14px;font-size:14px;font-weight:500}
 .alt{margin:24px 0 0;padding-top:20px;border-top:1px solid rgb(12 14 50 / .1);font-size:14px}
 .alt a{color:#000;font-weight:500;text-decoration:underline}
-.pill{display:inline-block;margin:0 0 14px;padding:4px 10px;border-radius:999px;background:#dcebf4;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
 .lead{margin:0 0 24px;font-size:15px;line-height:1.5}
 .field{margin-bottom:18px}
 .hint{margin:0 0 6px;font-size:13px;line-height:1.4}
@@ -82,8 +81,7 @@ ${hint ? `<p class="hint" id="${id}-hint">${escapeHtml(hint)}</p>\n` : ""}${cont
 }
 
 export function applicationPage(view: ApplyView) {
-  const head = `<p class="pill">Research internship</p>
-<h1>Research Internship Application</h1>`;
+  const head = "<h1>Research Internship Application</h1>";
   if (view.status === "sent") {
     return shell(
       `${head}
