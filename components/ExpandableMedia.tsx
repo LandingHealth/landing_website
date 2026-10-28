@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { type CSSProperties, useEffect, useEffectEvent, useRef, ViewTransition } from "react";
+import { type CSSProperties, startTransition, useEffect, useRef, useState, ViewTransition } from "react";
 
 export type Video = { src: string; poster: string };
 export type Photo = { src: string; alt: string; width: number; height: number; focus?: string };
@@ -18,17 +18,13 @@ export default function ExpandableMedia({
   media,
   title,
   className,
-  expanded,
-  onExpandedChange,
 }: {
   media: Media;
   title: string;
   className: string;
-  expanded: boolean;
-  onExpandedChange: (expanded: boolean) => void;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
-  const close = useEffectEvent(() => onExpandedChange(false));
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     const video = ref.current;
@@ -44,7 +40,7 @@ export default function ExpandableMedia({
       video.play().catch(() => {});
     }
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") close();
+      if (event.key === "Escape") startTransition(() => setExpanded(false));
     };
     const root = document.documentElement;
     const overflow = root.style.overflow;
@@ -62,7 +58,7 @@ export default function ExpandableMedia({
     <div className={className}>
       <button
         type="button"
-        onClick={() => onExpandedChange(!expanded)}
+        onClick={() => startTransition(() => setExpanded((open) => !open))}
         aria-label={label}
         className={expanded ? button.open : button.closed}
       >

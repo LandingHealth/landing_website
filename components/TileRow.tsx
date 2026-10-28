@@ -1,6 +1,4 @@
-"use client";
-
-import { type CSSProperties, type ReactNode, startTransition, useEffect, useRef, useState } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import ExpandableMedia, { type Photo, type Video } from "@/components/ExpandableMedia";
 import { edgePad } from "@/lib/site";
 
@@ -14,70 +12,28 @@ export type Tiles = readonly [Tile, Tile, Tile] | readonly [Tile, Tile, Tile, Ti
 
 const columns = { 3: "md:grid-cols-3", 4: "sm:grid-cols-2 lg:grid-cols-4" } as const;
 
-const autoOpenMs = 5000;
-
 const frame = "aspect-(--ratio) w-full rounded-xl bg-mist ring-1 ring-black";
 
 export default function TileRow({
   tiles,
   ratio = "1920/1094",
   className = "",
-  autoOpen = false,
 }: {
   tiles: Tiles;
   ratio?: string;
   className?: string;
-  autoOpen?: boolean;
 }) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const [open, setOpen] = useState<number | null>(null);
-  const [phase, setPhase] = useState<"waiting" | "showing" | "over">(autoOpen ? "waiting" : "over");
-
-  const show = (index: number | null, next: "showing" | "over") =>
-    startTransition(() => {
-      setOpen(index);
-      setPhase(next);
-    });
-
-  useEffect(() => {
-    const root = rootRef.current;
-    if (phase !== "waiting" || !root || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        observer.disconnect();
-        show(tiles.findIndex((tile) => tile.video || tile.image), "showing");
-      },
-      { rootMargin: "0px 0px -40% 0px" },
-    );
-    observer.observe(root);
-    return () => observer.disconnect();
-  }, [phase, tiles]);
-
-  useEffect(() => {
-    if (phase !== "showing") return;
-    const timer = setTimeout(() => show(null, "over"), autoOpenMs);
-    return () => clearTimeout(timer);
-  }, [phase]);
-
   return (
     <div
-      ref={rootRef}
       className={`grid gap-x-3 gap-y-12 ${edgePad} ${columns[tiles.length]} ${className}`}
       style={{ "--ratio": ratio } as CSSProperties}
     >
-      {tiles.map(({ title, text, video, image, art }, i) => {
+      {tiles.map(({ title, text, video, image, art }) => {
         const media = video ? { video } : image ? { image } : null;
         return (
           <article key={title} className="text-center">
             {media ? (
-              <ExpandableMedia
-                media={media}
-                title={title}
-                className={frame}
-                expanded={open === i}
-                onExpandedChange={(expanded) => show(expanded ? i : null, "over")}
-              />
+              <ExpandableMedia media={media} title={title} className={frame} />
             ) : (
               <div className={`flex items-center justify-center ${frame}`}>{art}</div>
             )}
