@@ -1,15 +1,21 @@
+export type Author = { name: string; href: string };
+
 export type Resource = {
   kind: string;
   title: string;
   summary: string;
+  authors: readonly Author[];
   href: string;
   cover: { src: string; alt: string; width: number; height: number };
 };
+
+const neilPatel: Author = { name: "Neil Patel", href: "https://www.linkedin.com/in/patel-neil-d/" };
 
 export const recoveryWorldModel: Resource = {
   kind: "Vision",
   title: "The recovery world model",
   summary: "Why physical therapy needs a model of healing, and why PTs are the ones who can build it.",
+  authors: [neilPatel],
   href: "/resources/recovery-world-model",
   cover: {
     src: "/resources/recovery-world-model.jpg",
@@ -23,6 +29,7 @@ export const bettingOnAiAgents: Resource = {
   kind: "Vision",
   title: "Betting on AI Agents in Healthcare",
   summary: "Why Landing builds AI agents that prepare the work and leave every treatment decision with the PT.",
+  authors: [neilPatel],
   href: "/resources/betting-on-ai-agents-in-healthcare",
   cover: {
     src: "/resources/betting-on-ai-agents.jpg",
@@ -36,6 +43,7 @@ export const bettingOnComputerVision: Resource = {
   kind: "Vision",
   title: "Betting on Computer Vision in Rehabilitation",
   summary: "Why Landing analyzes home exercise videos and leaves every finding for the PT to interpret.",
+  authors: [neilPatel],
   href: "/resources/betting-on-computer-vision-in-rehabilitation",
   cover: {
     src: "/resources/betting-on-computer-vision.jpg",

@@ -42,7 +42,7 @@ export default function Article({
   intro: ReactNode;
   sections: ReadonlyArray<ArticleSection>;
 }) {
-  const { kind, title, summary, cover } = resource;
+  const { kind, title, summary, authors, cover } = resource;
   return (
     <main>
       <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
@@ -50,6 +50,18 @@ export default function Article({
           <p className="text-[15px]">{kind}</p>
           <h1 className={`${type.h1} mt-4 max-w-4xl`}>{title}</h1>
           <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>{summary}</p>
+          <div className="mt-8 text-[15px]">
+            <p>Written by</p>
+            <ul className="mt-1 flex flex-wrap justify-center gap-x-3">
+              {authors.map(({ name, href }) => (
+                <li key={name}>
+                  <a href={href} target="_blank" rel="noopener noreferrer" className={`rounded-sm underline underline-offset-4 ${focusRing}`}>
+                    {name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="mx-auto mt-14 max-w-4xl px-6 sm:mt-16">
           <Image
