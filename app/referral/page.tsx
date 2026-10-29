@@ -42,11 +42,11 @@ export default function ReferralPage() {
   return (
     <main className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
       <section className={`${container} flex flex-col items-center text-center`}>
-        <p className={`${type.label} text-accent-deep`}>Referral program</p>
+        <p className={`${type.label} text-ink`}>Referral program</p>
         <h1 className={`${type.h1} mt-6 max-w-4xl`}>
-          You know a clinic that would <span className="text-accent-deep">love Landing</span>.
+          You know a clinic that would <span className="text-ink">love Landing</span>.
         </h1>
-        <p className={`${type.label} mt-14 text-accent-deep sm:mt-16`}>The reward</p>
+        <p className={`${type.label} mt-14 text-ink sm:mt-16`}>The reward</p>
         <p className="mt-3 text-lg leading-snug sm:text-xl">Earn $500 when a clinic you refer integrates Landing.</p>
       </section>
       <section className="mt-24 sm:mt-32">
@@ -55,7 +55,7 @@ export default function ReferralPage() {
           {steps.map(({ icon, title, text }, index) => (
             <li key={title} className="rounded-xl border border-ink/10 bg-white p-7 sm:p-8">
               <div className="flex items-start justify-between">
-                <div className="flex size-14 items-center justify-center rounded-lg bg-mist text-accent-deep">
+                <div className="flex size-14 items-center justify-center rounded-lg bg-ink text-white">
                   <Icon name={icon} className="size-6" />
                 </div>
                 <span aria-hidden="true" className="font-display text-5xl leading-none text-ink/15">
