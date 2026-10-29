@@ -5,7 +5,7 @@ import { demoHref, edgePad, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Referral | Landing",
-  description: "Earn $500 when a clinic you refer integrates Landing. See Landing’s open internship roles.",
+  description: "Earn $500 when a clinic you refer integrates Landing.",
 };
 
 type Step = { title: string; text: ReactNode };
@@ -69,37 +69,6 @@ const points: ReadonlyArray<Point> = [
   },
 ];
 
-const hiring: Copy = {
-  title: "Open roles",
-  paragraphs: ["We’re hiring interns in research and engineering. Both roles are remote."],
-};
-
-type Role = { title: string; department: string; employment: string; location: string };
-
-const roleColumns: ReadonlyArray<{ key: keyof Role; label: string }> = [
-  { key: "title", label: "Title" },
-  { key: "department", label: "Department" },
-  { key: "employment", label: "Employment type" },
-  { key: "location", label: "Location type" },
-];
-
-const roles: ReadonlyArray<Role> = [
-  {
-    title: "Computer Vision Research Assistant",
-    department: "Research",
-    employment: "Internship",
-    location: "Remote",
-  },
-  {
-    title: "Hardware Engineering Intern",
-    department: "Engineering",
-    employment: "Internship",
-    location: "Remote",
-  },
-];
-
-const [titleColumn, ...detailColumns] = roleColumns;
-
 function Intro({ title, paragraphs, className }: Copy & { className?: string }) {
   return (
     <div className={`grid gap-x-3 gap-y-8 ${edgePad} lg:grid-cols-2 ${className ?? ""}`}>
@@ -150,40 +119,6 @@ export default function ReferralPage() {
             </li>
           ))}
         </ul>
-      </section>
-      <section className="mt-24 sm:mt-32">
-        <Intro {...hiring} />
-        <div className={`mt-10 sm:mt-14 ${edgePad}`}>
-          <table className="w-full">
-            <caption className="sr-only">Open roles</caption>
-            <thead className="hidden sm:table-header-group">
-              <tr className="border-b border-ink/15">
-                {roleColumns.map(({ key, label }) => (
-                  <th key={key} scope="col" className="pb-3 text-left text-sm font-normal sm:w-1/4">
-                    {label}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {roles.map((role) => (
-                <tr key={role.title} className="border-b border-ink/15 align-top">
-                  <th scope="row" className="py-6 pr-4 text-left text-[15px] font-normal">
-                    {role[titleColumn.key]}
-                    <span className="mt-1 block sm:hidden">
-                      {detailColumns.map(({ key }) => role[key]).join(" · ")}
-                    </span>
-                  </th>
-                  {detailColumns.map(({ key }) => (
-                    <td key={key} className="hidden py-6 pr-4 text-[15px] sm:table-cell">
-                      {role[key]}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
       </section>
     </main>
   );
