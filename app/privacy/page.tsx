@@ -21,7 +21,7 @@ const sections: ReadonlyArray<{ heading: string; content: ReactNode }> = [
       <ul className={listClass}>
         <li>Your Google account’s email address and account ID, so Landing knows which account is connected.</li>
         <li>
-          Events on Google calendars you own. Landing shows the events from your primary calendar on your Landing calendar, and only you see them there. Landing doesn’t store these events. It reads them from Google when you open the calendar.
+          Events on your primary Google calendar. Google’s permission covers every calendar you own, but Landing reads only your primary calendar. Landing shows these events on your Landing calendar, and only you see them there. Landing doesn’t store these events. It reads them from Google when you open the calendar.
         </li>
         <li>
           Google Drive files you pick. Landing can open only the files you choose in Google’s file picker, not the rest of your Drive.
@@ -34,7 +34,7 @@ const sections: ReadonlyArray<{ heading: string; content: ReactNode }> = [
     content: (
       <>
         <p className={body}>
-          While your Google connection works, Landing adds your own Landing calendar events to your primary Google calendar and keeps them up to date. It sends each event’s title, its dates and times, and whether it’s pending or approved, and it tags the event so it can find it later. Pending events are marked tentative. Landing never adds another person’s events, and it removes an event from Google when the event is rejected or deleted in Landing.
+          When you connect, Landing copies every event you own on the Landing calendar into your primary Google calendar, past events included. It leaves out rejected events. While your Google connection works, Landing keeps the copies up to date. It sends each event’s title, its dates and times, and its status, which is tentative while the event is pending and confirmed once it’s approved. It also tags each copy so it can find it later. Landing never adds another person’s events, and it removes an event from Google when the event is rejected or deleted in Landing.
         </p>
         <p className={body}>
           Landing reads back the events it added so it can keep them in sync. If you delete one of them in Google, Landing adds it back. If you change its title, times, or status in Google, Landing overwrites your change the next time the event changes in Landing. To change or remove an event, change it in Landing.
@@ -66,7 +66,7 @@ const sections: ReadonlyArray<{ heading: string; content: ReactNode }> = [
     content: (
       <>
         <p className={body}>
-          Landing stores your connection details in its database. They are your Google email address and account ID, the token Google issues when you connect, the permissions you granted, and when you connected and when Landing last used the connection. Landing encrypts the token before it stores it. Copies of Drive files are stored with the note’s other attachments.
+          Landing stores your connection details in its database. They are your Google email address and account ID, the token Google issues when you connect, the permissions you granted, the connection’s status, the time you connected, and the time its status last changed. Landing encrypts the token before it stores it. Copies of Drive files are stored with the note’s other attachments.
         </p>
         <p className={body}>
           Landing’s database and file storage run on Amazon Web Services in the US East (Northern Virginia) region.
@@ -94,7 +94,7 @@ const sections: ReadonlyArray<{ heading: string; content: ReactNode }> = [
     content: (
       <>
         <p className={body}>
-          Landing keeps your connection details until you disconnect Google or your admin access ends.
+          Landing keeps your connection details until it finishes disconnecting Google, as the next section explains.
         </p>
         <p className={body}>
           A copy of a Drive file stays on its note until someone removes it, and a task keeps its Drive link until someone changes it. Disconnecting Google doesn’t remove either one.
@@ -110,14 +110,14 @@ const sections: ReadonlyArray<{ heading: string; content: ReactNode }> = [
     content: (
       <>
         <p className={body}>
-          To disconnect, open the Calendar page in the Landing admin dashboard and click Disconnect. The dashboard shows Google as disconnected right away. Landing then deletes the events it added to your calendar, revokes its access with Google, and deletes your connection details. If Landing can’t reach Google, it keeps trying, and your connection details stay in its database until it gets through. Ending your admin access works the same way.
+          To disconnect, open the Calendar page in the Landing admin dashboard and click Disconnect. The dashboard shows Google as disconnected right away, and Landing finishes in the background. It deletes the events it added to your calendar, revokes its access with Google, and then deletes your connection details. If Landing can’t reach Google, or Google refuses to delete the events, Landing keeps trying for 24 hours after you disconnect. After that, it revokes its access anyway and leaves the remaining events in your calendar. Your connection details stay in Landing’s database until the revoke goes through, and Landing retries the revoke until then. Ending your admin access works the same way.
         </p>
         <p className={body}>
           Landing can’t reach your calendar after you remove its access from your Google Account, as Google’s help page on{" "}
           <a href="https://support.google.com/accounts/answer/13533235" className={linkClass}>
             managing third-party access
           </a>{" "}
-          explains, or while the dashboard asks you to reconnect. The events it added then stay in your calendar. To have Landing remove them, reconnect and then disconnect, or delete them in Google. If you connect a different Google account, Landing deletes the events it added to the first account, if it can still reach that calendar, and revokes its access there.
+          explains. While Google lists Landing’s app as in testing, Google also ends Landing’s access 7 days after you connect. In both cases the dashboard asks you to reconnect, and the events Landing added stay in your calendar. To have Landing remove them, reconnect and then disconnect, or delete them in Google. If you connect a different Google account, Landing deletes the events it added to the first account, if it can still reach that calendar, and revokes its access there.
         </p>
         <p className={body}>
           To delete a copy of a Drive file, remove it from the note. Landing then deletes the file, but it keeps a record of the file’s name and who removed it. To remove a Drive link, edit the task. A recurring task copies its link into each new occurrence, so remove the link from each occurrence that has it.
@@ -155,7 +155,7 @@ export default function PrivacyPage() {
           <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
             How Landing handles data from your Google account in the Landing admin dashboard.
           </p>
-          <p className="mt-4 text-[13px]">Updated October 28, 2026</p>
+          <p className="mt-4 text-[13px]">Updated October 29, 2026</p>
         </div>
         <div className={`${edgePad} mt-14 sm:mt-16`}>
           <article className="mx-auto max-w-[45rem]">
