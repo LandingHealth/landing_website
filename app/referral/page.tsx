@@ -53,7 +53,7 @@ export default function ReferralPage() {
         <h2 className={`${type.h2} text-center ${edgePad}`}>How it works</h2>
         <ol className={`mt-10 grid gap-3 ${edgePad} sm:mt-14 lg:grid-cols-3`}>
           {steps.map(({ icon, title, text }, index) => (
-            <li key={title} className="rounded-xl border border-ink/10 bg-white p-7 sm:p-8">
+            <li key={title} className="rounded-xl bg-mist p-7 sm:p-8">
               <div className="flex items-start justify-between">
                 <div className="flex size-14 items-center justify-center rounded-lg bg-ink text-white">
                   <Icon name={icon} className="size-6" />
