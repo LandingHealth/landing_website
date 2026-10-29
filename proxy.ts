@@ -25,6 +25,10 @@ const gates: ReadonlyArray<Gate> = [
   },
 ];
 
+const publicPaths = new Set(["/privacy", "/icon.svg"]);
+
+const isPublic = (pathname: string) => publicPaths.has(pathname) || pathname.startsWith("/_next/static/");
+
 const covers = (scope: string, pathname: string) =>
   scope === "/" || pathname === scope || pathname.startsWith(`${scope}/`);
 
@@ -127,9 +131,11 @@ async function apply(request: NextRequest) {
 }
 
 export async function proxy(request: NextRequest) {
-  if (request.nextUrl.pathname === "/apply") return apply(request);
+  const { pathname } = request.nextUrl;
+  if (pathname === "/apply") return apply(request);
+  if (isPublic(pathname)) return NextResponse.next();
   for (const gate of gates) {
-    if (!covers(gate.scope, request.nextUrl.pathname)) continue;
+    if (!covers(gate.scope, pathname)) continue;
     const response = await check(gate, request);
     if (response) return response;
   }
