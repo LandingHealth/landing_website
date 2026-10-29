@@ -67,6 +67,20 @@ export const bettingOnComputerVision: Resource = {
   },
 };
 
-export const resources: readonly Resource[] = [outsideTheClinic, bettingOnComputerVision, bettingOnAiAgents, recoveryWorldModel];
+export const periost: Resource = {
+  kind: "Research",
+  title: "A Sleeve That Reads the Bone’s Own Alarm",
+  summary: "Why Landing is exploring a sleeve that reads how the shin responds to training load, not only how much load it took.",
+  authors: [neilPatel],
+  href: "/resources/a-sleeve-that-reads-the-bones-own-alarm",
+  cover: {
+    src: "/resources/periost.webp",
+    alt: "A hardware lab bench. A wall monitor shows an oscilloscope trace above a stereo microscope, probe arms, and a lit circuit board on an optical breadboard. Two fiber-optic light sources sit at the right.",
+    width: 1600,
+    height: 1067,
+  },
+};
+
+export const resources: readonly Resource[] = [periost, outsideTheClinic, bettingOnComputerVision, bettingOnAiAgents, recoveryWorldModel];
 
 export const coverImage = "h-auto w-full rounded-xl bg-mist object-cover ring-1 ring-black";
