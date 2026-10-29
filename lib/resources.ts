@@ -81,6 +81,20 @@ export const periost: Resource = {
   },
 };
 
-export const resources: readonly Resource[] = [periost, outsideTheClinic, bettingOnComputerVision, bettingOnAiAgents, recoveryWorldModel];
+export const manComputerSymbiosis: Resource = {
+  kind: "Vision",
+  title: "The Partnership Licklider Imagined in 1960",
+  summary: "Why Landing pairs the PT’s judgment with a computer’s speed and accuracy, a partnership J.\u00a0C.\u00a0R.\u00a0Licklider could only describe in 1960.",
+  authors: [neilPatel],
+  href: "/resources/the-partnership-licklider-imagined-in-1960",
+  cover: {
+    src: "/resources/man-computer-symbiosis.png",
+    alt: "The title block of J. C. R. Licklider’s 1960 paper. “Man-Computer Symbiosis” is set in large bold serif type above his name and the citation, IRE Transactions on Human Factors in Electronics, volume HFE-1, pages 4-11, March 1960.",
+    width: 3000,
+    height: 2000,
+  },
+};
+
+export const resources: readonly Resource[] = [manComputerSymbiosis, periost, outsideTheClinic, bettingOnComputerVision, bettingOnAiAgents, recoveryWorldModel];
 
 export const coverImage = "h-auto w-full rounded-xl bg-mist object-cover ring-1 ring-black";
