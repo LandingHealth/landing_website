@@ -21,6 +21,8 @@ button:hover{background:#d55823}
 .error{margin:0 0 14px;font-size:14px;font-weight:500}
 .alt{margin:24px 0 0;padding-top:20px;border-top:1px solid rgb(12 14 50 / .1);font-size:14px}
 .alt a{color:#000;font-weight:500;text-decoration:underline}
+.legal{margin:12px 0 0;font-size:13px}
+.legal a{color:#000;text-decoration:underline}
 .lead{margin:0 0 24px;font-size:15px;line-height:1.5}
 .field{margin-bottom:18px}
 .hint{margin:0 0 6px;font-size:13px;line-height:1.4}
@@ -58,7 +60,8 @@ ${error ? '<p class="error" role="alert">That password didn’t work. Try again.
 <input id="password" type="password" name="password" autocomplete="current-password" required autofocus>
 <button type="submit">Continue</button>
 </form>
-<p class="alt">Applying for the research internship? <a href="/apply">Apply here</a></p>`);
+<p class="alt">Applying for the research internship? <a href="/apply">Apply here</a></p>
+<p class="legal"><a href="/privacy">Privacy policy</a></p>`);
 }
 
 function field(
