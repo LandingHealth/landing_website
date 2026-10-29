@@ -7,6 +7,7 @@ export const navigation: ReadonlyArray<{ label: string; href: string }> = [
   { label: "About", href: "/about" },
   { label: "Team", href: "/team" },
   { label: "Revenue", href: "/revenue" },
+  { label: "Referral", href: "/referral" },
 ];
 
 export const demoHref = "https://calendly.com/rajnpatel05/landing-health-intro-meeting";
