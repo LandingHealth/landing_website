@@ -123,7 +123,11 @@ const sections: ReadonlyArray<{ heading: string; content: ReactNode }> = [
           To delete a copy of a Drive file, remove it from the note. Landing then deletes the file, but it keeps a record of the file’s name and who removed it. To remove a Drive link, edit the task. A recurring task copies its link into each new occurrence, so remove the link from each occurrence that has it.
         </p>
         <p className={body}>
-          To ask Landing to delete any other data it holds from your Google account, email the support address that Google shows on Landing’s consent screen.
+          For privacy questions, or to ask Landing to delete any other data it holds from your Google account, email{" "}
+          <a href="mailto:neildrp5@gmail.com" className={linkClass}>
+            neildrp5@gmail.com
+          </a>
+          .
         </p>
       </>
     ),
