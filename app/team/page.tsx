@@ -6,8 +6,34 @@ import { team } from "@/lib/team";
 
 export const metadata: Metadata = {
   title: "Team | Landing",
-  description: "Meet the Landing team.",
+  description: "Meet the Landing team and see our open internship roles.",
 };
+
+type Role = { title: string; department: string; employment: string; location: string };
+
+const roleColumns: ReadonlyArray<{ key: keyof Role; label: string }> = [
+  { key: "title", label: "Title" },
+  { key: "department", label: "Department" },
+  { key: "employment", label: "Employment type" },
+  { key: "location", label: "Location type" },
+];
+
+const roles: ReadonlyArray<Role> = [
+  {
+    title: "Computer Vision Research Assistant",
+    department: "Research",
+    employment: "Internship",
+    location: "Remote",
+  },
+  {
+    title: "Hardware Engineering Intern",
+    department: "Engineering",
+    employment: "Internship",
+    location: "Remote",
+  },
+];
+
+const [titleColumn, ...detailColumns] = roleColumns;
 
 export default function TeamPage() {
   return (
@@ -39,6 +65,45 @@ export default function TeamPage() {
               )}
             </article>
           ))}
+        </div>
+        <div className="mt-24 sm:mt-32">
+          <div className={`grid gap-x-3 gap-y-8 ${edgePad} lg:grid-cols-2`}>
+            <h2 className={`${type.h2} max-w-xl`}>Open roles</h2>
+            <div className="max-w-xl space-y-5 text-[15px] leading-[1.6]">
+              <p>We’re hiring interns in research and engineering. Both roles are remote.</p>
+            </div>
+          </div>
+          <div className={`mt-10 sm:mt-14 ${edgePad}`}>
+            <table className="w-full">
+              <caption className="sr-only">Open roles</caption>
+              <thead className="hidden sm:table-header-group">
+                <tr className="border-b border-ink/15">
+                  {roleColumns.map(({ key, label }) => (
+                    <th key={key} scope="col" className="pb-3 text-left text-sm font-normal sm:w-1/4">
+                      {label}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {roles.map((role) => (
+                  <tr key={role.title} className="border-b border-ink/15 align-top">
+                    <th scope="row" className="py-6 pr-4 text-left text-[15px] font-normal">
+                      {role[titleColumn.key]}
+                      <span className="mt-1 block sm:hidden">
+                        {detailColumns.map(({ key }) => role[key]).join(" · ")}
+                      </span>
+                    </th>
+                    {detailColumns.map(({ key }) => (
+                      <td key={key} className="hidden py-6 pr-4 text-[15px] sm:table-cell">
+                        {role[key]}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
     </main>
