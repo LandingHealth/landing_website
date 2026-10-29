@@ -6,7 +6,7 @@ const summary =
   "Movement changes with every step. Healing unfolds over weeks. SafeSock measures the mechanics to help connect the two.";
 
 export const metadata: Metadata = {
-  title: "Solution | Landing",
+  title: "Devices | Landing",
   description: summary,
 };
 
@@ -15,7 +15,7 @@ const timescales: Tiles = [
     title: "Physics",
     text: "The fast one is mechanics. Each step of gait brings ground reaction forces and moments, joint angles, and vertical load. Physics already models it well. All three of our founding engineers studied at the top-ranked biomedical engineering school on the planet. Two of them helped train a dual-path, attention-guided deep learning model to predict gait cycle data.",
     image: {
-      src: "/solution/mechanics-plate.jpg",
+      src: "/devices/mechanics-plate.jpg",
       alt: "An 1816 engraving of the mechanical powers, with screws, presses, pulleys, and force diagrams",
       width: 1600,
       height: 2123,
@@ -26,7 +26,7 @@ const timescales: Tiles = [
     title: "Biology",
     text: "The slow one is biology: healing, remodeling, and strength gain. Nobody models it well, because nobody has measured it. Our team includes a Penn ELITE Fellow, one of four fellows the University of Pennsylvania’s health-tech fellowship chose this year.",
     image: {
-      src: "/solution/vitruvian-man.jpg",
+      src: "/devices/vitruvian-man.jpg",
       alt: "Leonardo da Vinci’s Vitruvian Man, a figure with outstretched arms and legs inside a circle and a square",
       width: 1600,
       height: 2234,
@@ -40,7 +40,7 @@ const timescales: Tiles = [
   },
 ];
 
-export default function SolutionPage() {
+export default function DevicesPage() {
   return (
     <main>
       <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
