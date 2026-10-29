@@ -19,7 +19,7 @@ const sections: ReadonlyArray<{ heading: string; content: ReactNode }> = [
     heading: "What Landing reads from Google",
     content: (
       <ul className={listClass}>
-        <li>Your Google account’s email address, so the dashboard can show which account is connected.</li>
+        <li>Your Google account’s email address and account ID, so Landing knows which account is connected.</li>
         <li>
           Events on Google calendars you own. Landing shows the events from your primary calendar on your Landing calendar, and only you see them there. Landing doesn’t store these events. It reads them from Google when you open the calendar.
         </li>
@@ -66,7 +66,7 @@ const sections: ReadonlyArray<{ heading: string; content: ReactNode }> = [
     content: (
       <>
         <p className={body}>
-          Landing stores your Google email address in its database, along with the token Google issues when you connect. Landing encrypts the token before it stores it. Copies of Drive files are stored with the note’s other attachments.
+          Landing stores your connection details in its database. They are your Google email address and account ID, the token Google issues when you connect, the permissions you granted, and when you connected and when Landing last used the connection. Landing encrypts the token before it stores it. Copies of Drive files are stored with the note’s other attachments.
         </p>
         <p className={body}>
           Landing’s database and file storage run on Amazon Web Services in the US East (Northern Virginia) region.
@@ -94,7 +94,7 @@ const sections: ReadonlyArray<{ heading: string; content: ReactNode }> = [
     content: (
       <>
         <p className={body}>
-          Landing keeps your Google email address and token until you disconnect Google or your admin access ends.
+          Landing keeps your connection details until you disconnect Google or your admin access ends.
         </p>
         <p className={body}>
           A copy of a Drive file stays on its note until someone removes it, and a task keeps its Drive link until someone changes it. Disconnecting Google doesn’t remove either one.
@@ -110,14 +110,14 @@ const sections: ReadonlyArray<{ heading: string; content: ReactNode }> = [
     content: (
       <>
         <p className={body}>
-          To disconnect, open the Calendar page in the Landing admin dashboard and click Disconnect. Landing deletes your token and Google email address. If Landing can still reach your calendar, it also deletes the events it added and revokes its access with Google. Ending your admin access does the same.
+          To disconnect, open the Calendar page in the Landing admin dashboard and click Disconnect. The dashboard shows Google as disconnected right away. Landing then deletes the events it added to your calendar, revokes its access with Google, and deletes your connection details. If Landing can’t reach Google, it keeps trying, and your connection details stay in its database until it gets through. Ending your admin access works the same way.
         </p>
         <p className={body}>
           Landing can’t reach your calendar after you remove its access from your Google Account, as Google’s help page on{" "}
           <a href="https://support.google.com/accounts/answer/13533235" className={linkClass}>
             managing third-party access
           </a>{" "}
-          explains, or while the dashboard asks you to reconnect. The events it added then stay in your calendar. To have Landing remove them, reconnect and then disconnect, or delete them in Google. If you connect a different Google account, the events Landing added to the first account stay there.
+          explains, or while the dashboard asks you to reconnect. The events it added then stay in your calendar. To have Landing remove them, reconnect and then disconnect, or delete them in Google. If you connect a different Google account, Landing deletes the events it added to the first account, if it can still reach that calendar, and revokes its access there.
         </p>
         <p className={body}>
           To delete a copy of a Drive file, remove it from the note. Landing then deletes the file, but it keeps a record of the file’s name and who removed it. To remove a Drive link, edit the task. A recurring task copies its link into each new occurrence, so remove the link from each occurrence that has it.
