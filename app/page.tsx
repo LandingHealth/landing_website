@@ -54,7 +54,7 @@ const alsoInLanding = [
   {
     title: "SafeSock",
     text: "A sensor sleeve we’re designing to sit inside a boot, cast, or brace and show how a patient bears weight between visits.",
-    href: "/solution",
+    href: "/devices",
     link: "Meet SafeSock",
   },
 ];
