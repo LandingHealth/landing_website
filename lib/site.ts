@@ -17,7 +17,7 @@ const buttonBase =
   "inline-flex items-center justify-center rounded-md border font-medium whitespace-nowrap transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
 
 export const button = {
-  primary: `${buttonBase} border-transparent bg-accent text-black hover:bg-accent/90`,
+  primary: `${buttonBase} border-transparent bg-mist text-black hover:bg-mist/80`,
   secondary: `${buttonBase} border-ink/20 text-black hover:bg-ink/5`,
   onInk: `${buttonBase} border-white/25 text-white hover:border-white/50 hover:bg-white/10`,
 } as const;
