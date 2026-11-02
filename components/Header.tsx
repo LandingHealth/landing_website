@@ -24,7 +24,7 @@ export default function Header() {
         </Link>
         <nav
           aria-label="Primary navigation"
-          className="order-3 mt-1 flex basis-full flex-wrap gap-x-4 overflow-x-auto sm:-mx-3 sm:flex-nowrap sm:gap-1 md:order-2 md:mx-0 md:mt-0 md:basis-auto"
+          className="order-3 mt-1 flex basis-full flex-wrap gap-x-3 overflow-x-auto sm:-mx-3 sm:flex-nowrap sm:gap-1 md:order-2 md:mx-0 md:mt-0 md:basis-auto"
         >
           {navigation.map(({ label, href }) => {
             const active = pathname === href || pathname.startsWith(`${href}/`);

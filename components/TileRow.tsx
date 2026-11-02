@@ -28,10 +28,10 @@ export default function TileRow({
       className={`grid gap-x-3 gap-y-12 ${edgePad} ${columns[tiles.length]} ${className}`}
       style={{ "--ratio": ratio } as CSSProperties}
     >
-      {tiles.map(({ title, text, video, image, art }) => {
+      {tiles.map(({ title, text, video, image, art }, i) => {
         const media = video ? { video } : image ? { image } : null;
         return (
-          <article key={title} className="text-center">
+          <article key={title} data-reveal style={{ "--reveal-i": i } as CSSProperties} className="text-center">
             {media ? (
               <ExpandableMedia media={media} title={title} className={frame} />
             ) : (
