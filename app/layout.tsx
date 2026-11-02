@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Inter_Tight, Source_Serif_4 } from "next/font/google";
+import { Geist, Instrument_Serif } from "next/font/google";
 import Header from "@/components/Header";
 import Reveal from "@/components/Reveal";
 import TextRotate from "@/components/TextRotate";
 import { container, type } from "@/lib/site";
 import "./globals.css";
 
-const interTight = Inter_Tight({
+const geist = Geist({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-inter-tight",
+  variable: "--font-geist",
   display: "swap",
 });
-const sourceSerif = Source_Serif_4({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  axes: ["opsz"],
-  variable: "--font-source-serif",
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
   display: "swap",
 });
 
@@ -32,7 +32,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${interTight.variable} ${sourceSerif.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${geist.variable} ${instrumentSerif.variable}`}>
       <body className="bg-white font-sans text-black antialiased">
         <Reveal />
         <Header />

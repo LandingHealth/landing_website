@@ -4,6 +4,7 @@ import ButtonLink from "@/components/ButtonLink";
 import DashboardPreview from "@/components/DashboardPreview";
 import Marquee from "@/components/Marquee";
 import TileRow, { type Tiles } from "@/components/TileRow";
+import type { CSSProperties } from "react";
 import { container, demoHref, edgePad, sectionPad, type } from "@/lib/site";
 
 const workspace: Tiles = [
@@ -85,48 +86,54 @@ function logoSize(aspectRatio: number) {
 
 const section = `border-t border-ink/10 ${sectionPad}`;
 
+const rise = (i: number) => ({ "data-reveal": "", style: { "--reveal-i": i } as CSSProperties });
+
+const delay = (ms: number): CSSProperties => ({ animationDelay: `${ms}ms` });
+
 export default function Home() {
   return (
     <main className="overflow-x-clip">
       <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
         <div className={`${container} flex flex-col items-center text-center`}>
-          <h1 className={`${type.h1} max-w-4xl`}>
-            The Operating System<br className="hidden sm:block" /> for Physical Therapy.
+          <h1 className={`${type.h1} max-w-4xl motion-safe:animate-rise`}>
+            The Operating System<br className="hidden sm:block" /> for Physical <span className="shimmer italic text-accent">Therapy</span>.
           </h1>
-          <p className={`${type.lead} mt-6 max-w-[30rem] text-pretty`}>
+          <p style={delay(120)} className={`${type.lead} mt-6 max-w-[32rem] text-pretty motion-safe:animate-rise`}>
             Clinic software and connected recovery devices that keep patient progress, home exercise, and your daily operations in one place.
           </p>
-          <div className="mt-9 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
+          <div style={delay(240)} className="mt-10 flex w-full max-w-sm flex-col gap-3 motion-safe:animate-rise sm:w-auto sm:max-w-none sm:flex-row">
             <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
           </div>
         </div>
-        <div className={`${edgePad} mt-14 sm:mt-16`}>
+        <div style={delay(380)} className={`${edgePad} mx-auto mt-14 max-w-[68rem] motion-safe:animate-arrive sm:mt-[4.5rem]`}>
           <DashboardPreview />
         </div>
-        <h2 className={`${type.label} mt-14 text-center sm:mt-16`}>Awarded by</h2>
-        <Marquee className="mt-6 [--gap:2rem] sm:[--gap:3rem]">
-          {awards.map(({ name, src, aspectRatio }) => {
-            const { width, height } = logoSize(aspectRatio);
-            return (
-              <li key={name} className="flex shrink-0 items-center">
-                <Image src={src} alt={name} width={width} height={height} loading="eager" className="grayscale" />
-              </li>
-            );
-          })}
-        </Marquee>
-      </section>
-
-      <section className={section}>
-        <div className={container}>
-          <h2 className={`${type.h2} mx-auto max-w-3xl text-center`}>The Workflow</h2>
-          <p className={`${type.lead} mx-auto mt-4 max-w-3xl text-center`}>Everything you need between visits.</p>
+        <div style={delay(700)} className="motion-safe:animate-rise">
+          <h2 className={`${type.label} mt-16 text-center sm:mt-20`}>Awarded by</h2>
+          <Marquee className="mt-7 [--gap:2rem] sm:[--gap:3rem]">
+            {awards.map(({ name, src, aspectRatio }) => {
+              const { width, height } = logoSize(aspectRatio);
+              return (
+                <li key={name} className="flex shrink-0 items-center">
+                  <Image src={src} alt={name} width={width} height={height} loading="eager" className="grayscale" />
+                </li>
+              );
+            })}
+          </Marquee>
         </div>
-        <TileRow tiles={workspace} className="mt-12" />
       </section>
 
-      <section className={section}>
-        <div className={`${container} grid gap-10 lg:grid-cols-12 lg:gap-16`}>
-          <div className="lg:col-span-5">
+      <section data-reveal="line" className={section}>
+        <div className={container}>
+          <h2 {...rise(0)} className={`${type.h2} mx-auto max-w-3xl text-center`}>The Workflow</h2>
+          <p {...rise(1)} className={`${type.lead} mx-auto mt-5 max-w-3xl text-center`}>Everything you need between visits.</p>
+        </div>
+        <TileRow tiles={workspace} className="mt-14 sm:mt-16" />
+      </section>
+
+      <section data-reveal="line" className={section}>
+        <div className={`${container} grid gap-12 lg:grid-cols-12 lg:gap-20`}>
+          <div {...rise(0)} className="lg:col-span-5">
             <p className={type.label}>Your judgment</p>
             <h2 className={`${type.h2} mt-4`}>You decide what changes.</h2>
             <p className={`${type.lead} mt-5 max-w-prose`}>
@@ -134,9 +141,9 @@ export default function Home() {
               It doesn’t assign a suggestion, send it to the patient, or chart it on its own.
             </p>
           </div>
-          <div className="rounded-xl border border-ink/10 bg-white p-6 sm:p-7 lg:col-span-7">
+          <div {...rise(1)} className="rounded-xl border border-ink/10 bg-white p-6 sm:p-8 lg:col-span-7">
             <h3 className="text-base font-semibold">Each proposal shows</h3>
-            <dl className="mt-5 grid gap-x-8 gap-y-5 sm:grid-cols-2">
+            <dl className="mt-6 grid gap-x-10 gap-y-6 sm:grid-cols-2">
               {proposalFields.map(({ term, detail }) => (
                 <div key={term}>
                   <dt className="font-medium">{term}</dt>
@@ -148,13 +155,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={section}>
+      <section data-reveal="line" className={section}>
         <div className={container}>
-          <p className={type.label}>Also in Landing</p>
-          <h2 className={`${type.h2} mt-4 max-w-3xl`}>Support around the visit, too.</h2>
-          <div className="mt-10 grid gap-8 md:grid-cols-3">
-            {alsoInLanding.map(({ title, text, href, link }) => (
-              <div key={title} className="border-t border-ink/15 pt-6">
+          <p {...rise(0)} className={type.label}>Also in Landing</p>
+          <h2 {...rise(1)} className={`${type.h2} mt-4 max-w-3xl`}>Support around the visit, too.</h2>
+          <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+            {alsoInLanding.map(({ title, text, href, link }, i) => (
+              <div key={title} {...rise(i + 2)} className="border-t border-ink/15 pt-6">
                 <h3 className={type.h3}>{title}</h3>
                 <p className="mt-3 text-[15px] leading-[1.6]">{text}</p>
                 <Link
@@ -169,14 +176,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={section}>
+      <section data-reveal="line" className={section}>
         <div className={`${container} flex flex-col items-center text-center`}>
-          <h2 className={`${type.h2} max-w-3xl`}>See how Landing fits your clinic.</h2>
-          <p className={`${type.lead} mt-5 max-w-[36rem] text-pretty`}>
+          <h2 {...rise(0)} className={`${type.h2} max-w-3xl`}>See how Landing fits your clinic.</h2>
+          <p {...rise(1)} className={`${type.lead} mt-5 max-w-[36rem] text-pretty`}>
             Book a demo with our team. We’ll walk through the workspace with sample patients and answer
             questions about your setup.
           </p>
-          <div className="mt-9 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
+          <div {...rise(2)} className="mt-10 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
             <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
           </div>
         </div>

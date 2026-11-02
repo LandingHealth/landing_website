@@ -32,15 +32,15 @@ export type ButtonVariant = keyof typeof button;
 
 export const container = "mx-auto w-full max-w-6xl px-6 sm:px-10 lg:px-8";
 export const edgePad = "px-6 lg:px-4";
-export const sectionPad = "py-20 sm:py-24 lg:py-28";
+export const sectionPad = "py-24 sm:py-28 lg:py-32";
 
 export const type = {
-  h1: "font-display text-[clamp(2.75rem,6.3vw,5.0625rem)] font-medium leading-none tracking-[-0.025em] text-balance",
-  h2: "font-display text-[clamp(1.875rem,3.6vw,3rem)] font-medium leading-none tracking-[-0.025em] text-balance",
-  h3: "font-display text-2xl font-medium leading-tight tracking-[-0.015em]",
-  body: "max-w-prose text-[15px] leading-[1.6] text-slate",
-  bodyOnInk: "max-w-prose text-[15px] leading-[1.6] text-on-ink",
-  lead: "text-[15px] leading-[1.45]",
+  h1: "font-display text-[clamp(3rem,6.4vw,5.25rem)] font-normal leading-[1.02] tracking-[-0.012em] text-balance",
+  h2: "font-display text-[clamp(2.375rem,4vw,3.25rem)] font-normal leading-[1.06] tracking-[-0.01em] text-balance",
+  h3: "font-display text-[1.75rem] font-normal leading-[1.1] tracking-[-0.005em]",
+  body: "max-w-prose text-[15px] leading-[1.65] text-slate",
+  bodyOnInk: "max-w-prose text-[15px] leading-[1.65] text-on-ink",
+  lead: "text-base leading-[1.6] sm:text-[17px]",
   label: "text-xs font-medium uppercase tracking-[0.08em]",
 } as const;
 
