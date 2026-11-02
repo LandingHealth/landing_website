@@ -7,7 +7,7 @@ import { button, buttonSize, type ButtonSize, type ButtonVariant } from "@/lib/s
 type Ripple = { key: number; x: number; y: number; size: number };
 
 const rippleColor = {
-  primary: "bg-white/45",
+  primary: "bg-ink/12",
   secondary: "bg-ink/12",
   onInk: "bg-white/25",
 } as const satisfies Record<ButtonVariant, string>;
