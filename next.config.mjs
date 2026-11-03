@@ -5,6 +5,9 @@ import svelteConfig from "./svelte.config.mjs";
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig = {
+  redirects() {
+    return [{ source: "/apply", destination: "/team#apply", permanent: false }];
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svelte(?:\.js)?$/,
