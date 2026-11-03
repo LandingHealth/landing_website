@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import ButtonLink from "@/components/ButtonLink";
-import { container, edgePad, type } from "@/lib/site";
+import { button, buttonSize, container, edgePad, type } from "@/lib/site";
 import { team } from "@/lib/team";
 
 export const metadata: Metadata = {
@@ -71,6 +71,9 @@ export default function TeamPage() {
             <h2 className={`${type.h2} max-w-xl`}>Open roles</h2>
             <div className="max-w-xl space-y-5 text-[15px] leading-[1.6]">
               <p>We’re hiring interns in research and engineering. Both roles are remote.</p>
+              <a href="/apply" className={`${button.secondary} ${buttonSize.md}`}>
+                Apply for an internship
+              </a>
             </div>
           </div>
           <div className={`mt-10 sm:mt-14 ${edgePad}`}>
