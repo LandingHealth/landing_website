@@ -7,8 +7,7 @@ const escapeHtml = (value: string) =>
 
 const style = `*{box-sizing:border-box}
 body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:#fff;color:#000;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-main{width:100%;max-width:340px}
-main.wide{max-width:520px}
+main{width:100%;max-width:520px}
 p.brand{margin:0 0 28px;font-size:13px;font-weight:600;letter-spacing:.02em}
 h1{margin:0 0 20px;font-size:24px;font-weight:500;line-height:1.2}
 label{display:block;margin-bottom:6px;font-size:14px}
@@ -19,10 +18,6 @@ input:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{
 button{margin-top:14px;width:100%;height:44px;border:0;border-radius:6px;background:#ea652b;color:#000;font:inherit;font-size:15px;font-weight:500;cursor:pointer}
 button:hover{background:#d55823}
 .error{margin:0 0 14px;font-size:14px;font-weight:500}
-.alt{margin:24px 0 0;padding-top:20px;border-top:1px solid rgb(12 14 50 / .1);font-size:14px}
-.alt a{color:#000;font-weight:500;text-decoration:underline}
-.legal{margin:12px 0 0;font-size:13px}
-.legal a{color:#000;text-decoration:underline}
 .lead{margin:0 0 24px;font-size:15px;line-height:1.5}
 .field{margin-bottom:18px}
 .hint{margin:0 0 6px;font-size:13px;line-height:1.4}
@@ -32,7 +27,7 @@ button:hover{background:#d55823}
 
 const brand = '<p class="brand">Landing Health</p>';
 
-function shell(main: string, wide = false) {
+function shell(main: string) {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -45,23 +40,12 @@ ${style}
 </style>
 </head>
 <body>
-<main${wide ? ' class="wide"' : ""}>
+<main>
 ${brand}
 ${main}
 </main>
 </body>
 </html>`;
-}
-
-export function passwordPage(heading: string, error: boolean) {
-  return shell(`<h1>${escapeHtml(heading)}</h1>
-<form method="post">
-${error ? '<p class="error" role="alert">That password didn’t work. Try again.</p>\n' : ""}<label for="password">Password</label>
-<input id="password" type="password" name="password" autocomplete="current-password" required autofocus>
-<button type="submit">Continue</button>
-</form>
-<p class="alt">Applying for the research internship? <a href="/apply">Apply here</a></p>
-<p class="legal"><a href="/privacy">Privacy policy</a></p>`);
 }
 
 function field(
@@ -89,8 +73,7 @@ export function applicationPage(view: ApplyView) {
     return shell(
       `${head}
 <p class="thanks">Thanks. We got your application.</p>
-<p class="sent">We’ll reply by email.</p>`,
-      true,
+<p class="sent">We’ll reply by email.</p>`
     );
   }
   let textareas = 0;
@@ -104,7 +87,6 @@ export function applicationPage(view: ApplyView) {
 ${fields}
 <div class="hp" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
 ${view.error ? `<p class="error" role="alert">${escapeHtml(view.error)}</p>\n` : ""}<button type="submit">Submit application</button>
-</form>`,
-    true,
+</form>`
   );
 }
