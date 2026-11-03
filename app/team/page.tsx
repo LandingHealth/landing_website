@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import ApplicationForm from "@/components/ApplicationForm";
 import ButtonLink from "@/components/ButtonLink";
 import { button, buttonSize, container, edgePad, type } from "@/lib/site";
 import { team } from "@/lib/team";
@@ -71,7 +72,7 @@ export default function TeamPage() {
             <h2 className={`${type.h2} max-w-xl`}>Open roles</h2>
             <div className="max-w-xl space-y-5 text-[15px] leading-[1.6]">
               <p>We’re hiring interns in research and engineering. Both roles are remote.</p>
-              <a href="/apply" className={`${button.secondary} ${buttonSize.md}`}>
+              <a href="#apply" className={`${button.secondary} ${buttonSize.md}`}>
                 Apply for an internship
               </a>
             </div>
@@ -106,6 +107,17 @@ export default function TeamPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+          <div id="apply" className={`mt-16 grid scroll-mt-24 gap-x-3 gap-y-8 ${edgePad} sm:mt-20 lg:grid-cols-2`}>
+            <div className="max-w-xl">
+              <h3 className={type.h3}>Apply for an internship</h3>
+              <p className="mt-4 text-[15px] leading-[1.6]">
+                No experience or technical skills required. We’re looking for curious, reliable people willing to learn!
+              </p>
+            </div>
+            <div className="max-w-xl">
+              <ApplicationForm />
+            </div>
           </div>
         </div>
       </section>
