@@ -96,7 +96,7 @@ export default function Home() {
       <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
         <div className={`${container} flex flex-col items-center text-center`}>
           <h1 className={`${type.h1} max-w-4xl motion-safe:animate-rise`}>
-            The Operating System<br className="hidden sm:block" /> for Physical <span className="shimmer italic text-accent">Therapy</span>.
+            The AI care layer for between visit management for physical <span className="shimmer italic text-accent">therapy</span>.
           </h1>
           <p style={delay(120)} className={`${type.lead} mt-6 max-w-[32rem] text-pretty motion-safe:animate-rise`}>
             Clinic software and connected recovery devices that keep patient progress, home exercise, and your daily operations in one place.
