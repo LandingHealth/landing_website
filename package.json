@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "motion-sv": "0.1.13",
-    "next": "16.3.8",
+    "next": "16.4.5",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "svelte": "5.57.1"
@@ -24,7 +24,7 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "eslint": "^9.39.5",
-    "eslint-config-next": "16.3.8",
+    "eslint-config-next": "16.4.5",
     "svelte-check": "4.7.6",
     "svelte-loader": "3.2.4",
     "svelte-preprocess": "6.0.5",
