@@ -17,6 +17,7 @@
 		min={spec.min}
 		max={spec.max}
 		step={spec.step}
+		aria-valuetext={spec.format(value)}
 		bind:value
 	/>
 	<div class="mt-2 flex justify-between text-[13px] leading-none">
