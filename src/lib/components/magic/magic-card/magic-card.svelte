@@ -4,19 +4,12 @@
 	import type { Snippet } from "svelte";
 
 	interface MagicCardProps {
-		/** Card content */
 		children?: Snippet;
-		/** Additional CSS classes */
 		class?: ClassValue;
-		/** Size of the gradient circle */
 		gradientSize?: number;
-		/** Color of the gradient overlay */
 		gradientColor?: string;
-		/** Opacity of the gradient overlay */
 		gradientOpacity?: number;
-		/** Starting color of the border gradient */
 		gradientFrom?: string;
-		/** Ending color of the border gradient */
 		gradientTo?: string;
 	}
 
@@ -52,12 +45,10 @@
 		mouseY.set(e.clientY - rect.top);
 	};
 
-	// Reset on mount
 	$effect(() => {
 		reset();
 	});
 
-	// Global event listeners
 	$effect(() => {
 		const handleGlobalPointerOut = (e: PointerEvent) => {
 			if (!e.relatedTarget) {
