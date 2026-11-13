@@ -3,19 +3,15 @@
 import { useEffect, useRef } from "react";
 import type { Component } from "svelte";
 
-type SvelteModule = { default: Component<never> };
-
-type SvelteIslandProps = {
-  load: () => Promise<SvelteModule>;
-  props?: Record<string, unknown>;
-  className?: string;
-};
-
-export default function SvelteIsland({
+export default function SvelteIsland<Props extends Record<string, unknown>>({
   load,
   props,
   className,
-}: SvelteIslandProps) {
+}: {
+  load: () => Promise<{ default: Component<Props> }>;
+  props: Props;
+  className?: string;
+}) {
   const target = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,7 +22,7 @@ export default function SvelteIsland({
       .then(([{ mount, unmount }, { default: component }]) => {
         if (!active || !target.current) return;
 
-        const instance = mount(component as Component<Record<string, unknown>>, { target: target.current, props });
+        const instance = mount(component, { target: target.current, props });
         dispose = () => void unmount(instance);
       })
       .catch((error) => {
