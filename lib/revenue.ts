@@ -12,8 +12,17 @@ type InputSpec = {
 const count = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
 const dollars = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
+const compactDollars = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  notation: "compact",
+  maximumFractionDigits: 1,
+});
+
 export const formatCount = (value: number) => count.format(value);
 export const formatDollars = (value: number) => dollars.format(value);
+
+export const formatCompactDollars = (value: number) => compactDollars.format(value);
 
 export const revenueInputs = {
   patients: { label: "Patients enrolled", min: 1, max: 500, step: 1, default: 50, format: formatCount },
