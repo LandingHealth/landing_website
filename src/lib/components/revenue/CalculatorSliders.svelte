@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { motion } from "motion-sv";
 	import { NumberTicker } from "$lib/components/magic/number-ticker";
-	import { cumulativeByMonth, formatCompactDollars, formatDollars, revenue, revenueInputs } from "@/lib/revenue";
+	import { cumulativeByMonth, formatCompactDollars, formatDollars, formatPatients, revenue, revenueInputs } from "@/lib/revenue";
 	import RangeField from "./RangeField.svelte";
 
 	let patients = $state<number>(revenueInputs.patients.default);
@@ -25,7 +25,7 @@
 	<li class={cardClass}>
 		<p class={bigNumber}><NumberTicker value={result.monthly} prefix="$" /></p>
 		<h3 class="mt-10 text-[15px] font-medium leading-snug">Revenue each month</h3>
-		<p class="mt-1 text-[15px] leading-[1.5]">{patients} patients at {formatDollars(fee)} each.</p>
+		<p class="mt-1 text-[15px] leading-[1.5]">{formatPatients(patients)} at {formatDollars(fee)} each.</p>
 	</li>
 	<li class="rounded-xl bg-ink p-5 text-white sm:p-6">
 		<p class={bigNumber}><NumberTicker value={result.annual} prefix="$" /></p>

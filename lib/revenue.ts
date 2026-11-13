@@ -19,6 +19,7 @@ const compactDollars = new Intl.NumberFormat("en-US", {
 });
 
 export const formatDollars = (value: number) => dollars.format(value);
+export const formatPatients = (value: number) => `${count.format(value)} ${value === 1 ? "patient" : "patients"}`;
 export const formatCompactDollars = (value: number) => compactDollars.format(value);
 
 export const revenueInputs = {
