@@ -200,6 +200,27 @@
   }
 }
 
+.calc-number {
+  display: block;
+  width: 100%;
+  padding: 0 0 0.375rem;
+  border: 0;
+  border-bottom: 1px solid rgb(12 14 50 / 0.2);
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.calc-number:hover,
+.calc-number:focus {
+  border-bottom-color: var(--color-ink);
+}
+
+.calc-number:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 4px;
+}
+
 .calc-range {
   appearance: none;
   display: block;
