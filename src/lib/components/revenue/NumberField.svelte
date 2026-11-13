@@ -22,7 +22,7 @@
 	inputmode="numeric"
 	aria-label={spec.label}
 	class="calc-field"
-	style:width="{Math.max(draft.length, 1) + 0.6}ch"
+	style:width="{Math.max(draft.length, 1) + 0.4}ch"
 	bind:value={draft}
 	oninput={onInput}
 	onblur={onBlur}

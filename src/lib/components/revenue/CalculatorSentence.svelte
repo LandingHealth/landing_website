@@ -28,7 +28,7 @@
 		<ol class="mt-8 grid h-48 grid-cols-12 items-end gap-1.5 sm:h-56 sm:gap-2">
 			{#each months as total, index (index)}
 				<li class="flex h-full flex-col justify-end" title="Month {index + 1}: {formatDollars(total)}">
-					<span class="mb-1 block text-center text-[11px] leading-none sm:text-[13px]">
+					<span class="relative z-10 mb-1 flex h-3 justify-center whitespace-nowrap text-[11px] leading-none sm:text-[13px]">
 						{(index + 1) % 3 === 0 ? formatCompactDollars(total) : ""}
 					</span>
 					<motion.div
