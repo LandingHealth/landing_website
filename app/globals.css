@@ -251,21 +251,3 @@
 .calc-range:focus-visible::-moz-range-thumb {
   box-shadow: 0 0 0 3px white, 0 0 0 5px var(--color-ink);
 }
-
-.calc-field {
-  display: inline-block;
-  padding: 0;
-  border: 0;
-  border-bottom: 2px solid var(--color-ink);
-  border-radius: 0;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  letter-spacing: inherit;
-  text-align: center;
-}
-
-.calc-field:focus-visible {
-  outline: 2px solid var(--color-ink);
-  outline-offset: 4px;
-}

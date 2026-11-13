@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import RevenueCalculator from "@/components/RevenueCalculator";
-import { calculatorKey } from "@/lib/revenue-calculators";
 import { container, edgePad, type } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -157,13 +156,7 @@ function Blocks({
   );
 }
 
-export default async function RevenuePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ calculator?: string | string[] }>;
-}) {
-  const variant = calculatorKey((await searchParams).calculator);
-
+export default function RevenuePage() {
   return (
     <main>
       <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
@@ -195,7 +188,7 @@ export default async function RevenuePage({
             ))}
             {calculator && (
               <div className="mt-16 sm:mt-20">
-                <RevenueCalculator variant={variant} />
+                <RevenueCalculator />
               </div>
             )}
           </div>
