@@ -1,0 +1,39 @@
+export type RevenueInputs = { patients: number; fee: number };
+
+type InputSpec = {
+  label: string;
+  min: number;
+  max: number;
+  step: number;
+  default: number;
+  format: (value: number) => string;
+};
+
+const count = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+const dollars = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+const compactDollars = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  notation: "compact",
+  maximumFractionDigits: 1,
+});
+
+export const formatDollars = (value: number) => dollars.format(value);
+export const formatCompactDollars = (value: number) => compactDollars.format(value);
+
+export const revenueInputs = {
+  patients: { label: "Patients enrolled", min: 1, max: 500, step: 1, default: 50, format: count.format },
+  fee: { label: "Per patient each month", min: 25, max: 1000, step: 1, default: 299, format: formatDollars },
+} as const satisfies Record<keyof RevenueInputs, InputSpec>;
+
+export type InputKey = keyof typeof revenueInputs;
+
+export function revenue({ patients, fee }: RevenueInputs): { monthly: number; annual: number } {
+  const monthly = patients * fee;
+  return { monthly, annual: monthly * 12 };
+}
+
+export function cumulativeByMonth({ patients, fee }: RevenueInputs): number[] {
+  const { monthly } = revenue({ patients, fee });
+  return Array.from({ length: 12 }, (_, month) => monthly * (month + 1));
+}
