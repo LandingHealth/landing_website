@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import RevenueCalculator from "@/components/RevenueCalculator";
+import { calculatorKey } from "@/lib/revenue-calculators";
 import { container, edgePad, type } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -31,7 +33,12 @@ const outcomes: ReadonlyArray<Block> = [
   },
 ];
 
-const sections: ReadonlyArray<{ title: string; paragraphs: ReadonlyArray<string>; groups: ReadonlyArray<Group> }> = [
+const sections: ReadonlyArray<{
+  title: string;
+  paragraphs: ReadonlyArray<string>;
+  groups: ReadonlyArray<Group>;
+  calculator?: true;
+}> = [
   {
     title: "How we save you time",
     paragraphs: [
@@ -114,18 +121,11 @@ const sections: ReadonlyArray<{ title: string; paragraphs: ReadonlyArray<string>
   },
   {
     title: "New revenue stream: simulated",
-    paragraphs: ["This simulation shows what between-visit care could earn one clinic. It is an estimate, not a forecast."],
-    groups: [
-      {
-        top: "stat",
-        blocks: [
-          { top: "50", title: "Patients enrolled", text: "Patients from your caseload who join between-visit care." },
-          { top: "$299", title: "Per patient each month", text: "The monthly fee for each enrolled patient." },
-          { top: "$14,950", title: "Revenue each month", text: "50 patients at $299 each." },
-          { top: "$179,400", title: "Annualized revenue", text: "$14,950 a month for 12 months.", ink: true },
-        ],
-      },
+    paragraphs: [
+      "Enter your own numbers to estimate what between-visit care could earn your clinic. It is an estimate, not a forecast.",
     ],
+    groups: [],
+    calculator: true,
   },
 ];
 
@@ -157,7 +157,13 @@ function Blocks({
   );
 }
 
-export default function RevenuePage() {
+export default async function RevenuePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ calculator?: string | string[] }>;
+}) {
+  const variant = calculatorKey((await searchParams).calculator);
+
   return (
     <main>
       <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
@@ -169,7 +175,7 @@ export default function RevenuePage() {
           </p>
         </div>
         <Blocks blocks={outcomes} className="mt-14 sm:mt-16" />
-        {sections.map(({ title, paragraphs, groups }) => (
+        {sections.map(({ title, paragraphs, groups, calculator }) => (
           <div key={title}>
             <div className={`mt-20 grid gap-x-3 gap-y-8 ${edgePad} sm:mt-24 lg:grid-cols-2`}>
               <h2 className={`${type.h2} max-w-xl`}>{title}</h2>
@@ -187,6 +193,11 @@ export default function RevenuePage() {
                 className={index === 0 ? "mt-16 sm:mt-20" : "mt-3"}
               />
             ))}
+            {calculator && (
+              <div className="mt-16 sm:mt-20">
+                <RevenueCalculator variant={variant} />
+              </div>
+            )}
           </div>
         ))}
       </section>

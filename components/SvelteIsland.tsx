@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import type { Component } from "svelte";
 
-type SvelteModule = { default: Component<Record<string, unknown>> };
+type SvelteModule = { default: Component<never> };
 
 type SvelteIslandProps = {
   load: () => Promise<SvelteModule>;
@@ -26,7 +26,7 @@ export default function SvelteIsland({
       .then(([{ mount, unmount }, { default: component }]) => {
         if (!active || !target.current) return;
 
-        const instance = mount(component, { target: target.current, props });
+        const instance = mount(component as Component<Record<string, unknown>>, { target: target.current, props });
         dispose = () => void unmount(instance);
       })
       .catch((error) => {
