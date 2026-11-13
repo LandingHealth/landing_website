@@ -29,6 +29,18 @@ export const revenueInputs = {
 
 export type InputKey = keyof typeof revenueInputs;
 
+export function clampInput(key: InputKey, value: number): number {
+  const spec = revenueInputs[key];
+  if (!Number.isFinite(value)) return spec.default;
+  const stepped = Math.round(value / spec.step) * spec.step;
+  return Math.min(spec.max, Math.max(spec.min, stepped));
+}
+
+export function parseInput(key: InputKey, raw: string): number {
+  const digits = raw.replace(/\D/g, "");
+  return clampInput(key, digits === "" ? NaN : Number(digits));
+}
+
 export function revenue({ patients, fee }: RevenueInputs): { monthly: number; annual: number } {
   const monthly = patients * fee;
   return { monthly, annual: monthly * 12 };
