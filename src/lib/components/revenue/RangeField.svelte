@@ -41,7 +41,7 @@
 		{onfocus}
 		{oninput}
 		onblur={commit}
-		onkeydown={(event) => event.key === "Enter" && commit()}
+		onkeydown={(event) => event.key === "Enter" && event.currentTarget.blur()}
 	/>
 	<label for={id} class="mt-[22px] block text-[15px] font-medium leading-snug">{spec.label}</label>
 	<input
