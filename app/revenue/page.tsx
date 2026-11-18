@@ -147,7 +147,7 @@ function Blocks({
           {top === "stat" && (
             <p className="font-display text-4xl font-medium leading-none tracking-[-0.025em]">{block.top}</p>
           )}
-          {top === "label" && <p className={`${type.label} text-accent-deep`}>{block.top}</p>}
+          {top === "label" && <p className={`${type.label} text-ember-deep`}>{block.top}</p>}
           <h3 className={`text-[15px] font-medium leading-snug ${top ? "mt-10" : ""}`}>{block.title}</h3>
           <p className="mt-1 text-[15px] leading-[1.5]">{block.text}</p>
         </li>

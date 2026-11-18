@@ -1,5 +1,40 @@
 @import "tailwindcss";
+@import "@heroui/styles";
 @source "../src/lib";
+
+:root {
+  /* HeroUI's base layer sets this to none, which would drop the root cross-fade ExpandableMedia relies on. */
+  view-transition-name: root;
+
+  --background: var(--color-white);
+  --foreground: var(--color-black);
+  --surface: var(--color-white);
+  --surface-secondary: var(--color-paper);
+  --surface-tertiary: var(--color-panel);
+  --overlay: var(--color-white);
+  --muted: var(--color-slate);
+
+  --accent: var(--color-mist);
+  --accent-foreground: var(--color-black);
+  --default: var(--color-panel);
+  --default-foreground: var(--color-black);
+
+  --focus: var(--color-ink);
+  --link: var(--color-black);
+  --border: rgb(12 14 50 / 0.2);
+  --separator: rgb(12 14 50 / 0.1);
+
+  /* Darker than HeroUI's red so 13px error text keeps AA contrast on white. */
+  --danger: oklch(0.52 0.2 26);
+
+  --field-background: var(--color-white);
+  --field-foreground: var(--color-black);
+  --field-placeholder: var(--color-slate);
+  --field-border: var(--color-black);
+  --field-border-width: 1px;
+  --field-radius: 6px;
+  --field-shadow: none;
+}
 
 @theme {
   --color-mist: #dcebf4;
@@ -8,10 +43,10 @@
   --color-ink: #0c0e32;
   --color-slate: #303856;
   --color-on-ink: #dce9ef;
-  --color-accent: #ea652b;
-  --color-accent-text: #d55823;
-  --color-accent-deep: #c9521e;
-  --color-accent-soft: #f28a59;
+  --color-ember: #ea652b;
+  --color-ember-text: #d55823;
+  --color-ember-deep: #c9521e;
+  --color-ember-soft: #f28a59;
   --animate-rippling: rippling 600ms ease-out;
   --animate-rotate-in: rotate-in 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-rotate-out: rotate-out 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -39,7 +74,7 @@
   }
 }
 
-@keyframes shimmer {
+@keyframes text-shimmer {
   to {
     background-position: 0 0;
   }
@@ -166,17 +201,17 @@
   .shimmer {
     background-image: linear-gradient(
       100deg,
-      var(--color-accent) 0%,
-      var(--color-accent) 38%,
+      var(--color-ember) 0%,
+      var(--color-ember) 38%,
       #ffd9c4 50%,
-      var(--color-accent) 62%,
-      var(--color-accent) 100%
+      var(--color-ember) 62%,
+      var(--color-ember) 100%
     );
     background-size: 260% 100%;
     background-position: 100% 0;
     background-clip: text;
     color: transparent;
-    animation: shimmer 1.8s 0.6s var(--ease-out-soft) forwards;
+    animation: text-shimmer 1.8s 0.6s var(--ease-out-soft) forwards;
   }
 }
 

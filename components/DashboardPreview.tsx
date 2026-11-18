@@ -7,7 +7,7 @@ const sessionChip: Record<SessionStatus, { label: string; className: string }> =
   inProgress: { label: "In progress", className: "border-transparent bg-mist" },
   notStarted: { label: "Not started", className: "border-ink/20" },
   complete: { label: "Complete", className: "border-transparent bg-ink/10" },
-  overdue: { label: "Overdue", className: "border-accent" },
+  overdue: { label: "Overdue", className: "border-ember" },
 };
 
 type RailItem = { icon: IconName; label: string; count?: number; active?: boolean };
@@ -92,7 +92,7 @@ const lockupSmall = { tileClassName: "size-6 rounded-md", wordmarkClassName: "h-
 function RailRow({ icon, label, count, active }: RailItem) {
   return (
     <div className={`flex h-7 items-center gap-2 rounded-md px-2 ${active ? "bg-white font-medium" : ""}`}>
-      <Icon name={icon} className={`size-3.5 ${active ? "text-accent" : ""}`} />
+      <Icon name={icon} className={`size-3.5 ${active ? "text-ember" : ""}`} />
       <span className="flex-1">{label}</span>
       {count !== undefined && <span className="tabular-nums">{count}</span>}
     </div>
@@ -208,7 +208,7 @@ function Videos() {
               <p className="truncate">{detail}</p>
             </div>
             <p className="ml-auto flex shrink-0 items-center gap-1.5 text-[10.5px]">
-              {flagged && <span className="size-1.5 rounded-full bg-accent" />}
+              {flagged && <span className="size-1.5 rounded-full bg-ember" />}
               {meta}
             </p>
           </div>
@@ -223,7 +223,7 @@ function Sessions() {
     <div>
       <div className="flex items-center justify-between">
         <p className={heading}>Sessions</p>
-        <span className="rounded border border-transparent bg-accent px-2 py-0.5 text-[11px] font-medium text-black">
+        <span className="rounded border border-transparent bg-ember px-2 py-0.5 text-[11px] font-medium text-black">
           New session
         </span>
       </div>

@@ -12,6 +12,8 @@
     "check:svelte": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
+    "@heroui/react": "3.2.7",
+    "@heroui/styles": "3.2.7",
     "motion-sv": "0.1.13",
     "next": "16.4.5",
     "react": "19.3.0",
