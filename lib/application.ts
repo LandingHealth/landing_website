@@ -32,7 +32,7 @@ export const applicationFields: ReadonlyArray<{
   },
 ];
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function parseApplication(form: FormData): { values: Application; error?: string } {
   const values: Application = { ...emptyApplication };

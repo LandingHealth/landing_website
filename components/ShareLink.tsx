@@ -24,7 +24,7 @@ export default function ShareLink() {
     <button
       type="button"
       onClick={copy}
-      className="inline-flex items-center gap-2 rounded-sm text-[15px] text-accent-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+      className="inline-flex items-center gap-2 rounded-sm text-[15px] text-ember-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
     >
       <span aria-live="polite">{copied ? "Link copied" : "Share this page"}</span>
       <Icon name="link" className="size-4" />

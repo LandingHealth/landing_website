@@ -95,6 +95,7 @@ const icons = {
   ),
   chevronLeft: <path d="m15 18-6-6 6-6" />,
   plus: <path d="M12 5v14M5 12h14" />,
+  menu: <path d="M4 6h16M4 12h16M4 18h16" />,
   link: (
     <>
       <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />

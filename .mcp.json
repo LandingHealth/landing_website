@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "vantaui": {
+      "type": "http",
+      "url": "https://www.vantaui.com/api/mcp"
+    }
+  }
+}

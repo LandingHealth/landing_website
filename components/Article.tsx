@@ -22,11 +22,11 @@ const slug = (heading: string) =>
 export function Note({ children }: { children: ReactNode }) {
   return (
     <span className="group">
-      <label className="-mr-1 -my-2 inline-block cursor-pointer py-2 pl-px pr-2 align-super text-[11px] leading-none text-accent-text [counter-increment:note] after:content-[counter(note)] xl:pointer-events-none xl:m-0 xl:p-0 xl:pl-px">
+      <label className="-mr-1 -my-2 inline-block cursor-pointer py-2 pl-px pr-2 align-super text-[11px] leading-none text-ember-text [counter-increment:note] after:content-[counter(note)] xl:pointer-events-none xl:m-0 xl:p-0 xl:pl-px">
         <input type="checkbox" className="sr-only xl:hidden" />
         <span className="sr-only">Note </span>
       </label>
-      <span className="my-2 hidden text-[13px] leading-[1.55] [&_a]:rounded-sm [&_a]:underline [&_a]:underline-offset-2 [&_a]:focus-visible:outline-2 [&_a]:focus-visible:outline-offset-2 [&_a]:focus-visible:outline-ink before:mr-1 before:text-accent-text before:content-[counter(note)] group-has-checked:block xl:float-right xl:clear-right xl:-mr-[17rem] xl:my-0 xl:mb-3 xl:block xl:w-56">
+      <span className="my-2 hidden text-[13px] leading-[1.55] [&_a]:rounded-sm [&_a]:underline [&_a]:underline-offset-2 [&_a]:focus-visible:outline-2 [&_a]:focus-visible:outline-offset-2 [&_a]:focus-visible:outline-ink before:mr-1 before:text-ember-text before:content-[counter(note)] group-has-checked:block xl:float-right xl:clear-right xl:-mr-[17rem] xl:my-0 xl:mb-3 xl:block xl:w-56">
         {children}
       </span>
     </span>

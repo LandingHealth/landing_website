@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Icon from "@/components/Icon";
 import LoopVideo from "@/components/LoopVideo";
+import StoryAccordion from "@/components/StoryAccordion";
 import TileRow, { type Tiles } from "@/components/TileRow";
 import { container, edgePad, type } from "@/lib/site";
 
@@ -75,21 +75,7 @@ export default function AboutPage() {
           <div className="lg:sticky lg:top-24 lg:self-start">
             <p className="text-[15px]">Our story</p>
             <h2 className={`${type.h2} mt-4 max-w-xl`}>We built Landing after our own recoveries.</h2>
-            <div className="mt-12 max-w-xl border-t border-black lg:mt-20">
-              {story.map(({ title, paragraphs }, i) => (
-                <details key={title} name="story" open={i === 0} className="group border-black/15 not-last:border-b">
-                  <summary className="flex cursor-pointer list-none items-center justify-between py-6 text-xl font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink [&::-webkit-details-marker]:hidden">
-                    {title}
-                    <Icon name="plus" className="size-5 group-open:rotate-45" />
-                  </summary>
-                  <div className="max-w-lg space-y-4 pb-8 text-[15px] leading-[1.6]">
-                    {paragraphs.map((text) => (
-                      <p key={text}>{text}</p>
-                    ))}
-                  </div>
-                </details>
-              ))}
-            </div>
+            <StoryAccordion items={story} />
           </div>
           <LoopVideo
             src="/about/clinic-visit.mp4"
