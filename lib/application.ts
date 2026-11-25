@@ -18,7 +18,7 @@ export const applicationFields: ReadonlyArray<{
   {
     name: "interest",
     label: "What interests you about joining Landing Health?",
-    hint: "Just 1–2 sentences. We’d love to hear what caught your attention.",
+    hint: "Name the role you’re applying for, then 1–2 sentences on what caught your attention.",
     kind: "textarea",
     max: 2000,
     rows: 4,

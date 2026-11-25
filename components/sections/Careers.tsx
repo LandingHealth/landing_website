@@ -1,89 +1,60 @@
 import ApplicationForm from "@/components/ApplicationForm";
-import { button, buttonSize, container, edgePad, type } from "@/lib/site";
+import { container, type } from "@/lib/site";
 
-type Role = { title: string; department: string; employment: string; location: string };
-
-const roleColumns: ReadonlyArray<{ key: keyof Role; label: string }> = [
-  { key: "title", label: "Title" },
-  { key: "department", label: "Department" },
-  { key: "employment", label: "Employment type" },
-  { key: "location", label: "Location type" },
-];
+type Role = { title: string; department: string; employment: "Full-time" | "Internship"; location: "Remote" };
 
 const roles: ReadonlyArray<Role> = [
-  {
-    title: "Computer Vision Research Assistant",
-    department: "Research",
-    employment: "Internship",
-    location: "Remote",
-  },
-  {
-    title: "Hardware Engineering Intern",
-    department: "Engineering",
-    employment: "Internship",
-    location: "Remote",
-  },
+  { title: "Founding Operations Lead", department: "Operations", employment: "Full-time", location: "Remote" },
+  { title: "Founding Account Executive", department: "Sales", employment: "Full-time", location: "Remote" },
+  { title: "Founding Electrical Engineering Intern", department: "Engineering", employment: "Internship", location: "Remote" },
+  { title: "Hardware Engineering Intern", department: "Engineering", employment: "Internship", location: "Remote" },
+  { title: "Computer Vision Research Assistant", department: "Research", employment: "Internship", location: "Remote" },
 ];
-
-const [titleColumn, ...detailColumns] = roleColumns;
 
 export default function CareersSection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
   return (
     <section id="careers" className="scroll-mt-16 pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
       <div className={`${container} flex flex-col items-center text-center`}>
         <Heading className={`${type.h1} max-w-4xl`}>Careers</Heading>
+        <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
+          We’re a small team building the between-visit layer for physical therapy. Every role is remote.
+        </p>
       </div>
-      <div className="mt-14 sm:mt-16">
-        <div className={`grid gap-x-3 gap-y-8 ${edgePad} lg:grid-cols-2`}>
-          <h2 className={`${type.h2} max-w-xl`}>Open roles</h2>
-          <div className="max-w-xl space-y-5 text-[15px] leading-[1.6]">
-            <p>We’re hiring interns in research and engineering. Both roles are remote.</p>
-            <a href="#apply" className={`${button.secondary} ${buttonSize.md}`}>
-              Apply for an internship
-            </a>
-          </div>
+      <div className={`${container} mt-14 sm:mt-16`}>
+        <div className="mx-auto max-w-4xl">
+          <h2 className={type.label}>Open roles</h2>
+          <ul className="mt-4 border-t border-ink/15">
+            {roles.map(({ title, department, employment, location }) => (
+              <li
+                key={title}
+                className="flex flex-col gap-1 border-b border-ink/15 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+              >
+                <div>
+                  <p className="text-[17px] font-medium leading-snug">{title}</p>
+                  <p className="mt-1 text-[15px]">
+                    {department} · {employment} · {location}
+                  </p>
+                </div>
+                <a
+                  href="#apply"
+                  className="mt-2 shrink-0 self-start text-sm font-medium underline decoration-ink/30 underline-offset-4 hover:decoration-ink sm:mt-0 sm:self-center"
+                >
+                  Apply
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className={`mt-10 sm:mt-14 ${edgePad}`}>
-          <table className="w-full">
-            <caption className="sr-only">Open roles</caption>
-            <thead className="hidden sm:table-header-group">
-              <tr className="border-b border-ink/15">
-                {roleColumns.map(({ key, label }) => (
-                  <th key={key} scope="col" className="pb-3 text-left text-sm font-normal sm:w-1/4">
-                    {label}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {roles.map((role) => (
-                <tr key={role.title} className="border-b border-ink/15 align-top">
-                  <th scope="row" className="py-6 pr-4 text-left text-[15px] font-normal">
-                    {role[titleColumn.key]}
-                    <span className="mt-1 block sm:hidden">
-                      {detailColumns.map(({ key }) => role[key]).join(" · ")}
-                    </span>
-                  </th>
-                  {detailColumns.map(({ key }) => (
-                    <td key={key} className="hidden py-6 pr-4 text-[15px] sm:table-cell">
-                      {role[key]}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div id="apply" className={`mt-16 grid scroll-mt-24 gap-x-3 gap-y-8 ${edgePad} sm:mt-20 lg:grid-cols-2`}>
-          <div className="max-w-xl">
-            <h3 className={type.h3}>Apply for an internship</h3>
+      </div>
+      <div id="apply" className={`${container} mt-20 scroll-mt-24 sm:mt-24`}>
+        <div className="mx-auto grid max-w-4xl gap-x-12 gap-y-8 lg:grid-cols-[2fr_3fr]">
+          <div>
+            <h2 className={type.h2}>Apply</h2>
             <p className="mt-4 text-[15px] leading-[1.6]">
-              No experience or technical skills required. We’re looking for curious, reliable people willing to learn!
+              Tell us which role you’re applying for in your first answer. We read every application and reply by email.
             </p>
           </div>
-          <div className="max-w-xl">
-            <ApplicationForm />
-          </div>
+          <ApplicationForm />
         </div>
       </div>
     </section>
