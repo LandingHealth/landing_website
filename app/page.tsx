@@ -6,7 +6,7 @@ import Marquee from "@/components/Marquee";
 import TileRow, { type Tiles } from "@/components/TileRow";
 import type { CSSProperties } from "react";
 import { safesock } from "@/lib/safesock";
-import { container, demoHref, edgePad, sectionPad, type } from "@/lib/site";
+import { container, demo, demoHref, edgePad, sectionPad, type } from "@/lib/site";
 
 const workspace: Tiles = [
   {
@@ -181,9 +181,9 @@ export default function Home() {
         <div className={`${container} flex flex-col items-center text-center`}>
           <h2 {...rise(0)} className={`${type.h2} max-w-3xl`}>See how Landing fits your clinic.</h2>
           <p {...rise(1)} className={`${type.lead} mt-5 max-w-[36rem] text-pretty`}>
-            Book a demo with our team. We’ll walk through the workspace with sample patients and answer
-            questions about your setup.
+            {demo.sees}
           </p>
+          <p {...rise(1)} className="mt-3 max-w-[36rem] text-[15px] leading-[1.6] text-pretty">{demo.prep}</p>
           <div {...rise(2)} className="mt-10 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
             <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
           </div>

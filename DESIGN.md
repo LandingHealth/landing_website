@@ -122,8 +122,7 @@ The user approved each animation below. Keep its timing, easing, and trigger exa
 | Network feed rows | Security | `components/NetworkFeed.tsx` |
 | Loading dots | Sign-in style indicators | `components/LoadingDots.tsx` |
 | Media expand | Click a tile video or image | `components/ExpandableMedia.tsx`, React `ViewTransition` |
-| Looping product videos | Tiles | `components/LoopVideo.tsx` |
-| Accordion open and close | About, Our story | `components/StoryAccordion.tsx`, HeroUI `Accordion` |
+| Looping product videos | Tiles | `components/ExpandableMedia.tsx` |
 | Press scale | HeroUI buttons | HeroUI default |
 
 Rules for new motion:

@@ -1,10 +1,9 @@
 import EncryptionLock from "@/components/EncryptionLock";
-import Icon, { type IconName } from "@/components/Icon";
 import IngestionToAws from "@/components/IngestionToAws";
 import LoadingDots from "@/components/LoadingDots";
 import NetworkFeed from "@/components/NetworkFeed";
 import TileRow, { type Tiles } from "@/components/TileRow";
-import { container, edgePad, type } from "@/lib/site";
+import { container, type } from "@/lib/site";
 
 const safeguards: Tiles = [
   {
@@ -23,38 +22,57 @@ const safeguards: Tiles = [
     art: <LoadingDots />,
   },
   {
-    title: "Ingestion",
+    title: "Private file storage",
     text: "Landing stores all patient documents, videos, and records on Amazon Web Services. Storage is encrypted, keeps earlier versions of each file for 30 days, and is closed to public access.",
     art: <IngestionToAws video={{ src: "/security/ingestion.mp4", poster: "/security/ingestion.jpg" }} />,
   },
 ];
 
-const overview = [
-  "Landing is built for the information physical therapy clinics handle every day. That includes patient records, documents, and the home exercise videos patients record between visits.",
-  "Therapists need a patient’s full history at every visit. Patients need to know that the videos they record at home stay private. Landing keeps that information encrypted, backed up, and stored in the United States.",
-  "We keep adding protections as more clinics trust Landing with their patients’ information.",
-] as const;
-
-const standards: ReadonlyArray<{ title: string; text: string; icon: IconName }> = [
+const questions: ReadonlyArray<{ question: string; answer: ReadonlyArray<string> }> = [
   {
-    title: "Business Associate Agreement",
-    icon: "fileCheck",
-    text: "Landing has a Business Associate Agreement with AWS. It covers every Landing account and requires that patient health information stay encrypted in storage and in transit.",
+    question: "Where are records and videos stored?",
+    answer: [
+      "On Amazon Web Services, in one region, US East in Northern Virginia. Patient records, documents, and home exercise videos are encrypted in storage, and backups stay in the same region.",
+    ],
   },
   {
-    title: "Audit logs",
-    icon: "scrollText",
-    text: "AWS CloudTrail records every upload, download, and deletion of a patient document. Landing keeps these logs for one year, and CloudTrail can show whether anyone changed a log after it was written.",
+    question: "Who can access them?",
+    answer: [
+      "Clinic staff join by invitation only, and every sign-in goes through Amazon Cognito. Passwords need at least 12 characters, and two-step verification is available.",
+      "The database sits in a private network with no route to or from the internet. Only Landing’s own services can reach it.",
+    ],
   },
   {
-    title: "Threat detection",
-    icon: "shieldCheck",
-    text: "Amazon GuardDuty watches Landing’s AWS account for suspicious activity and scans every uploaded patient document for malware. Download links stay blocked until the scan comes back clean.",
+    question: "How do clinic permissions work?",
+    answer: [
+      "Landing adds your clinic and invites each PT by email. Patients are added by their PT and sign up with the email on their record.",
+    ],
   },
   {
-    title: "U.S. data storage",
-    icon: "mapPin",
-    text: "Landing stores patient records, documents, and videos in one AWS region, US East in Northern Virginia. Backups stay in the same region.",
+    question: "What happens after a file is uploaded?",
+    answer: [
+      "The file goes to private, encrypted storage. Amazon GuardDuty scans every uploaded patient document for malware, and download links stay blocked until the scan comes back clean.",
+      "AWS CloudTrail records every upload, download, and deletion of a patient document. Landing keeps these logs for one year, and CloudTrail can show whether anyone changed a log after it was written.",
+    ],
+  },
+  {
+    question: "How long are files kept, and how does deletion work?",
+    answer: [
+      "Storage keeps earlier versions of each file for 30 days, and database backups keep seven days of history. Every deletion of a patient document is logged, and deletion protection keeps the database from being removed by mistake.",
+    ],
+  },
+  {
+    question: "What agreements are in place?",
+    answer: [
+      "Landing has a Business Associate Agreement with AWS. It covers Landing’s own AWS account and requires that patient health information stay encrypted in storage and in transit. It is an agreement between Landing and AWS, not between AWS and your clinic.",
+      "For the agreement Landing signs with your clinic, ask us during your security review.",
+    ],
+  },
+  {
+    question: "Who handles security reviews?",
+    answer: [
+      "Our founders handle security questionnaires and reviews directly. Email us from the Contact link at the bottom of this page.",
+    ],
   },
 ];
 
@@ -70,25 +88,21 @@ export default function SecuritySection({ heading: Heading = "h1" }: { heading?:
         </p>
       </div>
       <TileRow tiles={safeguards} className="mt-14 sm:mt-16" />
-      <div className={`mt-20 grid gap-x-3 gap-y-8 ${edgePad} sm:mt-24 lg:grid-cols-2`}>
-        <h2 className={`${type.h2} max-w-xl`}>For sensitive patient data, in and out of the clinic</h2>
-        <div className="max-w-xl space-y-5 text-[15px] leading-[1.6]">
-          {overview.map((text) => (
-            <p key={text}>{text}</p>
-          ))}
-        </div>
-      </div>
-      <ul className={`mt-16 grid gap-3 ${edgePad} sm:mt-20 sm:grid-cols-2 lg:grid-cols-4`}>
-        {standards.map(({ title, text, icon }) => (
-          <li key={title} className="rounded-xl bg-paper p-5 sm:p-6">
-            <div className="flex size-14 items-center justify-center rounded-lg bg-ink text-white">
-              <Icon name={icon} className="size-7" />
+      <div className={`${container} mt-20 sm:mt-24`}>
+        <h2 className={`${type.h2} max-w-3xl`}>What clinics ask us</h2>
+        <dl className="mt-10 border-t border-ink">
+          {questions.map(({ question, answer }) => (
+            <div key={question} className="grid gap-3 border-b border-ink/10 py-6 lg:grid-cols-12 lg:gap-12">
+              <dt className="text-[17px] font-medium leading-snug lg:col-span-5">{question}</dt>
+              <dd className="space-y-3 text-[15px] leading-[1.65] lg:col-span-7">
+                {answer.map((text) => (
+                  <p key={text}>{text}</p>
+                ))}
+              </dd>
             </div>
-            <h3 className="mt-10 text-[15px] font-medium leading-snug">{title}</h3>
-            <p className="mt-1 text-[15px] leading-[1.5]">{text}</p>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </dl>
+      </div>
     </section>
   );
 }

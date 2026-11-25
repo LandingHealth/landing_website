@@ -7,6 +7,13 @@ export const navigation: ReadonlyArray<{ label: string; href: string }> = [
 ];
 
 export const demoHref = "https://calendly.com/rajnpatel05/landing-health-intro-meeting";
+export const flyerHref = "/landing-clinic-flyer.pdf";
+
+export const demo = {
+  sees: "We walk through the workspace with a sample patient, from a home exercise video to the next appointment brief, and answer questions about your clinic’s setup.",
+  prep: "No preparation needed. If you can, bring a rough count of your weekly visits and the EHR you use.",
+} as const;
+
 export const linkedinHref = "https://www.linkedin.com/company/landinghealth/posts/?feedView=all";
 
 export const footerLinks: ReadonlyArray<{ label: string; href: string }> = [
