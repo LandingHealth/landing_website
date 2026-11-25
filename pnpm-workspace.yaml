@@ -1,3 +1,4 @@
 allowBuilds:
+  core-js: false
   svelte-preprocess: false
   unrs-resolver: true
