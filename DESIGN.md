@@ -63,7 +63,7 @@ HeroUI owns the names `accent`, `accent-soft`, and `accent-hover`. The orange fa
 
 ## Typography
 
-HeroUI components inherit the site fonts. Body text is Geist (`font-sans`). Headings are Roboto Serif (`font-display`) at weight 320 and 110% width, with its optical size axis on.
+HeroUI components inherit the site fonts. Body text is Geist (`font-sans`). Headings are Roboto Serif (`font-display`) at weight 380 and 110% width, with its optical size axis on.
 
 Take every heading, lead, body, and label size from the `type` table in `lib/site.ts`. Do not write a new font size on a page.
 
@@ -122,7 +122,6 @@ The user approved each animation below. Keep its timing, easing, and trigger exa
 | Network feed rows | Security | `components/NetworkFeed.tsx` |
 | Loading dots | Sign-in style indicators | `components/LoadingDots.tsx` |
 | Media expand | Click a tile video or image | `components/ExpandableMedia.tsx`, React `ViewTransition` |
-| LinkedIn button morph | Header | `components/Header.tsx` |
 | Looping product videos | Tiles | `components/LoopVideo.tsx` |
 | Accordion open and close | About, Our story | `components/StoryAccordion.tsx`, HeroUI `Accordion` |
 | Press scale | HeroUI buttons | HeroUI default |
