@@ -18,8 +18,8 @@ This file is the visual contract for the Landing Health marketing site. It start
 - The page is solid white, including the header and the footer. Do not add gradients, background images, or background video.
 - All text is black. That includes navigation, labels, hints, and button labels. Do not use gray text to lower emphasis. Use size, weight, and spacing.
 - Light blue `mist` marks small things: the primary button, the logo tile, chips in the dashboard preview. It never fills a section.
-- Orange `ember` is a highlight for one word or one mark, such as the italic word in the hero. It is never a button color.
-- Navy `ink` draws focus outlines, thin rules, and small decorative details.
+- Orange `ember` is a highlight for one small mark, such as a card label. It is never a button color. The italic word in the hero is black, with a gray shimmer sweep.
+- The site is black and white. Black `ink` draws focus outlines, thin rules, and dark cards. Cards use the neutral `paper` fill, and video frames are black while the video loads.
 - The site has one mode. Do not add dark mode, a `.dark` class, `data-theme="dark"`, or a `prefers-color-scheme` rule.
 - Build from HeroUI components before you write a custom control. Style them with the tokens below.
 
@@ -31,12 +31,12 @@ Use the semantic HeroUI utilities for anything built from HeroUI components. Use
 | --- | --- | --- | --- | --- |
 | Canvas | `bg-background text-foreground` | `--background`, `--foreground` | white, black | Page background and all text |
 | Surface | `bg-surface` | `--surface` | white | Cards and accordions |
-| Secondary surface | `bg-surface-secondary` | `--surface-secondary` | `#f7fbfd` (paper) | A quiet nested region |
-| Tertiary surface | `bg-surface-tertiary` | `--surface-tertiary` | `#eaf3f8` (panel) | A stronger nested region |
+| Secondary surface | `bg-surface-secondary` | `--surface-secondary` | `#f5f5f5` (paper) | A quiet nested region |
+| Tertiary surface | `bg-surface-tertiary` | `--surface-tertiary` | `#ebebeb` (panel) | A stronger nested region |
 | Overlay | `bg-overlay` | `--overlay` | white | Menus, popovers, dialogs |
 | Accent | `bg-accent text-accent-foreground` | `--accent`, `--accent-foreground` | `#dcebf4` (mist), black | The primary action |
-| Neutral action | `bg-default text-default-foreground` | `--default`, `--default-foreground` | `#eaf3f8`, black | Neutral controls and selected states |
-| Focus | `outline-focus`, `ring-focus` | `--focus` | `#0c0e32` (ink) | Focus outline on every control |
+| Neutral action | `bg-default text-default-foreground` | `--default`, `--default-foreground` | `#ebebeb`, black | Neutral controls and selected states |
+| Focus | `outline-focus`, `ring-focus` | `--focus` | `#000000` (ink) | Focus outline on every control |
 | Field | `bg-field text-field-foreground` | `--field-background`, `--field-foreground`, `--field-border` | white, black, black 1px border | Inputs and text areas |
 | Border | `border-border` | `--border` | ink at 20% | Component edges |
 | Separator | `border-separator` | `--separator` | ink at 10% | Rules between rows and sections |
@@ -49,11 +49,11 @@ The Landing palette sits beside the semantic tokens as plain Tailwind colors.
 | Utility stem | Value | Use |
 | --- | --- | --- |
 | `mist` | `#dcebf4` | Small light blue fills |
-| `paper` | `#f7fbfd` | Near-white panels |
-| `panel` | `#eaf3f8` | Diagram panels |
-| `ink` | `#0c0e32` | Rules, outlines, the navy band |
-| `slate` | `#303856` | Body text inside the dashboard preview only |
-| `on-ink` | `#dce9ef` | Text on an ink background |
+| `paper` | `#f5f5f5` | Neutral card and diagram fills |
+| `panel` | `#ebebeb` | Diagram panels |
+| `ink` | `#000000` | Rules, outlines, dark cards |
+| `slate` | `#404040` | Body text inside the dashboard preview only |
+| `on-ink` | `#f5f5f5` | Text on an ink background |
 | `ember` | `#ea652b` | The orange highlight |
 | `ember-text` | `#d55823` | Orange text that must pass contrast on white |
 | `ember-deep` | `#c9521e` | Pressed or darker orange |

@@ -7,7 +7,7 @@
 	let fee = $state<number>(revenueInputs.fee.default);
 
 	const result = $derived(revenue({ patients, fee }));
-	const cardClass = "rounded-xl bg-mist p-5 sm:p-6";
+	const cardClass = "rounded-xl bg-paper p-5 sm:p-6";
 	const bigNumber = "font-display text-4xl font-medium leading-none tracking-[-0.025em]";
 </script>
 

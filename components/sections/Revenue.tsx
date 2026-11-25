@@ -136,7 +136,7 @@ function Blocks({
       {blocks.map((block) => (
         <li
           key={block.title}
-          className={`rounded-xl p-5 sm:p-6 ${block.ink ? "bg-ink text-white" : "bg-mist"}`}
+          className={`rounded-xl p-5 sm:p-6 ${block.ink ? "bg-ink text-white" : "bg-paper"}`}
         >
           {top === "stat" && (
             <p className="font-display text-4xl font-medium leading-none tracking-[-0.025em]">{block.top}</p>
