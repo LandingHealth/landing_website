@@ -43,8 +43,8 @@ const alsoInLanding = [
   {
     title: "Scheduling",
     text: "Set your availability around demand, let patients book online sessions, and keep reminders and follow-ups on track.",
-    href: "/schedule",
-    link: "Read about scheduling",
+    href: demoHref,
+    link: "See scheduling in a demo",
   },
   {
     title: "Home exercise guides",

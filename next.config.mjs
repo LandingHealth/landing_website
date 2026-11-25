@@ -9,6 +9,7 @@ const nextConfig = {
     return [
       { source: "/apply", destination: "/careers#apply", permanent: false },
       { source: "/team", destination: "/careers", permanent: true },
+      { source: "/schedule", destination: "https://calendly.com/rajnpatel05/landing-health-intro-meeting", permanent: false },
     ];
   },
   webpack(config) {
