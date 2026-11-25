@@ -31,9 +31,9 @@ export const edgePad = "px-6 lg:px-4";
 export const sectionPad = "py-24 sm:py-28 lg:py-32";
 
 export const type = {
-  h1: "font-display text-[clamp(3rem,6.4vw,5.25rem)] font-normal leading-[1.02] tracking-[-0.012em] text-balance",
-  h2: "font-display text-[clamp(2.375rem,4vw,3.25rem)] font-normal leading-[1.06] tracking-[-0.01em] text-balance",
-  h3: "font-display text-[1.75rem] font-normal leading-[1.1] tracking-[-0.005em]",
+  h1: "font-display text-[clamp(2.75rem,5.6vw,4.5rem)] font-[350] leading-[1.05] tracking-[-0.02em] text-balance",
+  h2: "font-display text-[clamp(2.125rem,3.6vw,3rem)] font-[350] leading-[1.08] tracking-[-0.015em] text-balance",
+  h3: "font-display text-[1.625rem] font-[350] leading-[1.15] tracking-[-0.01em]",
   body: "max-w-prose text-[15px] leading-[1.65] text-slate",
   bodyOnInk: "max-w-prose text-[15px] leading-[1.65] text-on-ink",
   lead: "text-base leading-[1.6] sm:text-[17px]",

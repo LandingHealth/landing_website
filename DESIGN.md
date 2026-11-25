@@ -63,7 +63,7 @@ HeroUI owns the names `accent`, `accent-soft`, and `accent-hover`. The orange fa
 
 ## Typography
 
-HeroUI components inherit the site fonts. Body text is Geist (`font-sans`). Headings are Instrument Serif (`font-display`) at weight 400.
+HeroUI components inherit the site fonts. Body text is Geist (`font-sans`). Headings are Newsreader (`font-display`) at weight 350, with its optical size axis on.
 
 Take every heading, lead, body, and label size from the `type` table in `lib/site.ts`. Do not write a new font size on a page.
 
