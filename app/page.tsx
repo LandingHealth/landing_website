@@ -55,8 +55,38 @@ const alsoInLanding = [
   {
     title: "SafeSock",
     text: "A sensor sleeve we’re designing to sit inside a boot, cast, or brace and show how a patient bears weight between visits.",
-    href: "/devices",
+    href: "#devices",
     link: "Meet SafeSock",
+  },
+];
+
+const timescales: Tiles = [
+  {
+    title: "Physics",
+    text: "The fast one is mechanics. Each step of gait brings ground reaction forces and moments, joint angles, and vertical load. Physics already models it well. All three of our founding engineers studied at the top-ranked biomedical engineering school on the planet. Two of them helped train a dual-path, attention-guided deep learning model to predict gait cycle data.",
+    image: {
+      src: "/devices/mechanics-plate.jpg",
+      alt: "An 1816 engraving of the mechanical powers, with screws, presses, pulleys, and force diagrams",
+      width: 1600,
+      height: 2123,
+      focus: "50% 46%",
+    },
+  },
+  {
+    title: "Biology",
+    text: "The slow one is biology: healing, remodeling, and strength gain. Nobody models it well, because nobody has measured it. Our team includes a Penn ELITE Fellow, one of four fellows the University of Pennsylvania’s health-tech fellowship chose this year.",
+    image: {
+      src: "/devices/vitruvian-man.jpg",
+      alt: "Leonardo da Vinci’s Vitruvian Man, a figure with outstretched arms and legs inside a circle and a square",
+      width: 1600,
+      height: 2234,
+      focus: "50% 30%",
+    },
+  },
+  {
+    title: "SafeSock",
+    text: "A sensor sleeve we’re designing to measure load with every step, across the weeks of healing. Our engineers bring the gait modeling, and our fellow brings the training to move a health device from the lab, to patients, to the frontier.",
+    video: { src: "/safesock-demo.mp4", poster: "/safesock-demo-poster.jpg" },
   },
 ];
 
@@ -174,6 +204,16 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section id="devices" data-reveal="line" className={`${section} scroll-mt-24`}>
+        <div className={`${container} flex flex-col items-center text-center`}>
+          <h2 {...rise(0)} className={`${type.h2} max-w-3xl`}>Two timescales. One recovery.</h2>
+          <p {...rise(1)} className={`${type.lead} mt-5 max-w-[36rem] text-pretty`}>
+            Movement changes with every step. Healing unfolds over weeks. SafeSock measures the mechanics to help connect the two.
+          </p>
+        </div>
+        <TileRow tiles={timescales} className="mt-14 sm:mt-16" />
       </section>
 
       <section data-reveal="line" className={section}>
