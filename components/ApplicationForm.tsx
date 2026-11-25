@@ -2,7 +2,7 @@
 
 import { Button, Description, FieldError, Form, Input, Label, Spinner, TextArea, TextField } from "@heroui/react";
 import { useActionState } from "react";
-import { apply } from "@/app/team/actions";
+import { apply } from "@/app/careers/actions";
 import { applicationFields, emailPattern, emptyApplication, type ApplyState } from "@/lib/application";
 
 const initialState: ApplyState = { status: "editing", values: emptyApplication };

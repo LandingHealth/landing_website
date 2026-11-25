@@ -6,7 +6,10 @@ const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig = {
   redirects() {
-    return [{ source: "/apply", destination: "/team#apply", permanent: false }];
+    return [
+      { source: "/apply", destination: "/careers#apply", permanent: false },
+      { source: "/team", destination: "/careers", permanent: true },
+    ];
   },
   webpack(config) {
     config.module.rules.push({
