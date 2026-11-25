@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Newsreader } from "next/font/google";
+import { Geist, Roboto_Serif } from "next/font/google";
 import Header from "@/components/Header";
 import Reveal from "@/components/Reveal";
 import { container, type } from "@/lib/site";
@@ -10,11 +10,11 @@ const geist = Geist({
   variable: "--font-geist",
   display: "swap",
 });
-const newsreader = Newsreader({
+const robotoSerif = Roboto_Serif({
   subsets: ["latin"],
   style: ["normal", "italic"],
-  axes: ["opsz"],
-  variable: "--font-newsreader",
+  axes: ["opsz", "wdth"],
+  variable: "--font-roboto-serif",
   display: "swap",
 });
 
@@ -29,7 +29,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${geist.variable} ${newsreader.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${geist.variable} ${robotoSerif.variable}`}>
       <body className="bg-white font-sans text-black antialiased">
         <Reveal />
         <Header />
