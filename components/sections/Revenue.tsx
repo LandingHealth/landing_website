@@ -1,9 +1,9 @@
-import RevenueCalculator from "@/components/RevenueCalculator";
+import RevenueCalculator, { type CalculatorKind } from "@/components/RevenueCalculator";
 import { container, edgePad, type } from "@/lib/site";
 
-type Block = { title: string; text: string; top?: string; ink?: boolean };
+type Block = { title: string; text: string; top?: string };
 
-type Group = { top?: "stat" | "label"; blocks: ReadonlyArray<Block> };
+type Group = { top?: "label"; blocks: ReadonlyArray<Block> };
 
 const columns: Record<number, string> = {
   2: "sm:grid-cols-2",
@@ -18,7 +18,7 @@ const outcomes: ReadonlyArray<Block> = [
   },
   {
     title: "Do more of the work you love",
-    text: "Landing gives back about 30 minutes on every visit, so more of your day goes to hands-on care.",
+    text: "With prep and documentation drafted for you, more of your day can go to hands-on care.",
   },
   {
     title: "Earn more from your expertise",
@@ -30,53 +30,38 @@ const sections: ReadonlyArray<{
   title: string;
   paragraphs: ReadonlyArray<string>;
   groups: ReadonlyArray<Group>;
-  calculator?: true;
+  calculator?: CalculatorKind;
 }> = [
   {
     title: "How we save you time",
     paragraphs: [
       "Landing’s agentic workflows handle the prep before a visit, the support during it, and the documentation after it.",
       "Each agent works from the patient’s data in Landing’s AWS cloud, including past visits, check-ins, and home exercise videos. You stay the clinician and sign off on everything the agents draft.",
+      "Time saved depends on your caseload and how your clinic works today. Enter your weekly visits and your own estimate of minutes saved per visit to see the hours it adds up to.",
     ],
     groups: [
       {
-        top: "stat",
+        top: "label",
         blocks: [
           {
-            top: "20 min",
+            top: "Before the visit",
             title: "Pre-visit prep",
-            text: "Before the visit starts, Landing handles exercise familiarization and reviews the patient’s pain and progress. Agents write a next-visit brief and draft the exercise plan.",
+            text: "Landing handles exercise familiarization and reviews the patient’s pain and progress. Agents write a next-visit brief and draft the exercise plan.",
           },
           {
-            top: "2 min",
+            top: "During the visit",
             title: "Visit support",
-            text: "During the visit, Landing transcribes the session. Ask for the patient’s history at any point, and get substitute exercises when one doesn’t suit the patient.",
+            text: "Landing transcribes the session. Ask for the patient’s history at any point, and get substitute exercises when one doesn’t suit the patient.",
           },
           {
-            top: "8 min",
+            top: "After the visit",
             title: "Documentation and care planning",
-            text: "After the visit, agents complete the clinical note, draft the home exercise program, and update the plan of care and the patient record. You review and sign off before anything is final.",
-          },
-        ],
-      },
-      {
-        top: "stat",
-        blocks: [
-          {
-            top: "30 min",
-            title: "Saved on every visit",
-            text: "20 minutes before the visit, 2 during it, and 8 after it.",
-            ink: true,
-          },
-          {
-            top: "1,500 hours",
-            title: "Saved per physical therapist each year",
-            text: "Based on 3,000 visits per therapist each year, at 30 minutes saved per visit.",
-            ink: true,
+            text: "Agents complete the clinical note, draft the home exercise program, and update the plan of care and the patient record. You review and sign off before anything is final.",
           },
         ],
       },
     ],
+    calculator: "time",
   },
   {
     title: "New revenue stream: optimized between-visit care",
@@ -113,12 +98,13 @@ const sections: ReadonlyArray<{
     ],
   },
   {
-    title: "New revenue stream: simulated",
+    title: "Model your own program",
     paragraphs: [
-      "Enter your own numbers to estimate what between-visit care could earn your clinic. It is an estimate, not a forecast.",
+      "Enter the patients you’d enroll, the monthly fee you’d set, and the time you expect to spend reviewing each patient. The calculator shows estimated gross revenue and the staff review hours behind it.",
+      "Fees in the calculator start at $50 a month. That is an input limit, not Landing’s pricing. The result is before any costs and is an estimate, not a forecast.",
     ],
     groups: [],
-    calculator: true,
+    calculator: "program",
   },
 ];
 
@@ -128,7 +114,7 @@ function Blocks({
   className = "",
 }: {
   blocks: ReadonlyArray<Block>;
-  top?: "stat" | "label";
+  top?: "label";
   className?: string;
 }) {
   return (
@@ -136,11 +122,8 @@ function Blocks({
       {blocks.map((block) => (
         <li
           key={block.title}
-          className={`rounded-xl p-5 sm:p-6 ${block.ink ? "bg-ink text-white" : "bg-paper"}`}
+          className="rounded-xl bg-paper p-5 sm:p-6"
         >
-          {top === "stat" && (
-            <p className="font-display text-4xl font-medium leading-none tracking-[-0.025em]">{block.top}</p>
-          )}
           {top === "label" && <p className={`${type.label} text-ember-deep`}>{block.top}</p>}
           <h3 className={`text-[15px] font-medium leading-snug ${top ? "mt-10" : ""}`}>{block.title}</h3>
           <p className="mt-1 text-[15px] leading-[1.5]">{block.text}</p>
@@ -180,8 +163,8 @@ export default function RevenueSection({ heading: Heading = "h1" }: { heading?: 
             />
           ))}
           {calculator && (
-            <div className="mt-16 sm:mt-20">
-              <RevenueCalculator />
+            <div className={groups.length ? "mt-3" : "mt-16 sm:mt-20"}>
+              <RevenueCalculator kind={calculator} />
             </div>
           )}
         </div>
