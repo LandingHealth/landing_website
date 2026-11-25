@@ -5,6 +5,13 @@ import svelteConfig from "./svelte.config.mjs";
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig = {
+  skipTrailingSlashRedirect: true,
+  rewrites() {
+    return [
+      { source: "/ingest/static/:path*", destination: "https://us-assets.i.posthog.com/static/:path*" },
+      { source: "/ingest/:path*", destination: "https://us.i.posthog.com/:path*" },
+    ];
+  },
   redirects() {
     return [
       { source: "/apply", destination: "/careers#apply", permanent: false },
