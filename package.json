@@ -16,6 +16,7 @@
     "@heroui/styles": "3.2.7",
     "motion-sv": "0.1.13",
     "next": "16.4.5",
+    "posthog-js": "1.454.2",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "svelte": "5.57.1"
