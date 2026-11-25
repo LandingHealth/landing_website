@@ -4,9 +4,9 @@ import ButtonLink from "@/components/ButtonLink";
 import DashboardPreview from "@/components/DashboardPreview";
 import Marquee from "@/components/Marquee";
 import TileRow, { type Tiles } from "@/components/TileRow";
-import { safesockSummary, timescales } from "@/lib/safesock";
 import type { CSSProperties } from "react";
-import { container, demoHref, edgePad, sectionPad, type } from "@/lib/site";
+import { safesock } from "@/lib/safesock";
+import { container, demo, demoHref, edgePad, sectionPad, type } from "@/lib/site";
 
 const workspace: Tiles = [
   {
@@ -55,7 +55,7 @@ const alsoInLanding = [
   },
   {
     title: "SafeSock",
-    text: "A sensor sleeve we’re designing to sit inside a boot, cast, or brace and show how a patient bears weight between visits.",
+    text: `${safesock.summary} ${safesock.status}`,
     href: "/safesock",
     link: "Meet SafeSock",
   },
@@ -177,23 +177,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="devices" data-reveal="line" className={`${section} scroll-mt-24`}>
-        <div className={`${container} flex flex-col items-center text-center`}>
-          <h2 {...rise(0)} className={`${type.h2} max-w-3xl`}>Two timescales. One recovery.</h2>
-          <p {...rise(1)} className={`${type.lead} mt-5 max-w-[36rem] text-pretty`}>
-            {safesockSummary}
-          </p>
-        </div>
-        <TileRow tiles={timescales} className="mt-14 sm:mt-16" />
-      </section>
-
       <section data-reveal="line" className={section}>
         <div className={`${container} flex flex-col items-center text-center`}>
           <h2 {...rise(0)} className={`${type.h2} max-w-3xl`}>See how Landing fits your clinic.</h2>
           <p {...rise(1)} className={`${type.lead} mt-5 max-w-[36rem] text-pretty`}>
-            Book a demo with our team. We’ll walk through the workspace with sample patients and answer
-            questions about your setup.
+            {demo.sees}
           </p>
+          <p {...rise(1)} className="mt-3 max-w-[36rem] text-[15px] leading-[1.6] text-pretty">{demo.prep}</p>
           <div {...rise(2)} className="mt-10 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
             <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
           </div>

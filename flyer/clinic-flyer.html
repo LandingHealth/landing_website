@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Landing clinic flyer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,380&display=block" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 8.5in; height: 11in; background: #fff; color: #000; }
+  body { font-family: Geist, sans-serif; font-size: 11pt; line-height: 1.5; padding: 0.6in 0.6in 0.5in; display: flex; flex-direction: column; }
+  .brand { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 12pt; }
+  .brand img { width: 28px; height: 28px; }
+  h1, h2 { font-family: "Roboto Serif", serif; font-weight: 380; font-stretch: 110%; font-variation-settings: "opsz" 72; letter-spacing: -0.02em; }
+  h1 { font-size: 34pt; line-height: 1.05; margin-top: 0.45in; }
+  .lead { font-size: 13pt; margin-top: 14px; max-width: 5.6in; }
+  ol { list-style: none; padding: 0; margin-top: 0.4in; display: grid; gap: 0.22in; }
+  li { display: grid; grid-template-columns: 2.6in 1fr; gap: 0.25in; align-items: center; }
+  li img { width: 100%; border-radius: 8px; border: 1px solid #000; background: #000; display: block; }
+  .step { font-size: 9.5pt; }
+  h2 { font-size: 17pt; line-height: 1.15; margin-top: 2px; }
+  li p.text { margin-top: 6px; }
+  .cta { margin-top: auto; border-top: 1px solid #000; padding-top: 0.22in; display: flex; justify-content: space-between; align-items: center; gap: 0.3in; }
+  .cta p { max-width: 4.4in; }
+  .button { background: #dcebf4; color: #000; text-decoration: none; font-weight: 500; padding: 10px 18px; border-radius: 6px; white-space: nowrap; }
+  .url { font-size: 9pt; margin-top: 6px; }
+</style>
+</head>
+<body>
+  <div class="brand"><img src="../app/icon.svg" alt="">Landing Health</div>
+  <h1>Know what happened between visits.</h1>
+  <p class="lead">Landing is clinic software for physical therapy. Patients submit home exercises, PTs review what needs attention, and the next visit starts with more context.</p>
+  <ol>
+    <li>
+      <img src="../public/workspace/exercise-recording.jpg" alt="">
+      <div>
+        <p class="step">1 · At home</p>
+        <h2>Patients submit their exercises</h2>
+        <p class="text">Patients film each set with a phone or laptop browser. Nothing is sent until they choose Send.</p>
+      </div>
+    </li>
+    <li>
+      <img src="../public/workspace/exercise-review.jpg" alt="">
+      <div>
+        <p class="step">2 · In your review queue</p>
+        <h2>PTs review what needs attention</h2>
+        <p class="text">Landing flags videos with possible form issues, so you watch the clips that matter and approve every change.</p>
+      </div>
+    </li>
+    <li>
+      <img src="../public/workspace/appointment-preparation.jpg" alt="">
+      <div>
+        <p class="step">3 · Before the visit</p>
+        <h2>The next visit starts with context</h2>
+        <p class="text">A brief pulls together recent sessions, notes, and what’s still missing, so you’re ready when the patient walks in.</p>
+      </div>
+    </li>
+  </ol>
+  <div class="cta">
+    <p>Landing runs alongside your EHR, and setup takes two steps. See it with a sample patient in a demo.</p>
+    <div>
+      <a class="button" href="https://calendly.com/rajnpatel05/landing-health-intro-meeting">Book a demo</a>
+      <p class="url">getlandinghealth.com</p>
+    </div>
+  </div>
+</body>
+</html>

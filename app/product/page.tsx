@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import ButtonLink from "@/components/ButtonLink";
+import DemoCallout from "@/components/DemoCallout";
 import RevenueSection from "@/components/sections/Revenue";
-import { container, type } from "@/lib/site";
+import { container, flyerHref, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Product | Landing",
@@ -23,6 +24,14 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
+      <DemoCallout>
+        <p className="mt-6 text-[15px]">
+          Want something to share with your team?{" "}
+          <a href={flyerHref} download className="font-medium underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+            Download the clinic flyer (PDF)
+          </a>
+        </p>
+      </DemoCallout>
     </main>
   );
 }

@@ -28,7 +28,30 @@ const steps: ReadonlyArray<Step> = [
   {
     icon: "banknote",
     title: "Get paid",
-    text: "After the clinic integrates Landing, we pay you $500. If you refer more than one clinic, you earn $500 for each.",
+    text: "When the clinic signs on and starts using Landing, you earn $500. If you refer more than one clinic, you earn $500 for each.",
+  },
+];
+
+const rules: ReadonlyArray<{ question: string; answer: string }> = [
+  {
+    question: "Who can refer a clinic?",
+    answer: "Anyone outside the Landing team, including physical therapists, clinic staff, and patients.",
+  },
+  {
+    question: "What counts as a new referral?",
+    answer: "A physical therapy clinic that isn’t already using Landing and that we aren’t already talking with.",
+  },
+  {
+    question: "When is the reward earned?",
+    answer: "When the clinic you introduced signs on and starts using Landing with its patients.",
+  },
+  {
+    question: "What if two people refer the same clinic?",
+    answer: "The first introduction we receive counts. We’ll tell you on the call if a clinic is already in touch with us.",
+  },
+  {
+    question: "Where are the terms?",
+    answer: "Ask us for the written referral terms on your call, before you make an introduction.",
   },
 ];
 
@@ -41,7 +64,7 @@ export default function ReferralSection({ heading: Heading = "h1" }: { heading?:
           You know a clinic that would <span className="text-ink">love Landing</span>.
         </Heading>
         <p className={`${type.label} mt-14 text-ink sm:mt-16`}>The reward</p>
-        <p className="mt-3 text-lg leading-snug sm:text-xl">Earn $500 when a clinic you refer integrates Landing.</p>
+        <p className="mt-3 text-lg leading-snug sm:text-xl">Earn $500 when a clinic you refer starts using Landing.</p>
       </section>
       <section className="mt-24 sm:mt-32">
         <h2 className={`${type.h2} text-center ${edgePad}`}>How it works</h2>
@@ -61,6 +84,17 @@ export default function ReferralSection({ heading: Heading = "h1" }: { heading?:
             </li>
           ))}
         </ol>
+      </section>
+      <section className={`${container} mt-24 sm:mt-32`}>
+        <h2 className={`${type.h2} max-w-3xl`}>The rules</h2>
+        <dl className="mt-10 border-t border-ink">
+          {rules.map(({ question, answer }) => (
+            <div key={question} className="grid gap-3 border-b border-ink/10 py-6 lg:grid-cols-12 lg:gap-12">
+              <dt className="text-[17px] font-medium leading-snug lg:col-span-5">{question}</dt>
+              <dd className="text-[15px] leading-[1.65] lg:col-span-7">{answer}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
     </section>
   );

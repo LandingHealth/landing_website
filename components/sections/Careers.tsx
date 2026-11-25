@@ -1,15 +1,56 @@
 import ApplicationForm from "@/components/ApplicationForm";
 import { container, type } from "@/lib/site";
 
-type Role = { title: string; department: string; employment: "Full-time" | "Internship"; location: "Remote" };
+type Role = {
+  title: string;
+  department: string;
+  employment: "Full-time" | "Internship";
+  location: "Remote";
+  summary: string;
+};
 
 const roles: ReadonlyArray<Role> = [
-  { title: "Founding Operations Lead", department: "Operations", employment: "Full-time", location: "Remote" },
-  { title: "Founding Account Executive", department: "Sales", employment: "Full-time", location: "Remote" },
-  { title: "Founding Electrical Engineering Intern", department: "Engineering", employment: "Internship", location: "Remote" },
-  { title: "Hardware Engineering Intern", department: "Engineering", employment: "Internship", location: "Remote" },
-  { title: "Computer Vision Research Assistant", department: "Research", employment: "Internship", location: "Remote" },
+  {
+    title: "Founding Operations Lead",
+    department: "Operations",
+    employment: "Full-time",
+    location: "Remote",
+    summary: "Run clinic onboarding and the day-to-day operations behind it, from setup to support.",
+  },
+  {
+    title: "Founding Account Executive",
+    department: "Sales",
+    employment: "Full-time",
+    location: "Remote",
+    summary: "Sell Landing to physical therapy clinics, from the first call to a clinic that’s set up and using it.",
+  },
+  {
+    title: "Founding Electrical Engineering Intern",
+    department: "Engineering",
+    employment: "Internship",
+    location: "Remote",
+    summary: "Help design and test the sensor electronics for SafeSock.",
+  },
+  {
+    title: "Hardware Engineering Intern",
+    department: "Engineering",
+    employment: "Internship",
+    location: "Remote",
+    summary: "Help build and test SafeSock prototypes.",
+  },
+  {
+    title: "Computer Vision Research Assistant",
+    department: "Research",
+    employment: "Internship",
+    location: "Remote",
+    summary: "Work on the computer vision that flags movement in patients’ home exercise videos.",
+  },
 ];
+
+const expectations = [
+  "Every role is remote. Tell us your weekly hours and when you could start, and we’ll find a schedule that works.",
+  "We read every application and reply to everyone by email.",
+] as const;
 
 export default function CareersSection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
   return (
@@ -24,7 +65,7 @@ export default function CareersSection({ heading: Heading = "h1" }: { heading?: 
         <div className="mx-auto max-w-4xl">
           <h2 className={type.label}>Open roles</h2>
           <ul className="mt-4 border-t border-ink/15">
-            {roles.map(({ title, department, employment, location }) => (
+            {roles.map(({ title, department, employment, location, summary }) => (
               <li
                 key={title}
                 className="flex flex-col gap-1 border-b border-ink/15 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
@@ -34,6 +75,7 @@ export default function CareersSection({ heading: Heading = "h1" }: { heading?: 
                   <p className="mt-1 text-[15px]">
                     {department} · {employment} · {location}
                   </p>
+                  <p className="mt-2 max-w-prose text-[15px] leading-[1.6]">{summary}</p>
                 </div>
                 <a
                   href="#apply"
@@ -50,8 +92,17 @@ export default function CareersSection({ heading: Heading = "h1" }: { heading?: 
         <div className="mx-auto grid max-w-4xl gap-x-12 gap-y-8 lg:grid-cols-[2fr_3fr]">
           <div>
             <h2 className={type.h2}>Apply</h2>
-            <p className="mt-4 text-[15px] leading-[1.6]">
-              Tell us which role you’re applying for in your first answer. We read every application and reply by email.
+            <p className="mt-4 text-[15px] leading-[1.6]">Tell us which role you’re applying for in your first answer.</p>
+            <h3 className="mt-8 text-[15px] font-medium">What to expect</h3>
+            <ul className="mt-2 space-y-2 text-[15px] leading-[1.6]">
+              {expectations.map((text) => (
+                <li key={text}>{text}</li>
+              ))}
+            </ul>
+            <h3 className="mt-8 text-[15px] font-medium">Your information</h3>
+            <p className="mt-2 text-[15px] leading-[1.6]">
+              We use your answers only to review your application. They go to a private spreadsheet that only the Landing
+              team can open. To have your application deleted, email us from the Contact link at the bottom of this page.
             </p>
           </div>
           <ApplicationForm />
