@@ -5,6 +5,7 @@ import DashboardPreview from "@/components/DashboardPreview";
 import Marquee from "@/components/Marquee";
 import TileRow, { type Tiles } from "@/components/TileRow";
 import type { CSSProperties } from "react";
+import { safesock } from "@/lib/safesock";
 import { container, demoHref, edgePad, sectionPad, type } from "@/lib/site";
 
 const workspace: Tiles = [
@@ -54,7 +55,7 @@ const alsoInLanding = [
   },
   {
     title: "SafeSock",
-    text: "A sensor sleeve we’re designing to sit inside a boot, cast, or brace and show how a patient bears weight between visits.",
+    text: `${safesock.summary} ${safesock.status}`,
     href: "/safesock",
     link: "Meet SafeSock",
   },
