@@ -4,7 +4,6 @@ import ButtonLink from "@/components/ButtonLink";
 import DashboardPreview from "@/components/DashboardPreview";
 import Marquee from "@/components/Marquee";
 import TileRow, { type Tiles } from "@/components/TileRow";
-import { safesockSummary, timescales } from "@/lib/safesock";
 import type { CSSProperties } from "react";
 import { container, demoHref, edgePad, sectionPad, type } from "@/lib/site";
 
@@ -175,16 +174,6 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
-
-      <section id="devices" data-reveal="line" className={`${section} scroll-mt-24`}>
-        <div className={`${container} flex flex-col items-center text-center`}>
-          <h2 {...rise(0)} className={`${type.h2} max-w-3xl`}>Two timescales. One recovery.</h2>
-          <p {...rise(1)} className={`${type.lead} mt-5 max-w-[36rem] text-pretty`}>
-            {safesockSummary}
-          </p>
-        </div>
-        <TileRow tiles={timescales} className="mt-14 sm:mt-16" />
       </section>
 
       <section data-reveal="line" className={section}>
