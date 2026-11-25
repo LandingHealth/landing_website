@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import EncryptionLock from "@/components/EncryptionLock";
 import Icon, { type IconName } from "@/components/Icon";
 import IngestionToAws from "@/components/IngestionToAws";
@@ -6,11 +5,6 @@ import LoadingDots from "@/components/LoadingDots";
 import NetworkFeed from "@/components/NetworkFeed";
 import TileRow, { type Tiles } from "@/components/TileRow";
 import { container, edgePad, type } from "@/lib/site";
-
-export const metadata: Metadata = {
-  title: "Security | Landing",
-  description: "How Landing protects patient information for physical therapy clinics.",
-};
 
 const safeguards: Tiles = [
   {
@@ -64,39 +58,37 @@ const standards: ReadonlyArray<{ title: string; text: string; icon: IconName }> 
   },
 ];
 
-export default function SecurityPage() {
+export default function SecuritySection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
   return (
-    <main>
-      <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
-        <div className={`${container} flex flex-col items-center text-center`}>
-          <h1 className={`${type.h1} max-w-4xl`}>
-            Peace of mind for<br className="hidden sm:block" /> physical therapists.
-          </h1>
-          <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
-            Your patients trust you with their health information. Here’s how Landing protects it.
-          </p>
-        </div>
-        <TileRow tiles={safeguards} className="mt-14 sm:mt-16" />
-        <div className={`mt-20 grid gap-x-3 gap-y-8 ${edgePad} sm:mt-24 lg:grid-cols-2`}>
-          <h2 className={`${type.h2} max-w-xl`}>For sensitive patient data, in and out of the clinic</h2>
-          <div className="max-w-xl space-y-5 text-[15px] leading-[1.6]">
-            {overview.map((text) => (
-              <p key={text}>{text}</p>
-            ))}
-          </div>
-        </div>
-        <ul className={`mt-16 grid gap-3 ${edgePad} sm:mt-20 sm:grid-cols-2 lg:grid-cols-4`}>
-          {standards.map(({ title, text, icon }) => (
-            <li key={title} className="rounded-xl bg-mist p-5 sm:p-6">
-              <div className="flex size-14 items-center justify-center rounded-lg bg-ink text-white">
-                <Icon name={icon} className="size-7" />
-              </div>
-              <h3 className="mt-10 text-[15px] font-medium leading-snug">{title}</h3>
-              <p className="mt-1 text-[15px] leading-[1.5]">{text}</p>
-            </li>
+    <section id="security" className="scroll-mt-16 pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
+      <div className={`${container} flex flex-col items-center text-center`}>
+        <Heading className={`${type.h1} max-w-4xl`}>
+          Peace of mind for<br className="hidden sm:block" /> physical therapists.
+        </Heading>
+        <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
+          Your patients trust you with their health information. Here’s how Landing protects it.
+        </p>
+      </div>
+      <TileRow tiles={safeguards} className="mt-14 sm:mt-16" />
+      <div className={`mt-20 grid gap-x-3 gap-y-8 ${edgePad} sm:mt-24 lg:grid-cols-2`}>
+        <h2 className={`${type.h2} max-w-xl`}>For sensitive patient data, in and out of the clinic</h2>
+        <div className="max-w-xl space-y-5 text-[15px] leading-[1.6]">
+          {overview.map((text) => (
+            <p key={text}>{text}</p>
           ))}
-        </ul>
-      </section>
-    </main>
+        </div>
+      </div>
+      <ul className={`mt-16 grid gap-3 ${edgePad} sm:mt-20 sm:grid-cols-2 lg:grid-cols-4`}>
+        {standards.map(({ title, text, icon }) => (
+          <li key={title} className="rounded-xl bg-mist p-5 sm:p-6">
+            <div className="flex size-14 items-center justify-center rounded-lg bg-ink text-white">
+              <Icon name={icon} className="size-7" />
+            </div>
+            <h3 className="mt-10 text-[15px] font-medium leading-snug">{title}</h3>
+            <p className="mt-1 text-[15px] leading-[1.5]">{text}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

@@ -1,11 +1,5 @@
-import type { Metadata } from "next";
 import RevenueCalculator from "@/components/RevenueCalculator";
 import { container, edgePad, type } from "@/lib/site";
-
-export const metadata: Metadata = {
-  title: "Revenue | Landing",
-  description: "How Landing saves physical therapists time and opens a new revenue stream between visits.",
-};
 
 type Block = { title: string; text: string; top?: string; ink?: boolean };
 
@@ -156,44 +150,42 @@ function Blocks({
   );
 }
 
-export default function RevenuePage() {
+export default function RevenueSection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
   return (
-    <main>
-      <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
-        <div className={`${container} flex flex-col items-center text-center`}>
-          <h1 className={`${type.h1} max-w-4xl`}>What Landing can do for you.</h1>
-          <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
-            Landing is an agentic platform for physical therapy, built on the AWS cloud. It takes repetitive work off your
-            schedule and opens a new revenue stream between visits.
-          </p>
-        </div>
-        <Blocks blocks={outcomes} className="mt-14 sm:mt-16" />
-        {sections.map(({ title, paragraphs, groups, calculator }) => (
-          <div key={title}>
-            <div className={`mt-20 grid gap-x-3 gap-y-8 ${edgePad} sm:mt-24 lg:grid-cols-2`}>
-              <h2 className={`${type.h2} max-w-xl`}>{title}</h2>
-              <div className="max-w-xl space-y-5 text-[15px] leading-[1.6]">
-                {paragraphs.map((text) => (
-                  <p key={text}>{text}</p>
-                ))}
-              </div>
+    <section id="revenue" className="scroll-mt-16 pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
+      <div className={`${container} flex flex-col items-center text-center`}>
+        <Heading className={`${type.h1} max-w-4xl`}>What Landing can do for you.</Heading>
+        <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
+          Landing is an agentic platform for physical therapy, built on the AWS cloud. It takes repetitive work off your
+          schedule and opens a new revenue stream between visits.
+        </p>
+      </div>
+      <Blocks blocks={outcomes} className="mt-14 sm:mt-16" />
+      {sections.map(({ title, paragraphs, groups, calculator }) => (
+        <div key={title}>
+          <div className={`mt-20 grid gap-x-3 gap-y-8 ${edgePad} sm:mt-24 lg:grid-cols-2`}>
+            <h2 className={`${type.h2} max-w-xl`}>{title}</h2>
+            <div className="max-w-xl space-y-5 text-[15px] leading-[1.6]">
+              {paragraphs.map((text) => (
+                <p key={text}>{text}</p>
+              ))}
             </div>
-            {groups.map(({ top, blocks }, index) => (
-              <Blocks
-                key={blocks[0].title}
-                blocks={blocks}
-                top={top}
-                className={index === 0 ? "mt-16 sm:mt-20" : "mt-3"}
-              />
-            ))}
-            {calculator && (
-              <div className="mt-16 sm:mt-20">
-                <RevenueCalculator />
-              </div>
-            )}
           </div>
-        ))}
-      </section>
-    </main>
+          {groups.map(({ top, blocks }, index) => (
+            <Blocks
+              key={blocks[0].title}
+              blocks={blocks}
+              top={top}
+              className={index === 0 ? "mt-16 sm:mt-20" : "mt-3"}
+            />
+          ))}
+          {calculator && (
+            <div className="mt-16 sm:mt-20">
+              <RevenueCalculator />
+            </div>
+          )}
+        </div>
+      ))}
+    </section>
   );
 }

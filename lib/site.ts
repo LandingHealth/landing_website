@@ -1,11 +1,9 @@
 export const navigation: ReadonlyArray<{ label: string; href: string }> = [
-  { label: "About", href: "/about" },
-  { label: "Integration", href: "/integration" },
+  { label: "Product", href: "/product" },
+  { label: "SafeSock", href: "/safesock" },
+  { label: "Getting Started", href: "/getting-started" },
   { label: "Resources", href: "/resources" },
-  { label: "Security", href: "/security" },
-  { label: "Revenue", href: "/revenue" },
-  { label: "Careers", href: "/careers" },
-  { label: "Referral", href: "/referral" },
+  { label: "Company", href: "/company" },
 ];
 
 export const demoHref = "https://calendly.com/rajnpatel05/landing-health-intro-meeting";

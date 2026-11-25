@@ -1,13 +1,7 @@
-import type { Metadata } from "next";
 import LoopVideo from "@/components/LoopVideo";
 import StoryAccordion from "@/components/StoryAccordion";
 import TileRow, { type Tiles } from "@/components/TileRow";
 import { container, edgePad, type } from "@/lib/site";
-
-export const metadata: Metadata = {
-  title: "About | Landing",
-  description: "Meet the Landing team.",
-};
 
 const cofounders: Tiles = [
   {
@@ -62,28 +56,26 @@ const story = [
   },
 ] as const;
 
-export default function AboutPage() {
+export default function AboutSection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
   return (
-    <main>
-      <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
-        <div className={`${container} flex flex-col items-center text-center`}>
-          <h1 className={`${type.h1} max-w-4xl`}>Meet our cofounders</h1>
-          <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>Akash and Neil</p>
+    <section id="about" className="scroll-mt-16 pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
+      <div className={`${container} flex flex-col items-center text-center`}>
+        <Heading className={`${type.h1} max-w-4xl`}>Meet our cofounders</Heading>
+        <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>Akash and Neil</p>
+      </div>
+      <TileRow tiles={cofounders} ratio="3/2" className="mt-14 sm:mt-16" />
+      <div className={`mt-20 grid gap-x-3 gap-y-12 ${edgePad} sm:mt-24 lg:grid-cols-2`}>
+        <div className="lg:sticky lg:top-24 lg:self-start">
+          <p className="text-[15px]">Our story</p>
+          <h2 className={`${type.h2} mt-4 max-w-xl`}>We built Landing after our own recoveries.</h2>
+          <StoryAccordion items={story} />
         </div>
-        <TileRow tiles={cofounders} ratio="3/2" className="mt-14 sm:mt-16" />
-        <div className={`mt-20 grid gap-x-3 gap-y-12 ${edgePad} sm:mt-24 lg:grid-cols-2`}>
-          <div className="lg:sticky lg:top-24 lg:self-start">
-            <p className="text-[15px]">Our story</p>
-            <h2 className={`${type.h2} mt-4 max-w-xl`}>We built Landing after our own recoveries.</h2>
-            <StoryAccordion items={story} />
-          </div>
-          <LoopVideo
-            src="/about/clinic-visit.mp4"
-            poster="/about/clinic-visit.jpg"
-            className="aspect-9/16 w-full rounded-xl bg-mist ring-1 ring-black"
-          />
-        </div>
-      </section>
-    </main>
+        <LoopVideo
+          src="/about/clinic-visit.mp4"
+          poster="/about/clinic-visit.jpg"
+          className="aspect-9/16 w-full rounded-xl bg-mist ring-1 ring-black"
+        />
+      </div>
+    </section>
   );
 }
