@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import ButtonLink from "@/components/ButtonLink";
 import ExpandableMedia from "@/components/ExpandableMedia";
 import { safesock } from "@/lib/safesock";
-import { container, demoHref, sectionPad, type } from "@/lib/site";
+import { container, sectionPad, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "SafeSock | Landing",
@@ -63,21 +62,6 @@ export default function SafeSockPage() {
               </li>
             ))}
           </ol>
-        </div>
-      </section>
-
-      <section className={section}>
-        <div className={`${container} flex flex-col items-center text-center`}>
-          <h2 className={`${type.h2} max-w-3xl`}>Where SafeSock is today</h2>
-          <p className={`${type.lead} mt-5 max-w-[36rem] text-pretty`}>
-            {safesock.status} Landing’s clinic software is available now, and SafeSock data will appear in the same
-            workspace when it’s ready.
-          </p>
-          <div className="mt-10">
-            <ButtonLink href={demoHref} variant="primary">
-              Book a demo
-            </ButtonLink>
-          </div>
         </div>
       </section>
     </main>
