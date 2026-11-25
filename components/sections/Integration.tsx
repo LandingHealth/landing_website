@@ -22,7 +22,6 @@ const steps: ReadonlyArray<{ title: string; text: string; video: Video }> = [
 
 const ehr = [
   "Landing runs in the browser alongside the EHR you already use. Your EHR stays your system of record, and nothing in it changes.",
-  "Landing doesn’t connect directly to an EHR yet. Your team keeps documenting in the EHR as it does today and uses Landing for the work between visits.",
 ] as const;
 
 export default function IntegrationSection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
