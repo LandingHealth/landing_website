@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Instrument_Serif } from "next/font/google";
+import { Geist, Roboto_Serif } from "next/font/google";
 import Header from "@/components/Header";
 import Reveal from "@/components/Reveal";
-import { container, type } from "@/lib/site";
+import { container, footerLinks, type } from "@/lib/site";
 import "./globals.css";
 
 const geist = Geist({
@@ -10,11 +10,11 @@ const geist = Geist({
   variable: "--font-geist",
   display: "swap",
 });
-const instrumentSerif = Instrument_Serif({
+const robotoSerif = Roboto_Serif({
   subsets: ["latin"],
-  weight: "400",
   style: ["normal", "italic"],
-  variable: "--font-instrument-serif",
+  axes: ["opsz", "wdth"],
+  variable: "--font-roboto-serif",
   display: "swap",
 });
 
@@ -29,13 +29,28 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${geist.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${geist.variable} ${robotoSerif.variable}`}>
       <body className="bg-white font-sans text-black antialiased">
         <Reveal />
         <Header />
         {children}
         <footer className="border-t border-ink/10 py-12">
-          <div className={`${container} ${type.label} flex flex-wrap justify-between gap-x-6 gap-y-2`}>
+          <div className={`${container} ${type.label} flex flex-wrap items-center justify-between gap-x-6 gap-y-4`}>
+            <nav aria-label="Footer navigation">
+              <ul className="flex flex-wrap gap-x-6 gap-y-2">
+                {footerLinks.map(({ label, href }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      {...(href.startsWith("https://") && { target: "_blank", rel: "noopener noreferrer" })}
+                      className="underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
             <span>© {new Date().getFullYear()} Landing Health</span>
           </div>
         </footer>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import ButtonLink from "@/components/ButtonLink";
 import RevenueSection from "@/components/sections/Revenue";
-import SecuritySection from "@/components/sections/Security";
+import { container, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Product | Landing",
@@ -11,9 +12,17 @@ export default function ProductPage() {
   return (
     <main>
       <RevenueSection />
-      <div className="border-t border-ink/10">
-        <SecuritySection heading="h2" />
-      </div>
+      <section id="security" className="scroll-mt-16 border-t border-ink/10 py-20 sm:py-24">
+        <div className={`${container} flex flex-col items-center text-center`}>
+          <h2 className={`${type.h2} max-w-3xl`}>Peace of mind for physical therapists.</h2>
+          <p className={`${type.lead} mt-5 max-w-[36rem] text-pretty`}>
+            Landing encrypts patient data, keeps it on a private network in AWS, and limits sign-in to invited clinic staff.
+          </p>
+          <div className="mt-10">
+            <ButtonLink href="/security" variant="secondary">See how we protect patient data</ButtonLink>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
