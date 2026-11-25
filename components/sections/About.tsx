@@ -73,7 +73,7 @@ export default function AboutSection({ heading: Heading = "h1" }: { heading?: "h
         <LoopVideo
           src="/about/clinic-visit.mp4"
           poster="/about/clinic-visit.jpg"
-          className="aspect-9/16 w-full rounded-xl bg-mist ring-1 ring-black"
+          className="aspect-9/16 w-full rounded-xl bg-black ring-1 ring-black"
         />
       </div>
     </section>

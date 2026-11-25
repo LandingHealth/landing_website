@@ -80,7 +80,7 @@ export default function SecuritySection({ heading: Heading = "h1" }: { heading?:
       </div>
       <ul className={`mt-16 grid gap-3 ${edgePad} sm:mt-20 sm:grid-cols-2 lg:grid-cols-4`}>
         {standards.map(({ title, text, icon }) => (
-          <li key={title} className="rounded-xl bg-mist p-5 sm:p-6">
+          <li key={title} className="rounded-xl bg-paper p-5 sm:p-6">
             <div className="flex size-14 items-center justify-center rounded-lg bg-ink text-white">
               <Icon name={icon} className="size-7" />
             </div>
