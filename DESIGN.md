@@ -106,7 +106,7 @@ The site is flat. Rules and spacing separate content.
 - **Disclosure.** Use HeroUI `Accordion` for stacked questions or story sections. Style it as a ruled list, with a black rule above, thin separators between items, and the `plus` icon that turns 45 degrees when the item is open. No card background.
 - **Overlays.** Use HeroUI overlay components so focus, Escape, and outside press behave correctly. Do not build a menu or dialog from a `div`.
 - **Icons.** Use `components/Icon.tsx`. Add a glyph there in the same stroke style before you import an icon package.
-- **Tables.** Keep data tables as plain ruled rows, like the open roles table on `/team`.
+- **Tables.** Keep data tables as plain ruled rows, like the open roles table on `/careers`.
 
 ## Motion
 
