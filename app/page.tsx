@@ -74,7 +74,7 @@ const timescales: Tiles = [
   },
   {
     title: "Biology",
-    text: "The slow one is biology: healing, remodeling, and strength gain. Nobody models it well, because nobody has measured it. Our team includes a Penn ELITE Fellow, one of four fellows the University of Pennsylvania’s health-tech fellowship chose this year.",
+    text: "The slow one is biology: healing, remodeling, and strength gain. Nobody models it well, because nobody has measured it.",
     image: {
       src: "/devices/vitruvian-man.jpg",
       alt: "Leonardo da Vinci’s Vitruvian Man, a figure with outstretched arms and legs inside a circle and a square",
@@ -85,7 +85,7 @@ const timescales: Tiles = [
   },
   {
     title: "SafeSock",
-    text: "A sensor sleeve we’re designing to measure load with every step, across the weeks of healing. Our engineers bring the gait modeling, and our fellow brings the training to move a health device from the lab, to patients, to the frontier.",
+    text: "A sensor sleeve we’re designing to measure load with every step, across the weeks of healing. Our team brings the gait modeling and the training to move a health device from the lab, to patients, to the frontier.",
     video: { src: "/safesock-demo.mp4", poster: "/safesock-demo-poster.jpg" },
   },
 ];
