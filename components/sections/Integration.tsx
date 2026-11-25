@@ -1,11 +1,5 @@
-import type { Metadata } from "next";
 import TileRow, { type Tiles } from "@/components/TileRow";
 import { container, type } from "@/lib/site";
-
-export const metadata: Metadata = {
-  title: "Integration | Landing",
-  description: "How a clinic gets set up on Landing in less than half an hour.",
-};
 
 const steps: Tiles = [
   {
@@ -25,18 +19,16 @@ const steps: Tiles = [
   },
 ];
 
-export default function IntegrationPage() {
+export default function IntegrationSection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
   return (
-    <main>
-      <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
-        <div className={`${container} flex flex-col items-center text-center`}>
-          <h1 className={type.h1}>Integration</h1>
-          <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
-            Landing runs in the browser next to the EHR you already use. We set up your clinic for you, and nothing in your EHR changes.
-          </p>
-        </div>
-        <TileRow tiles={steps} className="mt-14 sm:mt-16" />
-      </section>
-    </main>
+    <section id="integration" className="scroll-mt-16 pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
+      <div className={`${container} flex flex-col items-center text-center`}>
+        <Heading className={type.h1}>Integration</Heading>
+        <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
+          Landing runs in the browser next to the EHR you already use. We set up your clinic for you, and nothing in your EHR changes.
+        </p>
+      </div>
+      <TileRow tiles={steps} className="mt-14 sm:mt-16" />
+    </section>
   );
 }

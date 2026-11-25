@@ -1,12 +1,6 @@
-import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Icon, { type IconName } from "@/components/Icon";
 import { container, demoHref, edgePad, type } from "@/lib/site";
-
-export const metadata: Metadata = {
-  title: "Referral | Landing",
-  description: "Earn $500 when a clinic you refer integrates Landing.",
-};
 
 type Step = { icon: IconName; title: string; text: ReactNode };
 
@@ -38,14 +32,14 @@ const steps: ReadonlyArray<Step> = [
   },
 ];
 
-export default function ReferralPage() {
+export default function ReferralSection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
   return (
-    <main className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
+    <section id="referral" className="scroll-mt-16 pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
       <section className={`${container} flex flex-col items-center text-center`}>
         <p className={`${type.label} text-ink`}>Referral program</p>
-        <h1 className={`${type.h1} mt-6 max-w-4xl`}>
+        <Heading className={`${type.h1} mt-6 max-w-4xl`}>
           You know a clinic that would <span className="text-ink">love Landing</span>.
-        </h1>
+        </Heading>
         <p className={`${type.label} mt-14 text-ink sm:mt-16`}>The reward</p>
         <p className="mt-3 text-lg leading-snug sm:text-xl">Earn $500 when a clinic you refer integrates Landing.</p>
       </section>
@@ -68,6 +62,6 @@ export default function ReferralPage() {
           ))}
         </ol>
       </section>
-    </main>
+    </section>
   );
 }

@@ -7,10 +7,16 @@ const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 const nextConfig = {
   redirects() {
     return [
-      { source: "/apply", destination: "/careers#apply", permanent: false },
-      { source: "/team", destination: "/careers", permanent: true },
-      { source: "/devices", destination: "/#devices", permanent: true },
+      { source: "/apply", destination: "/company#apply", permanent: false },
       { source: "/schedule", destination: "https://calendly.com/rajnpatel05/landing-health-intro-meeting", permanent: false },
+      { source: "/revenue", destination: "/product", permanent: true },
+      { source: "/security", destination: "/product#security", permanent: true },
+      { source: "/devices", destination: "/safesock", permanent: true },
+      { source: "/integration", destination: "/getting-started", permanent: true },
+      { source: "/referral", destination: "/getting-started#referral", permanent: true },
+      { source: "/about", destination: "/company", permanent: true },
+      { source: "/careers", destination: "/company#careers", permanent: true },
+      { source: "/team", destination: "/company#careers", permanent: true },
     ];
   },
   webpack(config) {
