@@ -119,7 +119,6 @@ The user approved each animation below. Keep its timing, easing, and trigger exa
 | Shimmer on the highlighted hero word | Home hero | `.shimmer` in `app/globals.css` |
 | Scroll reveal and line reveal | Sections and rules | `components/Reveal.tsx`, `[data-reveal]` |
 | Logo marquee | Home, Awarded by | `components/Marquee.tsx` |
-| Rotating school name | Footer | `components/TextRotate.tsx` |
 | Network feed rows | Security | `components/NetworkFeed.tsx` |
 | Loading dots | Sign-in style indicators | `components/LoadingDots.tsx` |
 | Media expand | Click a tile video or image | `components/ExpandableMedia.tsx`, React `ViewTransition` |

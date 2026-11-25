@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import ApplicationForm from "@/components/ApplicationForm";
 import ButtonLink from "@/components/ButtonLink";
 import { button, buttonSize, container, edgePad, type } from "@/lib/site";
@@ -44,17 +43,9 @@ export default function TeamPage() {
           <h1 className={`${type.h1} max-w-4xl`}>Meet the team</h1>
         </div>
         <div className={`mt-14 grid gap-x-3 gap-y-12 ${edgePad} sm:mt-16 md:grid-cols-3`}>
-          {team.map(({ name, role, bio, photo, demoHost }) => (
+          {team.map(({ name, role, bio, demoHost }) => (
             <article key={name} className="flex flex-col text-center">
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                width={photo.width}
-                height={photo.height}
-                sizes="(min-width: 768px) 33vw, 100vw"
-                className="aspect-square h-auto w-full rounded-xl bg-mist object-cover ring-1 ring-black"
-              />
-              <h2 className="mt-4 text-[15px] font-medium leading-snug">{name}</h2>
+              <h2 className="text-[15px] font-medium leading-snug">{name}</h2>
               <p className="mt-1 text-[15px] leading-[1.5]">{role}</p>
               <p className="mt-1 text-[15px] leading-[1.5]">{bio}</p>
               {demoHost && (
