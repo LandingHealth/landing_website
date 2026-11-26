@@ -47,7 +47,7 @@ export default function FeatureTour({ features, label = "Features" }: { features
         aria-label={label}
         className="sticky top-16 z-10 -mx-4 bg-fog px-4 py-3 sm:-mx-10 sm:px-10 lg:top-24 lg:mx-0 lg:self-start lg:bg-transparent lg:p-0"
       >
-        <ul ref={menu} className="relative flex gap-2 overflow-x-auto [scrollbar-width:none] lg:flex-col lg:gap-0 lg:overflow-visible">
+        <ul ref={menu} className="relative -mx-4 flex gap-2 overflow-x-auto px-4 [mask-image:linear-gradient(to_right,transparent,black_1rem,black_calc(100%-1rem),transparent)] [scrollbar-width:none] sm:-mx-10 sm:px-10 sm:[mask-image:linear-gradient(to_right,transparent,black_2.5rem,black_calc(100%-2.5rem),transparent)] lg:mx-0 lg:flex-col lg:gap-0 lg:overflow-visible lg:px-0 lg:[mask-image:none]">
           {features.map(({ id, menuLabel }) => {
             const active = id === activeId;
             return (

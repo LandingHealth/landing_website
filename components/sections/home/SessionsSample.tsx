@@ -1,22 +1,15 @@
 import { type } from "@/lib/site";
 
-type Status = "In progress" | "Complete" | "Overdue";
+type Status = "In progress" | "Complete";
 
 const statusStyle: Record<Status, string> = {
   "In progress": "bg-blue/10 text-blue",
   Complete: "bg-fog text-ink",
-  Overdue: "ring-1 ring-inset ring-blue text-blue",
 };
 
 const groups: ReadonlyArray<{ label: string; sessions: ReadonlyArray<{ title: string; detail: string; status: Status }> }> = [
   { label: "Today", sessions: [{ title: "Strength", detail: "Mon, Oct 26 · 3 exercises", status: "In progress" }] },
-  {
-    label: "Past",
-    sessions: [
-      { title: "Mobility", detail: "Thu, Oct 22 · 3 exercises", status: "Complete" },
-      { title: "Strength", detail: "Mon, Oct 19 · 2 exercises", status: "Overdue" },
-    ],
-  },
+  { label: "Past", sessions: [{ title: "Mobility", detail: "Thu, Oct 22 · 3 exercises", status: "Complete" }] },
 ];
 
 export default function SessionsSample() {
