@@ -54,7 +54,7 @@
 		aria-valuetext={spec.format(value)}
 		bind:value
 	/>
-	<div class="mt-2 flex justify-between text-[13px] leading-none">
+	<div class="mt-2 flex justify-between text-[13px] leading-none text-mute">
 		<span>{spec.format(spec.min)}</span>
 		<span>{spec.format(spec.max)}</span>
 	</div>
