@@ -1,6 +1,10 @@
 import type { ReactNode } from "react";
 import Icon, { type IconName } from "@/components/Icon";
-import { container, demoHref, gutter, type } from "@/lib/site";
+import Eyebrow from "@/components/ui/Eyebrow";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Sheet from "@/components/ui/Sheet";
+import { proseLink, RuledRows } from "@/components/sections/trust/TrustPage";
+import { container, demoHref, type } from "@/lib/site";
 
 type Step = { icon: IconName; title: string; text: ReactNode };
 
@@ -12,7 +16,7 @@ const steps: ReadonlyArray<Step> = [
       <>
         <a
           href={demoHref}
-          className="rounded-sm underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+          className={proseLink}
         >
           Book a call with us
         </a>
@@ -55,47 +59,38 @@ const rules: ReadonlyArray<{ question: string; answer: string }> = [
   },
 ];
 
-export default function ReferralSection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
+export default function ReferralSection() {
   return (
-    <section id="referral" className="scroll-mt-16 pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
-      <section className={`${container} flex flex-col items-center text-center`}>
-        <p className={`${type.label} text-ink`}>Referral program</p>
-        <Heading className={`${type.h1} mt-6 max-w-4xl`}>
-          You know a clinic that would <span className="text-ink">love Landing</span>.
-        </Heading>
-        <p className={`${type.label} mt-14 text-ink sm:mt-16`}>The reward</p>
-        <p className="mt-3 text-lg leading-snug sm:text-xl">Earn $500 when a clinic you refer starts using Landing.</p>
+    <>
+      <section className={`${container} pt-16 pb-16 lg:pt-24 lg:pb-20`}>
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <Eyebrow className="mb-4">Referral program</Eyebrow>
+          <h1 className={type.h1}>You know a clinic that would love Landing.</h1>
+          <p className={`${type.label} mt-10 text-mute`}>The reward</p>
+          <p className={`${type.lead} mt-3 text-pretty`}>Earn $500 when a clinic you refer starts using Landing.</p>
+        </div>
       </section>
-      <section className="mt-24 sm:mt-32">
-        <h2 className={`${type.h2} text-center ${gutter}`}>How it works</h2>
-        <ol className={`mt-10 grid gap-3 ${gutter} sm:mt-14 lg:grid-cols-3`}>
+      <Sheet tone="fog" round="top">
+        <SectionHeading title="How it works" />
+        <ol className="mt-10 grid gap-4 lg:mt-14 lg:grid-cols-3 lg:gap-10">
           {steps.map(({ icon, title, text }, index) => (
-            <li key={title} className="rounded-xl bg-fog p-7 sm:p-8">
-              <div className="flex items-start justify-between">
-                <div className="flex size-14 items-center justify-center rounded-lg bg-ink text-white">
-                  <Icon name={icon} className="size-6" />
-                </div>
-                <span aria-hidden="true" className="font-mono text-5xl leading-none text-blue">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+            <li key={title} className="rounded-3xl bg-white p-8">
+              <div className="flex items-center justify-between">
+                <span aria-hidden className="font-mono text-base text-blue">{String(index + 1).padStart(2, "0")}</span>
+                <Icon name={icon} className="size-6 text-blue" />
               </div>
               <h3 className={`${type.h3} mt-10`}>{title}</h3>
-              <p className="mt-3 text-[15px] leading-[1.6]">{text}</p>
+              <p className={`${type.body} mt-3`}>{text}</p>
             </li>
           ))}
         </ol>
-      </section>
-      <section className={`${container} mt-24 sm:mt-32`}>
-        <h2 className={`${type.h2} max-w-3xl`}>The rules</h2>
-        <dl className="mt-10 border-t border-ink">
-          {rules.map(({ question, answer }) => (
-            <div key={question} className="grid gap-3 border-b border-ink/10 py-6 lg:grid-cols-12 lg:gap-12">
-              <dt className="text-[17px] font-medium leading-snug lg:col-span-5">{question}</dt>
-              <dd className="text-[15px] leading-[1.65] lg:col-span-7">{answer}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-    </section>
+      </Sheet>
+      <Sheet round="top" className="lg:grid lg:grid-cols-4 lg:gap-x-10">
+        <h2 className={`${type.h2} mb-8 lg:mb-0`}>The rules</h2>
+        <div className="lg:col-span-3">
+          <RuledRows rows={rules.map(({ question, answer }) => ({ label: question, body: answer }))} />
+        </div>
+      </Sheet>
+    </>
   );
 }
