@@ -1,3 +1,4 @@
+import ButtonLink from "@/components/ButtonLink";
 import Eyebrow from "@/components/ui/Eyebrow";
 import { type } from "@/lib/site";
 
@@ -8,12 +9,14 @@ export default function DarkCard({
   title,
   body,
   items,
+  action,
   className = "",
 }: {
   eyebrow?: string;
   title: string;
   body?: string;
   items: readonly DarkCardItem[];
+  action?: { label: string; href: string };
   className?: string;
 }) {
   return (
@@ -22,6 +25,7 @@ export default function DarkCard({
         {eyebrow && <Eyebrow onDark className="mb-4">{eyebrow}</Eyebrow>}
         <h2 className={type.h2}>{title}</h2>
         {body && <p className={`${type.bodyOnDark} mt-8`}>{body}</p>}
+        {action && <ButtonLink href={action.href} variant="onDark" className="mt-8">{action.label}</ButtonLink>}
       </div>
       <ol className="mt-12 lg:mt-0">
         {items.map(({ title: itemTitle, body: itemBody }, index) => (

@@ -7,11 +7,13 @@ type Action = { label: string; href: string };
 export default function CtaSheet({
   heading = "See how Landing fits your clinic.",
   lead,
+  primary = { label: "Book a demo", href: demoHref },
   secondary = { label: "Contact us", href: contactHref },
   children,
 }: {
   heading?: string;
   lead?: string;
+  primary?: Action;
   secondary?: Action | null;
   children?: ReactNode;
 }) {
@@ -21,14 +23,14 @@ export default function CtaSheet({
         <h2 className={type.h2}>{heading}</h2>
         {lead && <p className={`${type.lead} max-w-xl text-pretty`}>{lead}</p>}
         <div className="flex flex-wrap justify-center gap-3">
-          <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
+          <ButtonLink href={primary.href} variant="primary">{primary.label}</ButtonLink>
           {secondary && <ButtonLink href={secondary.href} variant="secondary">{secondary.label}</ButtonLink>}
         </div>
         {children}
       </div>
       <p
         aria-hidden
-        className="mt-12 -mb-[0.24em] bg-linear-to-b from-white/80 to-white/25 bg-clip-text text-[clamp(5.5rem,23.3vw,21rem)] leading-none font-semibold tracking-[-0.03em] text-transparent select-none lg:mt-16"
+        className="mt-12 -mb-[0.1em] bg-linear-to-b from-white/80 to-white/25 bg-clip-text text-[clamp(5.5rem,23.3vw,21rem)] leading-none font-semibold tracking-[-0.03em] text-transparent select-none lg:mt-16"
       >
         Landing
       </p>

@@ -134,8 +134,6 @@ The user approved each animation below. Keep its timing, easing, and trigger. A 
 | Looping product videos | Tiles and frames | `components/ExpandableMedia.tsx` |
 | Press scale | HeroUI buttons | HeroUI default |
 | Logo marquee | Home, Awarded by | `components/Marquee.tsx` |
-| Network feed rows | Security | `components/NetworkFeed.tsx` |
-| Loading dots | Sign-in style indicators | `components/LoadingDots.tsx` |
 
 Rules for new motion:
 

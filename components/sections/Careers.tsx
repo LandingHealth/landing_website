@@ -143,8 +143,7 @@ export default function CareersSection() {
               </ol>
               <h3 className="mt-8 text-lg font-semibold">Your information</h3>
               <p className={`${type.body} mt-2`}>
-                We use your answers only to review your application. They go to a private spreadsheet that only the Landing
-                team can open. To have your application deleted, email us from the Contact link at the bottom of this page.
+                We use your answers only to review your application. They go to a private spreadsheet. To have your application deleted, email us from the Contact link at the bottom of this page.
               </p>
             </div>
             <div className="mt-10 rounded-3xl bg-white p-6 sm:p-10 lg:col-span-2 lg:mt-0">

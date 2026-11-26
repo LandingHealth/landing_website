@@ -147,12 +147,8 @@ export default function Home() {
           title="Setting up your clinic."
           body="Landing runs in the browser alongside the EHR you already use. Your EHR stays your system of record."
           items={setupSteps}
+          action={{ label: "See how setup works", href: "/getting-started" }}
         />
-        <p className="mt-6 text-center">
-          <a href="/getting-started" className={`rounded-sm font-medium text-blue underline-offset-4 hover:underline ${focusRing}`}>
-            See how setup works <span aria-hidden>→</span>
-          </a>
-        </p>
       </div>
 
       <CtaSheet heading="See how Landing fits your clinic." lead={demo.sees} />

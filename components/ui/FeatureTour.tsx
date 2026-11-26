@@ -36,7 +36,7 @@ export default function FeatureTour({ features, label = "Features" }: { features
     const item = list?.querySelector<HTMLElement>(`[data-feature="${activeId}"]`);
     if (!list || !item || list.scrollWidth <= list.clientWidth) return;
     const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches;
-    list.scrollTo({ left: item.offsetLeft - 16, behavior: smooth ? "smooth" : "auto" });
+    list.scrollTo({ left: item.offsetLeft - 48, behavior: smooth ? "smooth" : "auto" });
   }, [activeId]);
 
   return (
@@ -90,7 +90,7 @@ export default function FeatureTour({ features, label = "Features" }: { features
                 </ul>
               )}
             </div>
-            <div className="lg:order-1 lg:col-span-2">{demo}</div>
+            <div className="order-first lg:order-1 lg:col-span-2">{demo}</div>
           </article>
         ))}
       </div>
