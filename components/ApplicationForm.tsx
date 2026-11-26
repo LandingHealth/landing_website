@@ -22,8 +22,8 @@ export default function ApplicationForm() {
   if (state.status === "sent") {
     return (
       <div role="status">
-        <p className="text-lg font-medium">Thanks. We got your application.</p>
-        <p className="mt-2 text-[15px]">We’ll reply by email.</p>
+        <p className="text-2xl font-semibold">Thanks. We got your application.</p>
+        <p className="mt-2 text-slate">We’ll reply by email.</p>
       </div>
     );
   }
@@ -41,11 +41,11 @@ export default function ApplicationForm() {
           validate={kind === "email" ? emailError : undefined}
           className="relative gap-1.5 pb-6"
         >
-          <Label className="font-normal text-ink after:content-none">
+          <Label className="font-medium text-ink after:content-none">
             {prefix}
             {label}
           </Label>
-          {hint && <Description className="block text-[13px] leading-snug text-ink">{hint}</Description>}
+          {hint && <Description className="block text-[13px] leading-snug text-slate">{hint}</Description>}
           {kind === "textarea" ? (
             <TextArea rows={rows ?? 3} maxLength={max} className={`${fieldText} resize-y py-2.5`} />
           ) : (
@@ -64,14 +64,14 @@ export default function ApplicationForm() {
         <input id="apply-website" type="text" name="website" tabIndex={-1} autoComplete="off" />
       </div>
       {state.error && (
-        <p role="alert" className="mb-3 text-sm font-medium">
+        <p role="alert" className="mb-3 text-sm font-medium text-danger">
           {state.error}
         </p>
       )}
       <Button
         type="submit"
         isPending={pending}
-        className="h-11 rounded-md px-5 text-[15px] [--button-bg-hover:color-mix(in_oklab,var(--color-blue)_80%,transparent)] md:h-11"
+        className="mt-2 h-10 rounded-[4px] px-5 text-base [--button-bg-hover:color-mix(in_oklab,var(--color-blue)_90%,transparent)] md:h-10"
       >
         {({ isPending }) => (
           <>

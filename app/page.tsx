@@ -1,194 +1,161 @@
-import Image from "next/image";
-import Link from "next/link";
+import type { CSSProperties, ReactNode } from "react";
 import ButtonLink from "@/components/ButtonLink";
-import DashboardPreview from "@/components/DashboardPreview";
-import Marquee from "@/components/Marquee";
-import TileRow, { type Tiles } from "@/components/TileRow";
-import type { CSSProperties } from "react";
-import { safesock } from "@/lib/safesock";
-import { container, demo, demoHref, gutter, sectionPad, type } from "@/lib/site";
+import ExpandableMedia from "@/components/ExpandableMedia";
+import Awards from "@/components/sections/home/Awards";
+import HeroArcs from "@/components/sections/home/HeroArcs";
+import ScreenCrop from "@/components/sections/home/ScreenCrop";
+import SessionsSample from "@/components/sections/home/SessionsSample";
+import CtaSheet from "@/components/ui/CtaSheet";
+import DarkCard from "@/components/ui/DarkCard";
+import GradientFrame from "@/components/ui/GradientFrame";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Sheet from "@/components/ui/Sheet";
+import { container, demo, demoHref, focusRing, type } from "@/lib/site";
 
-const workspace: Tiles = [
-  {
-    title: "Exercise recording",
-    text: "Patients film each set at home with a phone or laptop. Landing guides them into frame, counts down once their whole body is in view, and sends nothing until they choose Send.",
-    video: { src: "/workspace/exercise-recording.mp4", poster: "/workspace/exercise-recording.jpg" },
-  },
-  {
-    title: "Exercise review",
-    text: "Patient videos arrive in your review queue. Landing flags the ones with possible form issues and lists them oldest first, so you know where to start.",
-    video: { src: "/workspace/exercise-review.mp4", poster: "/workspace/exercise-review.jpg" },
-  },
-  {
-    title: "Appointment preparation",
-    text: "Before each visit, Landing writes a brief from the patient’s history, recent sessions, and your notes. It lists what changed and what’s still missing, so you’re ready when the visit starts.",
-    video: { src: "/workspace/appointment-preparation.mp4", poster: "/workspace/appointment-preparation.jpg" },
-  },
-  {
-    title: "Post-appointment agent",
-    text: "After each visit, the agent drafts the treatment note and updates the home exercise plan to match what you prescribed. It suggests CPT codes and units from your dictation and treatment times. It also checks your documentation for missing details before billing. The next appointment brief includes this visit.",
-    video: { src: "/workspace/post-appointment.mp4", poster: "/workspace/post-appointment.jpg" },
-  },
-];
+type Feature = { id: "home-exercise" | "pt-review" | "progress"; title: string; body: string; link: string; visual: ReactNode; inDevelopment?: string };
 
-const proposalFields = [
-  { term: "Rationale", detail: "Why Landing suggests the change." },
-  { term: "Dose", detail: "Sets, reps, and holds." },
-  { term: "Precautions", detail: "What to watch for." },
-  { term: "PT checks", detail: "What to confirm during the session." },
-  { term: "Patient evidence", detail: "The sessions, videos, and notes it draws on." },
-  { term: "Reference evidence", detail: "Passages from reviewed clinical references, when available." },
-];
-
-const alsoInLanding = [
+const features: readonly Feature[] = [
   {
-    title: "Scheduling",
-    text: "Set your availability around demand, let patients book online sessions, and keep reminders and follow-ups on track.",
-    href: demoHref,
-    link: "See scheduling in a demo",
+    id: "home-exercise",
+    title: "Home exercise",
+    body: "Patients follow the sessions you assign, with sets, reps, and your cues. Landing shows them how to film each set and asks about pain and difficulty before and after.",
+    link: "See home exercise",
+    visual: (
+      <ScreenCrop
+        src="/workspace/exercise-recording.jpg"
+        alt="A bodyweight squat in the patient app: 3 sets, 10 reps, 60 seconds rest, and a cue from the PT"
+        width={1742}
+        height={1094}
+        region={{ x: 556, y: 112, w: 628, h: 471 }}
+      />
+    ),
   },
   {
-    title: "Home exercise guides",
-    text: "Build plans around treatment goals, the patient’s equipment, and the restrictions you set. Patients get clear instructions they can follow at home.",
-    href: "/getting-started",
-    link: "See how clinics get set up",
+    id: "pt-review",
+    title: "PT review",
+    body: "Videos arrive in your review queue with possible form issues flagged. Mark each flag correct or incorrect, add one Landing missed, and choose whether your comment goes to the patient.",
+    link: "See PT review",
+    visual: (
+      <ScreenCrop
+        src="/workspace/exercise-review.jpg"
+        alt="A flagged heel lift in the PT review screen, with Correct and Incorrect buttons and a comment to the patient"
+        width={1720}
+        height={1094}
+        region={{ x: 1248, y: 330, w: 464, h: 348 }}
+      />
+    ),
   },
   {
-    title: "SafeSock",
-    text: `${safesock.summary} ${safesock.status}`,
-    href: "/safesock",
-    link: "Meet SafeSock",
+    id: "progress",
+    title: "Progress and follow-up",
+    body: "See each patient’s session history. Before each visit, Landing writes a brief from the patient’s history, recent sessions, and your notes.",
+    link: "See progress and follow-up",
+    inDevelopment: "Progress charts over time",
+    visual: <SessionsSample />,
   },
 ];
 
-const awards = [
-  { name: "America250", src: "/awards/america250.svg", aspectRatio: 4.471 },
-  { name: "TEDCO", src: "/awards/tedco.png", aspectRatio: 2.713 },
-  { name: "Johns Hopkins University", src: "/awards/johns-hopkins.png", aspectRatio: 4.115 },
-  { name: "Johns Hopkins Pava Center", src: "/awards/pava-center.svg", aspectRatio: 0.896 },
-  { name: "Baylor University", src: "/awards/baylor.svg", aspectRatio: 5.449 },
-  { name: "TCU", src: "/awards/tcu.svg", aspectRatio: 2.047 },
-  { name: "Duquesne University", src: "/awards/duquesne.png", aspectRatio: 3.576 },
-  { name: "Sasin School of Management, Chulalongkorn University", src: "/awards/sasin.svg", aspectRatio: 7.23 },
-  { name: "KBank", src: "/awards/kbank.svg", aspectRatio: 4.056 },
-  { name: "London Business School", src: "/awards/london-business-school.svg", aspectRatio: 1 },
-  { name: "University of Manitoba", src: "/awards/university-of-manitoba.svg", aspectRatio: 2.066 },
-  { name: "U.S. National Science Foundation", src: "/awards/nsf.png", aspectRatio: 0.999 },
-  { name: "O’Shaughnessy Ventures", src: "/awards/oshaughnessy-ventures.svg", aspectRatio: 3.192 },
-  { name: "FOX45 Baltimore", src: "/awards/fox45.svg", aspectRatio: 2.201 },
-] as const satisfies ReadonlyArray<{ name: string; src: string; aspectRatio: number }>;
-
-const logoWeight = 62;
-
-function logoSize(aspectRatio: number) {
-  const height = Math.min(52, Math.max(24, Math.round(logoWeight / Math.sqrt(aspectRatio))));
-  return { height, width: Math.round(height * aspectRatio) };
-}
-
-const section = `border-t border-ink/10 ${sectionPad}`;
-
-const rise = (i: number) => ({ "data-reveal": "", style: { "--reveal-i": i } as CSSProperties });
+const setupSteps = [
+  {
+    title: "We set up your clinic",
+    body: "Send us the clinic’s name and each PT’s name and email. We add them, and each PT signs in from an invitation.",
+  },
+  {
+    title: "Add your patients",
+    body: "Add each patient with one short form, then assign their exercise sessions.",
+  },
+  {
+    title: "Start reviewing",
+    body: "Patients record their sessions at home, and their videos arrive in your review queue.",
+  },
+] as const;
 
 const delay = (ms: number): CSSProperties => ({ animationDelay: `${ms}ms` });
 
 export default function Home() {
   return (
     <main className="overflow-x-clip">
-      <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
-        <div className={`${container} flex flex-col items-center text-center`}>
-          <h1 className={`${type.h1} max-w-4xl motion-safe:animate-rise`}>
-            AI powered between visit management layer for physical therapy.
-          </h1>
-          <p style={delay(120)} className={`${type.lead} mt-6 max-w-[32rem] text-pretty motion-safe:animate-rise`}>
-            Clinic software and connected recovery devices that keep patient progress, home exercise, and your daily operations in one place.
+      <section className="relative pt-16 pb-16 sm:pt-24 lg:pt-28 lg:pb-20">
+        <HeroArcs />
+        <div className={`${container} relative flex flex-col items-center text-center`}>
+          <h1 className={`${type.h1} max-w-4xl motion-safe:animate-rise`}>Know what happened between visits.</h1>
+          <p style={delay(120)} className={`${type.lead} mt-6 max-w-2xl text-pretty motion-safe:animate-rise`}>
+            Landing is clinic software for physical therapy. Patients record their home exercises, PTs review what needs
+            attention, and the next visit starts with more context.
           </p>
-          <div style={delay(240)} className="mt-10 flex w-full max-w-sm flex-col gap-3 motion-safe:animate-rise sm:w-auto sm:max-w-none sm:flex-row">
+          <div
+            style={delay(240)}
+            className="mt-10 flex w-full max-w-sm flex-col gap-3 motion-safe:animate-rise sm:w-auto sm:max-w-none sm:flex-row"
+          >
             <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
+            <ButtonLink href="/product" variant="secondary">See the product</ButtonLink>
           </div>
         </div>
-        <div style={delay(380)} className={`${gutter} mx-auto mt-14 max-w-[68rem] motion-safe:animate-arrive sm:mt-[4.5rem]`}>
-          <DashboardPreview />
-        </div>
-        <div style={delay(700)} className="motion-safe:animate-rise">
-          <h2 className={`${type.label} mt-16 text-center sm:mt-20`}>Awarded by</h2>
-          <Marquee className="mt-7 [--gap:2rem] sm:[--gap:3rem]">
-            {awards.map(({ name, src, aspectRatio }) => {
-              const { width, height } = logoSize(aspectRatio);
-              return (
-                <li key={name} className="flex shrink-0 items-center">
-                  <Image src={src} alt={name} width={width} height={height} loading="eager" className="grayscale" />
-                </li>
-              );
-            })}
-          </Marquee>
-        </div>
+        <figure style={delay(380)} className={`${container} relative mt-14 motion-safe:animate-arrive sm:mt-18`}>
+          <GradientFrame>
+            <ExpandableMedia
+              media={{ video: { src: "/workspace/exercise-review.mp4", poster: "/workspace/exercise-review.jpg" } }}
+              title="PT review"
+              className="aspect-[1720/1094] w-full max-w-5xl rounded-xl bg-white shadow-preview"
+            />
+          </GradientFrame>
+          <figcaption className="mt-3 text-center text-sm text-slate">
+            A PT reviewing a flagged squat in Landing, recorded with a sample patient.
+          </figcaption>
+        </figure>
       </section>
 
-      <section data-reveal="line" className={section}>
-        <div className={container}>
-          <h2 {...rise(0)} className={`${type.h2} mx-auto max-w-3xl text-center`}>The Workflow</h2>
-          <p {...rise(1)} className={`${type.lead} mx-auto mt-5 max-w-3xl text-center`}>Everything you need between visits.</p>
+      <Sheet tone="fog" round="top">
+        <SectionHeading
+          eyebrow="Product"
+          align="split"
+          title="From the home session to the next visit."
+          lead="Three parts of Landing work together between appointments."
+        />
+        <div className="mt-12 grid gap-x-10 gap-y-14 lg:mt-16 lg:grid-cols-3">
+          {features.map(({ id, title, body, link, visual, inDevelopment }) => (
+            <article key={id} aria-labelledby={`${id}-title`} data-reveal className="flex flex-col">
+              <GradientFrame size="md">
+                <div className="aspect-[4/3] w-full">{visual}</div>
+              </GradientFrame>
+              <h3 id={`${id}-title`} className={`${type.h3} mt-8`}>{title}</h3>
+              <p className={`${type.body} mt-3`}>{body}</p>
+              {inDevelopment && (
+                <p className="mt-4 flex items-center gap-2 text-[15px] text-ink">
+                  <span className={`${type.label} rounded-[4px] bg-blue/10 px-1.5 py-0.5 text-blue`}>In development</span>
+                  {inDevelopment}
+                </p>
+              )}
+              <a
+                href={`/product#${id}`}
+                className={`mt-5 self-start rounded-sm font-medium text-blue underline-offset-4 hover:underline ${focusRing}`}
+              >
+                {link} <span aria-hidden>→</span>
+              </a>
+            </article>
+          ))}
         </div>
-        <TileRow tiles={workspace} className="mt-14 sm:mt-16" />
-      </section>
+      </Sheet>
 
-      <section data-reveal="line" className={section}>
-        <div className={`${container} grid gap-12 lg:grid-cols-12 lg:gap-20`}>
-          <div {...rise(0)} className="lg:col-span-5">
-            <p className={type.label}>Your judgment</p>
-            <h2 className={`${type.h2} mt-4`}>You decide what changes.</h2>
-            <p className={`${type.lead} mt-5 max-w-prose`}>
-              Landing suggests exercises to continue, progress, or adjust, with the patient evidence behind each one.
-              It doesn’t assign a suggestion, send it to the patient, or chart it on its own.
-            </p>
-          </div>
-          <div {...rise(1)} className="rounded-xl border border-ink/10 bg-white p-6 sm:p-8 lg:col-span-7">
-            <h3 className="text-base font-semibold">Each proposal shows</h3>
-            <dl className="mt-6 grid gap-x-10 gap-y-6 sm:grid-cols-2">
-              {proposalFields.map(({ term, detail }) => (
-                <div key={term}>
-                  <dt className="font-medium">{term}</dt>
-                  <dd className="mt-1 text-[15px] leading-6">{detail}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
-      </section>
+      <Sheet tone="white" round="top">
+        <Awards />
+      </Sheet>
 
-      <section data-reveal="line" className={section}>
-        <div className={container}>
-          <p {...rise(0)} className={type.label}>Also in Landing</p>
-          <h2 {...rise(1)} className={`${type.h2} mt-4 max-w-3xl`}>Support around the visit, too.</h2>
-          <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
-            {alsoInLanding.map(({ title, text, href, link }, i) => (
-              <div key={title} {...rise(i + 2)} className="border-t border-ink/15 pt-6">
-                <h3 className={type.h3}>{title}</h3>
-                <p className="mt-3 text-[15px] leading-[1.6]">{text}</p>
-                <Link
-                  href={href}
-                  className="mt-4 inline-block text-sm font-medium underline decoration-ink/30 underline-offset-4 hover:decoration-ink"
-                >
-                  {link}
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <div className={`${container} pb-16 lg:pb-20`}>
+        <DarkCard
+          eyebrow="Getting started"
+          title="Setting up your clinic."
+          body="Landing runs in the browser alongside the EHR you already use. Your EHR stays your system of record."
+          items={setupSteps}
+        />
+        <p className="mt-6 text-center">
+          <a href="/getting-started" className={`rounded-sm font-medium text-blue underline-offset-4 hover:underline ${focusRing}`}>
+            See how setup works <span aria-hidden>→</span>
+          </a>
+        </p>
+      </div>
 
-      <section data-reveal="line" className={section}>
-        <div className={`${container} flex flex-col items-center text-center`}>
-          <h2 {...rise(0)} className={`${type.h2} max-w-3xl`}>See how Landing fits your clinic.</h2>
-          <p {...rise(1)} className={`${type.lead} mt-5 max-w-[36rem] text-pretty`}>
-            {demo.sees}
-          </p>
-          <p {...rise(1)} className="mt-3 max-w-[36rem] text-[15px] leading-[1.6] text-pretty">{demo.prep}</p>
-          <div {...rise(2)} className="mt-10 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
-            <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
-          </div>
-        </div>
-      </section>
+      <CtaSheet heading="See how Landing fits your clinic." lead={demo.sees} />
     </main>
   );
 }
