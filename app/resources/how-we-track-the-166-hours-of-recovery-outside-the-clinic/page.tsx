@@ -29,7 +29,7 @@ export default function OutsideTheClinicPage() {
   return (
     <Article slug={slug} sources={sources}>
       <p>
-        A week has 168 hours. A patient who sees their physical therapist twice a week, for about an hour each visit, spends about 2 of those hours in the clinic. Recovery happens in the other 166, in every step the patient takes at home and at work. The PT sees none of those steps. At Landing, we’re designing SafeSock to measure them, and we trained a model that turns its readings into gait measures a PT can use.
+        A week has 168 hours. A patient who sees their physical therapist twice a week, for about an hour each visit, spends about 2 of those hours in the clinic. Recovery happens in the other 166, in every step the patient takes at home and at work. The PT sees none of those steps. At Landing, we’re designing SafeSock to measure them, and we plan to train a model that turns its readings into gait measures a PT can use.
       </p>
 
       <h2>Force plates measure gait, but only in a lab</h2>
@@ -40,7 +40,7 @@ export default function OutsideTheClinicPage() {
         The standard tool for measuring them is a force plate, a plate set into the floor of a gait lab. A force plate is accurate, but it measures only the steps that land on it. It can’t follow a patient through a normal day.
       </p>
 
-      <h2>We adapted a model built for small datasets</h2>
+      <h2>We plan to adapt a model built for small datasets</h2>
       <p>
         SafeSock is a pressure sensor sleeve we’re designing to sit inside a boot, cast, or brace. Its sensors record how pressure spreads under the foot through each step. Pressure sensors don’t measure ground reaction forces directly, so a model has to estimate the forces from the pressure.
       </p>
@@ -48,7 +48,7 @@ export default function OutsideTheClinicPage() {
         Two things make that estimate hard. To learn forces, a model needs steps where a force plate recorded the true forces alongside the sensors. Lab time is expensive, so these datasets stay small. Common image models also treat the readings as a flat picture and ignore the anatomy of the foot.
       </p>
       <p>
-        Xuan Li and Samuel Bello at Johns Hopkins designed the Dual-Path Region-Guided Attention Network (DP-RGNet) for both problems.{sources.cite("dpRgnet")} We used their method to train a model on SafeSock data. It takes the pressure readings from a step and estimates that step’s ground reaction forces and moments.
+        Xuan Li and Samuel Bello at Johns Hopkins designed the Dual-Path Region-Guided Attention Network (DP-RGNet) for both problems.{sources.cite("dpRgnet")} We plan to use their method to train a model on SafeSock data. It would take the pressure readings from a step and estimate that step’s ground reaction forces and moments.
       </p>
 
       <h2>The model reads the foot by region and as a whole</h2>
@@ -66,7 +66,7 @@ export default function OutsideTheClinicPage() {
         The authors trained DP-RGNet on 2,343 steps from four healthy adults walking on a treadmill with a force plate. Across the six forces and moments, its average normalized error (NRMSE) was 5.78%. The strongest standard model, a CNN with an LSTM, averaged 6.35%.{sources.cite("table4")} On a public dataset of 150 people walking barefoot over a pressure walkway, its vertical force error was 1.42%.{sources.cite("stepup")}
       </p>
       <p>
-        Those are the paper’s results, not SafeSock’s. They come from healthy adults in a lab, and the authors list the limits themselves. The insole dataset has four people, and the region hints come from group averages. A patient after surgery walks differently from a healthy adult. Our model has to hold that accuracy on SafeSock data, including injured gait, before a PT relies on what it reports.
+        Those are the paper’s results, not SafeSock’s. They come from healthy adults in a lab, and the authors list the limits themselves. The insole dataset has four people, and the region hints come from group averages. A patient after surgery walks differently from a healthy adult. Our model will have to hold that accuracy on SafeSock data, including injured gait, before a PT relies on what it reports.
       </p>
 
       <h2>The PT reads how loading changes between visits</h2>

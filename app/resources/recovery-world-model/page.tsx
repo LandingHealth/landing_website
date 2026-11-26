@@ -62,7 +62,7 @@ export default function RecoveryWorldModelPage() {
         The PT opens a flag, watches the rep, and agrees or rejects. We’re building Landing so each verdict becomes a labeled example for the next video. The PT decides what the patient hears.
       </p>
       <p>
-        When the PT progresses, holds, or regresses the plan, that decision labels the slow timescale: this tissue, at this point, was ready or it wasn’t. Over time the flags get closer to what this PT would catch, and the model learns what healing looks like from the PT’s own calls.
+        When the PT progresses, holds, or regresses the plan, that decision labels the slow timescale: this tissue, at this point, was ready or it wasn’t. Over time the flags should get closer to what this PT would catch, and the model should learn what healing looks like from the PT’s own calls.
       </p>
 
       <h2>The PT earns more</h2>
@@ -78,7 +78,7 @@ export default function RecoveryWorldModelPage() {
         Load follows the tissue, not the calendar. A patient who heals fast moves to the next phase sooner. A patient who heals slowly gets held back before a setback, not after one. A patient whose knee caves in on Tuesday’s squats hears about it from their PT before the next visit, not at it.
       </p>
       <p>
-        Every patient a PT treats on Landing adds labels to the model. The longer a clinic uses Landing, the better its flags and advice should get.
+        Our aim is for every patient a PT treats on Landing to add labels to the model. The longer a clinic uses Landing, the better its flags and advice should get.
       </p>
     </Article>
   );
