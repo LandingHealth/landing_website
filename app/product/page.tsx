@@ -1,37 +1,115 @@
 import type { Metadata } from "next";
 import ButtonLink from "@/components/ButtonLink";
-import DemoCallout from "@/components/DemoCallout";
-import RevenueSection from "@/components/sections/Revenue";
-import { container, flyerHref, type } from "@/lib/site";
+import { ProgressPreview } from "@/components/DashboardPreview";
+import DemoVideo from "@/components/sections/product/DemoVideo";
+import MovedSections from "@/components/sections/product/MovedSections";
+import FeatureTour, { type Feature } from "@/components/ui/FeatureTour";
+import GradientFrame from "@/components/ui/GradientFrame";
+import NumberedRows from "@/components/ui/NumberedRows";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Sheet from "@/components/ui/Sheet";
+import { demoHref, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Product | Landing",
-  description: "How Landing saves physical therapists time, opens a new revenue stream between visits, and protects patient information.",
+  description:
+    "See how Landing works between visits. Patients record home exercise, PTs review flagged moments, and the next visit starts with a brief.",
 };
+
+const workflow = [
+  { title: "At home", body: "Patients follow the exercise plan you assign and film each set." },
+  { title: "In your review queue", body: "You see what Landing flagged, check it, and reply to the patient." },
+  { title: "Before the visit", body: "Landing brings the patient’s sessions and history into one brief." },
+] as const;
+
+// Home links to these ids, so keep them stable.
+const features: readonly Feature[] = [
+  {
+    id: "home-exercise",
+    menuLabel: "Home exercise",
+    title: "Home exercise patients can follow",
+    body: "You assign exercise sessions. Patients open each exercise in a phone or laptop browser, see exactly what to do, film their set, and tell you how it felt.",
+    capabilities: [
+      "Sets, reps, rest, and your cue on every exercise.",
+      "How to do it, common mistakes, and how to film, on each exercise.",
+      "Patients can send a video they already have, or skip an exercise and say why.",
+      "A pain and difficulty check-in before the session and a check-out after.",
+    ],
+    demo: <DemoVideo name="exerciseRecording" caption="The Landing patient app, recorded with test data." />,
+  },
+  {
+    id: "pt-review",
+    menuLabel: "PT review",
+    title: "PT review that starts with the flags",
+    body: "Submitted videos arrive in your review queue. Landing flags moments with possible form issues. You decide whether each flag is right and what the patient hears.",
+    capabilities: [
+      "A queue sorted into flagged, unflagged, unassessable, and failed videos.",
+      "Each flag jumps to its moment in the video and shows the measurement behind it.",
+      "Mark each flag correct or incorrect, and add a flag Landing missed.",
+      "The patient’s pain and difficulty check-in sits beside the video.",
+      "Write a comment and send it to the patient, or keep it private.",
+    ],
+    demo: <DemoVideo name="exerciseReview" caption="The Landing PT app, recorded with test data." />,
+  },
+  {
+    id: "progress",
+    menuLabel: "Progress and follow-up",
+    title: "Progress and follow-up before the next visit",
+    body: "Each patient’s sessions sit in one history. Before a visit, Landing writes a brief from the patient’s history, recent sessions, and your notes.",
+    capabilities: [
+      "Session history grouped into upcoming, today, and past, with a status on each.",
+      "A next visit brief for your review.",
+      "Message threads with the patient between visits.",
+      "Changes over time across sessions.",
+    ],
+    demo: (
+      <GradientFrame size="md" className="flex-col">
+        <ProgressPreview />
+      </GradientFrame>
+    ),
+  },
+];
 
 export default function ProductPage() {
   return (
-    <main>
-      <RevenueSection />
-      <section id="security" className="scroll-mt-16 border-t border-ink/10 py-20 sm:py-24">
-        <div className={`${container} flex flex-col items-center text-center`}>
-          <h2 className={`${type.h2} max-w-3xl`}>Peace of mind for physical therapists.</h2>
-          <p className={`${type.lead} mt-5 max-w-[36rem] text-pretty`}>
-            Landing encrypts patient data, keeps it on a private network in AWS, and limits sign-in to invited clinic staff.
-          </p>
-          <div className="mt-10">
-            <ButtonLink href="/security" variant="secondary">See how we protect patient data</ButtonLink>
-          </div>
+    <main className="overflow-x-clip">
+      <MovedSections />
+      <Sheet className="flex flex-col items-center text-center">
+        <SectionHeading
+          as="h1"
+          align="center"
+          eyebrow="Product"
+          title="From home exercise to the next visit"
+          lead="Patients submit home exercises, PTs review what needs attention, and the next visit starts with more context."
+        />
+        <div data-header-cta className="mt-10 flex flex-wrap justify-center gap-3">
+          <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
+          <ButtonLink href="/getting-started" variant="secondary">See how setup works</ButtonLink>
         </div>
-      </section>
-      <DemoCallout>
-        <p className="mt-6 text-[15px]">
-          Want something to share with your team?{" "}
-          <a href={flyerHref} download className="font-medium underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
-            Download the clinic flyer (PDF)
-          </a>
-        </p>
-      </DemoCallout>
+        <NumberedRows items={workflow} heading="h2" className="mt-16 w-full lg:mt-20" />
+      </Sheet>
+
+      <Sheet tone="fog" round="top">
+        <SectionHeading
+          align="center"
+          eyebrow="How it works"
+          title="One loop between visits"
+          lead="Three parts of Landing. The videos are the real apps, recorded with test data."
+          className="mb-12 lg:mb-16"
+        />
+        <FeatureTour features={features} label="Product features" />
+      </Sheet>
+
+      <Sheet round="top">
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <h2 className={type.h2}>Documentation</h2>
+          <p className={`${type.lead} mt-4 max-w-2xl text-pretty`}>
+            Landing exports a PDF evidence packet for each patient, ready to attach to the chart in your EHR. It covers
+            the prescribed home exercise program and adherence data from the patient’s sessions. Evaluations export as
+            their own PDF, with your clinic measurements next to the camera readings.
+          </p>
+        </div>
+      </Sheet>
     </main>
   );
 }

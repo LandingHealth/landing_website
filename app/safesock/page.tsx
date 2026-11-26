@@ -1,69 +1,75 @@
 import type { Metadata } from "next";
-import ExpandableMedia from "@/components/ExpandableMedia";
+import Image from "next/image";
+import ButtonLink from "@/components/ButtonLink";
+import LoadingChart from "@/components/sections/safesock/LoadingChart";
+import DarkCard from "@/components/ui/DarkCard";
+import GradientFrame from "@/components/ui/GradientFrame";
+import NumberedRows from "@/components/ui/NumberedRows";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Sheet from "@/components/ui/Sheet";
 import { safesock } from "@/lib/safesock";
-import { container, sectionPad, type } from "@/lib/site";
+import { container, demoHref, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "SafeSock | Landing",
   description: safesock.summary,
 };
 
-const section = `${sectionPad} border-t border-ink/10`;
-
 export default function SafeSockPage() {
   return (
     <main>
-      <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
-        <div className={`${container} flex flex-col items-center text-center`}>
-          <span className="rounded-full bg-mist px-3 py-1 text-xs font-medium">{safesock.status}</span>
-          <h1 className={`${type.h1} mt-6 max-w-4xl`}>A closer look at loading between visits.</h1>
-          <p className={`${type.lead} mt-6 max-w-[38rem] text-pretty`}>{safesock.summary}</p>
-        </div>
-        <div className={`${container} mt-12 sm:mt-14`}>
-          <ExpandableMedia
-            media={{ video: safesock.video }}
-            title="SafeSock"
-            className="aspect-[2084/1134] w-full rounded-xl bg-black ring-1 ring-black"
-          />
-        </div>
-        <dl className={`${container} mt-14 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4`}>
-          {safesock.atAGlance.map(({ term, detail }) => (
-            <div key={term} className="border-t border-ink pt-4">
-              <dt className="text-[15px] font-medium">{term}</dt>
-              <dd className="mt-2 text-[15px] leading-[1.6]">{detail}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
-      <section className={section}>
-        <div className={`${container} grid gap-10 lg:grid-cols-12 lg:gap-20`}>
-          <h2 className={`${type.h2} lg:col-span-5`}>The limit is set in the clinic. The loading happens at home.</h2>
-          <div className="space-y-5 lg:col-span-7">
-            {safesock.problem.map((paragraph) => (
-              <p key={paragraph} className="max-w-prose text-[15px] leading-[1.65]">
-                {paragraph}
-              </p>
-            ))}
+      <section className={`${container} grid items-center gap-x-16 gap-y-12 pt-12 pb-16 lg:grid-cols-2 lg:pt-16 lg:pb-20`}>
+        <div className="flex flex-col items-center text-center">
+          <h1 className={type.h1}>SafeSock</h1>
+          <p className={`${type.lead} mt-6 max-w-xl text-pretty`}>{safesock.purpose}</p>
+          <p className={`${type.small} mt-4 max-w-xl leading-[1.45] text-mute text-pretty`}>{safesock.status}</p>
+          <div data-header-cta className="mt-8 flex flex-wrap justify-center gap-3">
+            <ButtonLink href={demoHref} variant="primary">Talk about SafeSock</ButtonLink>
+            <ButtonLink href="#workflow" variant="secondary">How it would work</ButtonLink>
           </div>
         </div>
+        <figure className="relative overflow-hidden rounded-3xl bg-[#f1f1ee]">
+          <Image
+            src={safesock.hero.src}
+            alt={safesock.hero.alt}
+            width={safesock.hero.width}
+            height={safesock.hero.height}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            priority
+            className="w-full"
+          />
+          <figcaption className={`${type.label} absolute right-4 bottom-4 text-ink/45 sm:right-5 sm:bottom-5`}>
+            Concept render
+          </figcaption>
+        </figure>
       </section>
 
-      <section className={section}>
-        <div className={container}>
-          <h2 className={`${type.h2} max-w-3xl`}>How a PT would use it</h2>
-          <ol className="mt-12 grid gap-10 md:grid-cols-3">
-            {safesock.steps.map(({ title, text }, i) => (
-              <li key={title} className="border-t border-ink pt-4">
-                <p className="text-[15px] font-medium">
-                  {i + 1}. {title}
-                </p>
-                <p className="mt-2 text-[15px] leading-[1.6]">{text}</p>
-              </li>
-            ))}
-          </ol>
+      <Sheet tone="fog" round="top">
+        <SectionHeading align="center" title="The limit is set in the clinic. The loading happens at home." />
+        <div className="mx-auto mt-8 max-w-2xl space-y-4 text-center">
+          {safesock.problem.map((paragraph) => (
+            <p key={paragraph} className={`${type.body} mx-auto`}>{paragraph}</p>
+          ))}
         </div>
-      </section>
+
+        <DarkCard
+          eyebrow="What it measures"
+          title="What SafeSock is designed to measure."
+          items={safesock.measures}
+          className="mt-20 lg:mt-28"
+        />
+      </Sheet>
+
+      <Sheet tone="white" round="top" id="workflow">
+        <SectionHeading
+          eyebrow="Proposed workflow"
+          title="How it would help you review loading."
+        />
+        <GradientFrame className="mt-12 lg:mt-16">
+          <LoadingChart />
+        </GradientFrame>
+        <NumberedRows items={safesock.steps} reveal="fade" className="mt-12" />
+      </Sheet>
     </main>
   );
 }

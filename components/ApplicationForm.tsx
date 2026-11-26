@@ -1,9 +1,10 @@
 "use client";
 
 import { Button, Description, FieldError, Form, Input, Label, Spinner, TextArea, TextField } from "@heroui/react";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { apply } from "@/app/company/actions";
-import { applicationFields, emailPattern, emptyApplication, type ApplyState } from "@/lib/application";
+import { applicationFields, emailPattern, emptyApplication, resumeAccept, type ApplyState } from "@/lib/application";
+import { type } from "@/lib/site";
 
 const initialState: ApplyState = { status: "editing", values: emptyApplication };
 
@@ -18,12 +19,13 @@ const emailError = (value: string) => (value && !emailPattern.test(value) ? "Ent
 
 export default function ApplicationForm() {
   const [state, action, pending] = useActionState(apply, initialState);
+  const [resumeName, setResumeName] = useState("");
 
   if (state.status === "sent") {
     return (
       <div role="status">
-        <p className="text-lg font-medium">Thanks. We got your application.</p>
-        <p className="mt-2 text-[15px]">We’ll reply by email.</p>
+        <p className="text-2xl font-semibold">Thanks. We got your application.</p>
+        <p className="mt-2 text-slate">We’ll reply by email.</p>
       </div>
     );
   }
@@ -41,37 +43,57 @@ export default function ApplicationForm() {
           validate={kind === "email" ? emailError : undefined}
           className="relative gap-1.5 pb-6"
         >
-          <Label className="font-normal text-black after:content-none">
+          <Label className="font-medium text-ink after:content-none">
             {prefix}
             {label}
           </Label>
-          {hint && <Description className="block text-[13px] leading-snug text-black">{hint}</Description>}
+          {hint && <Description className={`${type.caption} block leading-snug text-slate`}>{hint}</Description>}
           {kind === "textarea" ? (
             <TextArea rows={rows ?? 3} maxLength={max} className={`${fieldText} resize-y py-2.5`} />
           ) : (
             <Input maxLength={max} autoComplete={autoComplete} className={`${fieldText} h-11`} />
           )}
           {/* Absolute so the error clearing on blur does not shift the button out from under the pointer. */}
-          <FieldError className="absolute inset-x-0 bottom-1.5 h-3.5 px-0 text-[13px] leading-[14px] data-visible:h-3.5">
+          <FieldError className={`${type.caption} absolute inset-x-0 bottom-1.5 h-3.5 px-0 leading-[14px] data-visible:h-3.5`}>
             {({ validationDetails }) =>
               validationDetails.valueMissing ? "This field is required." : "Enter a valid email address."
             }
           </FieldError>
         </TextField>
       ))}
+      <div className="flex w-full flex-col gap-1.5 pb-6">
+        <span id="apply-resume-label" className="text-sm font-medium text-ink">Resume (optional)</span>
+        <span className={`${type.caption} leading-snug text-slate`}>PDF or Word, up to 4 MB.</span>
+        <div className="mt-1 flex flex-wrap items-center gap-3">
+          <label
+            className={`inline-flex h-10 cursor-pointer items-center rounded-[4px] bg-fog/85 px-4 text-[15px] font-medium text-ink ring-1 ring-inset ring-ink/10 hover:bg-hair/50 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-ink`}
+          >
+            Upload resume
+            <input
+              type="file"
+              name="resume"
+              accept={resumeAccept}
+              aria-labelledby="apply-resume-label"
+              className="sr-only"
+              onChange={(event) => setResumeName(event.currentTarget.files?.[0]?.name ?? "")}
+            />
+          </label>
+          <span className="text-sm text-slate" aria-live="polite">{resumeName || "No file chosen"}</span>
+        </div>
+      </div>
       <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
         <label htmlFor="apply-website">Website</label>
         <input id="apply-website" type="text" name="website" tabIndex={-1} autoComplete="off" />
       </div>
       {state.error && (
-        <p role="alert" className="mb-3 text-sm font-medium">
+        <p role="alert" className="mb-3 text-sm font-medium text-danger">
           {state.error}
         </p>
       )}
       <Button
         type="submit"
         isPending={pending}
-        className="h-11 rounded-md px-5 text-[15px] [--button-bg-hover:color-mix(in_oklab,var(--color-mist)_80%,transparent)] md:h-11"
+        className="mt-2 h-10 rounded-[4px] px-5 text-base [--button-bg-hover:color-mix(in_oklab,var(--color-blue)_90%,transparent)] md:h-10"
       >
         {({ isPending }) => (
           <>

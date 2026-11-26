@@ -6,3 +6,6 @@ out
 .env*.local
 # heroui-agents-md
 .heroui-docs/
+
+# flyer/export.sh writes this preview next to the PDF; only the PDF ships
+public/landing-clinic-flyer.png

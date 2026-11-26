@@ -7,20 +7,23 @@ import { button, buttonSize, type ButtonSize, type ButtonVariant } from "@/lib/s
 type Ripple = { key: number; x: number; y: number; size: number };
 
 const rippleColor = {
-  primary: "bg-ink/12",
+  primary: "bg-white/25",
   secondary: "bg-ink/12",
-  onInk: "bg-white/25",
+  light: "bg-ink/12",
+  onDark: "bg-white/25",
 } as const satisfies Record<ButtonVariant, string>;
 
 export default function ButtonLink({
   href,
   variant,
   size = "md",
+  className = "",
   children,
 }: {
   href: string;
   variant: ButtonVariant;
   size?: ButtonSize;
+  className?: string;
   children: React.ReactNode;
 }) {
   const [ripples, setRipples] = useState<Ripple[]>([]);
@@ -49,7 +52,7 @@ export default function ButtonLink({
     <Link
       href={href}
       onPointerDown={addRipple}
-      className={`${button[variant]} ${buttonSize[size]} relative isolate overflow-hidden`}
+      className={`${button[variant]} ${buttonSize[size]} relative isolate overflow-hidden ${className}`}
     >
       <span className="pointer-events-none absolute inset-0">
         {ripples.map((ripple) => (

@@ -3,12 +3,12 @@ import CareersSection from "@/components/sections/Careers";
 
 export const metadata: Metadata = {
   title: "Careers | Landing",
-  description: "See Landing's open internship roles and apply.",
+  description: "Landing's open roles: full-time operations and sales, plus engineering and research internships. Every role is remote.",
 };
 
 export default function CareersPage() {
   return (
-    <main>
+    <main className="overflow-x-clip">
       <CareersSection />
     </main>
   );

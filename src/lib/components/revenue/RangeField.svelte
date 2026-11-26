@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { tick } from "svelte";
 	import { clampInput, parseInput, revenueInputs, type InputKey } from "@/lib/revenue";
+	import { type } from "@/lib/site";
 
 	let { name, value = $bindable() }: { name: InputKey; value: number } = $props();
 
@@ -35,7 +36,7 @@
 		type="text"
 		inputmode="numeric"
 		autocomplete="off"
-		class="calc-number font-display text-4xl font-medium leading-none tracking-[-0.025em] tabular-nums"
+		class="calc-number text-4xl font-semibold leading-none tracking-[-0.025em] tabular-nums"
 		{id}
 		value={focused ? text : spec.format(value)}
 		{onfocus}
@@ -43,7 +44,7 @@
 		onblur={commit}
 		onkeydown={(event) => event.key === "Enter" && event.currentTarget.blur()}
 	/>
-	<label for={id} class="mt-[22px] block text-[15px] font-medium leading-snug">{spec.label}</label>
+	<label for={id} class="{type.small} mt-[22px] block font-medium leading-snug">{spec.label}</label>
 	<input
 		type="range"
 		class="calc-range mt-4"
@@ -54,7 +55,7 @@
 		aria-valuetext={spec.format(value)}
 		bind:value
 	/>
-	<div class="mt-2 flex justify-between text-[13px] leading-none">
+	<div class="{type.caption} mt-2 flex justify-between leading-none text-mute">
 		<span>{spec.format(spec.min)}</span>
 		<span>{spec.format(spec.max)}</span>
 	</div>
