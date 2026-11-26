@@ -1,5 +1,10 @@
 import ApplicationForm from "@/components/ApplicationForm";
-import { container, type } from "@/lib/site";
+import ButtonLink from "@/components/ButtonLink";
+import DarkCard from "@/components/ui/DarkCard";
+import Eyebrow from "@/components/ui/Eyebrow";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Sheet from "@/components/ui/Sheet";
+import { container, focusRing, type } from "@/lib/site";
 
 type Role = {
   title: string;
@@ -48,66 +53,106 @@ const roles: ReadonlyArray<Role> = [
 ];
 
 const expectations = [
-  "Every role is remote. Tell us your weekly hours and when you could start, and we’ll find a schedule that works.",
-  "We read every application and reply to everyone by email.",
+  { title: "Location", body: "Every role is remote." },
+  {
+    title: "Commitment",
+    body: "Two roles are full-time and three are internships. Tell us your weekly hours and when you could start, and we’ll find a schedule that works.",
+  },
 ] as const;
 
-export default function CareersSection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
+const process = [
+  { title: "Fill in one form", body: "Name the role you’re applying for in your first answer." },
+  { title: "We read it", body: "We read every application and reply to everyone by email." },
+] as const;
+
+const meta = (role: Role) => `${role.department} · ${role.employment} · ${role.location}`;
+
+export default function CareersSection() {
   return (
-    <section id="careers" className="scroll-mt-16 pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
-      <div className={`${container} flex flex-col items-center text-center`}>
-        <Heading className={`${type.h1} max-w-4xl`}>Careers</Heading>
-        <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
-          We’re a small team building the between-visit layer for physical therapy. Every role is remote.
-        </p>
-      </div>
-      <div className={`${container} mt-14 sm:mt-16`}>
-        <div className="mx-auto max-w-4xl">
-          <h2 className={type.label}>Open roles</h2>
-          <ul className="mt-4 border-t border-ink/15">
-            {roles.map(({ title, department, employment, location, summary }) => (
-              <li
-                key={title}
-                className="flex flex-col gap-1 border-b border-ink/15 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
-              >
-                <div>
-                  <p className="text-[17px] font-medium leading-snug">{title}</p>
-                  <p className="mt-1 text-[15px]">
-                    {department} · {employment} · {location}
-                  </p>
-                  <p className="mt-2 max-w-prose text-[15px] leading-[1.6]">{summary}</p>
-                </div>
-                <a
-                  href="#apply"
-                  className="mt-2 shrink-0 self-start text-sm font-medium underline decoration-ink/30 underline-offset-4 hover:decoration-ink sm:mt-0 sm:self-center"
-                >
-                  Apply
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <div id="apply" className={`${container} mt-20 scroll-mt-24 sm:mt-24`}>
-        <div className="mx-auto grid max-w-4xl gap-x-12 gap-y-8 lg:grid-cols-[2fr_3fr]">
-          <div>
-            <h2 className={type.h2}>Apply</h2>
-            <p className="mt-4 text-[15px] leading-[1.6]">Tell us which role you’re applying for in your first answer.</p>
-            <h3 className="mt-8 text-[15px] font-medium">What to expect</h3>
-            <ul className="mt-2 space-y-2 text-[15px] leading-[1.6]">
-              {expectations.map((text) => (
-                <li key={text}>{text}</li>
+    <>
+      <section className="pt-16 pb-16 sm:pt-24 lg:pt-28 lg:pb-20">
+        <div className={container}>
+          <SectionHeading
+            as="h1"
+            align="center"
+            eyebrow="Careers"
+            title="Help build the between-visit layer for physical therapy."
+            lead="We’re a small team with two full-time roles and three internships open. Every role is remote."
+          />
+          <div className="mt-10 flex justify-center">
+            <ButtonLink href="#apply" variant="primary">Apply now</ButtonLink>
+          </div>
+
+          <div className="mt-16 lg:mt-24 lg:grid lg:grid-cols-4 lg:gap-x-10">
+            <div>
+              <Eyebrow className="mb-4">Open roles</Eyebrow>
+              <h2 className={type.h2}>Five roles</h2>
+            </div>
+            <ul className="mt-8 border-t border-hair lg:col-span-3 lg:mt-0">
+              {roles.map((role) => (
+                <li key={role.title} className="flex flex-col gap-1 border-b border-hair py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+                  <div>
+                    <h3 className="text-lg font-semibold leading-snug">{role.title}</h3>
+                    <p className="mt-1 text-slate">{meta(role)}</p>
+                  </div>
+                  <a
+                    href="#apply"
+                    aria-label={`Apply for ${role.title}`}
+                    className={`mt-2 shrink-0 self-start rounded-sm font-medium text-blue underline-offset-4 hover:underline sm:mt-0 sm:self-center ${focusRing}`}
+                  >
+                    Apply <span aria-hidden>→</span>
+                  </a>
+                </li>
               ))}
             </ul>
-            <h3 className="mt-8 text-[15px] font-medium">Your information</h3>
-            <p className="mt-2 text-[15px] leading-[1.6]">
-              We use your answers only to review your application. They go to a private spreadsheet that only the Landing
-              team can open. To have your application deleted, email us from the Contact link at the bottom of this page.
-            </p>
           </div>
-          <ApplicationForm />
         </div>
+      </section>
+
+      <Sheet tone="fog" round="top">
+        <SectionHeading eyebrow="Responsibilities" align="split" title="What each role does" />
+        <ul className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {roles.map((role) => (
+            <li key={role.title} className="border-t border-hair pt-5">
+              <h3 className={type.h3}>{role.title}</h3>
+              <p className="mt-2 text-blue">{role.employment}</p>
+              <p className={`${type.body} mt-3`}>{role.summary}</p>
+            </li>
+          ))}
+        </ul>
+      </Sheet>
+
+      <Sheet tone="white" round="top">
+        <DarkCard eyebrow="Expectations" title="Remote, with hours that fit." items={expectations} />
+      </Sheet>
+
+      <div className="bg-white">
+        <section id="apply" className="scroll-mt-24 rounded-t-3xl bg-fog py-16 [--reveal-mask:var(--color-fog)] sm:rounded-t-[2.5rem] lg:py-20">
+          <div className={`${container} lg:grid lg:grid-cols-4 lg:gap-x-10`}>
+            <div className="lg:col-span-2 lg:pr-10">
+              <Eyebrow className="mb-4">Application process</Eyebrow>
+              <h2 className={type.h2}>Apply</h2>
+              <ol className="mt-8 border-t border-hair">
+                {process.map(({ title, body }, index) => (
+                  <li key={title} className="border-b border-hair py-5">
+                    <span aria-hidden className="font-mono text-blue">{String(index + 1).padStart(2, "0")}</span>
+                    <h3 className="mt-2 text-lg font-semibold">{title}</h3>
+                    <p className={`${type.body} mt-1`}>{body}</p>
+                  </li>
+                ))}
+              </ol>
+              <h3 className="mt-8 text-lg font-semibold">Your information</h3>
+              <p className={`${type.body} mt-2`}>
+                We use your answers only to review your application. They go to a private spreadsheet that only the Landing
+                team can open. To have your application deleted, email us from the Contact link at the bottom of this page.
+              </p>
+            </div>
+            <div className="mt-10 rounded-3xl bg-white p-6 sm:p-10 lg:col-span-2 lg:mt-0">
+              <ApplicationForm />
+            </div>
+          </div>
+        </section>
       </div>
-    </section>
+    </>
   );
 }
