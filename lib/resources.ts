@@ -7,7 +7,7 @@ export type ArticleStatus = "concept" | "in-development";
 export const groups: Record<ArticleGroup, { label: string; description: string }> = {
   product: {
     label: "Product",
-    description: "How the parts of Landing that clinics use today work, and why we built them this way.",
+    description: "How the parts of Landing that are built today work, and why we built them this way.",
   },
   research: {
     label: "Research",
@@ -87,7 +87,7 @@ const articles: Record<Slug, Omit<Resource, "slug" | "href" | "author">> = {
   },
   "how-we-track-the-166-hours-of-recovery-outside-the-clinic": {
     group: "research",
-    status: "in-development",
+    status: "concept",
     title: "How We Track the 166 Hours of Recovery Outside the Clinic",
     description:
       "How gait forces are measured in a lab, how the DP-RGNet model estimates them from foot pressure, what its published results show, and what a model for SafeSock would have to match.",

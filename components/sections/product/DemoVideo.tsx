@@ -4,10 +4,10 @@ import GradientFrame from "@/components/ui/GradientFrame";
 
 // Ratios are each file's encoded size, so the frame fits the video and never crops it.
 export const demoVideos = {
-  exerciseRecording: { title: "Patient app exercise recording", src: "/workspace/exercise-recording.mp4", poster: "/workspace/exercise-recording.jpg", ratio: "1742/1094" },
-  exerciseReview: { title: "PT app exercise review", src: "/workspace/exercise-review.mp4", poster: "/workspace/exercise-review.jpg", ratio: "1720/1094" },
-  clinicSetup: { title: "Adding a clinic site", src: "/integration/clinic-setup.mp4", poster: "/integration/clinic-setup.jpg", ratio: "1920/1094" },
-  addPatients: { title: "Adding a new patient", src: "/integration/add-patients.mp4", poster: "/integration/add-patients.jpg", ratio: "1920/1094" },
+  exerciseRecording: { title: "Patient app exercise recording", src: "/workspace/exercise-recording-app.mp4", poster: "/workspace/exercise-recording-app.jpg", ratio: "1742/994" },
+  exerciseReview: { title: "PT app exercise review", src: "/workspace/exercise-review-app.mp4", poster: "/workspace/exercise-review-app.jpg", ratio: "1482/994" },
+  clinicSetup: { title: "Adding a clinic site", src: "/integration/clinic-setup-form.mp4", poster: "/integration/clinic-setup-form.jpg", ratio: "1440/460" },
+  addPatients: { title: "Adding a new patient", src: "/integration/add-patients-form.mp4", poster: "/integration/add-patients-form.jpg", ratio: "740/970" },
 } as const satisfies Record<string, { title: string; src: string; poster: string; ratio: string }>;
 
 export type DemoName = keyof typeof demoVideos;

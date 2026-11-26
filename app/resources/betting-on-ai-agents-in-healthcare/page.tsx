@@ -32,7 +32,7 @@ export default function BettingOnAiAgentsPage() {
       <p>
         We started with the work a physical therapist does before a visit. One agent combines the patient’s history, earlier session notes, and exercise activity into a brief for the next visit. A second agent, which we’re still building, proposes exercise options from the same patient context and from reviewed clinical references.
       </p>
-      <p>Both agents are built to cite their sources and flag missing information. The PT makes every treatment decision.</p>
+      <p>The brief agent is built to cite its sources and flag missing information, and the proposal agent is designed to do the same. The PT makes every treatment decision.</p>
 
       <h2>What we’re betting on</h2>
       <p>

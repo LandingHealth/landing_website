@@ -38,7 +38,7 @@ const website: Part = {
             This site can use PostHog to learn which pages people visit and how they use the site. It runs only when the site is set up with a PostHog key. When it is off, the site sends nothing to PostHog.
           </p>
           <p>
-            When it is on, your browser sends this data to <code className="font-mono text-[15px]">/ingest</code> on this site’s own address, which passes it to PostHog’s US servers. PostHog keeps an anonymous identifier in your browser, in a cookie or local storage, so it can tell repeat visits apart. This site never tells PostHog who you are.
+            When it is on, your browser sends this data to <code className="font-mono text-[15px]">/ingest</code> on this site’s own address, which passes it to PostHog’s US servers. PostHog keeps an anonymous identifier in your browser, in a cookie or local storage, so it can tell repeat visits apart. This site does not send PostHog your name or email.
           </p>
         </div>
       ),
@@ -73,7 +73,7 @@ const patientData: Part = {
     },
     {
       label: "Who can see it",
-      body: "Clinic staff join by invitation, and patients are added by their PT. Therapists see only their own patients. Landing doesn’t send clinic, therapist, or patient records to Google.",
+      body: "Clinic staff join by invitation, and patients are added by their PT. Therapists see only their own patients, and Landing staff with admin access can also see clinic data. Landing doesn’t send clinic, therapist, or patient records to Google.",
     },
     {
       label: "Deleting data",
@@ -85,7 +85,15 @@ const patientData: Part = {
     },
     {
       label: "Not yet published",
-      body: "Landing has not yet published a patient privacy notice, a list of the service providers that handle patient data, or how long data is kept after a clinic stops using Landing. If your clinic needs any of these, ask us during your security review.",
+      body: (
+        <>
+          Landing has not yet published a patient privacy notice or a list of the service providers that handle patient data. If your clinic needs either, ask us during your security review. For what happens to a clinic’s data after it leaves Landing, see{" "}
+          <a href="/security#retention" className={proseLink}>
+            Retention and deletion
+          </a>{" "}
+          on the Security page.
+        </>
+      ),
     },
   ],
 };

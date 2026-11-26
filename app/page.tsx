@@ -22,11 +22,11 @@ const features: readonly Feature[] = [
     link: "See home exercise",
     visual: (
       <ScreenCrop
-        src="/workspace/exercise-recording.jpg"
+        src="/workspace/exercise-recording-plan.jpg"
         alt="A bodyweight squat in the patient app: 3 sets, 10 reps, 60 seconds rest, and a cue from the PT"
         width={1742}
-        height={1094}
-        region={{ x: 556, y: 112, w: 628, h: 471 }}
+        height={994}
+        region={{ x: 556, y: 12, w: 628, h: 471 }}
       />
     ),
   },
@@ -37,11 +37,11 @@ const features: readonly Feature[] = [
     link: "See PT review",
     visual: (
       <ScreenCrop
-        src="/workspace/exercise-review.jpg"
+        src="/workspace/exercise-review-app.jpg"
         alt="A flagged heel lift in the PT review screen, with Correct and Incorrect buttons and a comment to the patient"
-        width={1720}
-        height={1094}
-        region={{ x: 1248, y: 330, w: 464, h: 348 }}
+        width={1482}
+        height={994}
+        region={{ x: 1010, y: 230, w: 464, h: 348 }}
       />
     ),
   },
@@ -93,10 +93,19 @@ export default function Home() {
         </div>
         <figure style={delay(380)} className={`${container} relative mt-14 motion-safe:animate-arrive sm:mt-18`}>
           <GradientFrame>
+            <div className="w-full sm:hidden">
+              <ScreenCrop
+                src="/workspace/exercise-review-app.jpg"
+                alt="A PT reviewing a flagged squat in Landing, with the flag timeline under the patient's video"
+                width={1482}
+                height={994}
+                region={{ x: 380, y: 175, w: 630, h: 740 }}
+              />
+            </div>
             <ExpandableMedia
-              media={{ video: { src: "/workspace/exercise-review.mp4", poster: "/workspace/exercise-review.jpg" } }}
+              media={{ video: { src: "/workspace/exercise-review-app.mp4", poster: "/workspace/exercise-review-app.jpg" } }}
               title="PT review"
-              className="aspect-[1720/1094] w-full max-w-5xl rounded-xl bg-white shadow-preview"
+              className="hidden aspect-[1482/994] w-full max-w-5xl rounded-xl bg-white shadow-preview sm:block"
             />
           </GradientFrame>
           <figcaption className="mt-3 text-center text-sm text-slate">

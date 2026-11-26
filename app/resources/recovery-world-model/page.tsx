@@ -49,7 +49,7 @@ export default function RecoveryWorldModelPage() {
         One person already reads slow biology every day. A good PT watches a patient squat and can tell whether the knee is ready for more load. That judgment is the best signal anyone has on the slow timescale. Today it lives in chart notes and in the PT’s head, where no model can learn from it. A model can’t learn slow biology without it.
       </p>
 
-      <h2>Landing measures the 166 hours</h2>
+      <h2>What Landing records between visits</h2>
       <p>
         Patients film their home exercises with a phone or laptop and send the videos to Landing. Computer vision finds each rep, measures the joint angles, and flags reps with possible form issues, such as a knee caving inward on rep 3. Each flag carries the timestamp and the measurement behind it.
       </p>
@@ -65,15 +65,15 @@ export default function RecoveryWorldModelPage() {
         When the PT progresses, holds, or regresses the plan, that decision labels the slow timescale: this tissue, at this point, was ready or it wasn’t. Over time the flags should get closer to what this PT would catch, and the model should learn what healing looks like from the PT’s own calls.
       </p>
 
-      <h2>The PT earns more</h2>
+      <h2>How review could be paid for</h2>
       <p>
         Today a PT’s judgment between visits is unpaid work, or it doesn’t happen at all. Flags point the PT to the reps worth watching, instead of every minute of every video. We want that review to count as remote therapeutic monitoring time, which clinics can bill.{sources.cite("cms")}
       </p>
       <p>
-        Patients who see their PT respond to their home sessions have a reason to keep coming, so the clinic keeps visits it already booked. A PT who knows how each patient did between visits spends less of each visit finding out, and can carry more patients.
+        Patients who see their PT respond to their home sessions could have more reason to keep coming, which would help the clinic keep visits it already booked. A PT who knows how each patient did between visits could spend less of each visit finding out, and could carry more patients.
       </p>
 
-      <h2>The patient recovers more</h2>
+      <h2>How patients could benefit</h2>
       <p>
         Load follows the tissue, not the calendar. A patient who heals fast moves to the next phase sooner. A patient who heals slowly gets held back before a setback, not after one. A patient whose knee caves in on Tuesday’s squats hears about it from their PT before the next visit, not at it.
       </p>

@@ -31,7 +31,11 @@ const steps: readonly Step[] = [
   {
     title: "Add a patient and assign exercises",
     body: "Add each patient with one short form. Then assign their exercise sessions with sets, reps, rest, and your cues. The patient signs up with their email in a phone or laptop browser.",
-    visual: <DemoVideo name="addPatients" caption="The Landing PT app, recorded with test data." />,
+    visual: (
+      <div className="mx-auto max-w-md">
+        <DemoVideo name="addPatients" caption="The Landing PT app, recorded with test data." />
+      </div>
+    ),
   },
   {
     title: "The first recording and the first review",

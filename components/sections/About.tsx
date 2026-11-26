@@ -31,7 +31,7 @@ const injury: ReadonlyArray<{ caption: string; photo: Photo }> = [
 const story = [
   "Neil broke the tibia and fibula in his right leg. His surgery went well, and so did his physical therapy.",
   "Between visits, though, nobody could tell him whether he was loading the leg the right way, so he guessed. His PT saw him for an hour at a time and had little idea what happened at home until the next visit.",
-  "We built Landing to connect those parts of care. Patients record their home exercises, their PT reviews what needs attention, and the next visit starts with the full picture.",
+  "We built Landing to connect those parts of care. Patients record their home exercises, their PT reviews what needs attention, and the next visit starts with more context.",
 ] as const;
 
 type Founder = { name: string; role: string; bio: string; photo: Photo };

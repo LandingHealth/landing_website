@@ -114,6 +114,6 @@ export const safesock = {
   development: [
     { title: "The sleeve", body: "In development with our engineering partners. Not yet available to clinics." },
     { title: "Landing integration", body: "Proposed. Landing doesn’t read SafeSock data yet, so the workflow on this page is how we intend it to work." },
-    { title: "The images", body: "Every image on this page is a concept render of the design, not a photo of the prototype." },
+    { title: "The images", body: "Every image of the device on this page is a concept render of the design, not a photo of the prototype." },
   ],
 } as const;

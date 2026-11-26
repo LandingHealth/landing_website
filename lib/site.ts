@@ -24,7 +24,7 @@ export type Announcement = { text: string; href: string; action: string };
 const latestArticle = resources[0];
 
 export const announcement: Announcement | null = {
-  text: `New article: ${latestArticle.title}`,
+  text: `Latest article: ${latestArticle.title}`,
   href: latestArticle.href,
   action: "Read more",
 };

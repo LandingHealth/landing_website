@@ -11,6 +11,10 @@ const topics: readonly Topic[] = [
     title: "Data storage",
     rows: [
       {
+        label: "Pilot stage",
+        body: "Landing is in its pilot stage. These controls run in our current environment, and our production environment is built to the same or stricter settings.",
+      },
+      {
         label: "Where data lives",
         body: "On Amazon Web Services, in one region, US East (Northern Virginia). Backups stay in the same region.",
       },
@@ -48,7 +52,7 @@ const topics: readonly Topic[] = [
       },
       {
         label: "Roles",
-        body: "Each person’s role is stored in Landing’s database, and therapists see only their own patients. The backend rejects sign-in tokens issued to a different Landing app.",
+        body: "Each person’s role is stored in Landing’s database, and therapists see only their own patients. Landing staff with admin access can also see clinic data. The backend rejects sign-in tokens issued to a different Landing app.",
       },
     ],
   },
@@ -74,6 +78,10 @@ const topics: readonly Topic[] = [
       },
       { label: "File versions", body: "Storage keeps earlier versions of each video and document for at least 30 days." },
       {
+        label: "When a clinic leaves",
+        body: "Our policy is to delete a clinic’s data within 30 days after its agreement with Landing ends. Backups age out after that.",
+      },
+      {
         label: "Audit log",
         body: "AWS CloudTrail records every upload, download, and deletion of a patient document, and Landing keeps those records for at least one year. CloudTrail can show whether a record was changed after it was written. The log covers patient documents. It does not record every time someone views a video.",
       },
@@ -98,7 +106,7 @@ export default function SecuritySection() {
       <TrustHero
         eyebrow="Security"
         title="How Landing protects patient data."
-        lead="Landing stores patient data on Amazon Web Services in one US region. It is encrypted in storage, the database has no route to the internet, and every sign-in goes through Amazon Cognito. This page lists what is in place, so your security review can start from facts."
+        lead="What protects patient data in Landing today, listed so your security review can start from facts."
         jumpLinks={[
           ...topics.map(({ id, title }) => ({ id, label: title })),
           { id: "reviews", label: "Security reviews" },
