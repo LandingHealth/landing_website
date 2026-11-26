@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ButtonLink from "@/components/ButtonLink";
 import { ProgressPreview } from "@/components/DashboardPreview";
 import DemoVideo from "@/components/sections/product/DemoVideo";
+import MovedSections from "@/components/sections/product/MovedSections";
 import CtaSheet from "@/components/ui/CtaSheet";
 import Eyebrow from "@/components/ui/Eyebrow";
 import FeatureTour, { type Feature } from "@/components/ui/FeatureTour";
@@ -74,6 +75,7 @@ const features: readonly Feature[] = [
 export default function ProductPage() {
   return (
     <main className="overflow-x-clip">
+      <MovedSections />
       <Sheet className="flex flex-col items-center text-center">
         <SectionHeading
           as="h1"

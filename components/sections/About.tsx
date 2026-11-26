@@ -91,47 +91,10 @@ export default function AboutSection() {
             title="We’re building the between-visit layer for physical therapy."
             lead="Our goal is better outcomes from care that adjusts between visits, with less work for the people who deliver it."
           />
-          <div className="mt-14 grid gap-4 sm:mt-18 md:grid-cols-[4fr_3fr] lg:gap-6">
-            <div className="flex flex-col gap-4 lg:gap-6">
-              {injury.map(({ caption, photo }) => (
-                <figure key={photo.src}>
-                  <ExpandableMedia media={{ image: photo }} title={caption} className="aspect-[3/2] w-full rounded-3xl bg-fog [&>button]:rounded-3xl [&_img]:rounded-3xl" />
-                  <figcaption className={figureCaption}>{caption}</figcaption>
-                </figure>
-              ))}
-            </div>
-            <figure className="flex flex-col">
-              <div className="relative aspect-9/16 md:aspect-auto md:flex-1">
-                <video
-                  src="/about/clinic-visit.mp4"
-                  poster="/about/clinic-visit.jpg"
-                  controls
-                  playsInline
-                  preload="none"
-                  className="absolute inset-0 size-full rounded-3xl bg-night object-cover"
-                />
-              </div>
-              <figcaption className={figureCaption}>Neil climbing a stair with his PT, three weeks after his fracture.</figcaption>
-            </figure>
-          </div>
         </div>
       </section>
 
       <Sheet tone="fog" round="top">
-        <div className="lg:grid lg:grid-cols-4 lg:gap-x-10">
-          <Eyebrow className="mb-4 lg:mb-0 lg:pt-2">Our story</Eyebrow>
-          <div className="lg:col-span-2">
-            <h2 className={type.h2}>Recovery happens between visits.</h2>
-            <div className="mt-6 space-y-4">
-              {story.map((text) => (
-                <p key={text} className={type.body}>{text}</p>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Sheet>
-
-      <Sheet tone="white" round="top">
         <div className="lg:grid lg:grid-cols-4 lg:gap-x-10">
           <div>
             <Eyebrow className="mb-4">Founders</Eyebrow>
@@ -154,6 +117,43 @@ export default function AboutSection() {
               </li>
             ))}
           </ul>
+        </div>
+      </Sheet>
+
+      <Sheet tone="white" round="top">
+        <div className="lg:grid lg:grid-cols-4 lg:gap-x-10">
+          <Eyebrow className="mb-4 lg:mb-0 lg:pt-2">Our story</Eyebrow>
+          <div className="lg:col-span-2">
+            <h2 className={type.h2}>Recovery happens between visits.</h2>
+            <div className="mt-6 space-y-4">
+              {story.map((text) => (
+                <p key={text} className={type.body}>{text}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="mt-12 grid gap-4 md:grid-cols-[4fr_3fr] lg:mt-16 lg:gap-6">
+          <div className="flex flex-col gap-4 lg:gap-6">
+            {injury.map(({ caption, photo }) => (
+              <figure key={photo.src}>
+                <ExpandableMedia media={{ image: photo }} title={caption} className="aspect-[3/2] w-full rounded-3xl bg-fog [&>button]:rounded-3xl [&_img]:rounded-3xl" />
+                <figcaption className={figureCaption}>{caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <figure className="flex flex-col">
+            <div className="relative aspect-9/16 md:aspect-auto md:flex-1">
+              <video
+                src="/about/clinic-visit.mp4"
+                poster="/about/clinic-visit.jpg"
+                controls
+                playsInline
+                preload="none"
+                className="absolute inset-0 size-full rounded-3xl bg-night object-cover"
+              />
+            </div>
+            <figcaption className={figureCaption}>Neil climbing a stair with his PT, three weeks after his fracture.</figcaption>
+          </figure>
         </div>
       </Sheet>
 
