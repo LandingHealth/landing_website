@@ -176,7 +176,10 @@ function Brief() {
           <li key={line}>{line}</li>
         ))}
       </ul>
-      <p className="mt-2.5 font-medium">Exercise proposals for PT review</p>
+      <div className="mt-2.5 flex items-center justify-between gap-3">
+        <p className="font-medium">Exercise proposals for PT review</p>
+        <span className={`${chipBase} shrink-0 border-ink/20`}>In development</span>
+      </div>
       <div className="mt-1 space-y-1.5">
         {brief.proposals.map(({ title, dose, rationale }) => (
           <div key={title} className="rounded-md border border-ink/10 px-2.5 py-2">
@@ -250,12 +253,31 @@ function Sessions() {
   );
 }
 
+const caption = "Sample patient and clinic data, shown for illustration.";
+
+const frame = "pointer-events-none relative select-none overflow-hidden rounded-[18px] border border-ink/10 bg-white text-left text-[11.5px] leading-[1.45] shadow-preview";
+
+export function ProgressPreview() {
+  return (
+    <figure className="w-full">
+      <div aria-hidden="true" className={frame}>
+        <PatientHeader />
+        <div className="grid items-start gap-4 px-4 py-3.5 sm:grid-cols-2 sm:px-5">
+          <Sessions />
+          <Brief />
+        </div>
+      </div>
+      <figcaption className="mt-3 text-center text-xs text-slate">{caption}</figcaption>
+    </figure>
+  );
+}
+
 export default function DashboardPreview() {
   return (
     <figure className="w-full">
       <div
         aria-hidden="true"
-        className="pointer-events-none relative aspect-[4/5] select-none overflow-hidden rounded-[18px] border border-ink/10 bg-white text-left text-[11.5px] leading-[1.45] shadow-preview sm:aspect-[4/3] lg:aspect-[16/10] lg:text-[12.5px]"
+        className={`${frame} aspect-[4/5] sm:aspect-[4/3] lg:aspect-[16/10] lg:text-[12.5px]`}
       >
         <div className="flex h-full">
           <Rail />
@@ -275,7 +297,7 @@ export default function DashboardPreview() {
         </div>
         <div className="absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-white to-white/0" />
       </div>
-      <figcaption className="mt-3 text-center text-xs">Sample patient and clinic data, shown for illustration.</figcaption>
+      <figcaption className="mt-3 text-center text-xs">{caption}</figcaption>
     </figure>
   );
 }
