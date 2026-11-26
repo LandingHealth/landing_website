@@ -1,72 +1,108 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { coverImage, resources } from "@/lib/resources";
-import { container, gutter, flyerHref, type } from "@/lib/site";
-
-const guides = [
-  { title: "Getting started", text: "How a clinic gets set up on Landing, step by step.", href: "/getting-started" },
-  { title: "Security questions", text: "Where patient data lives, who can access it, and how deletion works.", href: "/security" },
-  { title: "Model your clinic’s numbers", text: "Estimate time saved and between-visit program revenue with your own inputs.", href: "/product#revenue" },
-  { title: "Clinic flyer (PDF)", text: "A one-page summary of Landing to share with your team.", href: flyerHref },
-] as const;
+import { ArticleCard } from "@/components/Article";
+import CtaSheet from "@/components/ui/CtaSheet";
+import Eyebrow from "@/components/ui/Eyebrow";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Sheet from "@/components/ui/Sheet";
+import { groups, resources, type ArticleGroup } from "@/lib/resources";
+import { flyerHref, focusRing, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Resources | Landing",
-  description: "Practical guides for clinics, and the long-term vision behind Landing.",
+  description:
+    "Guides for clinics evaluating Landing, a clinic planning page with time and program calculators, and articles on Landing’s product, research, and perspective.",
 };
+
+const guides = [
+  {
+    kind: "Guide",
+    title: "Getting started",
+    text: "What a clinic needs before starting, how accounts and patients are set up, and how Landing works beside your EHR.",
+    href: "/getting-started",
+  },
+  {
+    kind: "Guide",
+    title: "Security",
+    text: "Where patient data is stored, who can access it, how it is encrypted, and how retention and deletion work.",
+    href: "/security",
+  },
+  {
+    kind: "Calculators",
+    title: "Clinic planning",
+    text: "Estimate weekly hours saved and a between-visit program’s gross revenue from numbers you enter.",
+    href: "/resources/clinic-planning",
+  },
+  {
+    kind: "PDF",
+    title: "Clinic flyer",
+    text: "A one-page summary of how Landing works at home, in the review queue, and before the visit, to share with your team.",
+    href: flyerHref,
+    download: true,
+  },
+] as const;
+
+const groupOrder: readonly ArticleGroup[] = ["product", "research", "perspective"];
 
 export default function ResourcesPage() {
   return (
     <main>
-      <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
-        <div className={`${container} flex flex-col items-center text-center`}>
-          <h1 className={`${type.h1} max-w-4xl`}>Resources</h1>
-          <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
-            Practical guides for clinics, and the long-term vision behind Landing.
-          </p>
-        </div>
-        <div className={`${container} mt-14 sm:mt-16`}>
-          <h2 className={type.h2}>Guides</h2>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {guides.map(({ title, text, href }) => (
-              <li key={title}>
-                <a
-                  href={href}
-                  className="block h-full rounded-xl bg-fog p-5 hover:bg-hair/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink sm:p-6"
-                >
-                  <p className="text-[15px] font-medium leading-snug">{title}</p>
-                  <p className="mt-1 text-[15px] leading-[1.5]">{text}</p>
-                </a>
-              </li>
-            ))}
-          </ul>
-          <h2 className={`${type.h2} mt-20 sm:mt-24`}>Articles</h2>
-        </div>
-        <ul className={`${gutter} mt-8 grid gap-x-3 gap-y-12 sm:grid-cols-2 lg:grid-cols-3`}>
-          {resources.map(({ kind, title, summary, href, cover }) => (
-            <li key={href}>
+      <Sheet className="pt-4 sm:pt-8">
+        <SectionHeading
+          as="h1"
+          eyebrow="Resources"
+          title="Learn how Landing works and why we build it."
+          lead="Practical guides for clinics that are evaluating Landing, and articles by our team on the product, our research, and the ideas behind it."
+        />
+      </Sheet>
+
+      <Sheet tone="fog" round="top">
+        <SectionHeading eyebrow="Practical guides" title="Plan your clinic’s first steps." />
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {guides.map((guide) => (
+            <li key={guide.title}>
               <Link
-                href={href}
-                className="block rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                href={guide.href}
+                download={"download" in guide ? true : undefined}
+                prefetch={"download" in guide ? false : undefined}
+                className={`group flex h-full flex-col rounded-3xl bg-white p-6 transition-colors duration-150 hover:bg-white/70 motion-reduce:transition-none sm:p-8 ${focusRing}`}
               >
-                <Image
-                  src={cover.src}
-                  alt={cover.alt}
-                  width={cover.width}
-                  height={cover.height}
-                  className={`${coverImage} aspect-3/2`}
-                  priority
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                />
-                <p className="mt-5 text-[15px]">{kind}</p>
-                <h3 className={`${type.h3} mt-2`}>{title}</h3>
-                <p className="mt-2 text-[15px] leading-[1.6]">{summary}</p>
+                <span className={`${type.label} text-blue`}>{guide.kind}</span>
+                <h3 className={`${type.h3} mt-10 group-hover:text-blue`}>{guide.title}</h3>
+                <p className={`${type.body} mt-3 flex-1`}>{guide.text}</p>
+                <span className="mt-6 inline-flex items-center gap-2 text-base font-medium text-blue">
+                  {"download" in guide ? "Download PDF" : "Open guide"}
+                  <span aria-hidden>{"download" in guide ? "↓" : "→"}</span>
+                </span>
               </Link>
             </li>
           ))}
         </ul>
-      </section>
+      </Sheet>
+
+      <Sheet round="top" className="flex flex-col gap-20 lg:gap-28">
+        <SectionHeading eyebrow="Articles" title="Product, research, and perspective." />
+        {groupOrder.map((group) => (
+          <section key={group} aria-labelledby={`group-${group}`} className="border-t border-hair pt-10 lg:grid lg:grid-cols-3 lg:gap-x-10">
+            <div className="max-w-md">
+              <Eyebrow>{groups[group].label}</Eyebrow>
+              <h2 id={`group-${group}`} className="sr-only">{groups[group].label}</h2>
+              <p className={`${type.body} mt-4`}>{groups[group].description}</p>
+            </div>
+            <ul className="mt-10 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:col-span-2 lg:mt-0">
+              {resources
+                .filter((resource) => resource.group === group)
+                .map((resource) => (
+                  <li key={resource.slug}>
+                    <ArticleCard resource={resource} showGroup={false} />
+                  </li>
+                ))}
+            </ul>
+          </section>
+        ))}
+      </Sheet>
+
+      <CtaSheet heading="Have a question these resources don’t answer?" lead="Book a demo and we will walk through Landing with a sample patient." />
     </main>
   );
 }
