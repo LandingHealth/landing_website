@@ -9,157 +9,172 @@ source: "app/globals.css"
 
 # Landing website theme
 
-This file is the visual contract for the Landing Health marketing site. It starts from the HeroUI v3 default `DESIGN.md` and replaces the default values with the Landing theme. `app/globals.css` is the source of truth. When this file and `app/globals.css` disagree, follow the CSS and fix this file in the same change.
+This file is the visual contract for the Landing Health marketing site. `app/globals.css` is the source of truth. When this file and `app/globals.css` disagree, follow the CSS and fix this file in the same change.
 
 `AGENTS.md` says how to build with HeroUI. This file says what the result looks like.
 
 ## Design direction
 
-- The page is solid white, including the header and the footer. Do not add gradients, background images, or background video.
-- All text is black. That includes navigation, labels, hints, and button labels. Do not use gray text to lower emphasis. Use size, weight, and spacing.
-- Light blue `mist` marks small things: the primary button, the logo tile, chips in the dashboard preview. It never fills a section.
-- Orange `ember` is a highlight for one small mark, such as a card label. It is never a button color. The italic word in the hero is black, with a gray shimmer sweep.
-- The site is black and white. Black `ink` draws focus outlines, thin rules, and dark cards. Cards use the neutral `paper` fill, and video frames are black while the video loads.
+- The site follows the visual system of vitalize.care: white and fog sheets, ink headings in Inter, one strong blue for actions, and soft blue gradient frames around product visuals. Landing keeps its own copy, logo, photos, and videos. Never copy Vitalize's logos, imagery, text, or font files.
+- Sections alternate between white and `fog`. A sheet can round its top or bottom corners by 40px so it reads as laid over its neighbor.
+- Blue marks actions and position: the primary button, the active feature menu item, eyebrows, and links. It never fills a content section. The announcement bar is the one full-width blue band.
+- Product visuals sit inside a `GradientFrame`. The final call to action sits on the `CtaSheet` gradient. No other gradients, background images, or background video.
+- `night` is for the one dark card per page, such as how Landing partners with a clinic.
 - The site has one mode. Do not add dark mode, a `.dark` class, `data-theme="dark"`, or a `prefers-color-scheme` rule.
 - Build from HeroUI components before you write a custom control. Style them with the tokens below.
 
 ## Colors
 
-Use the semantic HeroUI utilities for anything built from HeroUI components. Use the Landing palette utilities for page layout and brand marks. Do not write a hex value in a component.
+Use the semantic HeroUI utilities for anything built from HeroUI components. Use the Landing palette utilities for page layout. Do not write a hex value in a component.
 
 | Role | Tailwind utilities | CSS variables | Value | Use |
 | --- | --- | --- | --- | --- |
-| Canvas | `bg-background text-foreground` | `--background`, `--foreground` | white, black | Page background and all text |
+| Canvas | `bg-background text-foreground` | `--background`, `--foreground` | white, ink | Page background and default text |
 | Surface | `bg-surface` | `--surface` | white | Cards and accordions |
-| Secondary surface | `bg-surface-secondary` | `--surface-secondary` | `#f5f5f5` (paper) | A quiet nested region |
-| Tertiary surface | `bg-surface-tertiary` | `--surface-tertiary` | `#ebebeb` (panel) | A stronger nested region |
+| Secondary surface | `bg-surface-secondary` | `--surface-secondary` | fog | A quiet nested region |
 | Overlay | `bg-overlay` | `--overlay` | white | Menus, popovers, dialogs |
-| Accent | `bg-accent text-accent-foreground` | `--accent`, `--accent-foreground` | `#dcebf4` (mist), black | The primary action |
-| Neutral action | `bg-default text-default-foreground` | `--default`, `--default-foreground` | `#ebebeb`, black | Neutral controls and selected states |
-| Focus | `outline-focus`, `ring-focus` | `--focus` | `#000000` (ink) | Focus outline on every control |
-| Field | `bg-field text-field-foreground` | `--field-background`, `--field-foreground`, `--field-border` | white, black, black 1px border | Inputs and text areas |
-| Border | `border-border` | `--border` | ink at 20% | Component edges |
-| Separator | `border-separator` | `--separator` | ink at 10% | Rules between rows and sections |
-| Danger | `text-danger`, `bg-danger` | `--danger` | `oklch(0.52 0.2 26)` | Validation errors only. Darker than the HeroUI default so 13px error text passes contrast on white |
+| Accent | `bg-accent text-accent-foreground` | `--accent`, `--accent-foreground` | blue, white | The primary action |
+| Neutral action | `bg-default text-default-foreground` | `--default`, `--default-foreground` | fog, ink | Neutral controls and selected states |
+| Focus | `outline-focus`, `ring-focus` | `--focus` | ink | Focus outline on every control |
+| Link | none | `--link` | blue | HeroUI `Link` color |
+| Field | `bg-field text-field-foreground` | `--field-background`, `--field-foreground`, `--field-border` | white, ink, hair 1px | Inputs and text areas |
+| Border and separator | `border-border`, `border-separator` | `--border`, `--separator` | hair | Component edges and rules |
+| Danger | `text-danger`, `bg-danger` | `--danger` | `oklch(0.52 0.2 26)` | Validation errors only |
 
-The accent is a pale color, so the focus color is set apart from it. Never rely on `--accent` for a focus ring or for text.
+Ink is the focus color because it keeps at least 3:1 against white, fog, and the blue bar. On `night`, use `focus-visible:outline-white`, as the `onDark` button does.
 
 The Landing palette sits beside the semantic tokens as plain Tailwind colors.
 
 | Utility stem | Value | Use |
 | --- | --- | --- |
-| `mist` | `#dcebf4` | Small light blue fills |
-| `paper` | `#f5f5f5` | Neutral card and diagram fills |
-| `panel` | `#ebebeb` | Diagram panels |
-| `ink` | `#000000` | Rules, outlines, dark cards |
-| `slate` | `#404040` | Body text inside the dashboard preview only |
-| `on-ink` | `#f5f5f5` | Text on an ink background |
-| `ember` | `#ea652b` | The orange highlight |
-| `ember-text` | `#d55823` | Orange text that must pass contrast on white |
-| `ember-deep` | `#c9521e` | Pressed or darker orange |
-| `ember-soft` | `#f28a59` | Lighter orange |
+| `ink` | `#191f2d` | Headings and primary text |
+| `slate` | `#545a62` | Body text, leads, nav links |
+| `mute` | `#9298a2` | Inactive feature menu items, captions, footer column titles |
+| `hair` | `#cad0d7` | Rules between menu items and rows |
+| `blue` | `#186ff1` | Primary buttons, active menu item, eyebrows, links, the announcement bar |
+| `blue-light` | `#3d8bff` | Eyebrows, numbers, and rules on `night` |
+| `fog` | `#f4f4f4` | Alternate section background, secondary button |
+| `night` | `#191d2d` | The dark card |
 
-HeroUI owns the names `accent`, `accent-soft`, and `accent-hover`. The orange family is named `ember` so the two never collide.
+Two gradient utilities live in `app/globals.css`. `bg-frame` is the soft blue frame behind product visuals, near-white blue at the top left into `#4f8df5` at the bottom right. `bg-cta` runs from white at the top through light blue and lavender into `#4f8df5` at the bottom of the final call to action.
 
 ## Typography
 
-HeroUI components inherit the site fonts. Body text is Geist (`font-sans`). Headings are Roboto Serif (`font-display`) at weight 380 and 110% width, with its optical size axis on.
+HeroUI components inherit the site fonts. Everything is Inter (`font-sans`). Eyebrows and small labels are Geist Mono 500 (`font-mono`). Both load through `next/font/google` in `app/layout.tsx`.
 
 Take every heading, lead, body, and label size from the `type` table in `lib/site.ts`. Do not write a new font size on a page.
 
-- Body text is 15px with a 1.6 to 1.65 line height.
+| Key | Size | Use |
+| --- | --- | --- |
+| `h1` | 60px, 40px on phones, weight 600, line height 1 | One per page |
+| `h2` | 40px, 32px on phones, weight 600, line height 1.1 | Section headings |
+| `h3` | 24px, weight 600, line height 1.2 | Feature titles, card titles |
+| `lead`, `leadOnDark` | 20px, line height 1.2, slate or white 70% | The line under an H1 or H2 |
+| `body`, `bodyOnDark` | 16px, line height 1.45, slate or white 70% | Short blurbs |
+| `eyebrow` | 16px Geist Mono uppercase | Section kickers, through `components/ui/Eyebrow.tsx` |
+| `label` | 12px Geist Mono uppercase | Small captions on frames and figures |
+
+- Headings carry no color of their own. They inherit ink from the body and white inside `night`.
 - Headings use sentence case and `text-balance`.
-- Small uppercase labels use `type.label`. Use them only where the site already does, such as the footer.
 - Use tabular numbers for values that change, such as the revenue calculator totals.
 
 ## Layout
 
 The spacing base is 4px through Tailwind spacing utilities.
 
-- Use `container` from `lib/site.ts` for reading-width sections.
-- Use `edgePad` from `lib/site.ts` for sections that run near the full window width. Do not copy its class string.
-- Use `sectionPad` for vertical section spacing.
-- Keep tile captions centered. `components/TileRow.tsx` owns tile rows.
-- Never crop a product video to fit a tile. Fit the tile to the video.
-- The header must fit one row at 320px wide. Below the `md` breakpoint the navigation links live in the menu.
+- `container` in `lib/site.ts` gives a 1280px content width with 80px gutters at 1440, 40px on tablets, and 16px on phones. `gutter` is the same padding without the max width.
+- `sectionPad` is 80px top and bottom on desktop, 64px on phones.
+- Use `components/ui/Sheet.tsx` for a white or fog section. It already applies `container` and `sectionPad`.
+- Wide layouts use a four-column grid with 40px gaps. The feature tour puts its menu in column one, the demo in columns two and three, and the text in column four. `SectionHeading align="split"` uses the same grid.
+- Never crop a product video to fit a frame. Fit the frame to the video.
+- The header must fit one row at 320px wide. Below `lg` the navigation links live in the menu.
 
 ## Shapes
 
-The base radius is `--radius: 0.5rem`, so the HeroUI radius scale equals the Tailwind default scale.
-
-- Buttons and fields use 6px (`rounded-md`, `--field-radius`).
-- Media tiles and the dashboard preview use 12px (`rounded-xl`).
-- Do not use pill-shaped buttons.
+- Buttons and fields use 4px corners. Do not use pill-shaped buttons.
+- Large frames, image cards, and the dark card use 24px (`rounded-3xl`).
+- Feature demo frames use 16px (`rounded-2xl`, `GradientFrame size="md"`).
+- Sheets and the CTA sheet use 40px on tablets and up, 24px on phones.
+- Media inside a frame uses 12px (`rounded-xl`).
 
 ## Elevation
 
-The site is flat. Rules and spacing separate content.
+The site is flat. Tone changes and rules separate content.
 
 - Do not add a shadow to a card, a field, or a button.
-- The dashboard preview is the one raised element. It uses `shadow-preview`.
+- A product visual inside a `GradientFrame` may use `shadow-preview` so it lifts off the gradient.
 - Overlays such as the phone menu keep the HeroUI overlay shadow so they read as floating.
 
 ## Components
 
-- **Buttons.** Use the HeroUI `Button` `primary` variant for an action inside a form or a control. A page has one primary action per view. A call to action that navigates is a link, so use `components/ButtonLink.tsx`, which carries the press ripple.
-- **Forms.** Use HeroUI `Form`, `TextField`, `Label`, `Description`, `Input`, `TextArea`, and `FieldError`. Labels sit above the field in black. Show a validation message under the field it belongs to. Show a pending state on the submit button while the request runs.
-- **Disclosure.** Use HeroUI `Accordion` for stacked questions or story sections. Style it as a ruled list, with a black rule above, thin separators between items, and the `plus` icon that turns 45 degrees when the item is open. No card background.
+Page chrome is rendered by `app/layout.tsx`: `AnnouncementBar`, `Header`, and `Footer`. Each page renders its own final `CtaSheet` as its last element.
+
+- **Announcement bar.** `components/AnnouncementBar.tsx` reads the single `announcement` entry in `lib/site.ts`. Set it to `null` to hide the bar.
+- **Header.** Logo left, `navigation` centered, a secondary Contact button and a primary Book a demo button on the right. Below `lg`, the links move into the HeroUI Popover menu.
+- **CTA sheet.** `components/ui/CtaSheet.tsx`. A gradient sheet with a centered H2, Book a demo, an optional secondary button, and the clipped Landing wordmark. Pass the page's own `heading`.
+- **Footer.** Logo, then the `footerColumns` from `lib/site.ts`, then the copyright.
+- **Section primitives.** `components/ui/` holds `Eyebrow`, `SectionHeading`, `Sheet`, `GradientFrame`, `StatCard`, `QuoteBlock`, `DarkCard`, and `FeatureTour`. Build page sections from these before you write new layout.
+- **Feature tour.** `FeatureTour` is the sticky feature menu. It takes a list of features, each with a `demo` node. The feature crossing the middle of the viewport is active. Its menu item turns blue with a blue rule and carries `aria-current="location"`, and the other features dim to 30% on desktop. On phones the menu is a sticky row of chips.
+- **Buttons.** A call to action that navigates is a link, so use `components/ButtonLink.tsx`, which carries the press ripple. Variants are `primary` (blue), `secondary` (fog), and `onDark`. Use the HeroUI `Button` for an action inside a form or a control.
+- **Forms.** Use HeroUI `Form`, `TextField`, `Label`, `Description`, `Input`, `TextArea`, and `FieldError`. Labels sit above the field. Show a validation message under the field it belongs to. Show a pending state on the submit button while the request runs.
+- **Disclosure.** Use HeroUI `Accordion` for stacked questions. Style it as a ruled list with `hair` rules and the `plus` icon that turns 45 degrees when open.
 - **Overlays.** Use HeroUI overlay components so focus, Escape, and outside press behave correctly. Do not build a menu or dialog from a `div`.
 - **Icons.** Use `components/Icon.tsx`. Add a glyph there in the same stroke style before you import an icon package.
-- **Tables.** Keep data tables as plain ruled rows, like the open roles table on `/careers`.
 
 ## Motion
 
-The user approved each animation below. Keep its timing, easing, and trigger exactly as it is. A change to any of them needs the user's request.
+The user approved each animation below. Keep its timing, easing, and trigger. A change to any of them needs the user's request.
 
 | Animation | Where | Owner |
 | --- | --- | --- |
 | Press ripple | Every `ButtonLink` | `components/ButtonLink.tsx`, `animate-rippling` |
-| Hero rise and arrive | Home hero text and preview | `app/page.tsx`, `animate-rise`, `animate-arrive` |
-| Shimmer on the highlighted hero word | Home hero | `.shimmer` in `app/globals.css` |
 | Scroll reveal and line reveal | Sections and rules | `components/Reveal.tsx`, `[data-reveal]` |
+| Feature tour active state | Menu color and feature dimming | `components/ui/FeatureTour.tsx`, 300ms and 500ms opacity and color transitions |
+| Media expand | Click a tile video or image | `components/ExpandableMedia.tsx`, React `ViewTransition` |
+| Looping product videos | Tiles and frames | `components/ExpandableMedia.tsx` |
+| Press scale | HeroUI buttons | HeroUI default |
 | Logo marquee | Home, Awarded by | `components/Marquee.tsx` |
 | Network feed rows | Security | `components/NetworkFeed.tsx` |
 | Loading dots | Sign-in style indicators | `components/LoadingDots.tsx` |
-| Media expand | Click a tile video or image | `components/ExpandableMedia.tsx`, React `ViewTransition` |
-| Looping product videos | Tiles | `components/ExpandableMedia.tsx` |
-| Press scale | HeroUI buttons | HeroUI default |
 
 Rules for new motion:
 
-- Motion explains a state change, such as a panel that opens or a menu that appears. Do not add motion as decoration.
+- Motion explains a state change, such as a panel that opens or a menu item that becomes active. Do not add motion as decoration.
 - Use the HeroUI component's own animation before you write keyframes.
 - Use `--ease-out-soft` for custom transitions, and keep them under 400ms for controls.
-- Every animation stops or shortens under `prefers-reduced-motion: reduce`.
+- Every animation stops or shortens under `prefers-reduced-motion: reduce`. Use `motion-reduce:transition-none` on custom transitions.
 - HeroUI sets `view-transition-name: none` on the root. `app/globals.css` restores the default so the media expand transition keeps its cross-fade. Do not remove that rule.
+- The line reveal mask takes its color from `--reveal-mask`. A fog `Sheet` sets it, so rules on fog reveal cleanly.
 
 ## Interaction
 
-- Every interactive element shows a 2px ink focus indicator on keyboard focus. Site links use an outline with a 2px offset. HeroUI components use their own ring in the same color.
-- Style states with the React Aria data attributes that HeroUI exposes, such as `data-hovered`, `data-pressed`, `data-focus-visible`, `data-disabled`, and `data-invalid`.
-- Navigation links have no hover background. The current page is semibold and carries `aria-current="page"`.
+- Every interactive element shows a 2px focus outline with a 2px offset on keyboard focus. Use `focusRing` from `lib/site.ts`. On blue or `night`, use a white outline.
+- Style HeroUI states with the React Aria data attributes, such as `data-hovered`, `data-pressed`, `data-focus-visible`, `data-disabled`, and `data-invalid`.
+- Navigation links are slate and turn ink on hover. The current page is ink and carries `aria-current="page"`.
 - Disabled controls use the HeroUI default opacity of 0.5.
 - Touch targets are at least 36px tall. Icon-only buttons have an accessible name.
 
 ## Do
 
 - Read the component page in `.heroui-docs/react/` before you use a HeroUI component.
-- Use semantic tokens inside HeroUI components and Landing palette utilities for page layout.
-- Keep the first paint useful without JavaScript. Text, links, and the open accordion item render on the server.
+- Start a section from `components/ui/` and the `type` table.
+- Keep the first paint useful without JavaScript. Text, links, and the first feature in the tour render on the server.
 - Add screenshots of every changed view to the pull request, before and after.
 
 ## Don't
 
 - Don't hardcode a color, radius, shadow, or font size that a token or the `type` table already names.
-- Don't use `gray-*` utilities or `text-muted` on page text.
+- Don't use `gray-*` utilities.
+- Don't put a second dark card or a second blue band on a page.
 - Don't restyle a HeroUI component until it stops looking like the rest of the site. Change the theme variables in `app/globals.css` so every component follows.
 - Don't install a component from another library when HeroUI has one. A VantaUI item is allowed only when HeroUI has no equivalent and the item follows this file.
-- Don't state a compliance claim, a payout term, or a patient outcome that the page copy does not already make.
+- Don't state a compliance claim, a payout term, or a patient outcome that the page copy does not already make. A `StatCard` shows only a number Landing can back.
 
 ## Source of truth
 
-- Landing theme variables and animations: `app/globals.css`
-- Type, spacing, and button tables: `lib/site.ts`
+- Landing theme variables, gradients, and animations: `app/globals.css`
+- Type, spacing, button, navigation, footer, and announcement tables: `lib/site.ts`
+- Section primitives: `components/ui/`
 - HeroUI default variables: `node_modules/@heroui/styles/dist/themes/default/variables.css`
 - HeroUI Tailwind token mappings: `node_modules/@heroui/styles/dist/themes/shared/theme.css`
 - HeroUI component docs: `.heroui-docs/react/components/`
