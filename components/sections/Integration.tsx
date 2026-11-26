@@ -1,6 +1,6 @@
-import DemoCallout from "@/components/DemoCallout";
+import CtaSheet from "@/components/ui/CtaSheet";
 import ExpandableMedia, { type Video } from "@/components/ExpandableMedia";
-import { container, sectionPad, type } from "@/lib/site";
+import { container, demo, sectionPad, type } from "@/lib/site";
 
 const steps: ReadonlyArray<{ title: string; text: string; video: Video }> = [
   {
@@ -67,7 +67,7 @@ export default function IntegrationSection({ heading: Heading = "h1" }: { headin
           </div>
         </div>
       </section>
-      <DemoCallout title="See the setup in a demo." action="See the setup in a demo" />
+      <CtaSheet heading="See the setup in a demo." lead={demo.sees} />
     </>
   );
 }

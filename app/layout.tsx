@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
+import AnnouncementBar from "@/components/AnnouncementBar";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Reveal from "@/components/Reveal";
-import { container, footerColumns, type } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -31,18 +32,10 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${geistMono.variable}`}>
       <body className="bg-white font-sans text-ink antialiased">
         <Reveal />
+        <AnnouncementBar />
         <Header />
         {children}
-        <footer className="border-t border-hair py-12">
-          <div className={`${container} ${type.label} flex flex-wrap items-center justify-between gap-x-6 gap-y-4`}>
-            <ul className="flex flex-wrap gap-x-6 gap-y-2">
-              {footerColumns.flatMap(({ links }) => links).map(({ label, href }) => (
-                <li key={label}><a href={href}>{label}</a></li>
-              ))}
-            </ul>
-            <span>© {new Date().getFullYear()} Landing Health</span>
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   );
