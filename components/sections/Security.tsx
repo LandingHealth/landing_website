@@ -1,108 +1,124 @@
-import EncryptionLock from "@/components/EncryptionLock";
-import IngestionToAws from "@/components/IngestionToAws";
-import LoadingDots from "@/components/LoadingDots";
-import NetworkFeed from "@/components/NetworkFeed";
-import TileRow, { type Tiles } from "@/components/TileRow";
-import { container, type } from "@/lib/site";
+import ButtonLink from "@/components/ButtonLink";
+import Sheet from "@/components/ui/Sheet";
+import { contactHref, type } from "@/lib/site";
+import { RuledRows, TrustHero, TrustSection, type TrustRow } from "@/components/sections/trust/TrustPage";
 
-const safeguards: Tiles = [
+type Topic = { id: string; title: string; rows: readonly TrustRow[] };
+
+const topics: readonly Topic[] = [
   {
+    id: "storage",
+    title: "Data storage",
+    rows: [
+      {
+        label: "Where data lives",
+        body: "On Amazon Web Services, in one region, US East (Northern Virginia). Backups stay in the same region.",
+      },
+      {
+        label: "What is stored",
+        body: "Patient records sit in an Amazon Aurora database. Home exercise videos and patient documents sit in Amazon S3.",
+      },
+      {
+        label: "Private network",
+        body: "The database sits in a private network with no route to or from the internet, and it accepts connections only from Landing’s backend. The backend can’t be reached from the internet either.",
+      },
+      {
+        label: "File storage",
+        body: "Video and document storage is closed to public access. Uploads and downloads go through short-lived signed links.",
+      },
+      {
+        label: "Malware scanning",
+        body: "Amazon GuardDuty scans every uploaded patient document for malware. Download links stay blocked until the scan comes back clean.",
+      },
+    ],
+  },
+  {
+    id: "access",
+    title: "Access controls",
+    rows: [
+      { label: "Sign-in", body: "Every sign-in goes through Amazon Cognito." },
+      { label: "Clinic staff", body: "Staff join by invitation only. There is no open sign-up for clinic accounts." },
+      {
+        label: "Patients",
+        body: "Patients are added by their PT and sign up with the email on their record. Landing links an account to a patient only through that invited email.",
+      },
+      {
+        label: "Passwords and two-step",
+        body: "Passwords need at least 12 characters. Two-step verification with an authenticator app is available.",
+      },
+      {
+        label: "Roles",
+        body: "Each person’s role is stored in Landing’s database, and therapists see only their own patients. The backend rejects sign-in tokens issued to a different Landing app.",
+      },
+    ],
+  },
+  {
+    id: "encryption",
     title: "Encryption",
-    text: "Landing encrypts patient records, videos, and documents in storage. Every connection to Landing uses HTTPS, and the database refuses any connection that isn’t encrypted.",
-    art: <EncryptionLock />,
-  },
-  {
-    title: "Private network",
-    text: "The database sits in a private network with no route to or from the internet. Only Landing’s own services can reach it. Backups keep seven days of history, and deletion protection keeps the database from being removed by mistake.",
-    art: <NetworkFeed />,
-  },
-  {
-    title: "Secure sign-in",
-    text: "Clinic staff join by invitation only. Passwords need at least 12 characters, and two-step verification is available. Every sign-in goes through Amazon Cognito.",
-    art: <LoadingDots />,
-  },
-  {
-    title: "Private file storage",
-    text: "Landing stores all patient documents, videos, and records on Amazon Web Services. Storage is encrypted, keeps earlier versions of each file for 30 days, and is closed to public access.",
-    art: <IngestionToAws video={{ src: "/security/ingestion.mp4", poster: "/security/ingestion.jpg" }} />,
-  },
-];
-
-const questions: ReadonlyArray<{ question: string; answer: ReadonlyArray<string> }> = [
-  {
-    question: "Where are records and videos stored?",
-    answer: [
-      "On Amazon Web Services, in one region, US East in Northern Virginia. Patient records, documents, and home exercise videos are encrypted in storage, and backups stay in the same region.",
+    rows: [
+      { label: "In storage", body: "Patient records, videos, and documents are encrypted in storage." },
+      {
+        label: "Connections into Landing",
+        body: "Browsers and apps connect to Landing over HTTPS. File storage refuses requests that don’t use HTTPS.",
+      },
+      { label: "Database connections", body: "The database refuses any connection that isn’t encrypted." },
     ],
   },
   {
-    question: "Who can access them?",
-    answer: [
-      "Clinic staff join by invitation only, and every sign-in goes through Amazon Cognito. Passwords need at least 12 characters, and two-step verification is available.",
-      "The database sits in a private network with no route to or from the internet. Only Landing’s own services can reach it.",
+    id: "retention",
+    title: "Retention and deletion",
+    rows: [
+      {
+        label: "Backups",
+        body: "The database is backed up automatically, with at least seven days of history. Deletion protection keeps the database from being removed by mistake.",
+      },
+      { label: "File versions", body: "Storage keeps earlier versions of each video and document for at least 30 days." },
+      {
+        label: "Audit log",
+        body: "AWS CloudTrail records every upload, download, and deletion of a patient document, and Landing keeps those records for at least one year. CloudTrail can show whether a record was changed after it was written. The log covers patient documents. It does not record every time someone views a video.",
+      },
     ],
   },
   {
-    question: "How do clinic permissions work?",
-    answer: [
-      "Landing adds your clinic and invites each PT by email. Patients are added by their PT and sign up with the email on their record.",
-    ],
-  },
-  {
-    question: "What happens after a file is uploaded?",
-    answer: [
-      "The file goes to private, encrypted storage. Amazon GuardDuty scans every uploaded patient document for malware, and download links stay blocked until the scan comes back clean.",
-      "AWS CloudTrail records every upload, download, and deletion of a patient document. Landing keeps these logs for one year, and CloudTrail can show whether anyone changed a log after it was written.",
-    ],
-  },
-  {
-    question: "How long are files kept, and how does deletion work?",
-    answer: [
-      "Storage keeps earlier versions of each file for 30 days, and database backups keep seven days of history. Every deletion of a patient document is logged, and deletion protection keeps the database from being removed by mistake.",
-    ],
-  },
-  {
-    question: "What agreements are in place?",
-    answer: [
-      "Landing has a Business Associate Agreement with AWS. It covers Landing’s own AWS account and requires that patient health information stay encrypted in storage and in transit. It is an agreement between Landing and AWS, not between AWS and your clinic.",
-      "For the agreement Landing signs with your clinic, ask us during your security review.",
-    ],
-  },
-  {
-    question: "Who handles security reviews?",
-    answer: [
-      "Our founders handle security questionnaires and reviews directly. Email us from the Contact link at the bottom of this page.",
+    id: "agreements",
+    title: "Agreements",
+    rows: [
+      {
+        label: "AWS",
+        body: "Landing has a Business Associate Agreement with AWS that covers Landing’s AWS accounts. It is an agreement between Landing and AWS, not between AWS and your clinic.",
+      },
+      { label: "Your clinic", body: "For the agreement Landing signs with your clinic, ask us during your security review." },
     ],
   },
 ];
 
-export default function SecuritySection({ heading: Heading = "h1" }: { heading?: "h1" | "h2" }) {
+export default function SecuritySection() {
   return (
-    <section id="security" className="scroll-mt-16 pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
-      <div className={`${container} flex flex-col items-center text-center`}>
-        <Heading className={`${type.h1} max-w-4xl`}>
-          Peace of mind for<br className="hidden sm:block" /> physical therapists.
-        </Heading>
-        <p className={`${type.lead} mt-6 max-w-[36rem] text-pretty`}>
-          Your patients trust you with their health information. Here’s how Landing protects it.
-        </p>
-      </div>
-      <TileRow tiles={safeguards} className="mt-14 sm:mt-16" />
-      <div className={`${container} mt-20 sm:mt-24`}>
-        <h2 className={`${type.h2} max-w-3xl`}>What clinics ask us</h2>
-        <dl className="mt-10 border-t border-ink">
-          {questions.map(({ question, answer }) => (
-            <div key={question} className="grid gap-3 border-b border-ink/10 py-6 lg:grid-cols-12 lg:gap-12">
-              <dt className="text-[17px] font-medium leading-snug lg:col-span-5">{question}</dt>
-              <dd className="space-y-3 text-[15px] leading-[1.65] lg:col-span-7">
-                {answer.map((text) => (
-                  <p key={text}>{text}</p>
-                ))}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </section>
+    <>
+      <TrustHero
+        eyebrow="Security"
+        title="How Landing protects patient data."
+        lead="Landing stores patient data on Amazon Web Services in one US region. It is encrypted in storage, the database has no route to the internet, and every sign-in goes through Amazon Cognito. This page lists what is in place, so your security review can start from facts."
+        jumpLinks={[
+          ...topics.map(({ id, title }) => ({ id, label: title })),
+          { id: "reviews", label: "Security reviews" },
+        ]}
+      />
+      <Sheet tone="fog" round="both">
+        {topics.map(({ id, title, rows }, index) => (
+          <TrustSection key={id} id={id} index={index} title={title}>
+            <RuledRows rows={rows} />
+          </TrustSection>
+        ))}
+        <TrustSection id="reviews" index={topics.length} title="Security reviews">
+          <div className="border-t border-hair pt-5">
+            <p className={type.body}>
+              Our founders handle security questionnaires and reviews directly. Email us to start one, and send your questionnaire along.
+            </p>
+            <ButtonLink href={contactHref} variant="primary" className="mt-6">Email us</ButtonLink>
+          </div>
+        </TrustSection>
+      </Sheet>
+    </>
   );
 }
