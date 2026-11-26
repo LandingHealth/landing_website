@@ -83,10 +83,11 @@ export const sectionPad = "py-16 lg:py-20";
 export const focusRing = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
 
 export const type = {
-  h1: "text-[clamp(2.5rem,1.6rem+3vw,3.75rem)] font-semibold leading-[1] tracking-[-0.02em] text-balance text-ink",
-  h2: "text-[clamp(2rem,1.5rem+1.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.015em] text-balance text-ink",
-  h3: "text-2xl font-semibold leading-[1.2] tracking-[-0.01em] text-ink",
+  h1: "text-[clamp(2.5rem,1.6rem+3vw,3.75rem)] font-semibold leading-[1] tracking-[-0.02em] text-balance",
+  h2: "text-[clamp(2rem,1.5rem+1.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.015em] text-balance",
+  h3: "text-2xl font-semibold leading-[1.2] tracking-[-0.01em]",
   lead: "text-lg leading-[1.35] text-slate sm:text-xl sm:leading-[1.2]",
+  leadOnDark: "text-lg leading-[1.35] text-white/70 sm:text-xl sm:leading-[1.2]",
   body: "max-w-prose text-base leading-[1.45] text-slate",
   bodyOnDark: "max-w-prose text-base leading-[1.45] text-white/70",
   eyebrow: "font-mono text-base font-medium uppercase leading-[1.2]",
