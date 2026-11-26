@@ -30,7 +30,7 @@ export default function CtaSheet({
       </div>
       <p
         aria-hidden
-        className="mt-12 -mb-[0.1em] bg-linear-to-b from-white/80 to-white/25 bg-clip-text text-[clamp(5.5rem,23.3vw,21rem)] leading-none font-semibold tracking-[-0.03em] text-transparent select-none lg:mt-16"
+        className="mt-12 mb-0 bg-linear-to-b from-white/80 to-white/25 bg-clip-text text-[clamp(5.5rem,23.3vw,21rem)] leading-none font-semibold tracking-[-0.03em] text-transparent select-none lg:mt-16"
       >
         Landing
       </p>
