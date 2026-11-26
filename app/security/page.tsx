@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import SecuritySection from "@/components/sections/Security";
 import CtaSheet from "@/components/ui/CtaSheet";
-import { demo } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Security | Landing",
@@ -12,7 +11,7 @@ export default function SecurityPage() {
   return (
     <main>
       <SecuritySection />
-      <CtaSheet heading="Bring your security questions to a demo." lead={demo.sees} />
+      <CtaSheet heading="Bring your security questions to a demo." lead="We’ll walk through how Landing stores and protects patient data, and take your security questionnaire from there." />
     </main>
   );
 }

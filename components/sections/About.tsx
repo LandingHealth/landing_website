@@ -88,7 +88,7 @@ export default function AboutSection() {
             as="h1"
             align="center"
             eyebrow="Company"
-            title="We’re building the between-visit layer for physical therapy."
+            title="We’re building the between‑visit layer for physical therapy"
             lead="Our goal is better outcomes from care that adjusts between visits, with less work for the people who deliver it."
           />
         </div>
@@ -102,18 +102,20 @@ export default function AboutSection() {
           </div>
           <ul className="mt-10 grid gap-x-10 gap-y-12 sm:grid-cols-3 lg:col-span-3 lg:mt-0">
             {founders.map(({ name, role, bio, photo }) => (
-              <li key={name}>
+              <li key={name} className="grid grid-cols-[6rem_1fr] items-center gap-x-5 sm:block">
                 <Image
                   src={photo.src}
                   alt={photo.alt}
                   width={photo.width}
                   height={photo.height}
-                  sizes="(min-width: 1024px) 290px, (min-width: 640px) 30vw, 354px"
-                  className="aspect-square w-full max-w-48 rounded-3xl bg-fog object-cover sm:max-w-[354px]"
+                  sizes="(min-width: 1024px) 290px, (min-width: 640px) 30vw, 96px"
+                  className="aspect-square w-full rounded-2xl bg-fog object-cover sm:rounded-3xl"
                 />
-                <h3 className={`${type.h3} mt-6`}>{name}</h3>
-                <p className="mt-1 text-blue">{role}</p>
-                <p className={`${type.body} mt-3`}>{bio}</p>
+                <div className="sm:mt-6">
+                  <h3 className={type.h3}>{name}</h3>
+                  <p className="mt-1 text-blue">{role}</p>
+                </div>
+                <p className={`${type.body} col-span-2 mt-4 sm:mt-3`}>{bio}</p>
               </li>
             ))}
           </ul>
@@ -142,14 +144,14 @@ export default function AboutSection() {
             ))}
           </div>
           <figure className="flex flex-col">
-            <div className="relative aspect-9/16 md:aspect-auto md:flex-1">
+            <div className="relative aspect-9/16">
               <video
                 src="/about/clinic-visit.mp4"
                 poster="/about/clinic-visit.jpg"
                 controls
                 playsInline
                 preload="none"
-                className="absolute inset-0 size-full rounded-3xl bg-night object-cover"
+                className="absolute inset-0 size-full rounded-3xl bg-night object-cover object-top"
               />
             </div>
             <figcaption className={figureCaption}>Neil climbing a stair with his PT, three weeks after his fracture.</figcaption>

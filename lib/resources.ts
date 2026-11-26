@@ -54,7 +54,7 @@ const neilPatel: Author = { name: "Neil Patel", href: "https://www.linkedin.com/
 const articles: Record<Slug, Omit<Resource, "slug" | "href" | "author">> = {
   "the-partnership-licklider-imagined-in-1960": {
     group: "perspective",
-    title: "The Partnership Licklider Imagined in 1960",
+    title: "The partnership Licklider imagined in 1960",
     description:
       "What J. C. R. Licklider’s “Man-Computer Symbiosis” proposed, which of its 1960 hurdles have since been solved, and how Landing splits a PT’s work the same way.",
     takeaway:
@@ -71,7 +71,7 @@ const articles: Record<Slug, Omit<Resource, "slug" | "href" | "author">> = {
   "a-sleeve-that-reads-the-bones-own-alarm": {
     group: "research",
     status: "concept",
-    title: "A Sleeve That Reads the Bone’s Own Alarm",
+    title: "A sleeve that reads the bone’s own alarm",
     description:
       "How tibial bone stress injuries progress and are graded, why load estimates from wearables are fragile, and the staged study that would test a sleeve reading the shin’s own response.",
     takeaway:
@@ -88,7 +88,7 @@ const articles: Record<Slug, Omit<Resource, "slug" | "href" | "author">> = {
   "how-we-track-the-166-hours-of-recovery-outside-the-clinic": {
     group: "research",
     status: "concept",
-    title: "How We Track the 166 Hours of Recovery Outside the Clinic",
+    title: "How we track the 166 hours of recovery outside the clinic",
     description:
       "How gait forces are measured in a lab, how the DP-RGNet model estimates them from foot pressure, what its published results show, and what a model for SafeSock would have to match.",
     takeaway:
@@ -104,7 +104,7 @@ const articles: Record<Slug, Omit<Resource, "slug" | "href" | "author">> = {
   },
   "betting-on-computer-vision-in-rehabilitation": {
     group: "product",
-    title: "Betting on Computer Vision in Rehabilitation",
+    title: "Betting on computer vision in rehabilitation",
     description:
       "How Landing flags moments in home exercise videos for the PT to review, what a small trial found about video feedback and adherence, and how faster review could add clinic capacity.",
     takeaway:
@@ -120,7 +120,7 @@ const articles: Record<Slug, Omit<Resource, "slug" | "href" | "author">> = {
   },
   "betting-on-ai-agents-in-healthcare": {
     group: "product",
-    title: "Betting on AI Agents in Healthcare",
+    title: "Betting on AI agents in healthcare",
     description:
       "How physicians use AI today, according to the AMA’s 2026 survey, what Landing’s next-visit brief agent does, and what the exercise-proposal agent still in development is meant to do.",
     takeaway:

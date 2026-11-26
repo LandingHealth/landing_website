@@ -140,7 +140,7 @@ export default function SafeSockPage() {
         />
       </div>
 
-      <CtaSheet heading="Talk about SafeSock" lead="Tell us how you manage weight-bearing limits today, and we’ll walk you through where SafeSock stands." />
+      <CtaSheet heading="Talk about SafeSock" primary={{ label: "Talk about SafeSock", href: demoHref }} lead="Tell us how you manage weight-bearing limits today, and we’ll walk you through where SafeSock stands." />
     </main>
   );
 }

@@ -15,20 +15,21 @@ export const metadata: Metadata = {
 export default function ClinicPlanningPage() {
   return (
     <main>
-      <Sheet className="pt-4 sm:pt-8">
+      <Sheet className="flex flex-col items-center text-center">
         <Link href="/resources" className={`${type.label} rounded-sm text-slate hover:text-ink ${focusRing}`}>
           Resources
         </Link>
         <SectionHeading
           as="h1"
+          align="center"
           eyebrow="Clinic planning"
-          title="Work through the numbers with your own inputs."
+          title="Work through the numbers with your own inputs"
           lead="Two calculators for clinic owners. Each one multiplies the numbers you enter and shows its formula. Neither uses data from Landing or from other clinics."
           className="mt-8"
         />
       </Sheet>
       <RevenueSection />
-      <CtaSheet heading="Walk through your clinic’s numbers with us." />
+      <CtaSheet heading="Walk through your clinic’s numbers with us." lead="On a demo call, we’ll go through these calculators with your clinic’s own numbers." />
     </main>
   );
 }

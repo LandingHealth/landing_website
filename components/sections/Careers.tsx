@@ -3,7 +3,6 @@ import ButtonLink from "@/components/ButtonLink";
 import DarkCard from "@/components/ui/DarkCard";
 import Eyebrow from "@/components/ui/Eyebrow";
 import SectionHeading from "@/components/ui/SectionHeading";
-import Sheet from "@/components/ui/Sheet";
 import { container, focusRing, type } from "@/lib/site";
 
 type Role = {
@@ -76,7 +75,7 @@ export default function CareersSection() {
             as="h1"
             align="center"
             eyebrow="Careers"
-            title="Help build the between-visit layer for physical therapy."
+            title="Help build the between‑visit layer for physical therapy"
             lead="We’re a small team with two full-time roles and three internships open. Every role is remote."
           />
           <div className="mt-10 flex justify-center">
@@ -94,6 +93,7 @@ export default function CareersSection() {
                   <div>
                     <h3 className="text-lg font-semibold leading-snug">{role.title}</h3>
                     <p className="mt-1 text-slate">{meta(role)}</p>
+                    <p className={`${type.body} mt-2`}>{role.summary}</p>
                   </div>
                   <a
                     href="#apply"
@@ -109,22 +109,9 @@ export default function CareersSection() {
         </div>
       </section>
 
-      <Sheet tone="fog" round="top">
-        <SectionHeading eyebrow="Responsibilities" align="split" title="What each role does" />
-        <ul className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {roles.map((role) => (
-            <li key={role.title} className="border-t border-hair pt-5">
-              <h3 className={type.h3}>{role.title}</h3>
-              <p className="mt-2 text-blue">{role.employment}</p>
-              <p className={`${type.body} mt-3`}>{role.summary}</p>
-            </li>
-          ))}
-        </ul>
-      </Sheet>
-
-      <Sheet tone="white" round="top">
+      <div className={`${container} pb-16 lg:pb-20`}>
         <DarkCard eyebrow="Expectations" title="Remote, with hours that fit." items={expectations} />
-      </Sheet>
+      </div>
 
       <div className="bg-white">
         <section id="apply" className="scroll-mt-24 rounded-t-3xl bg-fog py-16 [--reveal-mask:var(--color-fog)] sm:rounded-t-[2.5rem] lg:py-20">

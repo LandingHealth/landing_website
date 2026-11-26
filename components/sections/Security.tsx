@@ -105,7 +105,7 @@ export default function SecuritySection() {
     <>
       <TrustHero
         eyebrow="Security"
-        title="How Landing protects patient data."
+        title="How Landing protects patient data"
         lead="What protects patient data in Landing today, listed so your security review can start from facts."
         jumpLinks={[
           ...topics.map(({ id, title }) => ({ id, label: title })),

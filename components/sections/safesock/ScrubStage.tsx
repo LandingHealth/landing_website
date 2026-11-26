@@ -98,7 +98,7 @@ export default function ScrubStage({
 
   return (
     <div ref={track} data-safesock-stage className="relative h-[400svh] motion-reduce:hidden">
-      <div ref={stage} className="sticky top-16 flex h-[calc(100svh-4rem)] flex-col justify-center overflow-hidden">
+      <div ref={stage} className="sticky top-16 flex h-[calc(100svh-4rem)] flex-col overflow-hidden pt-12 lg:pt-10">
         <div className="relative flex items-center justify-center lg:min-h-0 lg:flex-1 lg:[container-type:size]">
           <video
             ref={video}

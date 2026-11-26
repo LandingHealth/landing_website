@@ -61,9 +61,8 @@ const features: readonly Feature[] = [
       "Session history grouped into upcoming, today, and past, with a status on each.",
       "A next visit brief for your review.",
       "Message threads with the patient between visits.",
-      "In development: changes over time across sessions.",
-      "In development: exercise proposals that wait for your review.",
     ],
+    inDevelopment: ["Changes over time across sessions.", "Exercise proposals that wait for your review."],
     demo: (
       <GradientFrame size="md" className="flex-col">
         <ProgressPreview />

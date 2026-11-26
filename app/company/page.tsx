@@ -11,7 +11,7 @@ export default function CompanyPage() {
   return (
     <main className="overflow-x-clip">
       <AboutSection />
-      <CtaSheet heading="Talk with the team building Landing." secondary={{ label: "See open roles", href: "/careers" }} />
+      <CtaSheet heading="Talk with the team building Landing." lead="Book a time to see Landing, or look through the roles we’re hiring for." secondary={{ label: "See open roles", href: "/careers" }} />
     </main>
   );
 }

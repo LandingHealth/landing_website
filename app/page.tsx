@@ -8,6 +8,7 @@ import SessionsSample from "@/components/sections/home/SessionsSample";
 import CtaSheet from "@/components/ui/CtaSheet";
 import DarkCard from "@/components/ui/DarkCard";
 import GradientFrame from "@/components/ui/GradientFrame";
+import InDevelopment from "@/components/ui/InDevelopment";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Sheet from "@/components/ui/Sheet";
 import { container, demo, demoHref, focusRing, type } from "@/lib/site";
@@ -26,7 +27,7 @@ const features: readonly Feature[] = [
         alt="A bodyweight squat in the patient app: 3 sets, 10 reps, 60 seconds rest, and a cue from the PT"
         width={1742}
         height={994}
-        region={{ x: 556, y: 12, w: 628, h: 471 }}
+        region={{ x: 540, y: 12, w: 660, h: 495 }}
       />
     ),
   },
@@ -78,7 +79,7 @@ export default function Home() {
       <section className="relative pt-16 pb-16 sm:pt-24 lg:pt-28 lg:pb-20">
         <HeroArcs />
         <div className={`${container} relative flex flex-col items-center text-center`}>
-          <h1 className={`${type.h1} max-w-4xl motion-safe:animate-rise`}>Know what happened between visits.</h1>
+          <h1 className={`${type.h1} max-w-4xl motion-safe:animate-rise`}>Know what happened between visits</h1>
           <p style={delay(120)} className={`${type.lead} mt-6 max-w-2xl text-pretty motion-safe:animate-rise`}>
             Landing is clinic software for physical therapy. Patients record their home exercises, PTs review what needs
             attention, and the next visit starts with more context.
@@ -131,16 +132,18 @@ export default function Home() {
               <p className={`${type.body} mt-3`}>{body}</p>
               {inDevelopment && (
                 <p className="mt-4 flex items-center gap-2 text-[15px] text-ink">
-                  <span className={`${type.label} rounded-[4px] bg-blue/10 px-1.5 py-0.5 text-blue`}>In development</span>
+                  <InDevelopment />
                   {inDevelopment}
                 </p>
               )}
-              <a
-                href={`/product#${id}`}
-                className={`mt-5 self-start rounded-sm font-medium text-blue underline-offset-4 hover:underline ${focusRing}`}
-              >
-                {link} <span aria-hidden>→</span>
-              </a>
+              <p className="mt-auto pt-5">
+                <a
+                  href={`/product#${id}`}
+                  className={`rounded-sm font-medium text-blue underline-offset-4 hover:underline ${focusRing}`}
+                >
+                  {link} <span aria-hidden>→</span>
+                </a>
+              </p>
             </article>
           ))}
         </div>

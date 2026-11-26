@@ -12,7 +12,7 @@ export default function CareersPage() {
     <main className="overflow-x-clip">
       <CareersSection />
       <div className="bg-fog">
-        <CtaSheet heading="See the product you’d help build." primary={{ label: "Apply now", href: "#apply" }} secondary={{ label: "See the product", href: "/product" }} />
+        <CtaSheet heading="Questions before you apply?" lead="Email the team about any role. We reply to every application by email." primary={{ label: "Apply now", href: "#apply" }} />
       </div>
     </main>
   );

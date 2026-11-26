@@ -7,7 +7,7 @@ import DarkCard from "@/components/ui/DarkCard";
 import GradientFrame from "@/components/ui/GradientFrame";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Sheet from "@/components/ui/Sheet";
-import { container, demo, demoHref, type } from "@/lib/site";
+import { container, demoHref, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Getting started | Landing",
@@ -145,7 +145,7 @@ export default function GettingStartedPage() {
         </div>
       </Sheet>
 
-      <CtaSheet heading="Book a setup demo." lead={demo.sees} />
+      <CtaSheet heading="Book a setup demo." lead="We’ll show you each setup step with a sample patient, then talk through pricing and pilot terms." />
     </main>
   );
 }

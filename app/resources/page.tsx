@@ -47,11 +47,12 @@ const groupOrder: readonly ArticleGroup[] = ["product", "research", "perspective
 export default function ResourcesPage() {
   return (
     <main>
-      <Sheet className="pt-4 sm:pt-8">
+      <Sheet>
         <SectionHeading
           as="h1"
+          align="center"
           eyebrow="Resources"
-          title="Learn how Landing works and why we build it."
+          title="Learn how Landing works and why we build it"
           lead="Practical guides for clinics that are evaluating Landing, and articles by our team on the product, our research, and the ideas behind it."
         />
       </Sheet>

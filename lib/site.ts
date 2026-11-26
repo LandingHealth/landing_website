@@ -19,12 +19,13 @@ export const demo = {
 export const linkedinHref = "https://www.linkedin.com/company/landinghealth/posts/?feedView=all";
 export const contactHref = "mailto:neildrp5@gmail.com";
 
-export type Announcement = { text: string; href: string; action: string };
+export type Announcement = { text: string; shortText: string; href: string; action: string };
 
 const latestArticle = resources[0];
 
 export const announcement: Announcement | null = {
   text: `Latest article: ${latestArticle.title}`,
+  shortText: "Latest article",
   href: latestArticle.href,
   action: "Read more",
 };
@@ -46,6 +47,7 @@ export const footerColumns: ReadonlyArray<FooterColumn> = [
       { label: "Company", href: "/company" },
       { label: "Careers", href: "/careers" },
       { label: "Resources", href: "/resources" },
+      { label: "Referral", href: "/referral" },
       { label: "LinkedIn", href: linkedinHref },
       { label: "Contact", href: contactHref },
     ],
@@ -55,7 +57,6 @@ export const footerColumns: ReadonlyArray<FooterColumn> = [
     links: [
       { label: "Security", href: "/security" },
       { label: "Privacy", href: "/privacy" },
-      { label: "Referral", href: "/referral" },
     ],
   },
 ];

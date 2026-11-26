@@ -263,7 +263,7 @@ export default function PrivacyPage() {
           </p>
         </TrustSection>
       </Sheet>
-      <CtaSheet heading="Questions about your data? Ask us." secondary={{ label: "Email us", href: contactHref }} />
+      <CtaSheet heading="Questions about your data? Ask us." lead="Email us about this policy or about data Landing holds for your clinic." secondary={{ label: "Email us", href: contactHref }} />
     </main>
   );
 }

@@ -1,16 +1,14 @@
 import { type } from "@/lib/site";
 
-type Status = "Not started" | "In progress" | "Complete" | "Overdue";
+type Status = "In progress" | "Complete" | "Overdue";
 
 const statusStyle: Record<Status, string> = {
-  "Not started": "ring-1 ring-inset ring-hair text-slate",
   "In progress": "bg-blue/10 text-blue",
   Complete: "bg-fog text-ink",
   Overdue: "ring-1 ring-inset ring-blue text-blue",
 };
 
 const groups: ReadonlyArray<{ label: string; sessions: ReadonlyArray<{ title: string; detail: string; status: Status }> }> = [
-  { label: "Upcoming", sessions: [{ title: "Mobility", detail: "Thu, Nov 5 · 3 exercises", status: "Not started" }] },
   { label: "Today", sessions: [{ title: "Strength", detail: "Mon, Oct 26 · 3 exercises", status: "In progress" }] },
   {
     label: "Past",

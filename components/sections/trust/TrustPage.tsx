@@ -61,7 +61,7 @@ export function TrustSection({
   children: ReactNode;
 }) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-24 py-12 first:pt-0 last:pb-0 lg:grid lg:grid-cols-4 lg:gap-x-10 lg:py-16">
+    <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-24 py-12 first:pt-0 last:pb-0 lg:grid lg:grid-cols-4 lg:gap-x-10">
       <div className="lg:sticky lg:top-24 lg:self-start">
         <span aria-hidden className="font-mono text-base text-blue">{String(index + 1).padStart(2, "0")}</span>
         <h2 id={`${id}-title`} className={`${type.h3} mt-3 text-balance`}>{title}</h2>

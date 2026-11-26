@@ -1,6 +1,7 @@
 "use client";
 
 import { type ReactNode, useEffect, useRef, useState } from "react";
+import InDevelopment from "@/components/ui/InDevelopment";
 import { focusRing, type } from "@/lib/site";
 
 export type Feature = {
@@ -9,6 +10,7 @@ export type Feature = {
   title: string;
   body: string;
   capabilities?: readonly string[];
+  inDevelopment?: readonly string[];
   demo: ReactNode;
 };
 
@@ -68,7 +70,7 @@ export default function FeatureTour({ features, label = "Features" }: { features
         </ul>
       </nav>
       <div className="mt-8 flex flex-col gap-16 lg:col-span-3 lg:mt-0 lg:gap-10">
-        {features.map(({ id, title, body, capabilities, demo }) => (
+        {features.map(({ id, title, body, capabilities, inDevelopment, demo }) => (
           <article
             key={id}
             id={id}
@@ -85,6 +87,12 @@ export default function FeatureTour({ features, label = "Features" }: { features
                   {capabilities.map((capability) => (
                     <li key={capability} className="border-b border-hair py-2.5 text-[15px] leading-[1.4] text-slate">
                       {capability}
+                    </li>
+                  ))}
+                  {inDevelopment?.map((item) => (
+                    <li key={item} className="flex items-start gap-2 border-b border-hair py-2.5 text-[15px] leading-[1.4] text-slate">
+                      <InDevelopment />
+                      {item}
                     </li>
                   ))}
                 </ul>

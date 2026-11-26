@@ -140,7 +140,7 @@ export default function Article({
             <h2 id="related" className={type.h2}>Related reading</h2>
             <Link href="/resources" className={`${link} text-base`}>All resources</Link>
           </div>
-          <ul className="mt-10 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className={`mt-10 grid gap-x-10 gap-y-12 sm:grid-cols-2 ${related.length > 2 ? "lg:grid-cols-3" : ""}`}>
             {related.map((relatedSlug) => (
               <li key={relatedSlug}>
                 <ArticleCard resource={resourceBySlug[relatedSlug]} />
@@ -149,7 +149,7 @@ export default function Article({
           </ul>
         </div>
       </section>
-      <CtaSheet heading="Questions about this article? Talk with us." />
+      <CtaSheet heading="Questions about this article? Talk with us." lead="Book a demo to see Landing, or email the team about anything in this article." />
     </main>
   );
 }

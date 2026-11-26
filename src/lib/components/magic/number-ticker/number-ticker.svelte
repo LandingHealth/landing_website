@@ -41,8 +41,9 @@
 		() => ({})
 	);
 
+	// Once started, the count must finish even if the ticker scrolls out of view, or it freezes mid-count.
 	$effect(() => {
-		if (!view.current) return;
+		if (!started && !view.current) return;
 
 		const target = value;
 		const from = untrack(() => displayed);

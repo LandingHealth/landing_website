@@ -65,7 +65,7 @@ export default function ReferralSection() {
       <section className={`${container} pt-16 pb-16 lg:pt-24 lg:pb-20`}>
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <Eyebrow className="mb-4">Referral program</Eyebrow>
-          <h1 className={type.h1}>You know a clinic that would love Landing.</h1>
+          <h1 className={type.h1}>You know a clinic that would love Landing</h1>
           <p className={`${type.label} mt-10 text-mute`}>The reward</p>
           <p className={`${type.lead} mt-3 text-pretty`}>Earn $500 when a clinic you refer starts using Landing.</p>
         </div>
