@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import AboutSection from "@/components/sections/About";
+import CtaSheet from "@/components/ui/CtaSheet";
 
 export const metadata: Metadata = {
   title: "Company | Landing",
-  description: "Meet the Landing cofounders and read our story.",
+  description: "Why we built Landing, the founders behind it, and what we're building toward.",
 };
 
 export default function CompanyPage() {
   return (
-    <main>
+    <main className="overflow-x-clip">
       <AboutSection />
+      <CtaSheet heading="Talk with the team building Landing." secondary={{ label: "See open roles", href: "/careers" }} />
     </main>
   );
 }
