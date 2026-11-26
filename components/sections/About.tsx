@@ -61,7 +61,7 @@ export default function AboutSection({ heading: Heading = "h1" }: { heading?: "h
             controls
             playsInline
             preload="none"
-            className="mx-auto aspect-9/16 w-full max-w-sm rounded-xl bg-black ring-1 ring-black"
+            className="mx-auto aspect-9/16 w-full max-w-sm rounded-xl bg-black ring-1 ring-ink/10"
           />
           <figcaption className="mt-3 text-center text-[13px]">
             Neil climbing a stair with his PT, three weeks after his fracture. Press play to watch.

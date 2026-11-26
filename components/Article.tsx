@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import ShareLink from "@/components/ShareLink";
 import { coverImage, type Resource } from "@/lib/resources";
-import { container, edgePad, type } from "@/lib/site";
+import { container, gutter, type } from "@/lib/site";
 
 export const text = "text-[15px] leading-[1.6]";
 export const body = `mt-5 ${text}`;
@@ -22,11 +22,11 @@ const slug = (heading: string) =>
 export function Note({ children }: { children: ReactNode }) {
   return (
     <span className="group">
-      <label className="-mr-1 -my-2 inline-block cursor-pointer py-2 pl-px pr-2 align-super text-[11px] leading-none text-ember-text [counter-increment:note] after:content-[counter(note)] xl:pointer-events-none xl:m-0 xl:p-0 xl:pl-px">
+      <label className="-mr-1 -my-2 inline-block cursor-pointer py-2 pl-px pr-2 align-super text-[11px] leading-none text-blue [counter-increment:note] after:content-[counter(note)] xl:pointer-events-none xl:m-0 xl:p-0 xl:pl-px">
         <input type="checkbox" className="sr-only xl:hidden" />
         <span className="sr-only">Note </span>
       </label>
-      <span className="my-2 hidden text-[13px] leading-[1.55] [&_a]:rounded-sm [&_a]:underline [&_a]:underline-offset-2 [&_a]:focus-visible:outline-2 [&_a]:focus-visible:outline-offset-2 [&_a]:focus-visible:outline-ink before:mr-1 before:text-ember-text before:content-[counter(note)] group-has-checked:block xl:float-right xl:clear-right xl:-mr-[17rem] xl:my-0 xl:mb-3 xl:block xl:w-56">
+      <span className="my-2 hidden text-[13px] leading-[1.55] [&_a]:rounded-sm [&_a]:underline [&_a]:underline-offset-2 [&_a]:focus-visible:outline-2 [&_a]:focus-visible:outline-offset-2 [&_a]:focus-visible:outline-ink before:mr-1 before:text-blue before:content-[counter(note)] group-has-checked:block xl:float-right xl:clear-right xl:-mr-[17rem] xl:my-0 xl:mb-3 xl:block xl:w-56">
         {children}
       </span>
     </span>
@@ -63,7 +63,7 @@ export default function Article({
             </ul>
           </div>
         </div>
-        <div className={`${edgePad} mt-14 sm:mt-16`}>
+        <div className={`${gutter} mt-14 sm:mt-16`}>
           <Image
             src={cover.src}
             alt={cover.alt}
@@ -74,7 +74,7 @@ export default function Article({
             sizes="100vw"
           />
         </div>
-        <div className={`${edgePad} mt-14 sm:mt-16 xl:grid xl:grid-cols-[minmax(14rem,1fr)_minmax(0,45rem)_minmax(14rem,1fr)] xl:gap-x-12`}>
+        <div className={`${gutter} mt-14 sm:mt-16 xl:grid xl:grid-cols-[minmax(14rem,1fr)_minmax(0,45rem)_minmax(14rem,1fr)] xl:gap-x-12`}>
           <nav aria-label="Jump to" className="hidden xl:block">
             <div className="sticky top-24">
               <p className="text-[13px]">Jump to</p>

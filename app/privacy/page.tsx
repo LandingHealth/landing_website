@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { body, text } from "@/components/Article";
-import { container, edgePad, type } from "@/lib/site";
+import { container, gutter, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy policy | Landing",
@@ -157,7 +157,7 @@ export default function PrivacyPage() {
           </p>
           <p className="mt-4 text-[13px]">Updated October 29, 2026</p>
         </div>
-        <div className={`${edgePad} mt-14 sm:mt-16`}>
+        <div className={`${gutter} mt-14 sm:mt-16`}>
           <article className="mx-auto max-w-[45rem]">
             <p className={text}>
               People who use the Landing admin dashboard can connect their Google Calendar to it and add files from Google Drive to tasks and notes. This policy covers only the data Landing gets from your Google account through the admin dashboard.

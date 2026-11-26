@@ -11,7 +11,7 @@ export default function ProductFrame({
 }) {
   return (
     <figure data-reveal>
-      <div className="overflow-hidden rounded-xl border border-ink/10 bg-paper shadow-[0_12px_40px_rgba(11,14,50,0.06)]">
+      <div className="overflow-hidden rounded-xl border border-ink/10 bg-fog shadow-[0_12px_40px_rgba(11,14,50,0.06)]">
         <div className="flex items-center justify-between gap-4 border-b border-ink/10 px-4 py-3">
           <div aria-hidden="true" className="flex gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-ink/15" />

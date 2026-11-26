@@ -4,10 +4,10 @@ import Icon, { type IconName } from "@/components/Icon";
 type SessionStatus = "inProgress" | "notStarted" | "complete" | "overdue";
 
 const sessionChip: Record<SessionStatus, { label: string; className: string }> = {
-  inProgress: { label: "In progress", className: "border-transparent bg-mist" },
+  inProgress: { label: "In progress", className: "border-transparent bg-blue/10" },
   notStarted: { label: "Not started", className: "border-ink/20" },
   complete: { label: "Complete", className: "border-transparent bg-ink/10" },
-  overdue: { label: "Overdue", className: "border-ember" },
+  overdue: { label: "Overdue", className: "border-blue" },
 };
 
 type RailItem = { icon: IconName; label: string; count?: number; active?: boolean };
@@ -92,7 +92,7 @@ const lockupSmall = { tileClassName: "size-6 rounded-md", wordmarkClassName: "h-
 function RailRow({ icon, label, count, active }: RailItem) {
   return (
     <div className={`flex h-7 items-center gap-2 rounded-md px-2 ${active ? "bg-white font-medium" : ""}`}>
-      <Icon name={icon} className={`size-3.5 ${active ? "text-ember" : ""}`} />
+      <Icon name={icon} className={`size-3.5 ${active ? "text-blue" : ""}`} />
       <span className="flex-1">{label}</span>
       {count !== undefined && <span className="tabular-nums">{count}</span>}
     </div>
@@ -101,7 +101,7 @@ function RailRow({ icon, label, count, active }: RailItem) {
 
 function Rail() {
   return (
-    <div className="hidden w-40 shrink-0 flex-col justify-between border-r border-ink/10 bg-mist px-2 py-3 md:flex lg:w-44">
+    <div className="hidden w-40 shrink-0 flex-col justify-between border-r border-ink/10 bg-blue/10 px-2 py-3 md:flex lg:w-44">
       <div>
         <div className="px-1 pb-3">
           <BrandLockup {...lockupSmall} />
@@ -167,7 +167,7 @@ function Brief() {
     <div className="rounded-lg border border-ink/12 p-3">
       <div className="flex items-start justify-between gap-3">
         <p className={heading}>Next appointment brief</p>
-        <span className={`${chipBase} shrink-0 border-transparent bg-mist`}>For your review</span>
+        <span className={`${chipBase} shrink-0 border-transparent bg-blue/10`}>For your review</span>
       </div>
       <p className="mt-1">Next visit · {brief.nextVisit}</p>
       <p className="mt-2.5 font-medium">Patient snapshot</p>
@@ -208,7 +208,7 @@ function Videos() {
               <p className="truncate">{detail}</p>
             </div>
             <p className="ml-auto flex shrink-0 items-center gap-1.5 text-[10.5px]">
-              {flagged && <span className="size-1.5 rounded-full bg-ember" />}
+              {flagged && <span className="size-1.5 rounded-full bg-blue" />}
               {meta}
             </p>
           </div>
@@ -223,7 +223,7 @@ function Sessions() {
     <div>
       <div className="flex items-center justify-between">
         <p className={heading}>Sessions</p>
-        <span className="rounded border border-transparent bg-ember px-2 py-0.5 text-[11px] font-medium text-black">
+        <span className="rounded border border-transparent bg-blue px-2 py-0.5 text-[11px] font-medium text-white">
           New session
         </span>
       </div>
@@ -260,7 +260,7 @@ export default function DashboardPreview() {
         <div className="flex h-full">
           <Rail />
           <div className="flex min-w-0 flex-1 flex-col">
-            <div className="flex items-center border-b border-ink/10 bg-mist px-3 py-2 md:hidden">
+            <div className="flex items-center border-b border-ink/10 bg-blue/10 px-3 py-2 md:hidden">
               <BrandLockup {...lockupSmall} />
             </div>
             <PatientHeader />

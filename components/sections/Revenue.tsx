@@ -1,5 +1,5 @@
 import RevenueCalculator, { type CalculatorKind } from "@/components/RevenueCalculator";
-import { container, edgePad, type } from "@/lib/site";
+import { container, gutter, type } from "@/lib/site";
 
 type Block = { title: string; text: string; top?: string };
 
@@ -118,13 +118,13 @@ function Blocks({
   className?: string;
 }) {
   return (
-    <ul className={`grid gap-3 ${edgePad} ${columns[blocks.length]} ${className}`}>
+    <ul className={`grid gap-3 ${gutter} ${columns[blocks.length]} ${className}`}>
       {blocks.map((block) => (
         <li
           key={block.title}
-          className="rounded-xl bg-paper p-5 sm:p-6"
+          className="rounded-xl bg-fog p-5 sm:p-6"
         >
-          {top === "label" && <p className={`${type.label} text-ember-deep`}>{block.top}</p>}
+          {top === "label" && <p className={`${type.label} text-blue`}>{block.top}</p>}
           <h3 className={`text-[15px] font-medium leading-snug ${top ? "mt-10" : ""}`}>{block.title}</h3>
           <p className="mt-1 text-[15px] leading-[1.5]">{block.text}</p>
         </li>
@@ -146,7 +146,7 @@ export default function RevenueSection({ heading: Heading = "h1" }: { heading?: 
       <Blocks blocks={outcomes} className="mt-14 sm:mt-16" />
       {sections.map(({ title, paragraphs, groups, calculator }) => (
         <div key={title}>
-          <div className={`mt-20 grid gap-x-3 gap-y-8 ${edgePad} sm:mt-24 lg:grid-cols-2`}>
+          <div className={`mt-20 grid gap-x-3 gap-y-8 ${gutter} sm:mt-24 lg:grid-cols-2`}>
             <h2 className={`${type.h2} max-w-xl`}>{title}</h2>
             <div className="max-w-xl space-y-5 text-[15px] leading-[1.6]">
               {paragraphs.map((text) => (

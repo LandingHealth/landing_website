@@ -15,7 +15,7 @@ export default function SafeSockPage() {
     <main>
       <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
         <div className={`${container} flex flex-col items-center text-center`}>
-          <span className="rounded-full bg-mist px-3 py-1 text-xs font-medium">{safesock.status}</span>
+          <span className="rounded-full bg-blue/10 text-blue px-3 py-1 text-xs font-medium">{safesock.status}</span>
           <h1 className={`${type.h1} mt-6 max-w-4xl`}>A closer look at loading between visits.</h1>
           <p className={`${type.lead} mt-6 max-w-[38rem] text-pretty`}>{safesock.summary}</p>
         </div>
@@ -23,7 +23,7 @@ export default function SafeSockPage() {
           <ExpandableMedia
             media={{ video: safesock.video }}
             title="SafeSock"
-            className="aspect-[2084/1134] w-full rounded-xl bg-black ring-1 ring-black"
+            className="aspect-[2084/1134] w-full rounded-xl bg-black ring-1 ring-ink/10"
           />
         </div>
         <dl className={`${container} mt-14 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4`}>

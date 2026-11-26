@@ -8,8 +8,8 @@
 	let reviewMinutes = $state<number>(revenueInputs.reviewMinutes.default);
 
 	const result = $derived(program({ patients, fee, reviewMinutes }));
-	const cardClass = "rounded-xl bg-paper p-5 sm:p-6";
-	const bigNumber = "font-display text-4xl font-medium leading-none tracking-[-0.025em] tabular-nums";
+	const cardClass = "rounded-xl bg-fog p-5 sm:p-6";
+	const bigNumber = "text-4xl font-semibold leading-none tracking-[-0.025em] tabular-nums";
 </script>
 
 <ul class="grid gap-3 px-6 lg:px-4 sm:grid-cols-3">

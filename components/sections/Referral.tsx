@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Icon, { type IconName } from "@/components/Icon";
-import { container, demoHref, edgePad, type } from "@/lib/site";
+import { container, demoHref, gutter, type } from "@/lib/site";
 
 type Step = { icon: IconName; title: string; text: ReactNode };
 
@@ -67,15 +67,15 @@ export default function ReferralSection({ heading: Heading = "h1" }: { heading?:
         <p className="mt-3 text-lg leading-snug sm:text-xl">Earn $500 when a clinic you refer starts using Landing.</p>
       </section>
       <section className="mt-24 sm:mt-32">
-        <h2 className={`${type.h2} text-center ${edgePad}`}>How it works</h2>
-        <ol className={`mt-10 grid gap-3 ${edgePad} sm:mt-14 lg:grid-cols-3`}>
+        <h2 className={`${type.h2} text-center ${gutter}`}>How it works</h2>
+        <ol className={`mt-10 grid gap-3 ${gutter} sm:mt-14 lg:grid-cols-3`}>
           {steps.map(({ icon, title, text }, index) => (
-            <li key={title} className="rounded-xl bg-paper p-7 sm:p-8">
+            <li key={title} className="rounded-xl bg-fog p-7 sm:p-8">
               <div className="flex items-start justify-between">
                 <div className="flex size-14 items-center justify-center rounded-lg bg-ink text-white">
                   <Icon name={icon} className="size-6" />
                 </div>
-                <span aria-hidden="true" className="font-display text-5xl leading-none text-ink/15">
+                <span aria-hidden="true" className="font-mono text-5xl leading-none text-blue">
                   {String(index + 1).padStart(2, "0")}
                 </span>
               </div>

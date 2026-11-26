@@ -20,7 +20,7 @@ function PhoneMenu({ pathname }: { pathname: string }) {
 
   return (
     <Popover isOpen={open} onOpenChange={setOpen}>
-      <Button isIconOnly variant="ghost" aria-label="Menu" className="size-9 rounded-md text-black md:hidden">
+      <Button isIconOnly variant="ghost" aria-label="Menu" className="size-9 rounded-md text-ink md:hidden">
         <Icon name="menu" className="size-5" />
       </Button>
       <Popover.Content placement="bottom end" className="rounded-xl border border-ink/10">
@@ -33,7 +33,7 @@ function PhoneMenu({ pathname }: { pathname: string }) {
                   href={href}
                   aria-current={isActive(pathname, href) ? "page" : undefined}
                   onPress={() => setOpen(false)}
-                  className={`rounded-md px-3 py-2.5 text-base text-black no-underline ${isActive(pathname, href) ? "font-semibold" : ""}`}
+                  className={`rounded-md px-3 py-2.5 text-base text-ink no-underline ${isActive(pathname, href) ? "font-semibold" : ""}`}
                 >
                   {label}
                 </MenuLink>
@@ -70,7 +70,7 @@ export default function Header() {
                 key={href}
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`shrink-0 rounded-md px-1 py-1.5 sm:px-2 md:px-1.5 lg:px-3 text-sm text-black ${focusRing} ${active ? "font-semibold" : ""}`}
+                className={`shrink-0 rounded-md px-1 py-1.5 sm:px-2 md:px-1.5 lg:px-3 text-sm text-ink ${focusRing} ${active ? "font-semibold" : ""}`}
               >
                 {label}
               </Link>

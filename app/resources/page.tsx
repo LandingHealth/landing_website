@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { coverImage, resources } from "@/lib/resources";
-import { container, edgePad, flyerHref, type } from "@/lib/site";
+import { container, gutter, flyerHref, type } from "@/lib/site";
 
 const guides = [
   { title: "Getting started", text: "How a clinic gets set up on Landing, step by step.", href: "/getting-started" },
@@ -33,7 +33,7 @@ export default function ResourcesPage() {
               <li key={title}>
                 <a
                   href={href}
-                  className="block h-full rounded-xl bg-paper p-5 hover:bg-panel focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink sm:p-6"
+                  className="block h-full rounded-xl bg-fog p-5 hover:bg-hair/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink sm:p-6"
                 >
                   <p className="text-[15px] font-medium leading-snug">{title}</p>
                   <p className="mt-1 text-[15px] leading-[1.5]">{text}</p>
@@ -43,7 +43,7 @@ export default function ResourcesPage() {
           </ul>
           <h2 className={`${type.h2} mt-20 sm:mt-24`}>Articles</h2>
         </div>
-        <ul className={`${edgePad} mt-8 grid gap-x-3 gap-y-12 sm:grid-cols-2 lg:grid-cols-3`}>
+        <ul className={`${gutter} mt-8 grid gap-x-3 gap-y-12 sm:grid-cols-2 lg:grid-cols-3`}>
           {resources.map(({ kind, title, summary, href, cover }) => (
             <li key={href}>
               <Link

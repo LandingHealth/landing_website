@@ -97,4 +97,4 @@ export const manComputerSymbiosis: Resource = {
 
 export const resources: readonly Resource[] = [manComputerSymbiosis, periost, outsideTheClinic, bettingOnComputerVision, bettingOnAiAgents, recoveryWorldModel];
 
-export const coverImage = "h-auto w-full rounded-xl bg-mist object-cover ring-1 ring-black";
+export const coverImage = "h-auto w-full rounded-xl bg-fog object-cover ring-1 ring-ink/10";

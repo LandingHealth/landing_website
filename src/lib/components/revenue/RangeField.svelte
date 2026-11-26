@@ -35,7 +35,7 @@
 		type="text"
 		inputmode="numeric"
 		autocomplete="off"
-		class="calc-number font-display text-4xl font-medium leading-none tracking-[-0.025em] tabular-nums"
+		class="calc-number text-4xl font-semibold leading-none tracking-[-0.025em] tabular-nums"
 		{id}
 		value={focused ? text : spec.format(value)}
 		{onfocus}

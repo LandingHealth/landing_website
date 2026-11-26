@@ -41,11 +41,11 @@ export default function ApplicationForm() {
           validate={kind === "email" ? emailError : undefined}
           className="relative gap-1.5 pb-6"
         >
-          <Label className="font-normal text-black after:content-none">
+          <Label className="font-normal text-ink after:content-none">
             {prefix}
             {label}
           </Label>
-          {hint && <Description className="block text-[13px] leading-snug text-black">{hint}</Description>}
+          {hint && <Description className="block text-[13px] leading-snug text-ink">{hint}</Description>}
           {kind === "textarea" ? (
             <TextArea rows={rows ?? 3} maxLength={max} className={`${fieldText} resize-y py-2.5`} />
           ) : (
@@ -71,7 +71,7 @@ export default function ApplicationForm() {
       <Button
         type="submit"
         isPending={pending}
-        className="h-11 rounded-md px-5 text-[15px] [--button-bg-hover:color-mix(in_oklab,var(--color-mist)_80%,transparent)] md:h-11"
+        className="h-11 rounded-md px-5 text-[15px] [--button-bg-hover:color-mix(in_oklab,var(--color-blue)_80%,transparent)] md:h-11"
       >
         {({ isPending }) => (
           <>

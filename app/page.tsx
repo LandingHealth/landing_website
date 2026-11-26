@@ -6,7 +6,7 @@ import Marquee from "@/components/Marquee";
 import TileRow, { type Tiles } from "@/components/TileRow";
 import type { CSSProperties } from "react";
 import { safesock } from "@/lib/safesock";
-import { container, demo, demoHref, edgePad, sectionPad, type } from "@/lib/site";
+import { container, demo, demoHref, gutter, sectionPad, type } from "@/lib/site";
 
 const workspace: Tiles = [
   {
@@ -97,7 +97,7 @@ export default function Home() {
       <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
         <div className={`${container} flex flex-col items-center text-center`}>
           <h1 className={`${type.h1} max-w-4xl motion-safe:animate-rise`}>
-            AI powered between visit management layer for physical <span className="shimmer italic text-black">therapy</span>.
+            AI powered between visit management layer for physical therapy.
           </h1>
           <p style={delay(120)} className={`${type.lead} mt-6 max-w-[32rem] text-pretty motion-safe:animate-rise`}>
             Clinic software and connected recovery devices that keep patient progress, home exercise, and your daily operations in one place.
@@ -106,7 +106,7 @@ export default function Home() {
             <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
           </div>
         </div>
-        <div style={delay(380)} className={`${edgePad} mx-auto mt-14 max-w-[68rem] motion-safe:animate-arrive sm:mt-[4.5rem]`}>
+        <div style={delay(380)} className={`${gutter} mx-auto mt-14 max-w-[68rem] motion-safe:animate-arrive sm:mt-[4.5rem]`}>
           <DashboardPreview />
         </div>
         <div style={delay(700)} className="motion-safe:animate-rise">

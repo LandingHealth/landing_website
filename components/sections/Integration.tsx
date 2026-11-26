@@ -49,7 +49,7 @@ export default function IntegrationSection({ heading: Heading = "h1" }: { headin
               <ExpandableMedia
                 media={{ video }}
                 title={title}
-                className="aspect-[1920/1094] w-full rounded-xl bg-black ring-1 ring-black lg:col-span-8"
+                className="aspect-[1920/1094] w-full rounded-xl bg-black ring-1 ring-ink/10 lg:col-span-8"
               />
             </li>
           ))}
