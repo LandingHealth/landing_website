@@ -6,7 +6,7 @@ The dashboard preview and the SafeSock demo video use sample data. Neither shows
 
 ## Svelte animations
 
-`components/SvelteIsland.tsx` can mount Svelte 5 components inside React. No page uses it today. Svelte, Motion SV, and the Svelte webpack loader are installed.
+`components/SvelteIsland.tsx` mounts Svelte 5 components inside React. The two calculators on `/resources/clinic-planning` use it, through `components/RevenueCalculator.tsx`. Svelte, Motion SV, and the Svelte webpack loader are installed.
 
 For example, in a React client component:
 
