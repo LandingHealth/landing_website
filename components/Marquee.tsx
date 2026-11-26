@@ -8,7 +8,9 @@ export default function Marquee({
   repeat?: number;
 }) {
   return (
-    <div className={`group flex gap-(--gap) overflow-hidden p-2 [--duration:40s] [--gap:1rem] ${className}`}>
+    <div
+      className={`group flex gap-(--gap) overflow-hidden p-2 [--duration:40s] [--gap:1rem] [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] ${className}`}
+    >
       {Array.from({ length: repeat }, (_, index) => (
         <ul
           key={index}
