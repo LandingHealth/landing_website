@@ -1,69 +1,146 @@
 import type { Metadata } from "next";
-import ExpandableMedia from "@/components/ExpandableMedia";
+import Image from "next/image";
+import type { CSSProperties } from "react";
+import ButtonLink from "@/components/ButtonLink";
+import LoadHistoryPreview from "@/components/sections/safesock/LoadHistoryPreview";
+import RenderStills from "@/components/sections/safesock/RenderStills";
+import ScrubStage from "@/components/sections/safesock/ScrubStage";
+import CtaSheet from "@/components/ui/CtaSheet";
+import DarkCard from "@/components/ui/DarkCard";
+import GradientFrame from "@/components/ui/GradientFrame";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Sheet from "@/components/ui/Sheet";
 import { safesock } from "@/lib/safesock";
-import { container, sectionPad, type } from "@/lib/site";
+import { container, demoHref, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "SafeSock | Landing",
   description: safesock.summary,
 };
 
-const section = `${sectionPad} border-t border-ink/10`;
+const noScript = "[data-safesock-stage]{display:none!important}[data-safesock-stills]{display:block!important}";
+
+function ConceptLabel() {
+  return (
+    <span className={`${type.label} absolute top-4 left-4 rounded-[4px] bg-white/85 px-2 py-1 text-slate sm:top-5 sm:left-5`}>
+      Concept render
+    </span>
+  );
+}
 
 export default function SafeSockPage() {
+  const [sleeve, ...details] = safesock.closeUps;
   return (
     <main>
-      <section className="pb-20 pt-16 sm:pb-24 sm:pt-24 lg:pt-28">
-        <div className={`${container} flex flex-col items-center text-center`}>
-          <span className="rounded-full bg-blue/10 text-blue px-3 py-1 text-xs font-medium">{safesock.status}</span>
-          <h1 className={`${type.h1} mt-6 max-w-4xl`}>A closer look at loading between visits.</h1>
-          <p className={`${type.lead} mt-6 max-w-[38rem] text-pretty`}>{safesock.summary}</p>
+      <noscript>
+        <style>{noScript}</style>
+      </noscript>
+
+      <section className={`${container} flex flex-col items-center pt-16 pb-14 text-center lg:pt-24 lg:pb-16`}>
+        <p className={`${type.label} inline-flex items-center gap-2 rounded-[4px] bg-fog px-3 py-1.5 text-ink`}>
+          <span aria-hidden className="size-1.5 rounded-full bg-blue" />
+          In development
+        </p>
+        <h1 className={`${type.h1} mt-6`}>SafeSock</h1>
+        <p className={`${type.lead} mt-6 max-w-xl text-pretty`}>{safesock.purpose}</p>
+        <p className="mt-4 max-w-xl text-[15px] leading-[1.45] text-mute text-pretty">{safesock.status}</p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <ButtonLink href={demoHref} variant="primary">Talk about SafeSock</ButtonLink>
+          <ButtonLink href="#workflow" variant="secondary">How it would work</ButtonLink>
         </div>
-        <div className={`${container} mt-12 sm:mt-14`}>
-          <ExpandableMedia
-            media={{ video: safesock.video }}
-            title="SafeSock"
-            className="aspect-[2084/1134] w-full rounded-xl bg-black ring-1 ring-ink/10"
-          />
-        </div>
-        <dl className={`${container} mt-14 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4`}>
-          {safesock.atAGlance.map(({ term, detail }) => (
-            <div key={term} className="border-t border-ink pt-4">
-              <dt className="text-[15px] font-medium">{term}</dt>
-              <dd className="mt-2 text-[15px] leading-[1.6]">{detail}</dd>
-            </div>
-          ))}
-        </dl>
       </section>
 
-      <section className={section}>
-        <div className={`${container} grid gap-10 lg:grid-cols-12 lg:gap-20`}>
-          <h2 className={`${type.h2} lg:col-span-5`}>The limit is set in the clinic. The loading happens at home.</h2>
-          <div className="space-y-5 lg:col-span-7">
+      <div className="bg-white">
+        <section aria-label="SafeSock concept render" className="rounded-t-3xl bg-fog sm:rounded-t-[2.5rem]">
+          <ScrubStage {...safesock.scrub} beats={safesock.beats} />
+          <RenderStills beats={safesock.beats} />
+        </section>
+      </div>
+
+      <Sheet tone="white" round="top">
+        <SectionHeading
+          eyebrow="Design"
+          title="A closer look."
+          lead="The sleeve, how it fits, and where the sensors sit. These are concept renders of the design, not photos of the prototype."
+        />
+        <div className="mt-12 grid gap-x-6 gap-y-12 lg:mt-16 lg:grid-cols-2 lg:gap-y-16">
+          {[sleeve, ...details].map(({ title, body, image }, index) => (
+            <figure key={title} data-reveal className={index === 0 ? "lg:col-span-2" : ""}>
+              <div className="relative overflow-hidden rounded-3xl bg-fog">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  sizes={index === 0 ? "(min-width: 1440px) 1280px, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
+                  className="w-full"
+                />
+                <ConceptLabel />
+              </div>
+              <figcaption className={`${type.body} mt-5 max-w-xl`}>
+                <span className="font-semibold text-ink">{title}</span> {body}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </Sheet>
+
+      <Sheet tone="fog" round="top">
+        <SectionHeading
+          align="split"
+          eyebrow="Why it matters"
+          title="The limit is set in the clinic. The loading happens at home."
+        />
+        <div className="mt-8 lg:grid lg:grid-cols-4 lg:gap-x-10">
+          <div className="space-y-4 lg:col-span-2 lg:col-start-2">
             {safesock.problem.map((paragraph) => (
-              <p key={paragraph} className="max-w-prose text-[15px] leading-[1.65]">
-                {paragraph}
-              </p>
+              <p key={paragraph} className={type.body}>{paragraph}</p>
             ))}
           </div>
         </div>
-      </section>
 
-      <section className={section}>
-        <div className={container}>
-          <h2 className={`${type.h2} max-w-3xl`}>How a PT would use it</h2>
-          <ol className="mt-12 grid gap-10 md:grid-cols-3">
-            {safesock.steps.map(({ title, text }, i) => (
-              <li key={title} className="border-t border-ink pt-4">
-                <p className="text-[15px] font-medium">
-                  {i + 1}. {title}
-                </p>
-                <p className="mt-2 text-[15px] leading-[1.6]">{text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+        <h2 className={`${type.h2} mt-20 lg:mt-28`}>What SafeSock is designed to measure.</h2>
+        <ul className="mt-10 grid gap-x-10 md:grid-cols-3">
+          {safesock.measures.map(({ title, body }, index) => (
+            <li key={title} data-reveal="line" className="border-t border-hair pt-6 pb-8" style={{ "--reveal-i": index } as CSSProperties}>
+              <span aria-hidden className="font-mono text-base text-blue">{String(index + 1).padStart(2, "0")}</span>
+              <h3 className={`${type.h3} mt-3`}>{title}</h3>
+              <p className={`${type.body} mt-3`}>{body}</p>
+            </li>
+          ))}
+        </ul>
+      </Sheet>
+
+      <Sheet tone="white" round="top" id="workflow">
+        <SectionHeading
+          eyebrow="Proposed workflow"
+          title="How it would help you review loading."
+          lead="Nothing in Landing reads SafeSock data yet. This is how we intend it to work with the rest of the patient’s care."
+        />
+        <GradientFrame className="mt-12 lg:mt-16">
+          <LoadHistoryPreview />
+        </GradientFrame>
+        <ol className="mt-12 grid gap-x-10 gap-y-2 md:grid-cols-3">
+          {safesock.steps.map(({ title, body }, index) => (
+            <li key={title} data-reveal className="border-t border-hair pt-6 pb-6" style={{ "--reveal-i": index } as CSSProperties}>
+              <span aria-hidden className="font-mono text-base text-blue">{String(index + 1).padStart(2, "0")}</span>
+              <h3 className={`${type.h3} mt-3`}>{title}</h3>
+              <p className={`${type.body} mt-3`}>{body}</p>
+            </li>
+          ))}
+        </ol>
+      </Sheet>
+
+      <div className={`${container} pb-16 lg:pb-20`}>
+        <DarkCard
+          eyebrow="Development status"
+          title="In development."
+          body="Here is where each part of SafeSock stands today."
+          items={safesock.development}
+        />
+      </div>
+
+      <CtaSheet heading="Talk about SafeSock" lead="Tell us how you manage weight-bearing limits today, and we’ll walk you through where SafeSock stands." />
     </main>
   );
 }
