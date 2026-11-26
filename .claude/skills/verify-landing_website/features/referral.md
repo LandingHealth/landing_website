@@ -1,16 +1,17 @@
 # Referral
 
-`/referral` (title `Referral | Landing`) invites visitors to refer a clinic. The heading reads "You know a clinic that would love Landing.", with "love Landing" set apart. The sections "How it works" and "The rules" follow.
+`/referral` (title `Referral | Landing`) invites visitors to refer a clinic. The h1 reads "You know a clinic that would love Landing." with the reward line "Earn $500 when a clinic you refer starts using Landing." Then come "How it works" with three step cards, and "The rules" as a five-row definition list.
 
 ## Sub-features
 
-- `referral-hero` renders the heading with its highlighted phrase.
-- `referral-steps` renders the numbered "How it works" steps.
-- `referral-rules` renders the rules list.
+- `referral-hero` renders the eyebrow "Referral program", the h1, and the reward.
+- `referral-steps` renders three numbered cards with icons, "Book a call", "Introduce us", and "Get paid". The first has a `Book a call with us` link to Calendly.
+- `referral-rules` renders five question and answer rows in a `<dl>`, from "Who can refer a clinic?" to "Where are the terms?".
+- `referral-cta` is the closing call-out, "Know a clinic that could use Landing?"
 
 ## How to get to it (user POV)
 
-- Choose `Referral` in the footer.
+- Choose `Referral` in the footer under "Legal and trust".
 
 ## Driving it with verify.mjs
 
@@ -18,8 +19,10 @@ Preconditions:
 
 - `doctor: ready`.
 
-- **Load proof.** Run `MSYS_NO_PATHCONV=1 node .claude/skills/verify-landing_website/scripts/verify.mjs --routes /referral`. Both "How it works" and "The rules" appear in the full-page shots at both widths.
+- **Load proof.** Run `MSYS_NO_PATHCONV=1 node .claude/skills/verify-landing_website/scripts/verify.mjs --routes /referral`. "How it works" and "The rules" appear in the full-page shots at both widths.
+- **Counts.** With a server held on `<port>`, assert `page.locator("ol > li").count()` is at least 3 for the steps, and `page.locator("dl dt").count()` is 5. Assert the `Book a call with us` link's `href` is the Calendly URL.
 
 ## Gotchas
 
-- "How it works" uses edge-to-edge padding (`edgePad`) instead of `container`. When the mobile shot shows content touching the screen edge, check this section first.
+- The heading wraps differently on phones. Compare the mobile shot against the mobile baseline, not against desktop.
+- The $500 figure and the rules are business terms. Do not change them in a style change.

@@ -62,7 +62,7 @@ For each route at `desktop` (1440x900, DPR 1) and `mobile` (390x844, DPR 2, touc
 
 It then gathers every same-origin `<a href>` from all pages, drops the `#fragment`, and fetches each one once. It follows same-origin redirects. A link passes when its final status is below 400. A redirect off-site passes and is noted.
 
-For interaction beyond page load (the phone menu, video expand, the application form, the revenue calculator), use the recipes in [features/](features/README.md). Each recipe is a short Playwright snippet run against the same port while you hold a server up with `pnpm start -p <port>`.
+For interaction beyond page load (the phone menu, video expand, the product feature menu, the SafeSock scrub, the application form, the clinic planning calculators), use the recipes in [features/](features/README.md). Each recipe is a short Playwright snippet run against the same port while you hold a server up with `pnpm start -p <port>`.
 
 ## Evidence
 

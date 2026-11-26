@@ -23,6 +23,7 @@ This directory is the maintained source for verifying what a visitor sees on the
 
   Use `{ viewport: { width: 1440, height: 900 } }` for desktop. End with `await browser.close()`.
 - Prefer roles and accessible names (`page.getByRole("button", { name: "Menu" })`) over CSS classes. The classes are Tailwind utilities and change with every restyle.
+- The app writes curly apostrophes in copy (`Neil’s`, `couldn’t`). Match those names with a regex.
 - Write recipe screenshots into the same evidence dir as the `verify.mjs` run they go with.
 
 ## Proof and skip reporting
@@ -37,21 +38,32 @@ Each feature file starts with an H1 and one paragraph on what the visitor sees. 
 
 ## Shared chrome
 
-Every page shares the header and footer from `app/layout.tsx` and `components/Header.tsx`. The header has a home link named `Landing Health home`, a `Primary navigation` nav at 768px and wider (Product, SafeSock, Getting Started, Resources, Company), and a `Book a demo` button that opens Calendly. Below 768px the nav collapses into an icon button named `Menu`. That button opens a popover dialog named `Menu` that holds `Phone navigation`. The footer has a `Footer navigation` nav with Security, Referral, Careers, LinkedIn, Contact (mailto), and Privacy. The home feature file holds the menu recipe.
+Every page shares the announcement bar, header, footer, and closing call-out from `app/layout.tsx` and the components below.
+
+- **Announcement bar** (`components/AnnouncementBar.tsx`) is a blue strip above the header, 40px tall, and not sticky. It reads "New article: <title>" with a `Read more →` link. The text and target come from `announcement` in `lib/site.ts`, which names the first entry of `resources` in `lib/resources.ts`. Setting `announcement` to `null` removes the bar.
+- **Header** (`components/Header.tsx`) is sticky. It has a home link named `Landing Health home`, a `Primary navigation` nav at 1024px and wider (Product, SafeSock, Getting Started, Resources, Company), a `Contact` button (mailto) at 1024px and wider, and a `Book a demo` button that opens Calendly. Below 1024px the nav collapses into an icon button named `Menu`. It opens a popover dialog named `Menu` that holds `Phone navigation` with the five links plus `Contact`. The home feature file holds the menu recipe.
+- **Footer** (`components/Footer.tsx`) has a `Footer` nav in three columns. Product has Product, SafeSock, and Getting Started. Company has Company, Careers, Resources, LinkedIn, and Contact (mailto). Legal and trust has Security, Privacy, and Referral.
+- **CTA sheet** (`components/ui/CtaSheet.tsx`) closes every page. It has a heading, an optional lead, a primary button (default `Book a demo`, to Calendly), a secondary button (default `Contact us`, mailto, or none), and a large decorative `Landing` wordmark that is `aria-hidden`. Pages override the heading and buttons, so assert on the page's own heading.
 
 ## Features
 
-- [Home](./home.md) covers `/`, the hero, the dashboard preview, the award marquee, the workflow videos, and the phone menu.
-- [Product](./product.md) covers `/product`, the two revenue calculators, and the `#revenue` and `#security` anchors.
-- [SafeSock](./safesock.md) covers `/safesock` and the expandable video.
-- [Getting started](./getting-started.md) covers `/getting-started` and the EHR setup steps.
+- [Home](./home.md) covers `/`, the hero video, the three product cards, the award marquee, and the phone menu.
+- [Product](./product.md) covers `/product` and the FeatureTour sticky menu (`#home-exercise`, `#pt-review`, `#progress`).
+- [SafeSock](./safesock.md) covers `/safesock`, the scroll-scrubbed stage, the reduced-motion and no-JavaScript stills, and `scripts/safesock-scrub.mjs`.
+- [Getting started](./getting-started.md) covers `/getting-started` and the three setup steps.
+- [Clinic planning](./clinic-planning.md) covers `/resources/clinic-planning`, its two calculators, and the `/revenue` redirect.
 - [Resources and articles](./resources-articles.md) covers `/resources`, the flyer PDF, and the six article pages.
-- [Company](./company.md) covers `/company` and the founder video.
-- [Security](./security.md) covers `/security` and the clinic Q&A list.
-- [Careers](./careers.md) covers `/careers`, the open roles, and the application form.
-- [Privacy](./privacy.md) covers `/privacy`.
+- [Company](./company.md) covers `/company`, the founders (Neil, Pragat, Evan), and the story video.
+- [Security](./security.md) covers `/security`, its jump links, and the five topic lists.
+- [Careers](./careers.md) covers `/careers`, the open roles, and the application form at `#apply`.
+- [Privacy](./privacy.md) covers `/privacy` and its three jump links.
 - [Referral](./referral.md) covers `/referral`.
 
 ## Redirects
 
-`next.config.mjs` redirects `/apply` to `/careers#apply`, `/schedule` to Calendly, `/revenue` to `/product`, `/devices` to `/safesock`, `/integration` to `/getting-started`, `/about` to `/company`, and `/team` to `/careers`. `verify.mjs` checks only links that pages render. After you touch the redirects, run `curl -sI http://127.0.0.1:<port>/about` for each one and read the `location` header.
+`next.config.mjs` redirects `/apply` to `/careers#apply` (307), `/schedule` to Calendly (307), and, permanently (308), `/revenue` to `/resources/clinic-planning`, `/devices` to `/safesock`, `/integration` to `/getting-started`, `/about` to `/company`, and `/team` to `/careers`. `verify.mjs` checks only links that pages render. After you touch the redirects, run `curl -sI http://127.0.0.1:<port>/about` for each one and read the status and `location` header.
+
+## Scripts
+
+- `scripts/verify.mjs` is the load-level harness the SKILL.md describes.
+- `scripts/safesock-scrub.mjs <base-url> [out-dir]` drives the SafeSock scrub. [safesock.md](./safesock.md) says how to run it.
