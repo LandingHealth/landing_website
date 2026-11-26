@@ -1,16 +1,18 @@
 # Security
 
-`/security` (title `Security | Landing`) answers clinic security questions. The heading reads "Peace of mind for physical therapists." A tile row of safeguards follows. Then "What clinics ask us" holds a definition list of seven questions, starting with "Where are records and videos stored?" and ending with "Who handles security reviews?".
+`/security` (title `Security | Landing`) has the h1 "How Landing protects patient data.", a lead, and an "On this page" nav of six jump links. Five topic sections follow, then "Security reviews" with an `Email us` button. Every topic is a ruled definition list that is always fully visible. The page shares its layout with `/privacy` through `components/sections/trust/TrustPage.tsx`.
 
 ## Sub-features
 
-- `sec-tiles` renders the safeguards tile row.
-- `sec-qa` renders seven question and answer pairs in a `<dl>`. All answers are always visible.
+- `sec-jump` is `<nav aria-label="On this page">` with six numbered links: `Data storage` (`#storage`), `Access controls` (`#access`), `Encryption` (`#encryption`), `Retention and deletion` (`#retention`), `Agreements` (`#agreements`), and `Security reviews` (`#reviews`).
+- `sec-topics` renders the five topic sections with 5, 5, 3, 3, and 2 rows, 18 `<dt>` in all. The first row reads "Where data lives".
+- `sec-reviews` is `#reviews`, with a paragraph and an `Email us` button that opens the contact mailto.
+- `sec-cta` is the closing call-out, "Bring your security questions to a demo."
 
 ## How to get to it (user POV)
 
 - Choose `Security` in the footer.
-- Follow `Security questions` on `/resources`, or the security link in the `#security` block on `/product`.
+- Choose the `Security` guide on `/resources`.
 
 ## Driving it with verify.mjs
 
@@ -19,8 +21,10 @@ Preconditions:
 - `doctor: ready`.
 
 - **Load proof.** Run `MSYS_NO_PATHCONV=1 node .claude/skills/verify-landing_website/scripts/verify.mjs --routes /security`.
-- **All questions present.** With a server held on `<port>`, assert `await page.locator("dl dt").count() === 7` and that the first `dt` reads "Where are records and videos stored?".
+- **Rows and jumps.** With a server held on `<port>`, assert `await page.locator("dl dt").count() === 18`, that the first `dt` reads "Where data lives", and that the `On this page` nav has six links. Click the last one and assert `location.hash === "#reviews"` and that `#reviews` sits under the sticky header after the scroll settles.
 
 ## Gotchas
 
-- The `<br>` in the heading is hidden below 640px, so the heading wraps differently on phones. Compare the mobile shot against the mobile baseline, not against desktop.
+- The section number and title column is sticky at 1024px and wider (`lg:sticky lg:top-24`). A full-page screenshot shows it only at its first position.
+- The jump link names start with a number, so match with a regex.
+- The page states what is in place and what is not, such as "does not record every time someone views a video". Do not soften or extend those claims in a style change.

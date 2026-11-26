@@ -1,19 +1,20 @@
 # Home
 
-The home page (`/`, title `Landing Health`) has a hero headline ("AI powered between visit management layer for physical therapy."), a `Book a demo` button, a static clinic dashboard preview, an "Awarded by" logo marquee, a four-card "The Workflow" video row, "You decide what changes.", "Support around the visit, too.", and a closing demo call-out.
+The home page (`/`, title `Landing Health`) opens with the h1 "Know what happened between visits.", a `Book a demo` and a `See the product` button, and an expandable PT review video in a gradient frame. Below it sit "From the home session to the next visit." with three product cards, an "Awarded by" logo marquee, a dark "Setting up your clinic." card, and a closing demo call-out. The announcement bar and header sit above all of it (see the README's Shared chrome).
 
 ## Sub-features
 
-- `home-hero` renders the headline with the shimmer on the italic word, plus the demo button.
-- `home-preview` renders the dashboard preview with sample patient Daniel Ortiz.
-- `home-marquee` scrolls award logos edge to edge.
-- `home-workflow` shows four cards: Exercise recording, Exercise review, Appointment preparation, and Post-appointment agent. Each is a looping video with a poster.
-- `home-support` links to Scheduling, Home exercise guides, and SafeSock.
-- `home-menu` opens the phone navigation popover below 768px.
+- `home-hero` renders the h1, the lead paragraph, the two buttons, and the `HeroArcs` backdrop. Each element rises in with a staggered `animate-rise` delay.
+- `home-video` is the hero `ExpandableMedia` (`components/ExpandableMedia.tsx`) of `/workspace/exercise-review.mp4`. Its button is named `Expand PT review video`, and `Close PT review video` once open.
+- `home-product` renders three `<article>` cards, each labelled by `home-exercise-title`, `pt-review-title`, or `progress-title`. Each has a screenshot crop or the `SessionsSample` figure, a body, and a link named `See home exercise`, `See PT review`, or `See progress and follow-up`. The links target `/product#home-exercise`, `/product#pt-review`, and `/product#progress`. The progress card carries an `In development` badge and the line "Progress charts over time".
+- `home-awards` is the "Awarded by" marquee of 14 logos (`components/sections/home/Awards.tsx`, `components/Marquee.tsx`). The list renders four times, and copies 2 to 4 are `aria-hidden`.
+- `home-setup` is the dark "Setting up your clinic." card with three steps and a `See how setup works` link to `/getting-started`.
+- `home-cta` is the closing `CtaSheet`, "See how Landing fits your clinic."
+- `home-menu` is the phone menu popover below 1024px (the README's Shared chrome describes it).
 
 ## How to get to it (user POV)
 
-- Open the site root, or choose `Landing Health home` in the header from any page.
+- Open the site root, or choose `Landing Health home` in the header or footer from any page.
 
 ## Driving it with verify.mjs
 
@@ -21,7 +22,19 @@ Preconditions:
 
 - `doctor: ready`.
 
-- **Load proof.** Run `MSYS_NO_PATHCONV=1 node .claude/skills/verify-landing_website/scripts/verify.mjs --routes /`. The summary shows `/` clean at desktop and mobile, and `home-desktop-full.png` shows every section above in order.
+- **Load proof.** Run `MSYS_NO_PATHCONV=1 node .claude/skills/verify-landing_website/scripts/verify.mjs --routes /`. The summary shows `/` clean at desktop and mobile, and `home-desktop-full.png` shows the sections above in order.
+- **Product links.** With a server held on `<port>`, run this.
+
+  ```js
+  await page.goto(base + "/");
+  const links = await page.locator("article[aria-labelledby$='-title'] a[href^='/product#']").evaluateAll((as) => as.map((a) => a.getAttribute("href")));
+  if (links.join() !== "/product#home-exercise,/product#pt-review,/product#progress") throw new Error(`product links: ${links}`);
+  await page.getByRole("link", { name: "See PT review" }).click();
+  await page.waitForURL(base + "/product#pt-review");
+  ```
+
+  The URL lands on `/product#pt-review`. The product feature file covers the menu state that follows.
+- **Hero video expand.** Click `Expand PT review video`, wait for `Close PT review video`, wait 800ms, then screenshot. Assert `!document.querySelector("video").paused`. Press Escape and wait for `Expand PT review video`.
 - **Phone menu.** With a server held on `<port>`, run this snippet at mobile size.
 
   ```js
@@ -29,18 +42,19 @@ Preconditions:
   await page.getByRole("button", { name: "Menu" }).click();
   const nav = page.getByRole("navigation", { name: "Phone navigation" });
   await nav.waitFor();
-  for (const name of ["Product", "SafeSock", "Getting Started", "Resources", "Company"]) await nav.getByRole("link", { name }).waitFor();
+  for (const name of ["Product", "SafeSock", "Getting Started", "Resources", "Company", "Contact"]) await nav.getByRole("link", { name }).waitFor();
   await page.waitForTimeout(1000);
   await page.screenshot({ path: "<evidence>/home-menu-open.png" });
   await nav.getByRole("link", { name: "Product" }).click();
   await page.waitForURL(base + "/product");
   ```
 
-  The popover lists all five links, and choosing Product lands on `/product`.
+  The popover lists six links, and choosing Product lands on `/product`.
 
 ## Gotchas
 
-- The marquee and shimmer are infinite or delayed CSS animations. `verify.mjs` freezes animations for screenshots, so a mid-motion frame never shows up in a diff. If you change motion, check it by eye in a headed browser, and keep it unchanged per the Motion section of `DESIGN.md`.
-- The two right-hand workflow cards look nearly empty in screenshots. Their poster frames are a pale document on a gray grid, so that look is the real content, not a load failure.
+- Nothing on the page says "Jump to", "NetworkFeed", or "The Workflow" any more. A recipe that looks for them is stale.
+- The marquee and the hero rise are CSS animations. `verify.mjs` freezes animations for screenshots, so a mid-motion frame never shows up in a diff. If you change motion, check it by eye in a headed browser, and keep it per the Motion section of `DESIGN.md`.
+- The marquee cuts logos at both edges by design. Under reduced motion it wraps into one centered list with the copies hidden.
+- The hero video autoplays muted, except under reduced motion. A black frame before the poster loads is normal.
 - The menu popover fades in. A screenshot taken right after the links appear shows the hero text through a half-transparent panel. Wait 1s, and the panel is opaque.
-- At 1440px the marquee cuts logos at both edges by design.
