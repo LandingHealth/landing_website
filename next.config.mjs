@@ -6,6 +6,8 @@ const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig = {
   skipTrailingSlashRedirect: true,
+  // Room for a resume up to resumeMaxBytes plus the text answers. Vercel caps function request bodies at 4.5 MB.
+  experimental: { serverActions: { bodySizeLimit: "4.4mb" } },
   rewrites() {
     return [
       { source: "/ingest/static/:path*", destination: "https://us-assets.i.posthog.com/static/:path*" },

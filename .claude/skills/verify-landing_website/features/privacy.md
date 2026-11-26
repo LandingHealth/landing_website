@@ -7,7 +7,7 @@
 - `privacy-jump` is `<nav aria-label="On this page">` (`components/sections/trust/TrustPage.tsx`) with three numbered links, each showing a label and a scope note. They are `This website` (`#website`), `Patient and clinic data in Landing` (`#patient-data`), and `Google connections in the admin dashboard` (`#google`).
 - `privacy-parts` renders the three sections as `<section id=... aria-labelledby=...>`. Each has a number, an h2, its scope line, and a ruled `<dl>` of rows. The Google part also shows "Updated October 29, 2026". The website part has 4 rows, the patient part 5, and the Google part 9.
 - `privacy-contact` is the `#contact` section, which has an email link and no entry in the jump nav.
-- `privacy-cta` is the closing call-out with an `Email us` secondary button.
+- `privacy-cta` is the shared closing call-out (see the README).
 
 ## How to get to it (user POV)
 

@@ -9,6 +9,7 @@ type Ripple = { key: number; x: number; y: number; size: number };
 const rippleColor = {
   primary: "bg-white/25",
   secondary: "bg-ink/12",
+  light: "bg-ink/12",
   onDark: "bg-white/25",
 } as const satisfies Record<ButtonVariant, string>;
 

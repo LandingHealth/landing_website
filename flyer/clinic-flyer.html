@@ -2,71 +2,59 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Landing clinic flyer</title>
+<title>Landing Health</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,380&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=EB+Garamond:ital@0;1&display=block" rel="stylesheet">
 <style>
   @page { size: 8.5in 11in; margin: 0; }
-  * { box-sizing: border-box; margin: 0; }
-  html, body { width: 8.5in; height: 11in; background: #fff; color: #000; }
-  body { font-family: Geist, sans-serif; font-size: 11pt; line-height: 1.5; padding: 0.6in 0.6in 0.5in; display: flex; flex-direction: column; }
-  .brand { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 12pt; }
-  .brand img { width: 28px; height: 28px; }
-  h1, h2 { font-family: "Roboto Serif", serif; font-weight: 380; font-stretch: 110%; font-variation-settings: "opsz" 72; letter-spacing: -0.02em; }
-  h1 { font-size: 34pt; line-height: 1.05; margin-top: 0.45in; }
-  .lead { font-size: 13pt; margin-top: 14px; max-width: 5.6in; }
-  ol { list-style: none; padding: 0; margin-top: 0.4in; display: grid; gap: 0.22in; }
-  li { display: grid; grid-template-columns: 2.6in 1fr; gap: 0.25in; align-items: center; }
-  li img { width: 100%; border-radius: 8px; border: 1px solid #000; background: #000; display: block; }
-  .step { font-size: 9.5pt; }
-  h2 { font-size: 17pt; line-height: 1.15; margin-top: 2px; }
-  li p.text { margin-top: 6px; }
-  .cta { margin-top: auto; border-top: 1px solid #000; padding-top: 0.22in; display: flex; justify-content: space-between; align-items: center; gap: 0.3in; }
-  .cta p { max-width: 4.4in; }
-  .button { background: #186ff1; color: #fff; text-decoration: none; font-weight: 500; padding: 10px 18px; border-radius: 6px; white-space: nowrap; }
-  .url { font-size: 9pt; margin-top: 6px; }
-  .caption { font-size: 8pt; margin-top: 4px; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 612pt; height: 792pt; overflow: hidden; }
+  body { position: relative; background: #ededed; color: #0b0e34; font-family: "EB Garamond", serif; font-size: 11pt; line-height: 15.75pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .letterhead { position: absolute; left: -1.125pt; top: -71.383pt; width: 614.25pt; height: 868.5pt; }
+  main { position: absolute; left: 72pt; top: 0; width: 468pt; }
+  h1 { font-family: Poppins, sans-serif; font-weight: 700; font-size: 24pt; line-height: 33.6pt; text-align: center; margin-top: var(--title-top); }
+  .tagline { font-style: italic; font-size: 14pt; line-height: 20pt; text-align: center; margin: 0 -4pt; margin-top: var(--tagline-gap); }
+  h2 { font-family: Poppins, sans-serif; font-weight: 700; font-size: 11pt; line-height: 15.4pt; padding-bottom: calc(var(--rule-gap) + 1pt); background: linear-gradient(#bfbfbf, #bfbfbf) bottom / 100% 1pt no-repeat; margin-top: var(--section-gap); }
+  section:first-of-type h2 { margin-top: var(--first-section-gap); }
+  section p { margin-top: var(--body-gap); }
+  .justify { text-align: justify; }
+  .closing { font-style: italic; }
+  .nowrap { white-space: nowrap; }
+  .tight h2 { padding-bottom: calc(var(--tight-rule-gap) + 1pt); }
+  .tight p { margin-top: var(--tight-body-gap); }
+  :root { --title-top: 39.35pt; --tagline-gap: -0.75pt; --first-section-gap: 5.9pt; --section-gap: 12pt; --rule-gap: 3.7pt; --body-gap: 9.2pt; --tight-rule-gap: 2.1pt; --tight-body-gap: 8.35pt; }
 </style>
 </head>
 <body>
-  <div class="brand"><img src="../app/icon.svg" alt="">Landing Health</div>
-  <h1>Know what happened between visits.</h1>
-  <p class="lead">Landing is clinic software for physical therapy. Patients submit home exercises, PTs review what needs attention, and the next visit starts with more context.</p>
-  <ol>
-    <li>
-      <img src="../public/workspace/exercise-recording-plan.jpg" alt="">
-      <div>
-        <p class="step">1 · At home</p>
-        <h2>Patients submit their exercises</h2>
-        <p class="text">Patients film each set with a phone or laptop browser. Nothing is sent until they choose Send.</p>
-      </div>
-    </li>
-    <li>
-      <img src="../public/workspace/exercise-review-app.jpg" alt="">
-      <div>
-        <p class="step">2 · In your review queue</p>
-        <h2>PTs review what needs attention</h2>
-        <p class="text">Landing flags videos with possible form issues, so you watch the clips that matter and decide what the patient hears.</p>
-      </div>
-    </li>
-    <li>
-      <figure>
-        <img src="../public/workspace/appointment-preparation.jpg" alt="">
-        <figcaption class="caption">Illustration</figcaption>
-      </figure>
-      <div>
-        <p class="step">3 · Before the visit</p>
-        <h2>The next visit starts with context</h2>
-        <p class="text">A brief pulls together recent sessions and notes, so you’re ready when the patient walks in.</p>
-      </div>
-    </li>
-  </ol>
-  <div class="cta">
-    <p>Landing runs alongside your EHR, and setup takes three steps. We do the first one for you. See it with a sample patient in a demo.</p>
-    <div>
-      <a class="button" href="https://calendly.com/rajnpatel05/landing-health-intro-meeting">Book a demo</a>
-      <p class="url">getlandinghealth.com</p>
-    </div>
-  </div>
+  <img class="letterhead" src="brief-background.png" alt="">
+  <main>
+    <h1>Landing Health</h1>
+    <p class="tagline">Turn home exercise into a new revenue stream, and review each session in seconds.</p>
+    <section>
+      <h2>Home exercise, reviewed between visits</h2>
+      <p class="justify">Landing is a home exercise platform for physical therapy clinics. Patients record their prescribed exercises at home. Landing condenses each session into the moments where form deviates, so your PTs can review a full session in seconds.</p>
+    </section>
+    <section>
+      <h2>Bill for the monitoring you already do</h2>
+      <p class="justify">Landing lets you monitor home exercise and bill for it in one system. Some clinics also offer a monthly <span class="nowrap">between-visit</span> program built on the PT's review of home exercise videos. The clinic sets the enrollment, the fee, and the review time. The clinic planning calculator on getlandinghealth.com estimates the gross monthly revenue and review hours of a program before you start.</p>
+    </section>
+    <section>
+      <h2>One review queue for every video</h2>
+      <p>Patients film each set with a phone or laptop browser. Computer vision flags the moments with possible form issues. Every submitted video lands in one review queue, sorted into flagged, unflagged, unassessable, and failed. Each flag opens its moment in the video. You confirm or dismiss the flag, add a flag Landing missed, and choose what the patient sees.</p>
+    </section>
+    <section class="tight">
+      <h2>Keep patients on track</h2>
+      <p>Patients complete the sessions you prescribe, with your sets, reps, and cues. Landing guides each recording and collects pain and difficulty ratings. You see each patient's session history and progress over time. Before every visit, Landing prepares a brief from the patient's history, recent sessions, and your notes. Because review takes seconds per session, each PT can follow more patients between visits.</p>
+    </section>
+    <section>
+      <h2>SafeSock, in development</h2>
+      <p>SafeSock is a sensor sleeve we're designing to sit inside a boot, cast, or brace. It shows how much weight a patient puts on an injured leg between visits. You set the weight-bearing limit in Landing. The load history appears in the patient's record and in the next appointment brief. We are building SafeSock with our engineering partners.</p>
+    </section>
+    <section style="--section-gap: 12.2pt; --rule-gap: 3.7pt; --body-gap: 9.35pt">
+      <h2>Works alongside your EHR</h2>
+      <p class="justify">Landing runs in the browser next to your EHR and other tools, with nothing to install. Patient data moves into your EHR, so the EHR stays your system of record. Landing exports a PDF evidence packet for each patient, ready to attach to the chart. Setup takes three steps and about 15 minutes, and we do the first step for you.</p>
+      <p class="closing">To see Landing with a sample patient, book a demo at getlandinghealth.com.</p>
+    </section>
+  </main>
 </body>
 </html>

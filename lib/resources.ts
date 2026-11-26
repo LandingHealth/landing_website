@@ -1,29 +1,5 @@
 export type Author = { name: string; href: string };
 
-export type ArticleGroup = "product" | "research" | "perspective";
-
-export type ArticleStatus = "concept" | "in-development";
-
-export const groups: Record<ArticleGroup, { label: string; description: string }> = {
-  product: {
-    label: "Product",
-    description: "How the parts of Landing that are built today work, and why we built them this way.",
-  },
-  research: {
-    label: "Research",
-    description: "The measurement science behind SafeSock, and the device concepts we are exploring.",
-  },
-  perspective: {
-    label: "Company perspective",
-    description: "The ideas that shape what Landing builds and where we want it to go.",
-  },
-};
-
-export const statusLabel: Record<ArticleStatus, string> = {
-  concept: "Future concept",
-  "in-development": "In development",
-};
-
 const slugs = [
   "the-partnership-licklider-imagined-in-1960",
   "a-sleeve-that-reads-the-bones-own-alarm",
@@ -38,8 +14,6 @@ export type Slug = (typeof slugs)[number];
 export type Resource = {
   slug: Slug;
   href: string;
-  group: ArticleGroup;
-  status?: ArticleStatus;
   title: string;
   description: string;
   takeaway: string;
@@ -53,7 +27,6 @@ const neilPatel: Author = { name: "Neil Patel", href: "https://www.linkedin.com/
 
 const articles: Record<Slug, Omit<Resource, "slug" | "href" | "author">> = {
   "the-partnership-licklider-imagined-in-1960": {
-    group: "perspective",
     title: "The partnership Licklider imagined in 1960",
     description:
       "What J. C. R. Licklider’s “Man-Computer Symbiosis” proposed, which of its 1960 hurdles have since been solved, and how Landing splits a PT’s work the same way.",
@@ -69,8 +42,6 @@ const articles: Record<Slug, Omit<Resource, "slug" | "href" | "author">> = {
     },
   },
   "a-sleeve-that-reads-the-bones-own-alarm": {
-    group: "research",
-    status: "concept",
     title: "A sleeve that reads the bone’s own alarm",
     description:
       "How tibial bone stress injuries progress and are graded, why load estimates from wearables are fragile, and the staged study that would test a sleeve reading the shin’s own response.",
@@ -86,9 +57,7 @@ const articles: Record<Slug, Omit<Resource, "slug" | "href" | "author">> = {
     },
   },
   "how-we-track-the-166-hours-of-recovery-outside-the-clinic": {
-    group: "research",
-    status: "concept",
-    title: "How we track the 166 hours of recovery outside the clinic",
+    title: "How we track the 98.8% of recovery outside the clinic",
     description:
       "How gait forces are measured in a lab, how the DP-RGNet model estimates them from foot pressure, what its published results show, and what a model for SafeSock would have to match.",
     takeaway:
@@ -103,7 +72,6 @@ const articles: Record<Slug, Omit<Resource, "slug" | "href" | "author">> = {
     },
   },
   "betting-on-computer-vision-in-rehabilitation": {
-    group: "product",
     title: "Betting on computer vision in rehabilitation",
     description:
       "How Landing flags moments in home exercise videos for the PT to review, what a small trial found about video feedback and adherence, and how faster review could add clinic capacity.",
@@ -119,7 +87,6 @@ const articles: Record<Slug, Omit<Resource, "slug" | "href" | "author">> = {
     },
   },
   "betting-on-ai-agents-in-healthcare": {
-    group: "product",
     title: "Betting on AI agents in healthcare",
     description:
       "How physicians use AI today, according to the AMA’s 2026 survey, what Landing’s next-visit brief agent does, and what the exercise-proposal agent still in development is meant to do.",
@@ -135,8 +102,6 @@ const articles: Record<Slug, Omit<Resource, "slug" | "href" | "author">> = {
     },
   },
   "recovery-world-model": {
-    group: "perspective",
-    status: "concept",
     title: "The recovery world model",
     description:
       "Why physical therapy runs open-loop today, how video and SafeSock could measure the hours outside the clinic, and how each PT verdict could teach a model what healing looks like.",

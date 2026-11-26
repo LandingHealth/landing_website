@@ -1,6 +1,6 @@
 # Getting started
 
-`/getting-started` (title `Getting started | Landing`) explains how a clinic starts on Landing. The h1 is "Start using Landing at your clinic". The page has `Book a setup demo` and `See the product` buttons, a dark "What your clinic needs" card, "Setup in three steps" with a demo video per step, "Landing works alongside your EHR", "Support, pricing, and pilots", and a closing call-out.
+`/getting-started` (title `Getting started | Landing`) explains how a clinic starts on Landing. The h1 is "Start using Landing at your clinic". The page has `Book a setup demo` and `See the product` buttons, a dark "What your clinic needs" card, "Setup in three steps" with a demo video per step, "Landing works alongside your EHR", "Support, pricing, and pilots", then the shared closing call-out (see the README).
 
 ## Sub-features
 
@@ -8,7 +8,7 @@
 - `gs-steps` renders three numbered steps. Step 01 shows the clinic-setup video (`Expand Adding a clinic site video`), step 02 the add-patient video (`Expand Adding a new patient video`), and step 03 two side-by-side clips (`Expand Patient app exercise recording video` and `Expand PT app exercise review video`). The step count in the heading and the lead comes from `steps.length`, spelled out as a word.
 - `gs-ehr` renders "Landing works alongside your EHR". It says Landing does not connect to the EHR today.
 - `gs-terms` renders Support, Pricing, and Pilot, and says pricing and pilot terms are not published.
-- `gs-cta` is the closing call-out, "Book a setup demo."
+- `gs-cta` is the shared closing call-out (see the README).
 
 There is no AWS ingestion diagram on this page any more.
 

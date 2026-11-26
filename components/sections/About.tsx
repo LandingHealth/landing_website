@@ -1,11 +1,10 @@
 import Image from "next/image";
 import ExpandableMedia, { type Photo } from "@/components/ExpandableMedia";
 import DarkCard from "@/components/ui/DarkCard";
-import Eyebrow from "@/components/ui/Eyebrow";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Sheet from "@/components/ui/Sheet";
 import { safesock } from "@/lib/safesock";
-import { contactHref, container, focusRing, type } from "@/lib/site";
+import { contactEmail, contactHref, container, focusRing, type } from "@/lib/site";
 
 const injury: ReadonlyArray<{ caption: string; photo: Photo }> = [
   {
@@ -74,10 +73,10 @@ const buildingToward = [
 
 const links = [
   { title: "Careers", body: "We’re hiring for operations, sales, engineering and research. Every role is remote.", href: "/careers", action: "See open roles" },
-  { title: "Contact", body: "Questions about Landing, a security review, or working with us. Email the team.", href: contactHref, action: "Email us" },
+  { title: "Contact", body: "Questions about Landing, a security review, or working with us. Email the team.", href: contactHref, action: contactEmail },
 ] as const;
 
-const figureCaption = "mt-3 text-sm text-slate";
+const figureCaption = "mt-3 text-center text-sm text-slate";
 
 export default function AboutSection() {
   return (
@@ -95,27 +94,24 @@ export default function AboutSection() {
       </section>
 
       <Sheet tone="fog" round="top">
-        <div className="lg:grid lg:grid-cols-4 lg:gap-x-10">
-          <div>
-            <Eyebrow className="mb-4">Founders</Eyebrow>
-            <h2 className={type.h2}>The team</h2>
-          </div>
-          <ul className="mt-10 grid gap-x-10 gap-y-12 sm:grid-cols-3 lg:col-span-3 lg:mt-0">
+        <div>
+          <SectionHeading eyebrow="Founders" title="The team" />
+          <ul className="mx-auto mt-10 grid max-w-5xl gap-x-10 gap-y-12 sm:grid-cols-3 lg:mt-14">
             {founders.map(({ name, role, bio, photo }) => (
-              <li key={name} className="grid grid-cols-[6rem_1fr] items-center gap-x-5 sm:block">
+              <li key={name} className="text-center">
                 <Image
                   src={photo.src}
                   alt={photo.alt}
                   width={photo.width}
                   height={photo.height}
                   sizes="(min-width: 1024px) 290px, (min-width: 640px) 30vw, 96px"
-                  className="aspect-square w-full rounded-2xl bg-fog object-cover sm:rounded-3xl"
+                  className="mx-auto aspect-square w-full max-w-72 rounded-3xl bg-fog object-cover"
                 />
-                <div className="sm:mt-6">
+                <div className="mt-6">
                   <h3 className={type.h3}>{name}</h3>
                   <p className="mt-1 text-blue">{role}</p>
                 </div>
-                <p className={`${type.body} col-span-2 mt-4 sm:mt-3`}>{bio}</p>
+                <p className={`${type.body} mx-auto mt-3`}>{bio}</p>
               </li>
             ))}
           </ul>
@@ -123,15 +119,12 @@ export default function AboutSection() {
       </Sheet>
 
       <Sheet tone="white" round="top">
-        <div className="lg:grid lg:grid-cols-4 lg:gap-x-10">
-          <Eyebrow className="mb-4 lg:mb-0 lg:pt-2">Our story</Eyebrow>
-          <div className="lg:col-span-2">
-            <h2 className={type.h2}>Recovery happens between visits.</h2>
-            <div className="mt-6 space-y-4">
-              {story.map((text) => (
-                <p key={text} className={type.body}>{text}</p>
-              ))}
-            </div>
+        <div className="mx-auto max-w-2xl text-center">
+          <SectionHeading eyebrow="Our story" title="Recovery happens between visits." />
+          <div className="mt-6 space-y-4">
+            {story.map((text) => (
+              <p key={text} className={`${type.body} mx-auto`}>{text}</p>
+            ))}
           </div>
         </div>
         <div className="mt-12 grid gap-4 md:grid-cols-[4fr_3fr] lg:mt-16 lg:gap-6">
@@ -151,7 +144,7 @@ export default function AboutSection() {
                 controls
                 playsInline
                 preload="none"
-                className="absolute inset-0 size-full rounded-3xl bg-night object-cover object-top"
+                className="absolute inset-0 size-full rounded-3xl bg-fog object-cover object-top"
               />
             </div>
             <figcaption className={figureCaption}>Neil climbing a stair with his PT, three weeks after his fracture.</figcaption>
@@ -171,9 +164,9 @@ export default function AboutSection() {
       <section className={`${container} pb-16 lg:pb-20`}>
         <ul className="grid gap-x-10 border-t border-hair sm:grid-cols-2">
           {links.map(({ title, body, href, action }) => (
-            <li key={title} className="border-b border-hair py-8 sm:border-b-0">
+            <li key={title} className="border-b border-hair py-8 text-center sm:border-b-0">
               <h2 className={type.h3}>{title}</h2>
-              <p className={`${type.body} mt-3`}>{body}</p>
+              <p className={`${type.body} mx-auto mt-3`}>{body}</p>
               <a href={href} className={`mt-5 inline-block rounded-sm font-medium text-blue underline-offset-4 hover:underline ${focusRing}`}>
                 {action} <span aria-hidden>→</span>
               </a>

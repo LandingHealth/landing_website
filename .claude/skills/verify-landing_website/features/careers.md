@@ -1,6 +1,6 @@
 # Careers
 
-`/careers` (title `Careers | Landing`) has the h1 "Help build the between-visit layer for physical therapy.", an `Apply now` button, "Five roles" under "Open roles" (two full-time, three internships, all remote), "What each role does", a dark "Remote, with hours that fit." card, and the application form in the `#apply` section under the heading "Apply".
+`/careers` (title `Careers | Landing`) has the h1 "Help build the between-visit layer for physical therapy.", an `Apply now` button, an "Open roles" list (two full-time, three internships, all remote), "What each role does", a dark "Remote, with hours that fit." card, and the application form in the `#apply` section under the heading "Apply".
 
 ## Sub-features
 
@@ -8,9 +8,10 @@
 - `careers-process` shows the two numbered steps "Fill in one form" and "We read it", and the "Your information" note.
 - `careers-form` is `components/ApplicationForm.tsx` inside `#apply`. It has four required fields, `Full name`, `Email address`, "1. What interests you about joining Landing Health?" and "2. How many hours per week could you contribute, and when could you start?". The first textarea has a hint that says to name the role. The button is `Submit application`.
 - `careers-validate` validates on blur and on submit. An empty field shows "This field is required." and a bad email shows "Enter a valid email address."
+- `careers-resume` is the optional `Upload resume` button under the questions (PDF or Word, up to 4 MB). Choosing a file shows its name beside the button; the server action rejects other types or larger files with a `role="alert"` message, and sends the file base64-encoded with the answers.
 - `careers-submit` posts through the `apply` server action (`app/company/actions.ts`, `lib/application.ts`) to `APPLICATION_SHEET_URL`. While it sends, the button reads `Sending...`. On success, a `role="status"` block reading "Thanks. We got your application." replaces the form. On failure, a `role="alert"` paragraph says "We couldn't send your application. Please try again..." and the typed values stay.
 - `careers-honeypot` is a hidden `website` field (`#apply-website`) that sits 10000px off screen. If a bot fills it, the action reports success without sending.
-- `careers-cta` is the closing call-out, with `Apply now` (to `#apply`) and `See the product`.
+- `careers-cta` is the shared closing call-out (see the README).
 
 ## How to get to it (user POV)
 

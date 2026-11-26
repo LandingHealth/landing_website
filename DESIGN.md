@@ -18,8 +18,8 @@ This file is the visual contract for the Landing Health marketing site. `app/glo
 - The site follows the visual system of vitalize.care: white and fog sheets, ink headings in Inter, one strong blue for actions, and soft blue gradient frames around product visuals. Landing keeps its own copy, logo, photos, and videos. Never copy Vitalize's logos, imagery, text, or font files.
 - Sections alternate between white and `fog`. A sheet can round its top or bottom corners by 40px so it reads as laid over its neighbor.
 - Blue marks actions and position: the primary button, the active feature menu item, eyebrows, and links. It never fills a content section. The announcement bar is the one full-width blue band.
-- Product visuals sit inside a `GradientFrame`. The final call to action sits on the `CtaSheet` gradient. No other gradients, background images, or background video.
-- `night` is for the one dark card per page, such as how Landing partners with a clinic.
+- Product visuals sit inside a `GradientFrame`. The final call to action sits on the solid graphite `CtaSheet`. No other gradients, background images, or background video.
+- `blue` also fills the one dark card per page (`DarkCard`), such as how Landing partners with a clinic.
 - The site has one mode. Do not add dark mode, a `.dark` class, `data-theme="dark"`, or a `prefers-color-scheme` rule.
 - Build from HeroUI components before you write a custom control. Style them with the tokens below.
 
@@ -41,7 +41,7 @@ Use the semantic HeroUI utilities for anything built from HeroUI components. Use
 | Border and separator | `border-border`, `border-separator` | `--border`, `--separator` | hair | Component edges and rules |
 | Danger | `text-danger`, `bg-danger` | `--danger` | `oklch(0.52 0.2 26)` | Validation errors only |
 
-Ink is the focus color because it keeps at least 3:1 against white, fog, and the blue bar. On `night`, use `focus-visible:outline-white`, as the `onDark` button does.
+Ink is the focus color because it keeps at least 3:1 against white, fog, and the blue bar. On a blue fill, use `focus-visible:outline-white`, as the `onDark` button does.
 
 The Landing palette sits beside the semantic tokens as plain Tailwind colors.
 
@@ -49,14 +49,13 @@ The Landing palette sits beside the semantic tokens as plain Tailwind colors.
 | --- | --- | --- |
 | `ink` | `#191f2d` | Headings and primary text |
 | `slate` | `#545a62` | Body text, leads, nav links |
-| `mute` | `#9298a2` | Inactive feature menu items, captions, footer column titles |
+| `mute` | `#9298a2` | Inactive feature menu items, captions |
 | `hair` | `#cad0d7` | Rules between menu items and rows |
 | `blue` | `#186ff1` | Primary buttons, active menu item, eyebrows, links, the announcement bar |
-| `blue-light` | `#3d8bff` | Eyebrows, numbers, and rules on `night` |
+| `blue-light` | `#3d8bff` | Unused since the dark card moved to blue |
 | `fog` | `#f4f4f4` | Alternate section background, secondary button |
-| `night` | `#191d2d` | The dark card |
 
-Two gradient utilities live in `app/globals.css`. `bg-frame` is the soft blue frame behind product visuals, near-white blue at the top left into `#4f8df5` at the bottom right. `bg-cta` runs from white at the top through light blue and lavender into `#4f8df5` at the bottom of the final call to action.
+`app/globals.css` holds two background utilities. `bg-frame` is the soft blue gradient frame behind product visuals, near-white blue at the top left into `#4f8df5` at the bottom right. `bg-cta` is solid `graphite` (`#262626`) behind the final call to action, with white text and a white button.
 
 ## Typography
 
@@ -77,7 +76,7 @@ Take every heading, lead, body, and label size from the `type` table in `lib/sit
 | `small` | 15px, size only | Capability lists, meta rows, notes under a heading |
 | `caption` | 13px, size only | Field hints, errors, and range labels |
 
-- Headings carry no color of their own. They inherit ink from the body and white inside `night`.
+- Headings carry no color of their own. They inherit ink from the body and white inside the blue card.
 - Headings use sentence case and `text-balance`.
 - Use tabular numbers for values that change, such as the revenue calculator totals.
 
@@ -97,7 +96,7 @@ The spacing base is 4px through Tailwind spacing utilities.
 - Buttons and fields use 4px corners. Do not use pill-shaped buttons.
 - Large frames, image cards, and the dark card use 24px (`rounded-3xl`).
 - Feature demo frames use 16px (`rounded-2xl`, `GradientFrame size="md"`).
-- Sheets and the CTA sheet use 40px on tablets and up, 24px on phones.
+- Sheets use 40px on tablets and up, 24px on phones. The CTA sheet is square.
 - Media inside a frame uses 12px (`rounded-xl`).
 
 ## Elevation
@@ -110,14 +109,14 @@ The site is flat. Tone changes and rules separate content.
 
 ## Components
 
-Page chrome is rendered by `app/layout.tsx`: `AnnouncementBar`, `Header`, and `Footer`. Each page renders its own final `CtaSheet` as its last element.
+Page chrome is rendered by `app/layout.tsx`: `AnnouncementBar`, `Header`, then the page, then `CtaSheet` and `Footer`. Pages don't render their own call to action.
 
 - **Announcement bar.** `components/AnnouncementBar.tsx` reads the single `announcement` entry in `lib/site.ts`. Set it to `null` to hide the bar.
 - **Header.** Logo left, `navigation` centered, a secondary Contact button and a primary Book a demo button on the right. Below `lg`, the links move into the HeroUI Popover menu.
-- **CTA sheet.** `components/ui/CtaSheet.tsx`. A gradient sheet with a centered H2, Book a demo, an optional secondary button, and the clipped Landing wordmark. Pass the page's own `heading`.
-- **Footer.** Logo, then the `footerColumns` from `lib/site.ts`, then the copyright.
+- **CTA sheet.** `components/ui/CtaSheet.tsx`. A full-bleed, square-cornered graphite section with a centered white H2, a short lead, and one white `light` Book a demo button. It takes no props: the heading and lead come from `demo` in `lib/site.ts`, so every page closes on the same text.
+- **Footer.** Solid `graphite` under the `CtaSheet`, split from it by a faint hairline. Copyright on the left, then the two untitled `footerColumns` from `lib/site.ts` (site pages, then Contact and LinkedIn). Edge-to-edge padding like the header.
 - **Section primitives.** `components/ui/` holds `Eyebrow`, `SectionHeading`, `Sheet`, `GradientFrame`, `DarkCard`, `FeatureTour`, `NumberedRows`, `IndexNumber`, `InDevelopment`, and `BackLink`. Build page sections from these before you write new layout.
-- **Numbered rows.** `NumberedRows` is the ruled three-column list with a mono index, an H3, and a short body. `IndexNumber` is that blue mono `01` on its own, with `onDark` for `night`.
+- **Numbered rows.** `NumberedRows` is the ruled three-column list with a mono index, an H3, and a short body. `IndexNumber` is that blue mono `01` on its own, with `onDark` for the blue card.
 - **Status chip.** `InDevelopment` is the one marker for anything not built yet. Use it instead of writing "In development:" into copy.
 - **Back link.** `BackLink` is the small mono link above a page title that returns to its parent, such as Resources.
 - **Feature tour.** `FeatureTour` is the sticky feature menu. It takes a list of features, each with a `demo` node. The feature crossing the middle of the viewport is active. Its menu item turns blue with a blue rule and carries `aria-current="location"`, and the other features dim to 30% on desktop. On phones the menu is a sticky row of chips.
@@ -152,7 +151,7 @@ Rules for new motion:
 
 ## Interaction
 
-- Every interactive element shows a 2px focus outline with a 2px offset on keyboard focus. Use `focusRing` from `lib/site.ts`. On blue or `night`, use a white outline.
+- Every interactive element shows a 2px focus outline with a 2px offset on keyboard focus. Use `focusRing` from `lib/site.ts`. On blue, use a white outline.
 - Style HeroUI states with the React Aria data attributes, such as `data-hovered`, `data-pressed`, `data-focus-visible`, `data-disabled`, and `data-invalid`.
 - Navigation links are slate and turn ink on hover. The current page is ink and carries `aria-current="page"`.
 - Disabled controls use the HeroUI default opacity of 0.5.

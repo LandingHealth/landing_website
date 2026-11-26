@@ -3,14 +3,12 @@ import ButtonLink from "@/components/ButtonLink";
 import { ProgressPreview } from "@/components/DashboardPreview";
 import DemoVideo from "@/components/sections/product/DemoVideo";
 import MovedSections from "@/components/sections/product/MovedSections";
-import CtaSheet from "@/components/ui/CtaSheet";
-import Eyebrow from "@/components/ui/Eyebrow";
 import FeatureTour, { type Feature } from "@/components/ui/FeatureTour";
 import GradientFrame from "@/components/ui/GradientFrame";
 import NumberedRows from "@/components/ui/NumberedRows";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Sheet from "@/components/ui/Sheet";
-import { demo, demoHref, type } from "@/lib/site";
+import { demoHref, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Product | Landing",
@@ -62,8 +60,8 @@ const features: readonly Feature[] = [
       "Session history grouped into upcoming, today, and past, with a status on each.",
       "A next visit brief for your review.",
       "Message threads with the patient between visits.",
+      "Changes over time across sessions.",
     ],
-    inDevelopment: ["Changes over time across sessions.", "Exercise proposals that wait for your review."],
     demo: (
       <GradientFrame size="md" className="flex-col">
         <ProgressPreview />
@@ -84,16 +82,16 @@ export default function ProductPage() {
           title="From home exercise to the next visit"
           lead="Patients submit home exercises, PTs review what needs attention, and the next visit starts with more context."
         />
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
+        <div data-header-cta className="mt-10 flex flex-wrap justify-center gap-3">
           <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
           <ButtonLink href="/getting-started" variant="secondary">See how setup works</ButtonLink>
         </div>
-        <NumberedRows items={workflow} heading="h2" className="mt-16 w-full text-left lg:mt-20" />
+        <NumberedRows items={workflow} heading="h2" className="mt-16 w-full lg:mt-20" />
       </Sheet>
 
       <Sheet tone="fog" round="top">
         <SectionHeading
-          align="split"
+          align="center"
           eyebrow="How it works"
           title="One loop between visits"
           lead="Three parts of Landing. The videos are the real apps, recorded with test data."
@@ -103,22 +101,15 @@ export default function ProductPage() {
       </Sheet>
 
       <Sheet round="top">
-        <div className="lg:grid lg:grid-cols-4 lg:gap-x-10">
-          <Eyebrow className="mb-4 lg:mb-0 lg:pt-2">Planned</Eyebrow>
-          <div className="lg:col-span-2">
-            <h2 className={type.h2}>Documentation</h2>
-            <p className={`${type.lead} mt-4 text-pretty`}>
-              Documentation support is planned. It is not built, and Landing does not write or file notes today.
-            </p>
-            <p className={`${type.body} mt-4`}>
-              The goal is a draft of the treatment note built from the visit and the home exercise plan, checked for
-              missing details before you sign it.
-            </p>
-          </div>
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <h2 className={type.h2}>Documentation</h2>
+          <p className={`${type.lead} mt-4 max-w-2xl text-pretty`}>
+            Landing exports a PDF evidence packet for each patient, ready to attach to the chart in your EHR. It covers
+            the prescribed home exercise program and adherence data from the patient’s sessions. Evaluations export as
+            their own PDF, with your clinic measurements next to the camera readings.
+          </p>
         </div>
       </Sheet>
-
-      <CtaSheet heading="See the whole loop in a demo." lead={demo.sees} />
     </main>
   );
 }

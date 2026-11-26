@@ -12,7 +12,7 @@ export default function SectionHeading({
   eyebrow,
   title,
   lead,
-  align = "left",
+  align = "center",
   as: Heading = "h2",
   onDark = false,
   className = "",
@@ -31,7 +31,7 @@ export default function SectionHeading({
       {eyebrow && <Eyebrow onDark={onDark} className={align === "split" ? "mb-4 lg:mb-0 lg:pt-2" : "mb-4"}>{eyebrow}</Eyebrow>}
       <div className={text}>
         <Heading className={Heading === "h1" ? type.h1 : type.h2}>{title}</Heading>
-        {lead && <p className={`${onDark ? type.leadOnDark : type.lead} ${Heading === "h1" ? "mt-6" : "mt-4"} max-w-2xl text-pretty`}>{lead}</p>}
+        {lead && <p className={`${onDark ? type.leadOnDark : type.lead} ${Heading === "h1" ? "mt-6" : "mt-4"} max-w-2xl text-pretty ${align === "center" ? "mx-auto" : ""}`}>{lead}</p>}
       </div>
     </div>
   );

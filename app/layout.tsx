@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
+import { Geist, Geist_Mono, Roboto_Serif } from "next/font/google";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Footer from "@/components/Footer";
+import CtaSheet from "@/components/ui/CtaSheet";
 import Header from "@/components/Header";
 import Reveal from "@/components/Reveal";
 import "./globals.css";
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist",
+  display: "swap",
+});
+const robotoSerif = Roboto_Serif({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz", "wdth"],
+  variable: "--font-roboto-serif",
   display: "swap",
 });
 const geistMono = Geist_Mono({
@@ -29,12 +37,13 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${geistMono.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${geist.variable} ${robotoSerif.variable} ${geistMono.variable}`}>
       <body className="bg-white font-sans text-ink antialiased">
         <Reveal />
         <AnnouncementBar />
         <Header />
         {children}
+        <CtaSheet />
         <Footer />
       </body>
     </html>

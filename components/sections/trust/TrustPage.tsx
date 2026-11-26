@@ -53,22 +53,25 @@ export function TrustSection({
   index,
   title,
   aside,
+  art,
   children,
 }: {
   id: string;
   index: number;
   title: string;
   aside?: ReactNode;
+  art?: ReactNode;
   children: ReactNode;
 }) {
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-24 py-12 first:pt-0 last:pb-0 lg:grid lg:grid-cols-4 lg:gap-x-10">
-      <div className="lg:sticky lg:top-24 lg:self-start">
+      <div className={art ? "lg:flex lg:flex-col" : "lg:sticky lg:top-24 lg:self-start"}>
         <IndexNumber index={index} />
         <h2 id={`${id}-title`} className={`${type.h3} mt-3 text-balance`}>{title}</h2>
         {aside}
+        {art && <div className="mt-6 lg:mt-auto lg:pt-6">{art}</div>}
       </div>
-      <div className="mt-8 min-w-0 lg:col-span-3 lg:mt-0">{children}</div>
+      <div className={`mt-8 min-w-0 lg:col-span-3 lg:mt-0 ${art ? "lg:flex lg:flex-col" : ""}`}>{children}</div>
     </section>
   );
 }
@@ -77,9 +80,9 @@ export type TrustRow = { label: string; body: ReactNode };
 
 export function RuledRows({ rows }: { rows: readonly TrustRow[] }) {
   return (
-    <dl className="border-t border-hair">
+    <dl className="flex grow flex-col border-t border-hair">
       {rows.map(({ label, body }) => (
-        <div key={label} className="grid gap-2 border-b border-hair py-5 md:grid-cols-3 md:gap-10">
+        <div key={label} className="grid grow content-start gap-2 border-b border-hair py-5 md:grid-cols-3 md:gap-10">
           <dt className="font-medium leading-[1.35] text-ink">{label}</dt>
           <dd className={`${type.body} md:col-span-2`}>{body}</dd>
         </div>

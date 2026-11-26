@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import CareersSection from "@/components/sections/Careers";
-import CtaSheet from "@/components/ui/CtaSheet";
 
 export const metadata: Metadata = {
   title: "Careers | Landing",
@@ -11,9 +10,6 @@ export default function CareersPage() {
   return (
     <main className="overflow-x-clip">
       <CareersSection />
-      <div className="bg-fog">
-        <CtaSheet heading="Questions before you apply?" lead="Email the team about any role. We reply to every application by email." primary={{ label: "Apply now", href: "#apply" }} />
-      </div>
     </main>
   );
 }

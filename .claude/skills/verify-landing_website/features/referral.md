@@ -7,7 +7,7 @@
 - `referral-hero` renders the eyebrow "Referral program", the h1, and the reward.
 - `referral-steps` renders three numbered cards with icons, "Book a call", "Introduce us", and "Get paid". The first has a `Book a call with us` link to Calendly.
 - `referral-rules` renders five question and answer rows in a `<dl>`, from "Who can refer a clinic?" to "Where are the terms?".
-- `referral-cta` is the closing call-out, "Know a clinic that could use Landing?"
+- `referral-cta` is the shared closing call-out (see the README).
 
 ## How to get to it (user POV)
 

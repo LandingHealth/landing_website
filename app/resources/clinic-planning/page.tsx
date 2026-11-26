@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import RevenueSection from "@/components/sections/Revenue";
 import BackLink from "@/components/ui/BackLink";
-import CtaSheet from "@/components/ui/CtaSheet";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Sheet from "@/components/ui/Sheet";
 
@@ -26,7 +25,6 @@ export default function ClinicPlanningPage() {
         />
       </Sheet>
       <RevenueSection />
-      <CtaSheet heading="Walk through your clinic’s numbers with us." lead="On a demo call, we’ll go through these calculators with your clinic’s own numbers." />
     </main>
   );
 }

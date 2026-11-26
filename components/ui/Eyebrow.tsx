@@ -10,5 +10,5 @@ export default function Eyebrow({
   onDark?: boolean;
   className?: string;
 }) {
-  return <p className={`${type.eyebrow} ${onDark ? "text-blue-light" : "text-blue"} ${className}`}>{children}</p>;
+  return <p className={`${type.eyebrow} ${onDark ? "text-white/80" : "text-blue"} ${className}`}>{children}</p>;
 }

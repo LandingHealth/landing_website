@@ -9,7 +9,7 @@
 - `company-founders` renders "The team", a list of three founders, each with a photo, name, role, and bio. They are Neil Patel (Co-CTO, hardware), Pragat Patel (COO), and Evan Batten (Co-CTO, computer vision). Photos live in `public/about/team/`.
 - `company-building` is the dark card with three items: home exercise a PT can see, visits that start with context, and load on the leg (SafeSock, with its status line from `lib/safesock.ts`).
 - `company-links` has two links, `See open roles` to `/careers` and `Email us` to the contact mailto.
-- `company-cta` is the closing call-out, whose secondary button is `See open roles`.
+- `company-cta` is the shared closing call-out (see the README).
 
 ## How to get to it (user POV)
 

@@ -1,9 +1,9 @@
 "use client";
 
 import { Button, Description, FieldError, Form, Input, Label, Spinner, TextArea, TextField } from "@heroui/react";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { apply } from "@/app/company/actions";
-import { applicationFields, emailPattern, emptyApplication, type ApplyState } from "@/lib/application";
+import { applicationFields, emailPattern, emptyApplication, resumeAccept, type ApplyState } from "@/lib/application";
 import { type } from "@/lib/site";
 
 const initialState: ApplyState = { status: "editing", values: emptyApplication };
@@ -19,6 +19,7 @@ const emailError = (value: string) => (value && !emailPattern.test(value) ? "Ent
 
 export default function ApplicationForm() {
   const [state, action, pending] = useActionState(apply, initialState);
+  const [resumeName, setResumeName] = useState("");
 
   if (state.status === "sent") {
     return (
@@ -60,6 +61,26 @@ export default function ApplicationForm() {
           </FieldError>
         </TextField>
       ))}
+      <div className="flex w-full flex-col gap-1.5 pb-6">
+        <span id="apply-resume-label" className="text-sm font-medium text-ink">Resume (optional)</span>
+        <span className={`${type.caption} leading-snug text-slate`}>PDF or Word, up to 4 MB.</span>
+        <div className="mt-1 flex flex-wrap items-center gap-3">
+          <label
+            className={`inline-flex h-10 cursor-pointer items-center rounded-[4px] bg-fog/85 px-4 text-[15px] font-medium text-ink ring-1 ring-inset ring-ink/10 hover:bg-hair/50 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-ink`}
+          >
+            Upload resume
+            <input
+              type="file"
+              name="resume"
+              accept={resumeAccept}
+              aria-labelledby="apply-resume-label"
+              className="sr-only"
+              onChange={(event) => setResumeName(event.currentTarget.files?.[0]?.name ?? "")}
+            />
+          </label>
+          <span className="text-sm text-slate" aria-live="polite">{resumeName || "No file chosen"}</span>
+        </div>
+      </div>
       <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
         <label htmlFor="apply-website">Website</label>
         <input id="apply-website" type="text" name="website" tabIndex={-1} autoComplete="off" />

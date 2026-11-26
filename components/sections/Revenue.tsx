@@ -34,11 +34,11 @@ export default function RevenueSection() {
     <>
       {calculators.map(({ kind, eyebrow, title, paragraphs }, index) => (
         <Sheet key={kind} id={kind} tone={index % 2 === 0 ? "fog" : "white"} round="top">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-x-10">
+          <div className="mx-auto max-w-2xl text-center">
             <SectionHeading eyebrow={eyebrow} title={title} />
-            <div className="mt-6 space-y-4 lg:mt-10">
+            <div className="mt-6 space-y-4">
               {paragraphs.map((text) => (
-                <p key={text} className={type.body}>{text}</p>
+                <p key={text} className={`${type.body} mx-auto`}>{text}</p>
               ))}
             </div>
           </div>

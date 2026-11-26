@@ -1,6 +1,6 @@
 # Product
 
-`/product` (title `Product | Landing`) explains the Landing loop between visits. It has the h1 "From home exercise to the next visit", a three-step workflow list, the FeatureTour ("One loop between visits") with a sticky menu and three features, a "Planned" Documentation block, and a closing demo call-out.
+`/product` (title `Product | Landing`) explains the Landing loop between visits. It has the h1 "From home exercise to the next visit", a three-step workflow list, the FeatureTour ("One loop between visits") with a sticky menu and three features, a "Planned" Documentation block, then the shared closing call-out (see the README).
 
 ## Sub-features
 
@@ -15,7 +15,7 @@
 
 - Choose `Product` in the header or phone menu.
 - Choose a `See ...` link on a home product card, which opens `/product#home-exercise`, `#pt-review`, or `#progress`.
-- Choose `See the product` on the home hero, or in the closing call-out of `/getting-started` or `/careers`.
+- Choose `See the product` on the home hero.
 
 ## Driving it with verify.mjs
 

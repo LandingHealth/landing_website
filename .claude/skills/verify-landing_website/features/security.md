@@ -7,7 +7,7 @@
 - `sec-jump` is `<nav aria-label="On this page">` with six numbered links: `Data storage` (`#storage`), `Access controls` (`#access`), `Encryption` (`#encryption`), `Retention and deletion` (`#retention`), `Agreements` (`#agreements`), and `Security reviews` (`#reviews`).
 - `sec-topics` renders the five topic sections with 5, 5, 3, 3, and 2 rows, 18 `<dt>` in all. The first row reads "Where data lives".
 - `sec-reviews` is `#reviews`, with a paragraph and an `Email us` button that opens the contact mailto.
-- `sec-cta` is the closing call-out, "Bring your security questions to a demo."
+- `sec-cta` is the shared closing call-out (see the README).
 
 ## How to get to it (user POV)
 

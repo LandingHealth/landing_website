@@ -22,11 +22,11 @@ export default function NumberedRows({
           key={title}
           data-reveal={reveal && revealAttribute[reveal]}
           style={reveal && ({ "--reveal-i": index } as CSSProperties)}
-          className="border-t border-hair pt-6 pb-8"
+          className="border-t border-hair pt-6 pb-8 text-center"
         >
           <IndexNumber index={index} />
           <Heading className={`${type.h3} mt-3`}>{title}</Heading>
-          <p className={`${type.body} mt-3`}>{body}</p>
+          <p className={`${type.body} mx-auto mt-3`}>{body}</p>
         </li>
       ))}
     </ol>

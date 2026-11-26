@@ -4,55 +4,59 @@ import ExpandableMedia from "@/components/ExpandableMedia";
 import Awards from "@/components/sections/home/Awards";
 import HeroArcs from "@/components/sections/home/HeroArcs";
 import ScreenCrop from "@/components/sections/home/ScreenCrop";
-import SessionsSample from "@/components/sections/home/SessionsSample";
-import CtaSheet from "@/components/ui/CtaSheet";
 import DarkCard from "@/components/ui/DarkCard";
 import GradientFrame from "@/components/ui/GradientFrame";
-import InDevelopment from "@/components/ui/InDevelopment";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Sheet from "@/components/ui/Sheet";
-import { container, demo, demoHref, focusRing, type } from "@/lib/site";
+import { container, demoHref, focusRing, type } from "@/lib/site";
 
-type Feature = { id: "home-exercise" | "pt-review" | "progress"; title: string; body: string; link: string; visual: ReactNode; inDevelopment?: string };
+type Feature = { id: "home-exercise" | "pt-review" | "progress"; title: string; body: string; link: string; visual: ReactNode };
 
 const features: readonly Feature[] = [
   {
     id: "home-exercise",
     title: "Home exercise",
-    body: "Patients follow the sessions you assign, with sets, reps, and your cues. Landing shows them how to film each set and asks about pain and difficulty before and after.",
+    body: "Patients complete the sessions you prescribe, with your sets, reps, and cues. Landing guides each recording and collects pain and difficulty ratings.",
     link: "See home exercise",
     visual: (
       <ScreenCrop
-        src="/workspace/exercise-recording-plan.jpg"
+        src="/workspace/exercise-squat.jpg"
         alt="A bodyweight squat in the patient app: 3 sets, 10 reps, 60 seconds rest, and a cue from the PT"
-        width={1742}
-        height={994}
-        region={{ x: 540, y: 12, w: 660, h: 495 }}
+        width={1467}
+        height={1098}
+        region={{ x: 0, y: 0, w: 1467, h: 1098 }}
       />
     ),
   },
   {
     id: "pt-review",
     title: "PT review",
-    body: "Videos arrive in your review queue with possible form issues flagged. Mark each flag correct or incorrect, add one Landing missed, and choose whether your comment goes to the patient.",
+    body: "Recorded sets reach your review queue with possible form issues flagged. Confirm or dismiss each flag, add your own, and choose what the patient sees.",
     link: "See PT review",
     visual: (
       <ScreenCrop
-        src="/workspace/exercise-review-app.jpg"
-        alt="A flagged heel lift in the PT review screen, with Correct and Incorrect buttons and a comment to the patient"
-        width={1482}
-        height={994}
-        region={{ x: 1010, y: 230, w: 464, h: 348 }}
+        src="/workspace/exercise-review-flag.jpg"
+        alt="A flagged knee valgus in the PT review screen, with Correct and Incorrect buttons and a comment to the patient"
+        width={1314}
+        height={984}
+        region={{ x: 0, y: 0, w: 1314, h: 984 }}
       />
     ),
   },
   {
     id: "progress",
     title: "Progress and follow-up",
-    body: "See each patient’s session history. Before each visit, Landing writes a brief from the patient’s history, recent sessions, and your notes.",
+    body: "Track each patient’s session history and progress over time. Before every visit, Landing prepares a brief from their history, recent sessions, and your notes.",
     link: "See progress and follow-up",
-    inDevelopment: "Progress charts over time",
-    visual: <SessionsSample />,
+    visual: (
+      <ScreenCrop
+        src="/workspace/progress-sessions.jpg"
+        alt="The patient app's session list: two sessions coming up and a completed session with new feedback from the PT"
+        width={1545}
+        height={1158}
+        region={{ x: 0, y: 0, w: 1545, h: 1158 }}
+      />
+    ),
   },
 ];
 
@@ -79,12 +83,14 @@ export default function Home() {
       <section className="relative pt-16 pb-16 sm:pt-24 lg:pt-28 lg:pb-20">
         <HeroArcs />
         <div className={`${container} relative flex flex-col items-center text-center`}>
-          <h1 className={`${type.h1} max-w-4xl motion-safe:animate-rise`}>Know what happened between visits</h1>
+          <h1 className={`${type.h1} max-w-4xl motion-safe:animate-rise`}>Turn home exercise into a new revenue stream</h1>
           <p style={delay(120)} className={`${type.lead} mt-6 max-w-2xl text-pretty motion-safe:animate-rise`}>
-            Landing is clinic software for physical therapy. Patients record their home exercises, PTs review what needs
-            attention, and the next visit starts with more context.
+            Patients spend 98.8% of their week outside the clinic. Landing turns that time into reviewed home exercise
+            you can bill for. It condenses each recorded session into the moments where form deviates, so clinicians can
+            review a full session in seconds.
           </p>
           <div
+            data-header-cta
             style={delay(240)}
             className="mt-10 flex w-full max-w-sm flex-col gap-3 motion-safe:animate-rise sm:w-auto sm:max-w-none sm:flex-row"
           >
@@ -109,33 +115,19 @@ export default function Home() {
               className="hidden aspect-[1482/994] w-full max-w-5xl rounded-xl bg-white shadow-preview sm:block"
             />
           </GradientFrame>
-          <figcaption className="mt-3 text-center text-sm text-slate">
-            A PT reviewing a flagged squat in Landing, recorded with a sample patient.
-          </figcaption>
         </figure>
       </section>
 
       <Sheet tone="fog" round="top">
-        <SectionHeading
-          eyebrow="Product"
-          align="split"
-          title="From the home session to the next visit."
-          lead="Three parts of Landing work together between appointments."
-        />
+        <SectionHeading align="center" title="From the home session to the next visit." />
         <div className="mt-12 grid gap-x-10 gap-y-14 lg:mt-16 lg:grid-cols-3">
-          {features.map(({ id, title, body, link, visual, inDevelopment }) => (
-            <article key={id} aria-labelledby={`${id}-title`} data-reveal className="flex flex-col">
+          {features.map(({ id, title, body, link, visual }) => (
+            <article key={id} aria-labelledby={`${id}-title`} data-reveal className="flex flex-col text-center">
               <GradientFrame size="md">
                 <div className="aspect-[4/3] w-full">{visual}</div>
               </GradientFrame>
               <h3 id={`${id}-title`} className={`${type.h3} mt-8`}>{title}</h3>
               <p className={`${type.body} mt-3`}>{body}</p>
-              {inDevelopment && (
-                <p className={`${type.small} mt-4 flex items-center gap-2 text-ink`}>
-                  <InDevelopment />
-                  {inDevelopment}
-                </p>
-              )}
               <p className="mt-auto pt-5">
                 <a
                   href={`/product#${id}`}
@@ -162,8 +154,6 @@ export default function Home() {
           action={{ label: "See how setup works", href: "/getting-started" }}
         />
       </div>
-
-      <CtaSheet heading="See how Landing fits your clinic." lead={demo.sees} />
     </main>
   );
 }

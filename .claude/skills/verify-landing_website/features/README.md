@@ -41,15 +41,15 @@ Each feature file starts with an H1 and one paragraph on what the visitor sees. 
 Every page shares the announcement bar, header, footer, and closing call-out from `app/layout.tsx` and the components below.
 
 - **Announcement bar** (`components/AnnouncementBar.tsx`) is a blue strip above the header, 40px tall, and not sticky. It reads "New article: <title>" with a `Read more →` link. The text and target come from `announcement` in `lib/site.ts`, which names the first entry of `resources` in `lib/resources.ts`. Setting `announcement` to `null` removes the bar.
-- **Header** (`components/Header.tsx`) is sticky. It has a home link named `Landing Health home`, a `Primary navigation` nav at 1024px and wider (Product, SafeSock, Getting Started, Resources, Company), a `Contact` button (mailto) at 1024px and wider, and a `Book a demo` button that opens Calendly. Below 1024px the nav collapses into an icon button named `Menu`. It opens a popover dialog named `Menu` that holds `Phone navigation` with the five links plus `Contact`. The home feature file holds the menu recipe.
-- **Footer** (`components/Footer.tsx`) has a `Footer` nav in three columns. Product has Product, SafeSock, and Getting Started. Company has Company, Careers, Resources, LinkedIn, and Contact (mailto). Legal and trust has Security, Privacy, and Referral.
-- **CTA sheet** (`components/ui/CtaSheet.tsx`) closes every page. It has a heading, an optional lead, a primary button (default `Book a demo`, to Calendly), a secondary button (default `Contact us`, mailto, or none), and a large decorative `Landing` wordmark that is `aria-hidden`. Pages override the heading and buttons, so assert on the page's own heading.
+- **Header** (`components/Header.tsx`) is sticky with a bottom hairline. It has a home link named `Landing Health home` on the left, then on the right a `Primary navigation` nav at 1024px and wider (Product, SafeSock, Getting Started, Resources, Company) and a `Book a demo` button that opens Calendly. On `/`, `/product` and `/getting-started` the header button is hidden and inert while the hero's own button row (`data-header-cta`) is on screen, and slides in once you scroll past it. Below 1024px the nav collapses into an icon button named `Menu`. It opens a popover dialog named `Menu` that holds `Phone navigation` with the five links. The home feature file holds the menu recipe.
+- **Footer** (`components/Footer.tsx`) is graphite with a hairline on top: `© <year> Landing Health` on the left and a `Footer` nav of two untitled columns. The first has Product, SafeSock, Getting Started, Company, Careers, Resources, Referral, Security, and Privacy; the second has Contact (mailto) and LinkedIn.
+- **CTA sheet** (`components/ui/CtaSheet.tsx`) closes every page. The layout renders it, identical on every page: "Monitor home exercise and bill for it in one system", the "Discover how Landing can help your clinic…" lead, and one white `Book a demo` button (to Calendly).
 
 ## Features
 
 - [Home](./home.md) covers `/`, the hero video, the three product cards, the award marquee, and the phone menu.
 - [Product](./product.md) covers `/product` and the FeatureTour sticky menu (`#home-exercise`, `#pt-review`, `#progress`).
-- [SafeSock](./safesock.md) covers `/safesock`, the scroll-scrubbed stage, the reduced-motion and no-JavaScript stills, and `scripts/safesock-scrub.mjs`.
+- [SafeSock](./safesock.md) covers `/safesock`.
 - [Getting started](./getting-started.md) covers `/getting-started` and the three setup steps.
 - [Clinic planning](./clinic-planning.md) covers `/resources/clinic-planning`, its two calculators, and the `/revenue` redirect.
 - [Resources and articles](./resources-articles.md) covers `/resources`, the flyer PDF, and the six article pages.
@@ -66,4 +66,3 @@ Every page shares the announcement bar, header, footer, and closing call-out fro
 ## Scripts
 
 - `scripts/verify.mjs` is the load-level harness the SKILL.md describes.
-- `scripts/safesock-scrub.mjs <base-url> [out-dir]` drives the SafeSock scrub. [safesock.md](./safesock.md) says how to run it.

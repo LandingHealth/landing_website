@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import CtaSheet from "@/components/ui/CtaSheet";
 import Sheet from "@/components/ui/Sheet";
 import { proseLink, RuledRows, TrustHero, TrustSection, type TrustRow } from "@/components/sections/trust/TrustPage";
 import { contactHref, type } from "@/lib/site";
@@ -47,7 +46,7 @@ const website: Part = {
       label: "Job applications",
       body: (
         <>
-          The careers form asks for your full name, your email address, what interests you about Landing, and your availability. When you send it, the site adds your answers and the time you sent them as a row in a Google Sheet the Landing team uses to review applications. To have your application deleted, email <Email />.
+          The careers form asks for your full name, your email address, what interests you about Landing, your availability, and optionally your resume. When you send it, the site adds your answers and the time you sent them as a row in a Google Sheet the Landing team uses to review applications. A resume you upload is saved to a Google Drive folder that only the team can open, and the row links to it. To have your application deleted, email <Email />.
         </>
       ),
     },
@@ -263,7 +262,6 @@ export default function PrivacyPage() {
           </p>
         </TrustSection>
       </Sheet>
-      <CtaSheet heading="Questions about your data? Ask us." lead="Email us about this policy or about data Landing holds for your clinic." secondary={{ label: "Email us", href: contactHref }} />
     </main>
   );
 }
