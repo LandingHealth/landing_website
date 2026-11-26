@@ -1,5 +1,6 @@
 import ButtonLink from "@/components/ButtonLink";
 import Eyebrow from "@/components/ui/Eyebrow";
+import IndexNumber from "@/components/ui/IndexNumber";
 import { type } from "@/lib/site";
 
 export type DarkCardItem = { title: string; body: string };
@@ -30,7 +31,7 @@ export default function DarkCard({
       <ol className="mt-12 lg:mt-0">
         {items.map(({ title: itemTitle, body: itemBody }, index) => (
           <li key={itemTitle} className="border-b border-blue-light/40 py-6 first:pt-0">
-            <span aria-hidden className="font-mono text-base text-blue-light">{String(index + 1).padStart(2, "0")}</span>
+            <IndexNumber index={index} onDark />
             <h3 className={`${type.h3} mt-3`}>{itemTitle}</h3>
             <p className={`${type.bodyOnDark} mt-4`}>{itemBody}</p>
           </li>

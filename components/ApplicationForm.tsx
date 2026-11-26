@@ -4,6 +4,7 @@ import { Button, Description, FieldError, Form, Input, Label, Spinner, TextArea,
 import { useActionState } from "react";
 import { apply } from "@/app/company/actions";
 import { applicationFields, emailPattern, emptyApplication, type ApplyState } from "@/lib/application";
+import { type } from "@/lib/site";
 
 const initialState: ApplyState = { status: "editing", values: emptyApplication };
 
@@ -45,14 +46,14 @@ export default function ApplicationForm() {
             {prefix}
             {label}
           </Label>
-          {hint && <Description className="block text-[13px] leading-snug text-slate">{hint}</Description>}
+          {hint && <Description className={`${type.caption} block leading-snug text-slate`}>{hint}</Description>}
           {kind === "textarea" ? (
             <TextArea rows={rows ?? 3} maxLength={max} className={`${fieldText} resize-y py-2.5`} />
           ) : (
             <Input maxLength={max} autoComplete={autoComplete} className={`${fieldText} h-11`} />
           )}
           {/* Absolute so the error clearing on blur does not shift the button out from under the pointer. */}
-          <FieldError className="absolute inset-x-0 bottom-1.5 h-3.5 px-0 text-[13px] leading-[14px] data-visible:h-3.5">
+          <FieldError className={`${type.caption} absolute inset-x-0 bottom-1.5 h-3.5 px-0 leading-[14px] data-visible:h-3.5`}>
             {({ validationDetails }) =>
               validationDetails.valueMissing ? "This field is required." : "Enter a valid email address."
             }

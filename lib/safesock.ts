@@ -19,7 +19,6 @@ export const safesock = {
     "SafeSock is a sensor sleeve we’re designing to sit inside a boot, cast, or brace and show how much weight a patient puts on an injured leg between visits.",
   status: "In development with our engineering partners. Not yet available to clinics.",
   purpose: "A sensor sleeve designed to show how much weight a patient puts on an injured leg between visits.",
-  video: { src: "/safesock-demo.mp4", poster: "/safesock-demo-poster.jpg" },
   scrub: { src: "/safesock/scrub.mp4", poster: "/safesock/poster.jpg", duration: 8 },
   beats: [
     {

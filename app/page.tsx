@@ -131,7 +131,7 @@ export default function Home() {
               <h3 id={`${id}-title`} className={`${type.h3} mt-8`}>{title}</h3>
               <p className={`${type.body} mt-3`}>{body}</p>
               {inDevelopment && (
-                <p className="mt-4 flex items-center gap-2 text-[15px] text-ink">
+                <p className={`${type.small} mt-4 flex items-center gap-2 text-ink`}>
                   <InDevelopment />
                   {inDevelopment}
                 </p>

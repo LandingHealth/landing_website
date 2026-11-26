@@ -73,6 +73,9 @@ Take every heading, lead, body, and label size from the `type` table in `lib/sit
 | `body`, `bodyOnDark` | 16px, line height 1.45, slate or white 70% | Short blurbs |
 | `eyebrow` | 16px Geist Mono uppercase | Section kickers, through `components/ui/Eyebrow.tsx` |
 | `label` | 12px Geist Mono uppercase | Small captions on frames and figures |
+| `prose` | 16px, 17px from `sm`, line height 1.6 | Article body text |
+| `small` | 15px, size only | Capability lists, meta rows, notes under a heading |
+| `caption` | 13px, size only | Field hints, errors, and range labels |
 
 - Headings carry no color of their own. They inherit ink from the body and white inside `night`.
 - Headings use sentence case and `text-balance`.
@@ -84,7 +87,7 @@ The spacing base is 4px through Tailwind spacing utilities.
 
 - `container` in `lib/site.ts` gives a 1280px content width with 80px gutters at 1440, 40px on tablets, and 16px on phones. `gutter` is the same padding without the max width.
 - `sectionPad` is 80px top and bottom on desktop, 64px on phones.
-- Use `components/ui/Sheet.tsx` for a white or fog section. It already applies `container` and `sectionPad`.
+- Use `components/ui/Sheet.tsx` for a white or fog section. It already applies `container` and `sectionPad`. Pass `bleed` when the content must run edge to edge, such as the SafeSock scroll stage.
 - Wide layouts use a four-column grid with 40px gaps. The feature tour puts its menu in column one, the demo in columns two and three, and the text in column four. `SectionHeading align="split"` uses the same grid.
 - Never crop a product video to fit a frame. Fit the frame to the video.
 - The header must fit one row at 320px wide. Below `lg` the navigation links live in the menu.
@@ -113,7 +116,10 @@ Page chrome is rendered by `app/layout.tsx`: `AnnouncementBar`, `Header`, and `F
 - **Header.** Logo left, `navigation` centered, a secondary Contact button and a primary Book a demo button on the right. Below `lg`, the links move into the HeroUI Popover menu.
 - **CTA sheet.** `components/ui/CtaSheet.tsx`. A gradient sheet with a centered H2, Book a demo, an optional secondary button, and the clipped Landing wordmark. Pass the page's own `heading`.
 - **Footer.** Logo, then the `footerColumns` from `lib/site.ts`, then the copyright.
-- **Section primitives.** `components/ui/` holds `Eyebrow`, `SectionHeading`, `Sheet`, `GradientFrame`, `StatCard`, `QuoteBlock`, `DarkCard`, and `FeatureTour`. Build page sections from these before you write new layout.
+- **Section primitives.** `components/ui/` holds `Eyebrow`, `SectionHeading`, `Sheet`, `GradientFrame`, `DarkCard`, `FeatureTour`, `NumberedRows`, `IndexNumber`, `InDevelopment`, and `BackLink`. Build page sections from these before you write new layout.
+- **Numbered rows.** `NumberedRows` is the ruled three-column list with a mono index, an H3, and a short body. `IndexNumber` is that blue mono `01` on its own, with `onDark` for `night`.
+- **Status chip.** `InDevelopment` is the one marker for anything not built yet. Use it instead of writing "In development:" into copy.
+- **Back link.** `BackLink` is the small mono link above a page title that returns to its parent, such as Resources.
 - **Feature tour.** `FeatureTour` is the sticky feature menu. It takes a list of features, each with a `demo` node. The feature crossing the middle of the viewport is active. Its menu item turns blue with a blue rule and carries `aria-current="location"`, and the other features dim to 30% on desktop. On phones the menu is a sticky row of chips.
 - **Buttons.** A call to action that navigates is a link, so use `components/ButtonLink.tsx`, which carries the press ripple. Variants are `primary` (blue), `secondary` (fog), and `onDark`. Use the HeroUI `Button` for an action inside a form or a control.
 - **Forms.** Use HeroUI `Form`, `TextField`, `Label`, `Description`, `Input`, `TextArea`, and `FieldError`. Labels sit above the field. Show a validation message under the field it belongs to. Show a pending state on the submit button while the request runs.
@@ -166,7 +172,7 @@ Rules for new motion:
 - Don't put a second dark card or a second blue band on a page.
 - Don't restyle a HeroUI component until it stops looking like the rest of the site. Change the theme variables in `app/globals.css` so every component follows.
 - Don't install a component from another library when HeroUI has one. A VantaUI item is allowed only when HeroUI has no equivalent and the item follows this file.
-- Don't state a compliance claim, a payout term, or a patient outcome that the page copy does not already make. A `StatCard` shows only a number Landing can back.
+- Don't state a compliance claim, a payout term, or a patient outcome that the page copy does not already make.
 
 ## Source of truth
 

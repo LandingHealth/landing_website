@@ -3,11 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import ShareLink from "@/components/ShareLink";
+import BackLink from "@/components/ui/BackLink";
 import CtaSheet from "@/components/ui/CtaSheet";
 import { formatPublished, groups, resourceBySlug, statusLabel, type Resource, type Slug } from "@/lib/resources";
 import { container, focusRing, type } from "@/lib/site";
 
-export const text = "text-base leading-[1.6] sm:text-[17px]";
+const text = type.prose;
 export const body = `mt-5 ${text}`;
 
 const link = `rounded-sm text-blue underline decoration-blue/30 underline-offset-2 hover:decoration-blue ${focusRing}`;
@@ -90,12 +91,10 @@ export default function Article({
     <main>
       <article className={`${container} pt-16 pb-20 sm:pt-24 lg:pb-28`}>
         <header className={measure}>
-          <Link href="/resources" className={`${type.label} rounded-sm text-slate hover:text-ink ${focusRing}`}>
-            Resources
-          </Link>
+          <BackLink href="/resources" label="Resources" />
           <ArticleTags resource={resource} className="mt-8" />
           <h1 className={`${type.h1} mt-4`}>{title}</h1>
-          <div className="mt-8 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-y border-hair py-4 text-[15px]">
+          <div className={`${type.small} mt-8 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-y border-hair py-4`}>
             <p className="text-slate">
               By{" "}
               <a href={author.href} target="_blank" rel="noopener noreferrer" className={link}>
@@ -117,7 +116,7 @@ export default function Article({
 
         <section aria-labelledby="sources" className={`${measure} mt-16 border-t border-hair pt-10`}>
           <h2 id="sources" className={type.h3}>Notes and sources</h2>
-          <ol className="mt-6 list-decimal space-y-3 pl-6 text-[15px] leading-[1.55] text-slate marker:text-blue">
+          <ol className={`${type.small} mt-6 list-decimal space-y-3 pl-6 leading-[1.55] text-slate marker:text-blue`}>
             {sources.list.map((source, index) => (
               <li
                 key={index}

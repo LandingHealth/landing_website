@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Icon, { type IconName } from "@/components/Icon";
 import Eyebrow from "@/components/ui/Eyebrow";
+import IndexNumber from "@/components/ui/IndexNumber";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Sheet from "@/components/ui/Sheet";
 import { proseLink, RuledRows } from "@/components/sections/trust/TrustPage";
@@ -76,7 +77,7 @@ export default function ReferralSection() {
           {steps.map(({ icon, title, text }, index) => (
             <li key={title} className="rounded-3xl bg-white p-8">
               <div className="flex items-center justify-between">
-                <span aria-hidden className="font-mono text-base text-blue">{String(index + 1).padStart(2, "0")}</span>
+                <IndexNumber index={index} />
                 <Icon name={icon} className="size-6 text-blue" />
               </div>
               <h3 className={`${type.h3} mt-10`}>{title}</h3>

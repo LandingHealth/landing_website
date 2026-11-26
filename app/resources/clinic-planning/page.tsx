@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import RevenueSection from "@/components/sections/Revenue";
+import BackLink from "@/components/ui/BackLink";
 import CtaSheet from "@/components/ui/CtaSheet";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Sheet from "@/components/ui/Sheet";
-import { focusRing, type } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Clinic planning | Landing",
@@ -16,9 +15,7 @@ export default function ClinicPlanningPage() {
   return (
     <main>
       <Sheet className="flex flex-col items-center text-center">
-        <Link href="/resources" className={`${type.label} rounded-sm text-slate hover:text-ink ${focusRing}`}>
-          Resources
-        </Link>
+        <BackLink href="/resources" label="Resources" />
         <SectionHeading
           as="h1"
           align="center"

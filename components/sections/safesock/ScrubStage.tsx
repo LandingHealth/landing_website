@@ -15,7 +15,6 @@ function beatOpacity(time: number, beat: Beat, first: boolean, last: boolean) {
   return Math.min(fadeIn, fadeOut);
 }
 
-// On desktop the video area is a size container, so the video takes the largest 1600x870 box that fits. Phones crop the sides a little for a larger render.
 const feather = "linear-gradient(to right, transparent, black 7%, black 93%, transparent)";
 const featherY = "linear-gradient(to bottom, transparent, black 7%, black 93%, transparent)";
 
@@ -100,6 +99,7 @@ export default function ScrubStage({
     <div ref={track} data-safesock-stage className="relative h-[400svh] motion-reduce:hidden">
       <div ref={stage} className="sticky top-16 flex h-[calc(100svh-4rem)] flex-col overflow-hidden pt-12 lg:pt-10">
         <div className="relative flex items-center justify-center lg:min-h-0 lg:flex-1 lg:[container-type:size]">
+          {/* On desktop the video area is a size container, so the video takes the largest 1600x870 box that fits. Phones crop the sides a little for a larger render. */}
           <video
             ref={video}
             src={src}

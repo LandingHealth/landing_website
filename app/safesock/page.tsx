@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import type { CSSProperties } from "react";
 import ButtonLink from "@/components/ButtonLink";
 import LoadHistoryPreview from "@/components/sections/safesock/LoadHistoryPreview";
 import RenderStills from "@/components/sections/safesock/RenderStills";
@@ -8,6 +7,7 @@ import ScrubStage from "@/components/sections/safesock/ScrubStage";
 import CtaSheet from "@/components/ui/CtaSheet";
 import DarkCard from "@/components/ui/DarkCard";
 import GradientFrame from "@/components/ui/GradientFrame";
+import NumberedRows from "@/components/ui/NumberedRows";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Sheet from "@/components/ui/Sheet";
 import { safesock } from "@/lib/safesock";
@@ -29,7 +29,6 @@ function ConceptLabel() {
 }
 
 export default function SafeSockPage() {
-  const [sleeve, ...details] = safesock.closeUps;
   return (
     <main>
       <noscript>
@@ -43,19 +42,17 @@ export default function SafeSockPage() {
         </p>
         <h1 className={`${type.h1} mt-6`}>SafeSock</h1>
         <p className={`${type.lead} mt-6 max-w-xl text-pretty`}>{safesock.purpose}</p>
-        <p className="mt-4 max-w-xl text-[15px] leading-[1.45] text-mute text-pretty">{safesock.status}</p>
+        <p className={`${type.small} mt-4 max-w-xl leading-[1.45] text-mute text-pretty`}>{safesock.status}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <ButtonLink href={demoHref} variant="primary">Talk about SafeSock</ButtonLink>
           <ButtonLink href="#workflow" variant="secondary">How it would work</ButtonLink>
         </div>
       </section>
 
-      <div className="bg-white">
-        <section aria-label="SafeSock concept render" className="rounded-t-3xl bg-fog sm:rounded-t-[2.5rem]">
-          <ScrubStage {...safesock.scrub} beats={safesock.beats} />
-          <RenderStills beats={safesock.beats} />
-        </section>
-      </div>
+      <Sheet tone="fog" round="top" bleed label="SafeSock concept render">
+        <ScrubStage {...safesock.scrub} beats={safesock.beats} />
+        <RenderStills beats={safesock.beats} />
+      </Sheet>
 
       <Sheet tone="white" round="top">
         <SectionHeading
@@ -64,7 +61,7 @@ export default function SafeSockPage() {
           lead="The sleeve, how it fits, and where the sensors sit. These are concept renders of the design, not photos of the prototype."
         />
         <div className="mt-12 grid gap-x-6 gap-y-12 lg:mt-16 lg:grid-cols-2 lg:gap-y-16">
-          {[sleeve, ...details].map(({ title, body, image }, index) => (
+          {safesock.closeUps.map(({ title, body, image }, index) => (
             <figure key={title} data-reveal className={index === 0 ? "lg:col-span-2" : ""}>
               <div className="relative overflow-hidden rounded-3xl bg-fog">
                 <Image
@@ -100,15 +97,7 @@ export default function SafeSockPage() {
         </div>
 
         <h2 className={`${type.h2} mt-20 lg:mt-28`}>What SafeSock is designed to measure.</h2>
-        <ul className="mt-10 grid gap-x-10 md:grid-cols-3">
-          {safesock.measures.map(({ title, body }, index) => (
-            <li key={title} data-reveal="line" className="border-t border-hair pt-6 pb-8" style={{ "--reveal-i": index } as CSSProperties}>
-              <span aria-hidden className="font-mono text-base text-blue">{String(index + 1).padStart(2, "0")}</span>
-              <h3 className={`${type.h3} mt-3`}>{title}</h3>
-              <p className={`${type.body} mt-3`}>{body}</p>
-            </li>
-          ))}
-        </ul>
+        <NumberedRows items={safesock.measures} reveal="line" className="mt-10" />
       </Sheet>
 
       <Sheet tone="white" round="top" id="workflow">
@@ -120,15 +109,7 @@ export default function SafeSockPage() {
         <GradientFrame className="mt-12 lg:mt-16">
           <LoadHistoryPreview />
         </GradientFrame>
-        <ol className="mt-12 grid gap-x-10 gap-y-2 md:grid-cols-3">
-          {safesock.steps.map(({ title, body }, index) => (
-            <li key={title} data-reveal className="border-t border-hair pt-6 pb-6" style={{ "--reveal-i": index } as CSSProperties}>
-              <span aria-hidden className="font-mono text-base text-blue">{String(index + 1).padStart(2, "0")}</span>
-              <h3 className={`${type.h3} mt-3`}>{title}</h3>
-              <p className={`${type.body} mt-3`}>{body}</p>
-            </li>
-          ))}
-        </ol>
+        <NumberedRows items={safesock.steps} reveal="fade" className="mt-12" />
       </Sheet>
 
       <div className={`${container} pb-16 lg:pb-20`}>

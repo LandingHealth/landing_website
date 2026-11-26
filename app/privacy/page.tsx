@@ -38,7 +38,7 @@ const website: Part = {
             This site can use PostHog to learn which pages people visit and how they use the site. It runs only when the site is set up with a PostHog key. When it is off, the site sends nothing to PostHog.
           </p>
           <p>
-            When it is on, your browser sends this data to <code className="font-mono text-[15px]">/ingest</code> on this site’s own address, which passes it to PostHog’s US servers. PostHog keeps an anonymous identifier in your browser, in a cookie or local storage, so it can tell repeat visits apart. This site does not send PostHog your name or email.
+            When it is on, your browser sends this data to <code className={`${type.small} font-mono`}>/ingest</code> on this site’s own address, which passes it to PostHog’s US servers. PostHog keeps an anonymous identifier in your browser, in a cookie or local storage, so it can tell repeat visits apart. This site does not send PostHog your name or email.
           </p>
         </div>
       ),
@@ -249,7 +249,7 @@ export default function PrivacyPage() {
             title={title}
             aside={
               <>
-                <p className="mt-3 max-w-sm text-[15px] leading-[1.4] text-slate">{scope}</p>
+                <p className={`${type.small} mt-3 max-w-sm leading-[1.4] text-slate`}>{scope}</p>
                 {updated && <p className={`${type.label} mt-4 text-mute`}>{updated}</p>}
               </>
             }

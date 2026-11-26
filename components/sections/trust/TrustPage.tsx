@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Eyebrow from "@/components/ui/Eyebrow";
+import IndexNumber from "@/components/ui/IndexNumber";
 import { container, focusRing, type } from "@/lib/site";
 
 export const proseLink = `rounded-sm text-blue underline decoration-blue/30 underline-offset-4 hover:decoration-blue ${focusRing}`;
@@ -33,10 +34,10 @@ export function TrustHero({
           {jumpLinks.map(({ id, label, note }, index) => (
             <li key={id} className="border-b border-hair">
               <a href={`#${id}`} className={`group flex gap-4 py-3.5 ${focusRing}`}>
-                <span aria-hidden className="font-mono text-base text-blue">{String(index + 1).padStart(2, "0")}</span>
+                <IndexNumber index={index} />
                 <span>
                   <span className="block font-medium text-ink group-hover:text-blue">{label}</span>
-                  {note && <span className="mt-1 block text-[15px] leading-[1.4] text-slate">{note}</span>}
+                  {note && <span className={`${type.small} mt-1 block leading-[1.4] text-slate`}>{note}</span>}
                 </span>
               </a>
             </li>
@@ -63,7 +64,7 @@ export function TrustSection({
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-24 py-12 first:pt-0 last:pb-0 lg:grid lg:grid-cols-4 lg:gap-x-10">
       <div className="lg:sticky lg:top-24 lg:self-start">
-        <span aria-hidden className="font-mono text-base text-blue">{String(index + 1).padStart(2, "0")}</span>
+        <IndexNumber index={index} />
         <h2 id={`${id}-title`} className={`${type.h3} mt-3 text-balance`}>{title}</h2>
         {aside}
       </div>

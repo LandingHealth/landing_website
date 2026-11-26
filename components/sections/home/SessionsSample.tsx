@@ -33,10 +33,10 @@ export default function SessionsSample() {
             {sessions.map(({ title, detail, status }) => (
               <li key={`${title}-${detail}`} className="flex items-center gap-3 rounded-md border border-hair px-3 py-2">
                 <div className="min-w-0">
-                  <p className="text-[15px] font-medium leading-tight">{title}</p>
-                  <p className="truncate text-[13px] text-slate">{detail}</p>
+                  <p className={`${type.small} font-medium leading-tight`}>{title}</p>
+                  <p className={`${type.caption} truncate text-slate`}>{detail}</p>
                 </div>
-                <span className={`ml-auto shrink-0 rounded px-1.5 py-0.5 text-[12px] font-medium ${statusStyle[status]}`}>
+                <span className={`ml-auto shrink-0 rounded px-1.5 py-0.5 text-xs font-medium ${statusStyle[status]}`}>
                   {status}
                 </span>
               </li>

@@ -7,6 +7,7 @@ import CtaSheet from "@/components/ui/CtaSheet";
 import Eyebrow from "@/components/ui/Eyebrow";
 import FeatureTour, { type Feature } from "@/components/ui/FeatureTour";
 import GradientFrame from "@/components/ui/GradientFrame";
+import NumberedRows from "@/components/ui/NumberedRows";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Sheet from "@/components/ui/Sheet";
 import { demo, demoHref, type } from "@/lib/site";
@@ -87,15 +88,7 @@ export default function ProductPage() {
           <ButtonLink href={demoHref} variant="primary">Book a demo</ButtonLink>
           <ButtonLink href="/getting-started" variant="secondary">See how setup works</ButtonLink>
         </div>
-        <ol className="mt-16 grid w-full gap-x-10 border-t border-hair text-left sm:grid-cols-3 lg:mt-20">
-          {workflow.map(({ title, body }, index) => (
-            <li key={title} className="border-b border-hair py-6 sm:border-b-0">
-              <span aria-hidden className="font-mono text-base text-blue">{String(index + 1).padStart(2, "0")}</span>
-              <h2 className={`${type.h3} mt-3`}>{title}</h2>
-              <p className={`${type.body} mt-2`}>{body}</p>
-            </li>
-          ))}
-        </ol>
+        <NumberedRows items={workflow} heading="h2" className="mt-16 w-full text-left lg:mt-20" />
       </Sheet>
 
       <Sheet tone="fog" round="top">

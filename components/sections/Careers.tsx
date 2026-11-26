@@ -2,7 +2,9 @@ import ApplicationForm from "@/components/ApplicationForm";
 import ButtonLink from "@/components/ButtonLink";
 import DarkCard from "@/components/ui/DarkCard";
 import Eyebrow from "@/components/ui/Eyebrow";
+import IndexNumber from "@/components/ui/IndexNumber";
 import SectionHeading from "@/components/ui/SectionHeading";
+import Sheet from "@/components/ui/Sheet";
 import { container, focusRing, type } from "@/lib/site";
 
 type Role = {
@@ -113,32 +115,28 @@ export default function CareersSection() {
         <DarkCard eyebrow="Expectations" title="Remote, with hours that fit." items={expectations} />
       </div>
 
-      <div className="bg-white">
-        <section id="apply" className="scroll-mt-24 rounded-t-3xl bg-fog py-16 [--reveal-mask:var(--color-fog)] sm:rounded-t-[2.5rem] lg:py-20">
-          <div className={`${container} lg:grid lg:grid-cols-4 lg:gap-x-10`}>
-            <div className="lg:col-span-2 lg:pr-10">
-              <Eyebrow className="mb-4">Application process</Eyebrow>
-              <h2 className={type.h2}>Apply</h2>
-              <ol className="mt-8 border-t border-hair">
-                {process.map(({ title, body }, index) => (
-                  <li key={title} className="border-b border-hair py-5">
-                    <span aria-hidden className="font-mono text-blue">{String(index + 1).padStart(2, "0")}</span>
-                    <h3 className="mt-2 text-lg font-semibold">{title}</h3>
-                    <p className={`${type.body} mt-1`}>{body}</p>
-                  </li>
-                ))}
-              </ol>
-              <h3 className="mt-8 text-lg font-semibold">Your information</h3>
-              <p className={`${type.body} mt-2`}>
-                We use your answers only to review your application. They go to a private spreadsheet. To have your application deleted, email us from the Contact link at the bottom of this page.
-              </p>
-            </div>
-            <div className="mt-10 rounded-3xl bg-white p-6 sm:p-10 lg:col-span-2 lg:mt-0">
-              <ApplicationForm />
-            </div>
-          </div>
-        </section>
-      </div>
+      <Sheet tone="fog" round="top" id="apply" className="lg:grid lg:grid-cols-4 lg:gap-x-10">
+        <div className="lg:col-span-2 lg:pr-10">
+          <Eyebrow className="mb-4">Application process</Eyebrow>
+          <h2 className={type.h2}>Apply</h2>
+          <ol className="mt-8 border-t border-hair">
+            {process.map(({ title, body }, index) => (
+              <li key={title} className="border-b border-hair py-5">
+                <IndexNumber index={index} />
+                <h3 className="mt-2 text-lg font-semibold">{title}</h3>
+                <p className={`${type.body} mt-1`}>{body}</p>
+              </li>
+            ))}
+          </ol>
+          <h3 className="mt-8 text-lg font-semibold">Your information</h3>
+          <p className={`${type.body} mt-2`}>
+            We use your answers only to review your application. They go to a private spreadsheet. To have your application deleted, email us from the Contact link at the bottom of this page.
+          </p>
+        </div>
+        <div className="mt-10 rounded-3xl bg-white p-6 sm:p-10 lg:col-span-2 lg:mt-0">
+          <ApplicationForm />
+        </div>
+      </Sheet>
     </>
   );
 }

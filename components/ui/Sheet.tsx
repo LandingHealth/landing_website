@@ -17,18 +17,26 @@ export default function Sheet({
   tone = "white",
   round,
   id,
+  label,
+  bleed = false,
   className = "",
   children,
 }: {
   tone?: keyof typeof tones;
   round?: keyof typeof corners;
   id?: string;
+  label?: string;
+  bleed?: boolean;
   className?: string;
   children: ReactNode;
 }) {
   const section = (
-    <section id={id} className={`${tones[tone].sheet} ${round ? corners[round] : ""} ${sectionPad}`}>
-      <div className={`${container} ${className}`}>{children}</div>
+    <section
+      id={id}
+      aria-label={label}
+      className={`scroll-mt-24 ${tones[tone].sheet} ${round ? corners[round] : ""} ${bleed ? className : sectionPad}`}
+    >
+      {bleed ? children : <div className={`${container} ${className}`}>{children}</div>}
     </section>
   );
   return round ? <div className={tones[tone].under}>{section}</div> : section;

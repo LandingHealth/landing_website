@@ -56,7 +56,7 @@ export default function FeatureTour({ features, label = "Features" }: { features
                   href={`#${id}`}
                   aria-current={active ? "location" : undefined}
                   onClick={() => setActiveId(id)}
-                  className={`block rounded-[4px] px-3 py-2 text-[15px] font-medium whitespace-nowrap transition-colors duration-300 motion-reduce:transition-none lg:rounded-none lg:border-b lg:px-0 lg:py-3.5 lg:text-base lg:whitespace-normal ${focusRing} ${
+                  className={`${type.small} block rounded-[4px] px-3 py-2 font-medium whitespace-nowrap transition-colors duration-300 motion-reduce:transition-none lg:rounded-none lg:border-b lg:px-0 lg:py-3.5 lg:text-base lg:whitespace-normal ${focusRing} ${
                     active
                       ? "bg-blue text-white lg:border-blue lg:bg-transparent lg:text-blue"
                       : "bg-white text-slate lg:border-hair lg:bg-transparent lg:text-mute lg:hover:text-ink"
@@ -85,12 +85,12 @@ export default function FeatureTour({ features, label = "Features" }: { features
               {capabilities && (
                 <ul className="mt-5 border-t border-hair">
                   {capabilities.map((capability) => (
-                    <li key={capability} className="border-b border-hair py-2.5 text-[15px] leading-[1.4] text-slate">
+                    <li key={capability} className={`${type.small} border-b border-hair py-2.5 leading-[1.4] text-slate`}>
                       {capability}
                     </li>
                   ))}
                   {inDevelopment?.map((item) => (
-                    <li key={item} className="flex items-start gap-2 border-b border-hair py-2.5 text-[15px] leading-[1.4] text-slate">
+                    <li key={item} className={`${type.small} flex items-start gap-2 border-b border-hair py-2.5 leading-[1.4] text-slate`}>
                       <InDevelopment />
                       {item}
                     </li>

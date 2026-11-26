@@ -93,4 +93,7 @@ export const type = {
   bodyOnDark: "max-w-prose text-base leading-[1.45] text-white/70",
   eyebrow: "font-mono text-base font-medium uppercase leading-[1.2]",
   label: "font-mono text-xs font-medium uppercase tracking-[0.04em]",
+  prose: "text-base leading-[1.6] sm:text-[17px]",
+  small: "text-[15px]",
+  caption: "text-[13px]",
 } as const;

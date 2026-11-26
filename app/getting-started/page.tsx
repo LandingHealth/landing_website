@@ -54,9 +54,6 @@ const steps: readonly Step[] = [
   },
 ];
 
-const numberWords = ["zero", "one", "two", "three", "four", "five", "six"] as const;
-const stepCount = numberWords[steps.length] ?? String(steps.length);
-
 const terms = [
   {
     title: "Support",
@@ -81,7 +78,7 @@ export default function GettingStartedPage() {
           align="center"
           eyebrow="Getting started"
           title="Start using Landing at your clinic"
-          lead={`Landing runs in the browser alongside your EHR. Setup takes ${stepCount} steps, and we do the first one for you.`}
+          lead="Landing runs in the browser alongside your EHR. Setup takes three steps, and we do the first one for you."
         />
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <ButtonLink href={demoHref} variant="primary">Book a setup demo</ButtonLink>
@@ -102,7 +99,7 @@ export default function GettingStartedPage() {
         <SectionHeading
           align="split"
           eyebrow="Setup"
-          title={`Setup in ${stepCount} steps`}
+          title="Setup in three steps"
           lead="From your clinic’s accounts to the first video you review."
         />
         <ol className="mt-12 flex flex-col gap-16 lg:mt-16 lg:gap-20">

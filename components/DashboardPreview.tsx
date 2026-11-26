@@ -1,5 +1,4 @@
-import BrandLockup from "@/components/Brand";
-import Icon, { type IconName } from "@/components/Icon";
+import Icon from "@/components/Icon";
 
 type SessionStatus = "inProgress" | "notStarted" | "complete" | "overdue";
 
@@ -9,20 +8,6 @@ const sessionChip: Record<SessionStatus, { label: string; className: string }> =
   complete: { label: "Complete", className: "border-transparent bg-ink/10" },
   overdue: { label: "Overdue", className: "border-blue" },
 };
-
-type RailItem = { icon: IconName; label: string; count?: number; active?: boolean };
-
-const reviewItems: RailItem[] = [
-  { icon: "flag", label: "Flagged", count: 2 },
-  { icon: "circleCheck", label: "Unflagged", count: 3 },
-  { icon: "eyeOff", label: "Unassessable", count: 1 },
-  { icon: "triangleAlert", label: "Failed", count: 0 },
-];
-
-const patientItems: RailItem[] = [
-  { icon: "users", label: "Patients", count: 12, active: true },
-  { icon: "userPlus", label: "New patient" },
-];
 
 const patient = {
   name: "Daniel Ortiz",
@@ -56,12 +41,6 @@ const brief = {
   closing: "Every proposal requires PT review. Nothing has been assigned, sent to the patient, or charted.",
 };
 
-const videos = [
-  { title: "Squat", detail: "Session Mon, Oct 26 · Strength", meta: "Flagged, 2 flags", flagged: true },
-  { title: "Step-up", detail: "Session Mon, Oct 26 · Strength", meta: "Unflagged", flagged: false },
-  { title: "Bridge", detail: "Extra submission", meta: "Analyzing", flagged: false },
-];
-
 type Session = { title: string; detail: string; status: SessionStatus };
 
 const sessionGroups: { label: string; sessions: Session[] }[] = [
@@ -86,43 +65,6 @@ const chipBase = "inline-flex items-center rounded border px-1.5 py-px text-[10.
 const rowCard = "flex items-center gap-3 rounded-md border border-ink/12 px-2.5 py-1.5";
 const smallLabel = "text-[10.5px] font-medium";
 const heading = "text-[13px] font-semibold";
-
-const lockupSmall = { tileClassName: "size-6 rounded-md", wordmarkClassName: "h-2.5" };
-
-function RailRow({ icon, label, count, active }: RailItem) {
-  return (
-    <div className={`flex h-7 items-center gap-2 rounded-md px-2 ${active ? "bg-white font-medium" : ""}`}>
-      <Icon name={icon} className={`size-3.5 ${active ? "text-blue" : ""}`} />
-      <span className="flex-1">{label}</span>
-      {count !== undefined && <span className="tabular-nums">{count}</span>}
-    </div>
-  );
-}
-
-function Rail() {
-  return (
-    <div className="hidden w-40 shrink-0 flex-col justify-between border-r border-ink/10 bg-blue/10 px-2 py-3 md:flex lg:w-44">
-      <div>
-        <div className="px-1 pb-3">
-          <BrandLockup {...lockupSmall} />
-        </div>
-        <p className={`${smallLabel} px-2 pb-1`}>Video review</p>
-        {reviewItems.map((item) => (
-          <RailRow key={item.label} {...item} />
-        ))}
-        <div className="mt-3">
-          {patientItems.map((item) => (
-            <RailRow key={item.label} {...item} />
-          ))}
-        </div>
-      </div>
-      <div>
-        <p className={`${smallLabel} px-2 pb-1`}>Riverside Physical Therapy</p>
-        <RailRow icon="logOut" label="Sign out" />
-      </div>
-    </div>
-  );
-}
 
 function Chip({ status }: { status: SessionStatus }) {
   const { label, className } = sessionChip[status];
@@ -198,29 +140,6 @@ function Brief() {
   );
 }
 
-function Videos() {
-  return (
-    <div>
-      <p className={heading}>Videos</p>
-      <p className={`${smallLabel} mt-1`}>Unreviewed</p>
-      <div className="mt-1 space-y-1.5">
-        {videos.map(({ title, detail, meta, flagged }) => (
-          <div key={title} className={rowCard}>
-            <div className="min-w-0">
-              <p className="font-medium">{title}</p>
-              <p className="truncate">{detail}</p>
-            </div>
-            <p className="ml-auto flex shrink-0 items-center gap-1.5 text-[10.5px]">
-              {flagged && <span className="size-1.5 rounded-full bg-blue" />}
-              {meta}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function Sessions() {
   return (
     <div>
@@ -268,36 +187,6 @@ export function ProgressPreview() {
         </div>
       </div>
       <figcaption className="mt-3 text-center text-xs text-slate">{caption}</figcaption>
-    </figure>
-  );
-}
-
-export default function DashboardPreview() {
-  return (
-    <figure className="w-full">
-      <div
-        aria-hidden="true"
-        className={`${frame} aspect-[4/5] sm:aspect-[4/3] lg:aspect-[16/10] lg:text-[12.5px]`}
-      >
-        <div className="flex h-full">
-          <Rail />
-          <div className="flex min-w-0 flex-1 flex-col">
-            <div className="flex items-center border-b border-ink/10 bg-blue/10 px-3 py-2 md:hidden">
-              <BrandLockup {...lockupSmall} />
-            </div>
-            <PatientHeader />
-            <div className="grid min-h-0 flex-1 items-start gap-4 px-4 py-3.5 sm:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] sm:px-5">
-              <Brief />
-              <div className="space-y-3.5">
-                <Videos />
-                <Sessions />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-white to-white/0" />
-      </div>
-      <figcaption className="mt-3 text-center text-xs">{caption}</figcaption>
     </figure>
   );
 }
