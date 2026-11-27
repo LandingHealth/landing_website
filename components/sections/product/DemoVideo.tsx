@@ -19,7 +19,7 @@ export function DemoClip({ name }: { name: DemoName }) {
       <ExpandableMedia
         media={{ video: { src, poster } }}
         title={title}
-        className="aspect-(--ratio) w-full rounded-xl bg-white shadow-preview"
+        className="aspect-(--ratio) w-full rounded-xl bg-white shadow-preview max-sm:shadow-none"
       />
     </div>
   );

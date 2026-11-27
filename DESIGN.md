@@ -96,7 +96,7 @@ The spacing base is 4px through Tailwind spacing utilities.
 
 - Buttons and fields use 4px corners. Do not use pill-shaped buttons.
 - Large frames, image cards, and the dark card use 24px (`rounded-3xl`).
-- Feature demo frames use 16px (`rounded-2xl`, `GradientFrame size="md"`).
+- Feature demo frames use 16px (`rounded-2xl`, `GradientFrame size="md"`). Below `sm` they become vitalize.care's media tile: a 3:2 box (taller content grows it), a 1px `edge` border, `bg-frame-glow`, no padding, and the screen or clip centered at 79% of the width with no shadow. Home feature text sits left-aligned under the tile, the title 24px below it, the body 10px under the title and the link 16px under the body, with 40px between features. /product tour text is left-aligned below `sm` too.
 - Sheets use 40px on tablets and up, 24px on phones. The CTA sheet is square.
 - Media inside a frame uses 12px (`rounded-xl`).
 - Below `sm` the home hero frame matches vitalize.care's phone frame: 342px wide (24px side margins), 12px corners, 24px padding, a 1px `edge` border and `bg-frame-glow`. Its video fills the frame with 10px corners and no shadow.
@@ -106,7 +106,7 @@ The spacing base is 4px through Tailwind spacing utilities.
 The site is flat. Tone changes and rules separate content.
 
 - Do not add a shadow to a card, a field, or a button.
-- A product visual inside a `GradientFrame` may use `shadow-preview` so it lifts off the gradient.
+- A product visual inside a `GradientFrame` may use `shadow-preview` so it lifts off the gradient, from `sm` up. Phone tiles sit flat.
 - Overlays such as the tablet menu popover keep the HeroUI overlay shadow so they read as floating. The phone menu is a sheet under the announcement bar and has no shadow.
 
 ## Components

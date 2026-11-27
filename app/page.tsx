@@ -116,15 +116,15 @@ export default function Home() {
 
       <Sheet tone="fog" round="top">
         <SectionHeading align="center" title="From the home session to the next visit." />
-        <div className="mt-12 grid gap-x-10 gap-y-14 lg:mt-16 lg:grid-cols-3">
+        <div className="mt-12 grid gap-x-10 gap-y-14 max-sm:gap-y-10 lg:mt-16 lg:grid-cols-3">
           {features.map(({ id, title, body, link, visual }) => (
-            <article key={id} aria-labelledby={`${id}-title`} data-reveal className="flex flex-col text-center">
+            <article key={id} aria-labelledby={`${id}-title`} data-reveal className="flex flex-col text-center max-sm:text-left">
               <GradientFrame size="md">
                 <div className="aspect-[4/3] w-full">{visual}</div>
               </GradientFrame>
-              <h3 id={`${id}-title`} className={`${type.h3} mt-8`}>{title}</h3>
-              <p className={`${type.body} mt-3`}>{body}</p>
-              <p className="mt-auto pt-5">
+              <h3 id={`${id}-title`} className={`${type.h3} mt-8 max-sm:mt-6`}>{title}</h3>
+              <p className={`${type.body} mt-3 max-sm:mt-2.5`}>{body}</p>
+              <p className="mt-auto pt-5 max-sm:pt-4">
                 <a
                   href={`/product#${id}`}
                   className={`rounded-sm font-medium text-blue underline-offset-4 hover:underline ${focusRing}`}
