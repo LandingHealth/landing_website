@@ -64,7 +64,6 @@
   background-color: #a9cbfa;
 }
 
-/* The phone hero frame: pale blue at the top deepening to a bright blue pool at the bottom, sampled from vitalize.care's frame image. */
 @utility bg-frame-glow {
   background:
     radial-gradient(120% 90% at 62% 100%, #4391f4 0%, #9cccfa 38%, rgb(217 230 255 / 0) 72%),
@@ -210,10 +209,7 @@
   }
 }
 
-/*
- * The phone menu fades its white sheet in over the page while the links show at once, and fades out whole on close.
- * Both run on the backdrop because React Aria keeps data-entering and data-exiting only on an element that animates.
- */
+/* React Aria keeps data-entering and data-exiting only on an element that animates. */
 @property --menu-sheet {
   syntax: "<color>";
   inherits: true;

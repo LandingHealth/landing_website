@@ -63,7 +63,6 @@ function Sidenote({ n, side, children }: { n: number; side: keyof typeof sidenot
   );
 }
 
-// rowOnPhones turns the card into vitalize.care's blog row below sm: no cover, one-line title and summary, a rule under each.
 export function ArticleCard({ resource, rowOnPhones = false }: { resource: Resource; rowOnPhones?: boolean }) {
   const { href, title, description, cover, published, author } = resource;
   const row = (phone: string) => (rowOnPhones ? phone : "");

@@ -1,26 +1,20 @@
-// Renders the phone hero cut of the PT review recording: it opens on the whole screen, zooms into the patient
-// video and flag timeline, moves to the comment panel while the PT types, and zooms back out before it loops.
-// Run from the repo root: node scripts/phone-hero-cut.mjs  (needs ffmpeg on PATH)
 import { execFileSync } from "node:child_process";
 
 const source = "public/workspace/exercise-review-app.mp4";
 const output = "public/workspace/exercise-review-app-phone.mp4";
 
-// Source pixels: the recording is 1482x994 at 30fps.
 const sourceWidth = 1482;
 const sourceHeight = 994;
 const fps = 30;
 const out = { width: 1080, height: 724 };
 const upscale = 2;
 
-// Each view is the source region to show, given by its left, top and width; the height follows the output ratio.
 const views = {
   full: { x: 0, y: 0, w: sourceWidth },
   review: { x: 0, y: 118, w: 1110 },
   comment: { x: 902, y: 128, w: 578 },
 };
 
-// [seconds, view]: hold a view between equal views, ease between different ones.
 const keys = [
   [0, "full"],
   [1.2, "full"],
@@ -35,7 +29,7 @@ const keys = [
 const fixed = (value) => value.toFixed(4);
 
 function segmentExpression(pick) {
-  // zoompan evaluates `in` as the input frame number. Cosine easing keeps every move smooth at both ends.
+  // zoompan evaluates `in` as the input frame number.
   let expression = fixed(pick(views[keys.at(-1)[1]]));
   for (let index = keys.length - 2; index >= 0; index--) {
     const [t0, from] = keys[index];

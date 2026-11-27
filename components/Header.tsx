@@ -47,7 +47,6 @@ const menuTrigger = (
   </Button>
 );
 
-// Phones get Vitalize's in-place menu, opened under the announcement bar when it is still on screen.
 function PhoneMenu({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false);
   const [top, setTop] = useState(0);

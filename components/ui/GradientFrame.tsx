@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
 
-// Below sm a feature frame is vitalize.care's media tile: 3:2, edge border, glow, with the content centered at 79% width.
-// The empty ::before holds the 3:2 height, so taller content grows the tile instead of being cut off.
 const phoneTile =
   "max-sm:grid max-sm:grid-cols-1 max-sm:place-items-center max-sm:border-edge max-sm:bg-frame-glow max-sm:p-0 max-sm:before:col-start-1 max-sm:before:row-start-1 max-sm:before:pb-[66.667%] max-sm:before:content-['']";
 
