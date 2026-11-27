@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { footerColumns } from "@/lib/site";
 
 const focusRingOnDark = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+const linkClass = `rounded-sm text-base font-medium text-white underline-offset-4 hover:underline ${focusRingOnDark}`;
 
 export default function Footer() {
   return (
@@ -12,13 +14,19 @@ export default function Footer() {
             <ul key={index} className="flex flex-col gap-4">
               {links.map(({ label, href }) => (
                 <li key={label}>
-                  <a
-                    href={href}
-                    {...(href.startsWith("https://") && { target: "_blank", rel: "noopener noreferrer" })}
-                    className={`rounded-sm text-base font-medium text-white underline-offset-4 hover:underline ${focusRingOnDark}`}
-                  >
-                    {label}
-                  </a>
+                  {href.startsWith("/") ? (
+                    <Link href={href} className={linkClass}>
+                      {label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={href}
+                      {...(href.startsWith("https://") && { target: "_blank", rel: "noopener noreferrer" })}
+                      className={linkClass}
+                    >
+                      {label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
