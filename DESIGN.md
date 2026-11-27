@@ -107,14 +107,15 @@ The site is flat. Tone changes and rules separate content.
 
 - Do not add a shadow to a card, a field, or a button.
 - A product visual inside a `GradientFrame` may use `shadow-preview` so it lifts off the gradient.
-- Overlays such as the phone menu keep the HeroUI overlay shadow so they read as floating.
+- Overlays such as the tablet menu popover keep the HeroUI overlay shadow so they read as floating. The phone menu is a sheet under the announcement bar and has no shadow.
 
 ## Components
 
 Page chrome is rendered by `app/layout.tsx`: `AnnouncementBar`, `Header`, then the page, then `CtaSheet` and `Footer`. Pages don't render their own call to action.
 
 - **Announcement bar.** `components/AnnouncementBar.tsx` reads the single `announcement` entry in `lib/site.ts`. Set it to `null` to hide the bar.
-- **Header.** Logo left, `navigation` centered, a secondary Contact button and a primary Book a demo button on the right. Below `lg`, the links move into the HeroUI Popover menu.
+- **Header.** Logo left, `navigation` centered, a secondary Contact button and a primary Book a demo button on the right. Below `lg`, the links move into the HeroUI Popover menu from `sm`, and into the phone menu below `sm`.
+- **Phone menu.** Below `sm` the menu is a HeroUI `Drawer` (placement top) that starts at the header's top edge, so the announcement bar stays visible while it is on screen, and fills the rest of the screen, following vitalize.care. Its first row repeats the closed header with a close icon in place of the menu icon. Below it a 20px-padded column holds the links (8px padding, 4px apart, so the labels sit 39px apart and start 28px from the edge) and, pinned to the bottom with 8px padding and 12px between them, full-width 39px Contact and Book a demo buttons. The drawer keeps focus inside, closes on Escape and returns focus to the trigger, locks page scroll, and the trigger carries `aria-expanded`.
 - **CTA sheet.** `components/ui/CtaSheet.tsx`. A full-bleed, square-cornered graphite section with a centered white H2, a short lead, and one white `light` Book a demo button. It takes no props: the heading and lead come from `demo` in `lib/site.ts`, so every page closes on the same text.
 - **Footer.** Solid `graphite` under the `CtaSheet`, split from it by a faint hairline. Copyright on the left, then the two untitled `footerColumns` from `lib/site.ts` (site pages, then Contact and LinkedIn). Edge-to-edge padding like the header.
 - **Section primitives.** `components/ui/` holds `Eyebrow`, `SectionHeading`, `Sheet`, `GradientFrame`, `DarkCard`, `FeatureTour`, `NumberedRows`, `IndexNumber`, `InDevelopment`, and `BackLink`. Build page sections from these before you write new layout.
@@ -141,6 +142,7 @@ The user approved each animation below. Keep its timing, easing, and trigger. A 
 | Media expand | Click a tile video or image | `components/ExpandableMedia.tsx`, React `ViewTransition` |
 | Looping product videos | Tiles and frames | `components/ExpandableMedia.tsx` |
 | Press scale | HeroUI buttons | HeroUI default |
+| Phone menu | Opening fades the white sheet in over the page in 200ms while the links show at once; closing fades the whole menu out in 200ms. Curve `--ease-framer`, `cubic-bezier(0.44, 0, 0.56, 1)` | `components/Header.tsx`, `.menu-backdrop` in `app/globals.css` |
 | Logo marquee | Home, Awarded by. Under reduced motion it stops and stays one row the visitor swipes | `components/Marquee.tsx` |
 
 Rules for new motion:
