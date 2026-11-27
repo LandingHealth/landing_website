@@ -82,7 +82,7 @@ export default function ResourcesPage() {
         <ul className="mt-10 grid gap-x-10 gap-y-[30px] sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-3">
           {resources.map((resource) => (
             <li key={resource.slug} className="min-w-0">
-              <ArticleCard resource={resource} />
+              <ArticleCard resource={resource} rowOnPhones />
             </li>
           ))}
         </ul>
