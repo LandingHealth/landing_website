@@ -3,13 +3,8 @@
 import SvelteIsland from "@/components/SvelteIsland";
 
 const props = {};
-const loaders = {
-  time: () => import("$lib/components/revenue/TimeCalculator.svelte"),
-  program: () => import("$lib/components/revenue/ProgramCalculator.svelte"),
-};
+const load = () => import("$lib/components/revenue/RevenueCalculator.svelte");
 
-export type CalculatorKind = keyof typeof loaders;
-
-export default function RevenueCalculator({ kind }: { kind: CalculatorKind }) {
-  return <SvelteIsland load={loaders[kind]} props={props} />;
+export default function RevenueCalculator() {
+  return <SvelteIsland load={load} props={props} />;
 }
