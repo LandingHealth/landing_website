@@ -6,7 +6,7 @@ export const navigation: ReadonlyArray<{ label: string; href: string }> = [
   { label: "Company", href: "/company" },
 ];
 
-export const demoHref = "https://calendly.com/rajnpatel05/landing-health-intro-meeting";
+export const demoHref = "https://calendly.com/pragat-wharton/30min";
 export const flyerHref = "/landing-clinic-flyer.pdf";
 
 export const demo = {

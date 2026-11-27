@@ -17,7 +17,7 @@ const nextConfig = {
   redirects() {
     return [
       { source: "/apply", destination: "/careers#apply", permanent: false },
-      { source: "/schedule", destination: "https://calendly.com/rajnpatel05/landing-health-intro-meeting", permanent: false },
+      { source: "/schedule", destination: "https://calendly.com/pragat-wharton/30min", permanent: false },
       { source: "/revenue", destination: "/resources/clinic-planning", permanent: true },
       { source: "/devices", destination: "/safesock", permanent: true },
       { source: "/integration", destination: "/getting-started", permanent: true },
