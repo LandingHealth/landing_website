@@ -86,8 +86,7 @@ export default function Home() {
           <h1 className={`${type.h1} max-w-4xl motion-safe:animate-rise`}>Turn home exercise into a new revenue stream</h1>
           <p style={delay(120)} className={`${type.lead} mt-6 max-w-2xl text-pretty motion-safe:animate-rise`}>
             Patients spend 98.8% of their week outside the clinic. Landing turns that time into reviewed home exercise
-            you can bill for. It condenses each recorded session into the moments where form deviates, so clinicians can
-            review a full session in seconds.
+            you can bill for.
           </p>
           <div
             data-header-cta
