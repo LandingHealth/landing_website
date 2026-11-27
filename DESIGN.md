@@ -138,7 +138,7 @@ The user approved each animation below. Keep its timing, easing, and trigger. A 
 | Media expand | Click a tile video or image | `components/ExpandableMedia.tsx`, React `ViewTransition` |
 | Looping product videos | Tiles and frames | `components/ExpandableMedia.tsx` |
 | Press scale | HeroUI buttons | HeroUI default |
-| Logo marquee | Home, Awarded by | `components/Marquee.tsx` |
+| Logo marquee | Home, Awarded by. Under reduced motion it stops and stays one row the visitor swipes | `components/Marquee.tsx` |
 
 Rules for new motion:
 
