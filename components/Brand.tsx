@@ -4,7 +4,7 @@ const WORDMARK = "M166.83 5.37L152.93 5.37L152.93 79.07L198.02 79.07L198.02 65.8
 
 function BrandMark() {
   return (
-    <svg viewBox="0 0 117.27 94.7" aria-hidden className="h-6 w-auto shrink-0">
+    <svg viewBox="0 0 117.27 94.7" aria-hidden className="h-[14px] w-auto shrink-0">
       <path fill="#ea652b" d={MARK} />
     </svg>
   );
@@ -24,7 +24,7 @@ export default function BrandLockup({
   wordmarkClassName?: string;
 }) {
   return (
-    <span className="flex items-center gap-2.5">
+    <span className="flex items-start gap-[5px]">
       <BrandMark />
       <Wordmark className={`w-auto ${wordmarkClassName}`} />
     </span>
