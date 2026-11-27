@@ -13,7 +13,7 @@ function BrandTile({ className }: { className?: string }) {
 
 function Wordmark({ className }: { className?: string }) {
   return (
-    <svg viewBox="152.93 0 691 102.95" aria-hidden className={className}>
+    <svg viewBox="150.93 0 695 102.95" aria-hidden className={className}>
       <path fill="currentColor" d={WORDMARK} />
     </svg>
   );
