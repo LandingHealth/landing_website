@@ -174,7 +174,7 @@ function Sessions() {
 
 const caption = "Sample patient and clinic data, shown for illustration.";
 
-const frame = "pointer-events-none relative select-none overflow-hidden rounded-[18px] border border-ink/10 bg-white text-left text-[11.5px] leading-[1.45] shadow-preview";
+const frame = "pointer-events-none relative select-none overflow-hidden rounded-[18px] border border-ink/10 bg-white text-left text-[11.5px] leading-[1.45] shadow-preview max-sm:shadow-none";
 
 export function ProgressPreview() {
   return (

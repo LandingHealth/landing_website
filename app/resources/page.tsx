@@ -79,10 +79,10 @@ export default function ResourcesPage() {
 
       <Sheet round="top">
         <SectionHeading eyebrow="Articles" title="Product, research, and perspective." />
-        <ul className="mt-10 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-10 grid gap-x-10 gap-y-[30px] sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-3">
           {resources.map((resource) => (
-            <li key={resource.slug}>
-              <ArticleCard resource={resource} />
+            <li key={resource.slug} className="min-w-0">
+              <ArticleCard resource={resource} rowOnPhones />
             </li>
           ))}
         </ul>

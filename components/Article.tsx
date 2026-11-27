@@ -63,21 +63,26 @@ function Sidenote({ n, side, children }: { n: number; side: keyof typeof sidenot
   );
 }
 
-export function ArticleCard({ resource }: { resource: Resource }) {
-  const { href, title, description, cover, published } = resource;
+export function ArticleCard({ resource, rowOnPhones = false }: { resource: Resource; rowOnPhones?: boolean }) {
+  const { href, title, description, cover, published, author } = resource;
+  const row = (phone: string) => (rowOnPhones ? phone : "");
   return (
-    <Link href={href} className={`group flex h-full flex-col items-center rounded-3xl text-center ${focusRing}`}>
+    <Link
+      href={href}
+      className={`group flex h-full flex-col items-center rounded-3xl text-center ${row("max-sm:items-stretch max-sm:rounded-none max-sm:border-b max-sm:border-cloud max-sm:pb-[30px] max-sm:text-left")} ${focusRing}`}
+    >
       <Image
         src={cover.src}
         alt=""
         width={cover.width}
         height={cover.height}
         sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
-        className="aspect-3/2 w-full rounded-2xl bg-fog object-cover ring-1 ring-ink/5 transition-opacity duration-300 group-hover:opacity-90 motion-reduce:transition-none"
+        className={`aspect-3/2 w-full rounded-2xl bg-fog object-cover ring-1 ring-ink/5 transition-opacity duration-300 group-hover:opacity-90 motion-reduce:transition-none ${row("max-sm:hidden")}`}
       />
-      <h3 className={`${type.h3} mt-5 text-balance group-hover:text-blue`}>{title}</h3>
-      <p className={`${type.body} mx-auto mt-3`}>{description}</p>
-      <p className="mt-4 text-sm text-mute">
+      <h3 className={`${type.h3} mt-5 text-balance group-hover:text-blue ${row("max-sm:mt-0 max-sm:truncate")}`}>{title}</h3>
+      <p className={`${type.body} mx-auto mt-3 ${row("max-sm:mx-0 max-sm:mt-2.5 max-sm:truncate")}`}>{description}</p>
+      <p className={`mt-4 text-sm text-mute ${row("max-sm:mt-3 max-sm:text-base")}`}>
+        {rowOnPhones && <span className="sm:hidden">{author.name} <span aria-hidden>•</span> </span>}
         <time dateTime={published}>{formatPublished(published)}</time>
       </p>
     </Link>

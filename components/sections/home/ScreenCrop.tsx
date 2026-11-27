@@ -12,7 +12,7 @@ export type Crop = {
 export default function ScreenCrop({ src, alt, width, height, region }: Crop) {
   const { x, y, w, h } = region;
   return (
-    <div className="relative w-full overflow-hidden rounded-xl bg-white shadow-preview" style={{ aspectRatio: `${w}/${h}` }}>
+    <div className="relative w-full overflow-hidden rounded-xl bg-white shadow-preview max-sm:shadow-none" style={{ aspectRatio: `${w}/${h}` }}>
       <Image
         src={src}
         alt={alt}

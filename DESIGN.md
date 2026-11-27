@@ -19,7 +19,7 @@ This file is the visual contract for the Landing Health marketing site. `app/glo
 - Sections alternate between white and `fog`. A sheet can round its top or bottom corners by 40px so it reads as laid over its neighbor.
 - Blue marks actions and position: the primary button, the active feature menu item, eyebrows, and links. It never fills a content section. The announcement bar is the one full-width blue band.
 - Product visuals sit inside a `GradientFrame`. The final call to action sits on the solid graphite `CtaSheet`. No other gradients, background images, or background video.
-- `blue` also fills the one dark card per page (`DarkCard`), such as how Landing partners with a clinic.
+- `blue` also fills the one dark card per page (`DarkCard`), such as how Landing partners with a clinic. Below `sm` it follows vitalize.care's partner card layout in Landing's blue: 16px corners, each step stacks the mono number, the H3 and the body 12px apart, with a `white/25` rule 24px under every step, the last included.
 - The site has one mode. Do not add dark mode, a `.dark` class, `data-theme="dark"`, or a `prefers-color-scheme` rule.
 - Build from HeroUI components before you write a custom control. Style them with the tokens below.
 
@@ -54,8 +54,9 @@ The Landing palette sits beside the semantic tokens as plain Tailwind colors.
 | `blue` | `#186ff1` | Primary buttons, active menu item, eyebrows, links, the announcement bar |
 | `blue-light` | `#3d8bff` | Unused since the dark card moved to blue |
 | `fog` | `#f4f4f4` | Alternate section background, secondary button |
+| `edge` | `#bfcfdd` | The 1px border around the phone hero frame and phone media tiles |
 
-`app/globals.css` holds two background utilities. `bg-frame` is the soft blue gradient frame behind product visuals, near-white blue at the top left into `#4f8df5` at the bottom right. `bg-cta` is solid `graphite` (`#262626`) behind the final call to action, with white text and a white button.
+`app/globals.css` holds three background utilities. `bg-frame` is the soft blue gradient frame behind product visuals, near-white blue at the top left into `#4f8df5` at the bottom right. `bg-frame-glow` is the phone hero frame, pale `#f2f7ff` at the top deepening into a bright `#4391f4` pool at the bottom, recreated in CSS from colors sampled off vitalize.care's frame image. `bg-cta` is solid `graphite` (`#262626`) behind the final call to action, with white text and a white button.
 
 ## Typography
 
@@ -95,35 +96,39 @@ The spacing base is 4px through Tailwind spacing utilities.
 
 - Buttons and fields use 4px corners. Do not use pill-shaped buttons.
 - Large frames, image cards, and the dark card use 24px (`rounded-3xl`).
-- Feature demo frames use 16px (`rounded-2xl`, `GradientFrame size="md"`).
+- Feature demo frames use 16px (`rounded-2xl`, `GradientFrame size="md"`). Below `sm` they become vitalize.care's media tile: a 3:2 box (taller content grows it), a 1px `edge` border, `bg-frame-glow`, no padding, and the screen or clip centered at 79% of the width with no shadow. Home feature text sits left-aligned under the tile, the title 24px below it, the body 10px under the title and the link 16px under the body, with 40px between features. /product tour text is left-aligned below `sm` too.
 - Sheets use 40px on tablets and up, 24px on phones. The CTA sheet is square.
 - Media inside a frame uses 12px (`rounded-xl`).
+- Below `sm` the home hero frame matches vitalize.care's phone frame: 342px wide (24px side margins), 12px corners, 24px padding, a 1px `edge` border and `bg-frame-glow`. Its video fills the frame with 10px corners and no shadow.
 
 ## Elevation
 
 The site is flat. Tone changes and rules separate content.
 
 - Do not add a shadow to a card, a field, or a button.
-- A product visual inside a `GradientFrame` may use `shadow-preview` so it lifts off the gradient.
-- Overlays such as the phone menu keep the HeroUI overlay shadow so they read as floating.
+- A product visual inside a `GradientFrame` may use `shadow-preview` so it lifts off the gradient, from `sm` up. Phone tiles sit flat.
+- Overlays such as the tablet menu popover keep the HeroUI overlay shadow so they read as floating. The phone menu is a sheet under the announcement bar and has no shadow.
 
 ## Components
 
 Page chrome is rendered by `app/layout.tsx`: `AnnouncementBar`, `Header`, then the page, then `CtaSheet` and `Footer`. Pages don't render their own call to action.
 
 - **Announcement bar.** `components/AnnouncementBar.tsx` reads the single `announcement` entry in `lib/site.ts`. Set it to `null` to hide the bar.
-- **Header.** Logo left, `navigation` centered, a secondary Contact button and a primary Book a demo button on the right. Below `lg`, the links move into the HeroUI Popover menu.
+- **Header.** Logo left, `navigation` centered, a secondary Contact button and a primary Book a demo button on the right. Below `lg`, the links move into the HeroUI Popover menu from `sm`, and into the phone menu below `sm`.
+- **Phone menu.** Below `sm` the menu is a HeroUI `Drawer` (placement top) that starts at the header's top edge, so the announcement bar stays visible while it is on screen, and fills the rest of the screen, following vitalize.care. Its first row repeats the closed header with a close icon in place of the menu icon. Below it a 20px-padded column holds the links (8px padding, 4px apart, so the labels sit 39px apart and start 28px from the edge) and, pinned to the bottom with 8px padding and 12px between them, full-width 39px Contact and Book a demo buttons. The drawer keeps focus inside, closes on Escape and returns focus to the trigger, locks page scroll, and the trigger carries `aria-expanded`.
 - **CTA sheet.** `components/ui/CtaSheet.tsx`. A full-bleed, square-cornered graphite section with a centered white H2, a short lead, and one white `light` Book a demo button. It takes no props: the heading and lead come from `demo` in `lib/site.ts`, so every page closes on the same text.
 - **Footer.** Solid `graphite` under the `CtaSheet`, split from it by a faint hairline. Copyright on the left, then the two untitled `footerColumns` from `lib/site.ts` (site pages, then Contact and LinkedIn). Edge-to-edge padding like the header.
 - **Section primitives.** `components/ui/` holds `Eyebrow`, `SectionHeading`, `Sheet`, `GradientFrame`, `DarkCard`, `FeatureTour`, `NumberedRows`, `IndexNumber`, `InDevelopment`, and `BackLink`. Build page sections from these before you write new layout.
 - **Numbered rows.** `NumberedRows` is the ruled three-column list with a mono index, an H3, and a short body. `IndexNumber` is that blue mono `01` on its own, with `onDark` for the blue card.
 - **Status chip.** `InDevelopment` is the one marker for anything not built yet. Use it instead of writing "In development:" into copy.
+- **Article list.** On /resources, below `sm`, each article is a vitalize.care blog row: no cover, the title and summary on one line each (truncated), the author and date in `mute` under them, and a 1px `cloud` rule 30px below. From `sm` the articles stay cards with covers. Guides stay cards at every width.
 - **Back link.** `BackLink` is the small mono link above a page title that returns to its parent, such as Resources.
 - **Feature tour.** `FeatureTour` is the sticky feature menu. It takes a list of features, each with a `demo` node. The feature crossing the middle of the viewport is active. Its menu item turns blue with a blue rule and carries `aria-current="location"`, and the other features dim to 30% on desktop. On phones the menu is a sticky row of chips.
 - **Buttons.** A call to action that navigates is a link, so use `components/ButtonLink.tsx`, which carries the press ripple. Variants are `primary` (blue), `secondary` (fog), and `onDark`. Use the HeroUI `Button` for an action inside a form or a control.
 - **Forms.** Use HeroUI `Form`, `TextField`, `Label`, `Description`, `Input`, `TextArea`, and `FieldError`. Labels sit above the field. Show a validation message under the field it belongs to. Show a pending state on the submit button while the request runs.
 - **Disclosure.** Use HeroUI `Accordion` for stacked questions. Style it as a ruled list with `hair` rules and the `plus` icon that turns 45 degrees when open.
 - **Overlays.** Use HeroUI overlay components so focus, Escape, and outside press behave correctly. Do not build a menu or dialog from a `div`.
+- **Phone video cuts.** A desktop recording whose text is unreadable at phone width gets a phone cut, set as `phoneSrc` on the `ExpandableMedia` video and served below `sm` through a `<source media>`. The cut is the same recording at the same ratio, opening on the whole screen and zooming into the parts in use. `scripts/phone-hero-cut.mjs` renders the PT review cut with ffmpeg; rerun it when the recording changes.
 - **Icons.** Use `components/Icon.tsx`. Add a glyph there in the same stroke style before you import an icon package.
 
 ## Motion
@@ -138,7 +143,8 @@ The user approved each animation below. Keep its timing, easing, and trigger. A 
 | Media expand | Click a tile video or image | `components/ExpandableMedia.tsx`, React `ViewTransition` |
 | Looping product videos | Tiles and frames | `components/ExpandableMedia.tsx` |
 | Press scale | HeroUI buttons | HeroUI default |
-| Logo marquee | Home, Awarded by | `components/Marquee.tsx` |
+| Phone menu | Opening fades the white sheet in over the page in 200ms while the links show at once; closing fades the whole menu out in 200ms. Curve `--ease-framer`, `cubic-bezier(0.44, 0, 0.56, 1)` | `components/Header.tsx`, `.menu-backdrop` in `app/globals.css` |
+| Logo marquee | Home, Awarded by. Under reduced motion it stops and stays one row the visitor swipes | `components/Marquee.tsx` |
 
 Rules for new motion:
 

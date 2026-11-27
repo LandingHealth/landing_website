@@ -77,7 +77,7 @@ export default function FeatureTour({ features, label = "Features" }: { features
             aria-labelledby={`${id}-title`}
             className="grid scroll-mt-32 items-center gap-6 lg:scroll-mt-24 lg:grid-cols-3 lg:gap-10"
           >
-            <div className="text-center lg:order-2">
+            <div className="text-center max-sm:text-left lg:order-2">
               <h3 id={`${id}-title`} className={type.h3}>{title}</h3>
               <p className={`${type.body} mx-auto mt-3`}>{body}</p>
               {capabilities && (
@@ -88,7 +88,7 @@ export default function FeatureTour({ features, label = "Features" }: { features
                     </li>
                   ))}
                   {inDevelopment?.map((item) => (
-                    <li key={item} className={`${type.small} flex items-start justify-center gap-2 border-b border-hair py-2.5 leading-[1.4] text-slate`}>
+                    <li key={item} className={`${type.small} flex items-start justify-center gap-2 max-sm:justify-start border-b border-hair py-2.5 leading-[1.4] text-slate`}>
                       <InDevelopment />
                       {item}
                     </li>
