@@ -19,7 +19,7 @@ This file is the visual contract for the Landing Health marketing site. `app/glo
 - Sections alternate between white and `fog`. A sheet can round its top or bottom corners by 40px so it reads as laid over its neighbor.
 - Blue marks actions and position: the primary button, the active feature menu item, eyebrows, and links. It never fills a content section. The announcement bar is the one full-width blue band.
 - Product visuals sit inside a `GradientFrame`. The final call to action sits on the solid graphite `CtaSheet`. No other gradients, background images, or background video.
-- `blue` also fills the one dark card per page (`DarkCard`), such as how Landing partners with a clinic.
+- `blue` also fills the one dark card per page (`DarkCard`), such as how Landing partners with a clinic. Below `sm` it follows vitalize.care's partner card layout in Landing's blue: 16px corners, each step stacks the mono number, the H3 and the body 12px apart, with a `white/25` rule 24px under every step, the last included.
 - The site has one mode. Do not add dark mode, a `.dark` class, `data-theme="dark"`, or a `prefers-color-scheme` rule.
 - Build from HeroUI components before you write a custom control. Style them with the tokens below.
 
