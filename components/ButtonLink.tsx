@@ -51,6 +51,7 @@ export default function ButtonLink({
   return (
     <Link
       href={href}
+      {...(href.startsWith("https://") && { target: "_blank", rel: "noopener noreferrer" })}
       onPointerDown={addRipple}
       className={`${button[variant]} ${buttonSize[size]} relative isolate overflow-hidden ${className}`}
     >

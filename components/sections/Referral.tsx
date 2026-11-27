@@ -17,6 +17,8 @@ const steps: ReadonlyArray<Step> = [
       <>
         <a
           href={demoHref}
+          target="_blank"
+          rel="noopener noreferrer"
           className={proseLink}
         >
           Book a call with us
