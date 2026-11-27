@@ -1,52 +1,46 @@
-import RevenueCalculator, { type CalculatorKind } from "@/components/RevenueCalculator";
+import RevenueCalculator from "@/components/RevenueCalculator";
+import Eyebrow from "@/components/ui/Eyebrow";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Sheet from "@/components/ui/Sheet";
 import { type } from "@/lib/site";
 
-const calculators: ReadonlyArray<{
-  kind: CalculatorKind;
-  eyebrow: string;
-  title: string;
-  paragraphs: readonly string[];
-}> = [
+const streams = [
   {
-    kind: "time",
-    eyebrow: "Time",
-    title: "See what your own time estimate adds up to.",
-    paragraphs: [
-      "Landing doesn’t publish a measured time savings figure, and time saved depends on your caseload and how your clinic works today.",
-      "Enter your weekly visits and your own estimate of minutes saved per visit. The calculator multiplies the two and shows the weekly hours, with the formula under the total.",
-    ],
+    eyebrow: "In recovery",
+    title: "Bill the PT’s review of home exercise.",
+    text: "Patients use Landing during their plan of care. Where the patient qualifies, the PT’s review of that home exercise can be billed as remote therapeutic monitoring. Reimbursement depends on the payer and the patient’s eligibility.",
   },
   {
-    kind: "program",
-    eyebrow: "Between-visit program",
-    title: "Model a monthly program for home exercise review.",
-    paragraphs: [
-      "Some clinics may offer a monthly program built on the PT’s review of patients’ home exercise videos. Enter the patients you’d enroll, the monthly fee you’d set, and the time you expect to spend reviewing each patient.",
-      "Fees in the calculator start at $50 a month. That is an input limit, not Landing’s pricing. The result is before any costs and is an estimate, not a forecast.",
-    ],
+    eyebrow: "After discharge",
+    title: "Keep patients on a paid monthly program.",
+    text: "When the plan of care ends, patients can stay on your clinic’s monthly home exercise program. You set the fee. It is your program, not Landing’s pricing.",
   },
-];
+] as const;
 
 export default function RevenueSection() {
   return (
     <>
-      {calculators.map(({ kind, eyebrow, title, paragraphs }, index) => (
-        <Sheet key={kind} id={kind} tone={index % 2 === 0 ? "fog" : "white"} round="top">
-          <div className="mx-auto max-w-2xl text-center">
-            <SectionHeading eyebrow={eyebrow} title={title} />
-            <div className="mt-6 space-y-4">
-              {paragraphs.map((text) => (
-                <p key={text} className={`${type.body} mx-auto`}>{text}</p>
-              ))}
-            </div>
-          </div>
-          <div className="mt-10 lg:mt-14">
-            <RevenueCalculator kind={kind} />
-          </div>
-        </Sheet>
-      ))}
+      <Sheet tone="fog" round="top">
+        <ul className="mx-auto grid max-w-4xl gap-4 md:grid-cols-2">
+          {streams.map(({ eyebrow, title, text }) => (
+            <li key={eyebrow} className="min-w-0 rounded-3xl bg-white p-6 ring-1 ring-inset ring-hair sm:p-8">
+              <Eyebrow className="mb-4">{eyebrow}</Eyebrow>
+              <h2 className={type.h3}>{title}</h2>
+              <p className={`${type.body} mt-3`}>{text}</p>
+            </li>
+          ))}
+        </ul>
+      </Sheet>
+      <Sheet id="calculator" tone="white" round="top">
+        <SectionHeading
+          eyebrow="Calculator"
+          title="Add up both streams with your own numbers."
+          lead="Every input is your clinic’s own estimate. The monitoring figure is yours, not a Landing rate, and the program fee is yours to set."
+        />
+        <div className="mt-10 lg:mt-14">
+          <RevenueCalculator />
+        </div>
+      </Sheet>
     </>
   );
 }

@@ -9,7 +9,7 @@ import { flyerHref, focusRing, type } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Resources | Landing",
   description:
-    "Guides for clinics evaluating Landing, a clinic planning page with time and program calculators, and articles on Landing’s product, research, and perspective.",
+    "Guides for clinics evaluating Landing, a clinic planning page on two ways Landing adds revenue, and articles on Landing’s product, research, and perspective.",
 };
 
 const guides = [
@@ -28,7 +28,7 @@ const guides = [
   {
     kind: "Calculators",
     title: "Clinic planning",
-    text: "Estimate weekly hours saved and a between-visit program’s gross revenue from numbers you enter.",
+    text: "Estimate monthly revenue from monitoring patients in recovery and a paid program after discharge, using numbers you enter.",
     href: "/resources/clinic-planning",
   },
   {
