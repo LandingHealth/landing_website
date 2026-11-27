@@ -54,8 +54,9 @@ The Landing palette sits beside the semantic tokens as plain Tailwind colors.
 | `blue` | `#186ff1` | Primary buttons, active menu item, eyebrows, links, the announcement bar |
 | `blue-light` | `#3d8bff` | Unused since the dark card moved to blue |
 | `fog` | `#f4f4f4` | Alternate section background, secondary button |
+| `edge` | `#bfcfdd` | The 1px border around the phone hero frame and phone media tiles |
 
-`app/globals.css` holds two background utilities. `bg-frame` is the soft blue gradient frame behind product visuals, near-white blue at the top left into `#4f8df5` at the bottom right. `bg-cta` is solid `graphite` (`#262626`) behind the final call to action, with white text and a white button.
+`app/globals.css` holds three background utilities. `bg-frame` is the soft blue gradient frame behind product visuals, near-white blue at the top left into `#4f8df5` at the bottom right. `bg-frame-glow` is the phone hero frame, pale `#f2f7ff` at the top deepening into a bright `#4391f4` pool at the bottom, recreated in CSS from colors sampled off vitalize.care's frame image. `bg-cta` is solid `graphite` (`#262626`) behind the final call to action, with white text and a white button.
 
 ## Typography
 
@@ -98,6 +99,7 @@ The spacing base is 4px through Tailwind spacing utilities.
 - Feature demo frames use 16px (`rounded-2xl`, `GradientFrame size="md"`).
 - Sheets use 40px on tablets and up, 24px on phones. The CTA sheet is square.
 - Media inside a frame uses 12px (`rounded-xl`).
+- Below `sm` the home hero frame matches vitalize.care's phone frame: 342px wide (24px side margins), 12px corners, 24px padding, a 1px `edge` border and `bg-frame-glow`. Its video fills the frame with 10px corners and no shadow.
 
 ## Elevation
 
@@ -124,6 +126,7 @@ Page chrome is rendered by `app/layout.tsx`: `AnnouncementBar`, `Header`, then t
 - **Forms.** Use HeroUI `Form`, `TextField`, `Label`, `Description`, `Input`, `TextArea`, and `FieldError`. Labels sit above the field. Show a validation message under the field it belongs to. Show a pending state on the submit button while the request runs.
 - **Disclosure.** Use HeroUI `Accordion` for stacked questions. Style it as a ruled list with `hair` rules and the `plus` icon that turns 45 degrees when open.
 - **Overlays.** Use HeroUI overlay components so focus, Escape, and outside press behave correctly. Do not build a menu or dialog from a `div`.
+- **Phone video cuts.** A desktop recording whose text is unreadable at phone width gets a phone cut, set as `phoneSrc` on the `ExpandableMedia` video and served below `sm` through a `<source media>`. The cut is the same recording at the same ratio, opening on the whole screen and zooming into the parts in use. `scripts/phone-hero-cut.mjs` renders the PT review cut with ffmpeg; rerun it when the recording changes.
 - **Icons.** Use `components/Icon.tsx`. Add a glyph there in the same stroke style before you import an icon package.
 
 ## Motion

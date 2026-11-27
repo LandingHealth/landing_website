@@ -97,21 +97,18 @@ export default function Home() {
             <ButtonLink href="/product" variant="secondary">See the product</ButtonLink>
           </div>
         </div>
-        <figure style={delay(380)} className={`${container} relative mt-14 motion-safe:animate-arrive sm:mt-18`}>
-          <GradientFrame>
-            <div className="w-full sm:hidden">
-              <ScreenCrop
-                src="/workspace/exercise-review-app.jpg"
-                alt="A PT reviewing a flagged squat in Landing, with the flag timeline under the patient's video"
-                width={1482}
-                height={994}
-                region={{ x: 380, y: 175, w: 630, h: 740 }}
-              />
-            </div>
+        <figure style={delay(380)} className={`${container} relative mt-14 motion-safe:animate-arrive max-sm:mt-10 max-sm:px-6 sm:mt-18`}>
+          <GradientFrame className="max-sm:rounded-xl max-sm:border-edge max-sm:bg-frame-glow max-sm:p-6">
             <ExpandableMedia
-              media={{ video: { src: "/workspace/exercise-review-app.mp4", poster: "/workspace/exercise-review-app.jpg" } }}
+              media={{
+                video: {
+                  src: "/workspace/exercise-review-app.mp4",
+                  phoneSrc: "/workspace/exercise-review-app-phone.mp4",
+                  poster: "/workspace/exercise-review-app.jpg",
+                },
+              }}
               title="PT review"
-              className="hidden aspect-[1482/994] w-full max-w-5xl rounded-xl bg-white shadow-preview sm:block"
+              className="aspect-[1482/994] w-full max-w-5xl rounded-xl bg-white shadow-preview max-sm:overflow-hidden max-sm:rounded-[10px] max-sm:shadow-none"
             />
           </GradientFrame>
         </figure>

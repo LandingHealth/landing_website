@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { type CSSProperties, startTransition, useEffect, useRef, useState, ViewTransition } from "react";
 
-export type Video = { src: string; poster: string };
+export type Video = { src: string; poster: string; phoneSrc?: string };
 export type Photo = { src: string; alt: string; width: number; height: number; focus?: string };
 type Media = { video: Video } | { image: Photo };
 
@@ -68,13 +68,15 @@ export default function ExpandableMedia({
               ref={ref}
               className={expanded ? expandedSize : "size-full rounded-xl object-contain"}
               poster={media.video.poster}
-              src={media.video.src}
               loop
               muted
               playsInline
               preload="metadata"
               aria-hidden
-            />
+            >
+              {media.video.phoneSrc && <source src={media.video.phoneSrc} media="(max-width: 639.98px)" type="video/mp4" />}
+              <source src={media.video.src} type="video/mp4" />
+            </video>
           ) : (
             <Image
               src={media.image.src}
