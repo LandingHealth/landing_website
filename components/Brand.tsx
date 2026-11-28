@@ -5,7 +5,7 @@ const WORDMARK = "M166.83 5.37L152.93 5.37L152.93 79.07L198.02 79.07L198.02 65.8
 function BrandTile({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 100 100" aria-hidden className={className}>
-      <rect width="100" height="100" fill="#b3cbf5" />
+      <rect width="100" height="100" fill="#186ff1" />
       <path fill="#ea652b" transform="translate(28.5 32.64) scale(0.3667)" d={MARK} />
     </svg>
   );
