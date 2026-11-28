@@ -53,7 +53,7 @@ Every page shares the announcement bar, header, footer, and closing call-out fro
 - [Getting started](./getting-started.md) covers `/getting-started` and the three setup steps.
 - [Clinic planning](./clinic-planning.md) covers `/resources/clinic-planning`, its two calculators, and the `/revenue` redirect.
 - [Resources and articles](./resources-articles.md) covers `/resources`, the flyer PDF, and the six article pages.
-- [Company](./company.md) covers `/company`, the founders (Neil, Pragat, Evan), and the story video.
+- [Company](./company.md) covers `/company`: mission, principles, roadmap, awards, careers and contact.
 - [Security](./security.md) covers `/security`, its jump links, and the five topic lists.
 - [Careers](./careers.md) covers `/careers`, the open roles, and the application form at `#apply`.
 - [Privacy](./privacy.md) covers `/privacy` and its three jump links.

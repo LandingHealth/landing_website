@@ -2,7 +2,7 @@ import Image from "next/image";
 import Marquee from "@/components/Marquee";
 import { type } from "@/lib/site";
 
-const awards = [
+export const awards = [
   { name: "America250", src: "/awards/america250.svg", aspectRatio: 4.471 },
   { name: "TEDCO", src: "/awards/tedco.png", aspectRatio: 2.713 },
   { name: "Johns Hopkins University", src: "/awards/johns-hopkins.png", aspectRatio: 4.115 },
