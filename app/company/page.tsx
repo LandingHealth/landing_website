@@ -3,7 +3,7 @@ import AboutSection from "@/components/sections/About";
 
 export const metadata: Metadata = {
   title: "Company | Landing",
-  description: "Why we built Landing, the founders behind it, and what we're building toward.",
+  description: "Why we built Landing and what we're building toward.",
 };
 
 export default function CompanyPage() {

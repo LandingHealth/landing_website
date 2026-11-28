@@ -1,4 +1,3 @@
-import Image from "next/image";
 import ExpandableMedia, { type Photo } from "@/components/ExpandableMedia";
 import DarkCard from "@/components/ui/DarkCard";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -32,29 +31,6 @@ const story = [
   "Between visits, though, nobody could tell him whether he was loading the leg the right way, so he guessed. His PT saw him for an hour at a time and had little idea what happened at home until the next visit.",
   "We built Landing to connect those parts of care. Patients record their home exercises, their PT reviews what needs attention, and the next visit starts with more context.",
 ] as const;
-
-type Founder = { name: string; role: string; bio: string; photo: Photo };
-
-const founders: readonly Founder[] = [
-  {
-    name: "Neil Patel",
-    role: "Co-CTO",
-    bio: "Studies computer science and computer engineering at Johns Hopkins, where he has worked as a research engineer on surgical robotics and on models that estimate gait from insole pressure. Leads hardware at Landing.",
-    photo: { src: "/about/team/neil-patel.jpg", alt: "Neil Patel", width: 354, height: 354 },
-  },
-  {
-    name: "Pragat Patel",
-    role: "COO",
-    bio: "Studied bioengineering and neuroscience at Penn. His master’s thesis looked at physical therapy workflows and how clinics adopt new tools. Wharton ELITE Entrepreneurial Fellow.",
-    photo: { src: "/about/team/pragat-patel.jpg", alt: "Pragat Patel in a suit", width: 800, height: 800 },
-  },
-  {
-    name: "Evan Batten",
-    role: "Co-CTO",
-    bio: "Studies computer science at Johns Hopkins. He has been cofounder and CTO of Mira, a Microsoft AI Fellow, and an intern at the Johns Hopkins Applied Physics Laboratory. Leads computer vision at Landing.",
-    photo: { src: "/about/team/evan-batten.jpg", alt: "Evan Batten outdoors on a campus lawn", width: 800, height: 800 },
-  },
-];
 
 const buildingToward = [
   {
@@ -93,32 +69,7 @@ export default function AboutSection() {
         </div>
       </section>
 
-      <Sheet tone="fog" round="top">
-        <div>
-          <SectionHeading eyebrow="Founders" title="The team" />
-          <ul className="mx-auto mt-10 grid max-w-5xl gap-x-10 gap-y-12 sm:grid-cols-3 lg:mt-14">
-            {founders.map(({ name, role, bio, photo }) => (
-              <li key={name} className="text-center">
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  width={photo.width}
-                  height={photo.height}
-                  sizes="(min-width: 1024px) 290px, (min-width: 640px) 30vw, 96px"
-                  className="mx-auto aspect-square w-full max-w-72 rounded-3xl bg-fog object-cover"
-                />
-                <div className="mt-6">
-                  <h3 className={type.h3}>{name}</h3>
-                  <p className="mt-1 text-blue">{role}</p>
-                </div>
-                <p className={`${type.body} mx-auto mt-3`}>{bio}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Sheet>
-
-      <Sheet tone="white" round="top">
+      <Sheet tone="white">
         <div className="mx-auto max-w-2xl text-center">
           <SectionHeading eyebrow="Our story" title="Recovery happens between visits." />
           <div className="mt-6 space-y-4">
