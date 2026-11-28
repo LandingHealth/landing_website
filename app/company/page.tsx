@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import VersionA from "@/components/sections/company/VersionA";
+import CompanySection from "@/components/sections/Company";
 
 export const metadata: Metadata = {
   title: "Company | Landing",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function CompanyPage() {
   return (
     <main className="overflow-x-clip">
-      <VersionA />
+      <CompanySection />
     </main>
   );
 }

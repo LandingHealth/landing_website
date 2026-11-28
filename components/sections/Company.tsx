@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { awards } from "@/components/sections/home/Awards";
 import ButtonLink from "@/components/ButtonLink";
 import DarkCard from "@/components/ui/DarkCard";
 import Eyebrow from "@/components/ui/Eyebrow";
@@ -42,23 +43,6 @@ const building = [
   },
 ] as const;
 
-const awards = [
-  { name: "America250", src: "/awards/america250.svg", aspectRatio: 4.471 },
-  { name: "TEDCO", src: "/awards/tedco.png", aspectRatio: 2.713 },
-  { name: "Johns Hopkins University", src: "/awards/johns-hopkins.png", aspectRatio: 4.115 },
-  { name: "Johns Hopkins Pava Center", src: "/awards/pava-center.svg", aspectRatio: 0.896 },
-  { name: "Baylor University", src: "/awards/baylor.svg", aspectRatio: 5.449 },
-  { name: "TCU", src: "/awards/tcu.svg", aspectRatio: 2.047 },
-  { name: "Duquesne University", src: "/awards/duquesne.png", aspectRatio: 3.576 },
-  { name: "Sasin School of Management, Chulalongkorn University", src: "/awards/sasin.svg", aspectRatio: 7.23 },
-  { name: "KBank", src: "/awards/kbank.svg", aspectRatio: 4.056 },
-  { name: "London Business School", src: "/awards/london-business-school.svg", aspectRatio: 1 },
-  { name: "University of Manitoba", src: "/awards/university-of-manitoba.svg", aspectRatio: 2.066 },
-  { name: "U.S. National Science Foundation", src: "/awards/nsf.png", aspectRatio: 0.999 },
-  { name: "O’Shaughnessy Ventures", src: "/awards/oshaughnessy-ventures.svg", aspectRatio: 3.192 },
-  { name: "FOX45 Baltimore", src: "/awards/fox45.svg", aspectRatio: 2.201 },
-] as const;
-
 // Equal visual weight: a wide wordmark gets less height than a square seal, and nothing outgrows its cell.
 function logoSize(aspectRatio: number) {
   const height = Math.min(56, Math.max(24, Math.round(68 / Math.sqrt(aspectRatio))));
@@ -83,7 +67,7 @@ const doors = [
   },
 ] as const;
 
-export default function VersionB() {
+export default function CompanySection() {
   return (
     <>
       <section className={`${container} pt-16 pb-16 sm:pt-24 lg:pt-28 lg:pb-24`}>

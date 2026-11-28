@@ -1,13 +1,14 @@
 # Company
 
-`/company` (title `Company | Landing`) is the about page. While the redesign is open, `/company` renders version A (`components/sections/company/VersionA.tsx`), and `/company/a`, `/company/b` and `/company/c` show the three drafts (noindex). The notes below describe the earlier page and need a rewrite once a version is chosen. The h1 is "We're building the between-visit layer for physical therapy." It shows photos and a video from cofounder Neil's recovery, then "Our story", a dark "What we're building toward" card, and Careers and Contact links.
+`/company` (title `Company | Landing`) is the about page, built in `components/sections/Company.tsx`. It has no team section and no story photos.
 
 ## Sub-features
 
-- `company-hero` shows the h1, the lead, two expandable photos (`Expand Neil's leg after surgery image` and `Expand Neil's X-ray, February 2025 image`), and a controls-visible video of Neil climbing a stair with his PT (`/about/clinic-visit.mp4`).
-- `company-story` renders "Our story" under "Recovery happens between visits." with three paragraphs.
-- `company-building` is the dark card with three items: home exercise a PT can see, visits that start with context, and load on the leg (SafeSock, with its status line from `lib/safesock.ts`).
-- `company-links` has two links, `See open roles` to `/careers` and `Email us` to the contact mailto.
+- `company-hero` has the h1 "We're building the between-visit layer for physical therapy." over a dark rule, the goal line, and a large blue "98.8%" with "of a patient's week is spent outside the clinic."
+- `company-principles` is "What we believe" with four principles in a ruled 2x2 grid: care continues between visits, the PT makes the clinical calls, software takes the routine work, and measure what happens at home.
+- `company-building` is the blue card "What we're building" with three items: home exercise a PT can see, visits that start with context, and SafeSock (its purpose and status come from `lib/safesock.ts`). Its button links to the product page.
+- `company-awards` is "Recognition", a static grid of every logo in the `awards` list exported from `components/sections/home/Awards.tsx`.
+- `company-links` has two cards, `See open roles` to `/careers` and `Email the team` to the contact mailto.
 - `company-cta` is the shared closing call-out (see the README).
 
 ## How to get to it (user POV)
@@ -21,12 +22,10 @@ Preconditions:
 
 - `doctor: ready`.
 
-- **Load proof.** Run `MSYS_NO_PATHCONV=1 node .claude/skills/verify-landing_website/scripts/verify.mjs --routes /company`. The injury photos and the video poster appear in `company-*-full.png`, and the `images` check is 0.
-- **Photo expand.** Click `Expand Neil's X-ray, February 2025 image`, wait for `Close Neil's X-ray, February 2025 image`, wait 800ms, screenshot, and press Escape.
-- **Video plays.** Scroll `video[src="/about/clinic-visit.mp4"]` into view, press its play control (or call `play()`), wait 2s, and assert `readyState >= 2`.
+- **Load proof.** Run `MSYS_NO_PATHCONV=1 node .claude/skills/verify-landing_website/scripts/verify.mjs --routes /company`. All 14 award logos render in `company-*-full.png`, and the `images` check is 0.
+- **Awards.** With a server held on `<port>`, load `/company`, and assert that every `img` inside the Recognition section has a non-zero `naturalWidth` and that there are 14 of them.
 
 ## Gotchas
 
-- The accessible names above use a curly apostrophe in the app (`Neil’s`). Match with a regex such as `/Expand Neil.s X-ray/` rather than a straight-quote string.
-- The video has `preload="none"` and is black until the poster loads or playback starts. A black frame is a failure only when the report also has a `requests` finding for the video file.
-- The old `#about` id no longer exists. Select the video by its `src`.
+- The logos load eagerly. Lazy loading left two of them blank in phone screenshots.
+- Copy on this page reuses claims from the home page. Don't add numbers or claims that the site doesn't already make.
