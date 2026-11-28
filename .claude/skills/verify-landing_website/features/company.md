@@ -1,6 +1,6 @@
 # Company
 
-`/company` (title `Company | Landing`) is the about page. The h1 is "We're building the between-visit layer for physical therapy." It shows photos and a video from cofounder Neil's recovery, then "Our story", a dark "What we're building toward" card, and Careers and Contact links.
+`/company` (title `Company | Landing`) is the about page. While the redesign is open, `/company` renders version A (`components/sections/company/VersionA.tsx`), and `/company/a`, `/company/b` and `/company/c` show the three drafts (noindex). The notes below describe the earlier page and need a rewrite once a version is chosen. The h1 is "We're building the between-visit layer for physical therapy." It shows photos and a video from cofounder Neil's recovery, then "Our story", a dark "What we're building toward" card, and Careers and Contact links.
 
 ## Sub-features
 
